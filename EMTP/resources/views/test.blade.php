@@ -2,6 +2,8 @@
 
     {{-- add whatever you like --}}
 
+    
+
 
     
 </x-app-layout>
