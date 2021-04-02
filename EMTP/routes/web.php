@@ -36,7 +36,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/support', [SupportController::class, 'index'])->name('support');
 
     // Admin Routes
-  
+
 });
 
 //Admin Routes
@@ -79,6 +79,10 @@ Route::get('Staff/create_program', function () {
 
 Route::post('Staff/create_program', [ProgramController::class, 'store']);
 
-Route::get('/test', function(){
+Route::get('/test', function () {
     return view('admin.dashboard.index');
+});
+
+Route::get('/physical-booking', function () {
+    return view('index');
 });
