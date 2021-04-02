@@ -17,6 +17,7 @@ class CreateProgramsTable extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('type');
+            $table->decimal('price', $precision = 4, $scale = 2);
             $table->enum('option',['physical','online','both']);
             $table->text('description');
             $table->timestamps();
