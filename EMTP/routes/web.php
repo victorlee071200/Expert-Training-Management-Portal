@@ -26,8 +26,14 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/test', function () {
     return view('test');
 })->name('dashboard');
 
-Route::post('/create_program', [ProgramController::class, 'store']);
-
-Route::get('/Staff', function(){
-    return view('Staff/create_program');
+Route::get('/Admin', function () {
+    return view('Admin.approve_program');
 });
+
+Route::get('/Staff', function () {
+    return view('Staff.create_program');
+});
+
+Route::resource('Staff', ProgramController::class);
+
+Route::resource('Admin', ProgramController::class);

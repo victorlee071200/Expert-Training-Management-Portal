@@ -1,7 +1,7 @@
 @extends('layout')
 @section('title', 'This is our home')
 @section('content')
-<p>Hello.</p>
+<p>Staff.</p>
 
 <form method="post" class="w-full max-w-lg" action="create_program">
     @csrf
