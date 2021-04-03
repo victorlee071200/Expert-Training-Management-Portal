@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProgramController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,3 +25,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/test', function () {
     return view('test');
 })->name('dashboard');
+
+Route::post('/create_program', [ProgramController::class, 'store']);
+
+Route::get('/Staff', function(){
+    return view('Staff/create_program');
+});
