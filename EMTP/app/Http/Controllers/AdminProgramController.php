@@ -6,9 +6,11 @@ use App\Models\Program;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-class ProgramController extends Controller
+class AdminProgramController extends Controller
 {
-        /**
+    protected $table = 'programs';
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -16,13 +18,14 @@ class ProgramController extends Controller
     public function index()
     {
         $programs = Program::all();
-
-        $ied = Route::current()->parameter('id');
-
-        $id = url()->current();
-        
+        return view('Admin.view_program',compact('programs'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function create()
     {
         //
@@ -36,8 +39,6 @@ class ProgramController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate the request...
-
         $program = new Program;
         $program->name = request('name');
         $program->type = request('type');
@@ -55,21 +56,25 @@ class ProgramController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\c  $c
+     * @param  \App\Models\Program  $program
      * @return \Illuminate\Http\Response
      */
-    public function show(c $c)
+    public function show(Program $program)
     {
-        //
+        $program->type = "x";
+        return view('Admin.approve_program', ['program' => $program]);
+
+        // return $program;
+        // return view('Admin.approve_program');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\c  $c
+     * @param  \App\Models\Program  $program
      * @return \Illuminate\Http\Response
      */
-    public function edit(c $c)
+    public function edit(Program $program)
     {
         //
     }
@@ -78,10 +83,10 @@ class ProgramController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\c  $c
+     * @param  \App\Models\Program  $program
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, c $c)
+    public function update(Request $request, Program $program)
     {
         //
     }
@@ -89,10 +94,10 @@ class ProgramController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\c  $c
+     * @param  \App\Models\Program  $program
      * @return \Illuminate\Http\Response
      */
-    public function destroy(c $c)
+    public function destroy(Program $program)
     {
         //
     }
