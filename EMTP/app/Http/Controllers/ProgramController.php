@@ -44,10 +44,11 @@ class ProgramController extends Controller
         $program->price = request('price');
         $program->option = request('option');
         $program->description = request('description');
+        $program->status= 'to-be-confirmed';
 
         $program->save();
 
-        return redirect('Staff');
+        return redirect('Staff/create_program');
 
         // return $request->all();
     }

@@ -24,7 +24,29 @@
   <strong>Description: {{$program->description}}</strong>
 </p>
 
-{{-- <a href="{{$car->id}}/edit">Edit Car</a> --}}
+<form class="form-horizontal" method="post">
+  @csrf
+  @method('put')
+  <!-- Button -->
+  <div class="form-group">
+      <label class="col-md-4 control-label" for="submit"></label>
+      <div class="col-md-4">
+        <button id="submit" name="submit" class="btn btn-primary">Approve</button>
+      </div>
+  </div>
+</form>
 
+
+{{-- <form class="form-horizontal" method="post" action="Admin/progrms/{{$program->id}}">
+  @csrf
+  @method('put')
+  <!-- Button -->
+  <div class="form-group">
+    <label class="col-md-4 control-label" for="submit"></label>
+    <div class="col-md-4">
+      <button id="submit" name="submit" class="btn btn-primary">Reject</button>
+    </div>
+  </div>
+</form> --}}
 
 @endsection

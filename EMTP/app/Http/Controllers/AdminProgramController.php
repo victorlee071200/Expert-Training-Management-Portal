@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Program;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -17,8 +18,10 @@ class AdminProgramController extends Controller
      */
     public function index()
     {
-        $programs = Program::all();
-        return view('Admin.view_program',compact('programs'));
+        $pendingprograms =  DB::table('programs')->where('status', 'to-be-confirmed')->get();
+        $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
+        $allprograms =  DB::table('programs')->get();
+        return view('Admin.view_program',['pendingprograms'=>$pendingprograms, 'allprograms'=>$allprograms, 'approvedprograms'=>$approvedprograms]);
     }
 
     /**
@@ -61,7 +64,7 @@ class AdminProgramController extends Controller
      */
     public function show(Program $program)
     {
-        $program->type = "x";
+
         return view('Admin.approve_program', ['program' => $program]);
 
         // return $program;
@@ -88,7 +91,8 @@ class AdminProgramController extends Controller
      */
     public function update(Request $request, Program $program)
     {
-        //
+        $program->status = 'approved';
+        $program->save();
     }
 
     /**

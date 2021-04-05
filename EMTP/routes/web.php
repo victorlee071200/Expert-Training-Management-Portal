@@ -28,18 +28,21 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/test', function () {
 })->name('dashboard');
 
 
-Route::get('Admin/approve_program', function () {
-    return view('Admin.approve_program');
-});
+Route::put('/Admin/programs/{program}', [AdminProgramController::class, 'update']);
 
-Route::get('Staff', function () {
+// Route::put('Admin/programs/pending/{program}', [AdminProgramController::class, 'update']);
+
+// Route::put('Admin/programs/approved/{program}', [AdminProgramController::class, 'edit']);
+
+Route::post('Staff/create_program', [ProgramController::class, 'store']);
+
+Route::post('/approve_program', [AdminProgramController::class, 'store']);
+
+Route::get('Staff/create_program', function () {
     return view('Staff.create_program');
 });
 
 Route::get('Admin/view_program', [AdminProgramController::class, 'index']);
 
-Route::get('Admin/{program}', [AdminProgramController::class, 'show']);
+Route::get('Admin/programs/{program}', [AdminProgramController::class, 'show']);
 
-Route::post('/create_program', [ProgramController::class, 'store']);
-
-Route::post('/approve_program', [AdminProgramController::class, 'store']);
