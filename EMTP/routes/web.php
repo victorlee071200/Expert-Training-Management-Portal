@@ -46,3 +46,6 @@ Route::get('Admin/view_program', [AdminProgramController::class, 'index']);
 
 Route::get('Admin/programs/{program}', [AdminProgramController::class, 'show']);
 
+Route::get('Client/allprogram', [ProgramController::class, 'programindex']);
+
+Route::get('Client/allprogram/{program}', [ProgramController::class, 'showprogram']);

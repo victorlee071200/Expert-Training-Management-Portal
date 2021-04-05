@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Program;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -13,14 +14,10 @@ class ProgramController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function programindex()
     {
-        $programs = Program::all();
-
-        $ied = Route::current()->parameter('id');
-
-        $id = url()->current();
-        
+        $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
+        return view('Client.allprogram',['approvedprograms'=>$approvedprograms]);  
     }
 
     public function create()
