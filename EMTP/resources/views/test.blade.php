@@ -1,7 +1,7 @@
 <x-app-layout>
 
     {{-- add whatever you like --}}
-    <div>asiodhasd</div>
+
     
 
 
