@@ -13,10 +13,7 @@ class Edit extends Migration
      */
     public function up()
     {
-        Schema::table('client_programs', function (Blueprint $table) {
-            $table->integer('program_name')->change();
-            $table->renameColumn('program_name', 'program_id');
-        });
+        
     }
 
     /**
