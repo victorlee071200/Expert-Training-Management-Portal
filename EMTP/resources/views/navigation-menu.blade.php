@@ -14,23 +14,23 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <!-- homepage -->
                     <x-jet-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
-                        {{ __('home') }}
+                        {{ __('Home') }}
                     </x-jet-nav-link>
                     <!-- program page -->
                     <x-jet-nav-link href="{{ route('program') }}" :active="request()->routeIs('program')">
-                        {{ __('program') }}
+                        {{ __('Program') }}
                     </x-jet-nav-link>
                     <!-- dashboard -->
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('dashboard') }}
+                        {{ __('Dashboard') }}
                     </x-jet-nav-link>
                     <!-- aboutus -->
                     <x-jet-nav-link href="{{ route('aboutus') }}" :active="request()->routeIs('aboutus')">
-                        {{ __('aboutus') }}
+                        {{ __('About Us') }}
                     </x-jet-nav-link>
                     <!-- Support -->
                     <x-jet-nav-link href="{{ route('support') }}" :active="request()->routeIs('support')">
-                        {{ __('support') }}
+                        {{ __('Support') }}
                     </x-jet-nav-link>
                 </div>
             </div>

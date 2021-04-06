@@ -23,10 +23,21 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/test', function () {
-    return view('test');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/home', function () {
+    return view('home');
+})->name('home');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/program', function () {
+    return view('program');
+})->name('program');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/aboutus', function () {
+    return view('aboutus');
+})->name('aboutus');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/support', function () {
+    return view('support');
+})->name('support');
 
 Route::put('/Admin/programs/{program}', [AdminProgramController::class, 'update']);
 
