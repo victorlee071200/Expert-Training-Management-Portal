@@ -17,7 +17,7 @@ class CreateClientProgramsTable extends Migration
             $table->id();
             $table->string('client_email');
             $table->string('company_name');
-            $table->string('program_name');
+            $table->integer('program_id');
             $table->string('client_venue');
             $table->integer('no_of_employees');
             $table->enum('payment_type',['cash','online banking','credit/debit card']);
