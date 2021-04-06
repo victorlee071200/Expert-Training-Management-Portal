@@ -1,7 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\SupportController;
+use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminProgramController;
 use App\Http\Controllers\ClientProgramController;
 
@@ -20,25 +24,36 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard.index');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/home', function () {
-    return view('homepage.index');
-})->name('home');
+    Route::get('/dashboard', [DashboardController::class, 'show'])->name('client-dashboard');
+    Route::get('/home', [HomepageController::class, 'show'])->name('client-home');
+    Route::get('/program', [HomepageController::class, 'show'])->name('client-program');
+    Route::get('/about-us', [AboutUsController::class, 'show'])->name('aboutus');
+    Route::get('/support', [SupportController::class, 'show'])->name('support');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/program', function () {
-    return view('program.index');
-})->name('program');
+    
+});
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/aboutus', function () {
-    return view('aboutus');
-})->name('aboutus');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard.index');
+// })->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/support', function () {
-    return view('support');
-})->name('support');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/home', function () {
+//     return view('homepage.index');
+// })->name('home');
+
+// Route::middleware(['auth:sanctum', 'verified'])->get('/program', function () {
+//     return view('program.index');
+// })->name('program');
+
+// Route::middleware(['auth:sanctum', 'verified'])->get('/aboutus', function () {
+//     return view('aboutus');
+// })->name('aboutus');
+
+// Route::middleware(['auth:sanctum', 'verified'])->get('/support', function () {
+//     return view('support');
+// })->name('support');
 
 
 //Admin Routes
@@ -72,3 +87,7 @@ Route::get('Staff/create_program', function () {
 });
 
 Route::post('Staff/create_program', [ProgramController::class, 'store']);
+
+Route::get('/test', function(){
+    return view('admin.dashboard.index');
+});

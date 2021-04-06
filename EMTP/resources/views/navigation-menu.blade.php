@@ -1,5 +1,3 @@
-{{-- <!--Duplicated navigation bar use the one in layout.blade.php-->
-
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -7,30 +5,31 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('client-dashboard') }}">
                         <x-jet-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <!-- homepage -->
-                    <x-jet-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
+                    <x-jet-nav-link href="{{ route('client-home') }}" :active="request()->routeIs('home')">
                         {{ __('Home') }}
                     </x-jet-nav-link>
-                    <!-- program page -->
-                    <x-jet-nav-link href="{{ route('program') }}" :active="request()->routeIs('program')">
-                        {{ __('Program') }}
-                    </x-jet-nav-link>
-                    <!-- dashboard -->
-                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('client-dashboard') }}" :active="request()->routeIs('client-dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
-                    <!-- aboutus -->
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('aboutus') }}" :active="request()->routeIs('aboutus')">
                         {{ __('About Us') }}
                     </x-jet-nav-link>
-                    <!-- Support -->
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('support') }}" :active="request()->routeIs('support')">
                         {{ __('Support') }}
                     </x-jet-nav-link>
@@ -157,26 +156,9 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <!-- homepage -->
-            <x-jet-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
-                {{ __('home') }}
-            </x-jet-nav-link>
-            <!-- program page -->
-            <x-jet-nav-link href="{{ route('program') }}" :active="request()->routeIs('program')">
-                {{ __('program') }}
-            </x-jet-nav-link>
-            <!-- dashboard -->
-            <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('dashboard') }}
-            </x-jet-nav-link>
-            <!-- aboutus -->
-            <x-jet-nav-link href="{{ route('aboutus') }}" :active="request()->routeIs('aboutus')">
-                {{ __('aboutus') }}
-            </x-jet-nav-link>
-            <!-- Support -->
-            <x-jet-nav-link href="{{ route('support') }}" :active="request()->routeIs('support')">
-                {{ __('support') }}
-            </x-jet-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('client-dashboard') }}" :active="request()->routeIs('client-dashboard')">
+                {{ __('Dashboard') }}
+            </x-jet-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
@@ -250,4 +232,4 @@
             </div>
         </div>
     </div>
-</nav> --}}
+</nav>
