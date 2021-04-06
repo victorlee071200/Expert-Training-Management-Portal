@@ -10,10 +10,27 @@
                     </a>
                 </div>
 
-                <!-- Navigation Bar-->
+                <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <!-- homepage -->
+                    <x-jet-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
+                        {{ __('home') }}
+                    </x-jet-nav-link>
+                    <!-- program page -->
+                    <x-jet-nav-link href="{{ route('program') }}" :active="request()->routeIs('program')">
+                        {{ __('program') }}
+                    </x-jet-nav-link>
+                    <!-- dashboard -->
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('dashboard') }}
+                    </x-jet-nav-link>
+                    <!-- aboutus -->
+                    <x-jet-nav-link href="{{ route('aboutus') }}" :active="request()->routeIs('aboutus')">
+                        {{ __('aboutus') }}
+                    </x-jet-nav-link>
+                    <!-- Support -->
+                    <x-jet-nav-link href="{{ route('support') }}" :active="request()->routeIs('support')">
+                        {{ __('support') }}
                     </x-jet-nav-link>
                 </div>
             </div>
@@ -138,9 +155,26 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
-            </x-jet-responsive-nav-link>
+            <!-- homepage -->
+            <x-jet-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
+                {{ __('home') }}
+            </x-jet-nav-link>
+            <!-- program page -->
+            <x-jet-nav-link href="{{ route('program') }}" :active="request()->routeIs('program')">
+                {{ __('program') }}
+            </x-jet-nav-link>
+            <!-- dashboard -->
+            <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                {{ __('dashboard') }}
+            </x-jet-nav-link>
+            <!-- aboutus -->
+            <x-jet-nav-link href="{{ route('aboutus') }}" :active="request()->routeIs('aboutus')">
+                {{ __('aboutus') }}
+            </x-jet-nav-link>
+            <!-- Support -->
+            <x-jet-nav-link href="{{ route('support') }}" :active="request()->routeIs('support')">
+                {{ __('support') }}
+            </x-jet-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
