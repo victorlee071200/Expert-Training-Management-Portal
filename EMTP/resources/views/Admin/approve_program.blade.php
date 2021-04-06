@@ -36,7 +36,7 @@
   </div>
 </form>
 
-
+<!-- To-Do Reject -->
 {{-- <form class="form-horizontal" method="post" action="Admin/progrms/{{$program->id}}">
   @csrf
   @method('put')

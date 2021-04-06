@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\AdminProgramController;
+use App\Http\Controllers\ClientProgramController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,25 +28,34 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/test', function () {
     return view('test');
 })->name('dashboard');
 
-
-Route::put('/Admin/programs/{program}', [AdminProgramController::class, 'update']);
+//Admin Routes
 
 // Route::put('Admin/programs/pending/{program}', [AdminProgramController::class, 'update']);
 
 // Route::put('Admin/programs/approved/{program}', [AdminProgramController::class, 'edit']);
 
-Route::post('Staff/create_program', [ProgramController::class, 'store']);
-
-Route::post('/approve_program', [AdminProgramController::class, 'store']);
-
-Route::get('Staff/create_program', function () {
-    return view('Staff.create_program');
-});
-
 Route::get('Admin/view_program', [AdminProgramController::class, 'index']);
 
 Route::get('Admin/programs/{program}', [AdminProgramController::class, 'show']);
 
+Route::put('/Admin/programs/{program}', [AdminProgramController::class, 'update']);
+
+//Client Routes
 Route::get('Client/allprogram', [ProgramController::class, 'programindex']);
 
-Route::get('Client/allprogram/{program}', [ProgramController::class, 'showprogram']);
+Route::get('Client/programs/{program}', [ProgramController::class, 'client_showprogram']);
+
+Route::get('Client/programs/{program}/register', [ProgramController::class, 'register']);
+
+Route::post('Client/programs/{program}/register', [ProgramController::class, 'client_store']);
+
+Route::get('Client/registeredprograms', [ClientProgramController::class, 'index']);
+
+Route::get('Client/registeredprograms/{registeredprogram}/{program}', [ClientProgramController::class, 'show']);
+
+//Staff Routes
+Route::get('Staff/create_program', function () {
+    return view('Staff.create_program');
+});
+
+Route::post('Staff/create_program', [ProgramController::class, 'store']);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Program;
+use App\Models\ClientProgram;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,9 +21,54 @@ class ProgramController extends Controller
         return view('Client.allprogram',['approvedprograms'=>$approvedprograms]);  
     }
 
+    public function showprogram()
+    {
+        $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
+        return view('Client.allprogram',['approvedprograms'=>$approvedprograms]);  
+    }
+
+    public function client_showprogram(Program $program)
+    {
+
+        return view('Client.program', ['program' => $program]);
+
+        // return $program;
+        // return view('Admin.approve_program');
+    }
+
     public function create()
     {
         //
+    }
+
+    public function register(Program $program)
+    {
+        return view('Client.submit', ['program' => $program]);
+    }
+
+    public function client_store($program, Request $request)
+    {
+        // Validate the request...
+
+        $clientprogram = new ClientProgram;
+        //to-do: get client's email
+        $clientprogram->client_email = "TODO@gmail.com";
+        $clientprogram->company_name = request('company_name');
+        $clientprogram->program_id = $program;
+        $clientprogram->client_venue = request('client_venue');
+        $clientprogram->no_of_employees = request('no_of_employees');
+        $clientprogram->start_date = request('start_date');
+        $clientprogram->end_date = request('end_date');
+        $clientprogram->payment_type = request('payment_type');
+        $clientprogram->payment_status = "pending";
+        $clientprogram->client_notes = request('client_notes');
+        $clientprogram->status= 'to-be-confirmed';
+
+        $clientprogram->save();
+
+        return redirect('Client/allprogram');
+
+        // return $request->all();
     }
 
     /**
