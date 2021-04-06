@@ -26,60 +26,41 @@ Route::get('/', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
+    // Client Side
     Route::get('/dashboard', [DashboardController::class, 'show'])->name('client-dashboard');
     Route::get('/home', [HomepageController::class, 'show'])->name('client-home');
     Route::get('/program', [HomepageController::class, 'show'])->name('client-program');
     Route::get('/about-us', [AboutUsController::class, 'show'])->name('aboutus');
     Route::get('/support', [SupportController::class, 'show'])->name('support');
 
-    
+    // Admin Routes
+  
 });
-
-// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-//     return view('dashboard.index');
-// })->name('dashboard');
-
-// Route::middleware(['auth:sanctum', 'verified'])->get('/home', function () {
-//     return view('homepage.index');
-// })->name('home');
-
-// Route::middleware(['auth:sanctum', 'verified'])->get('/program', function () {
-//     return view('program.index');
-// })->name('program');
-
-// Route::middleware(['auth:sanctum', 'verified'])->get('/aboutus', function () {
-//     return view('aboutus');
-// })->name('aboutus');
-
-// Route::middleware(['auth:sanctum', 'verified'])->get('/support', function () {
-//     return view('support');
-// })->name('support');
-
 
 //Admin Routes
 
-// Route::put('Admin/programs/pending/{program}', [AdminProgramController::class, 'update']);
+// Route::put('admin/programs/pending/{program}', [AdminProgramController::class, 'update']);
 
-// Route::put('Admin/programs/approved/{program}', [AdminProgramController::class, 'edit']);
+// Route::put('admin/programs/approved/{program}', [AdminProgramController::class, 'edit']);
 
-Route::get('Admin/view_program', [AdminProgramController::class, 'index']);
+Route::get('admin/view_program', [AdminProgramController::class, 'index']);
 
-Route::get('Admin/programs/{program}', [AdminProgramController::class, 'show']);
+Route::get('admin/programs/{program}', [AdminProgramController::class, 'show']);
 
-Route::put('/Admin/programs/{program}', [AdminProgramController::class, 'update']);
+Route::put('/admin/programs/{program}', [AdminProgramController::class, 'update']);
 
 //Client Routes
-Route::get('Client/allprogram', [ProgramController::class, 'programindex']);
+Route::get('client/programs', [ProgramController::class, 'programindex']);
 
-Route::get('Client/programs/{program}', [ProgramController::class, 'client_showprogram']);
+Route::get('client/programs/{program}', [ProgramController::class, 'client_showprogram']);
 
-Route::get('Client/programs/{program}/register', [ProgramController::class, 'register']);
+Route::get('client/programs/{program}/register', [ProgramController::class, 'register']);
 
-Route::post('Client/programs/{program}/register', [ProgramController::class, 'client_store']);
+Route::post('client/programs/{program}/register', [ProgramController::class, 'client_store']);
 
-Route::get('Client/program_detail', [ClientProgramController::class, 'index']);
+Route::get('client/program_detail', [ClientProgramController::class, 'index']);
 
-Route::get('Client/program_detail/{registeredprogram}/{program}', [ClientProgramController::class, 'show']);
+Route::get('client/program_detail/{registeredprogram}/{program}', [ClientProgramController::class, 'show']);
 
 //Staff Routes
 Route::get('Staff/create_program', function () {

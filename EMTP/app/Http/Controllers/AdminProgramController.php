@@ -21,7 +21,7 @@ class AdminProgramController extends Controller
         $pendingprograms =  DB::table('programs')->where('status', 'to-be-confirmed')->get();
         $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
         $allprograms =  DB::table('programs')->get();
-        return view('Admin.view_program',['pendingprograms'=>$pendingprograms, 'allprograms'=>$allprograms, 'approvedprograms'=>$approvedprograms]);
+        return view('admin.view_program',['pendingprograms'=>$pendingprograms, 'allprograms'=>$allprograms, 'approvedprograms'=>$approvedprograms]);
     }
 
     /**
