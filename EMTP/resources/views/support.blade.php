@@ -1,5 +1,7 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h1>Help and Support</h1>
-    </x-slot>
-</x-app-layout>
+@extends('layout')
+@section('title', 'Help and Support')
+@section('content')
+
+<h1>Help and Support</h1>
+
+@endsection

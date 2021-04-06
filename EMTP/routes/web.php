@@ -62,9 +62,9 @@ Route::get('Client/programs/{program}/register', [ProgramController::class, 'reg
 
 Route::post('Client/programs/{program}/register', [ProgramController::class, 'client_store']);
 
-Route::get('Client/registeredprograms', [ClientProgramController::class, 'index']);
+Route::get('Client/program_detail', [ClientProgramController::class, 'index']);
 
-Route::get('Client/registeredprograms/{registeredprogram}/{program}', [ClientProgramController::class, 'show']);
+Route::get('Client/program_detail/{registeredprogram}/{program}', [ClientProgramController::class, 'show']);
 
 //Staff Routes
 Route::get('Staff/create_program', function () {
