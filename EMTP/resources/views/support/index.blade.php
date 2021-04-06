@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.nav')
 @section('title', 'Help and Support')
 @section('content')
 

@@ -21,15 +21,15 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard.index');
 })->name('dashboard');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/home', function () {
-    return view('home');
+    return view('homepage.index');
 })->name('home');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/program', function () {
-    return view('program');
+    return view('program.index');
 })->name('program');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/aboutus', function () {
