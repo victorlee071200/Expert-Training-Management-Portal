@@ -48,10 +48,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 Route::get('admin/program/view', [AdminProgramController::class, 'index']);
 
 //to be approved
-Route::get('admin/programs/{program}', [AdminProgramController::class, 'show']);
+Route::get('Admin/programs/{program}', [AdminProgramController::class, 'show']);
 
 
-Route::put('/admin/programs/{program}', [AdminProgramController::class, 'update']);
+Route::put('Admin/programs/{program}', [AdminProgramController::class, 'update']);
 
 //Client Routes
 
