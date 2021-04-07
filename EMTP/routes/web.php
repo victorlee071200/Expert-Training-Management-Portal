@@ -27,7 +27,9 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     // Client Side
-    Route::get('/dashboard', [DashboardController::class, 'show'])->name('client-dashboard');
+
+    // Dashboard Department
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('client-dashboard');
     Route::get('/home', [HomepageController::class, 'show'])->name('client-home');
     Route::get('/program', [HomepageController::class, 'show'])->name('client-program');
     Route::get('/about-us', [AboutUsController::class, 'show'])->name('aboutus');
@@ -43,14 +45,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 // Route::put('admin/programs/approved/{program}', [AdminProgramController::class, 'edit']);
 
-Route::get('admin/view_program', [AdminProgramController::class, 'index']);
+Route::get('admin/program/view', [AdminProgramController::class, 'index']);
 
 Route::get('admin/programs/{program}', [AdminProgramController::class, 'show']);
 
 Route::put('/admin/programs/{program}', [AdminProgramController::class, 'update']);
 
 //Client Routes
-Route::get('client/programs', [ProgramController::class, 'programindex']);
+Route::get('client/programs', [ProgramController::class, 'index']);
 
 Route::get('client/programs/{program}', [ProgramController::class, 'client_showprogram']);
 

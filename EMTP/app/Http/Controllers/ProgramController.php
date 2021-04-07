@@ -15,22 +15,18 @@ class ProgramController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function programindex()
+    public function index()
     {
         $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
-        return view('client.allprogram',['approvedprograms'=>$approvedprograms]);  
+        return view('client.program.index',['approvedprograms'=>$approvedprograms]);  
     }
 
-    public function showprogram()
-    {
-        $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
-        return view('Client.allprogram',['approvedprograms'=>$approvedprograms]);  
-    }
+    
 
     public function client_showprogram(Program $program)
     {
 
-        return view('Client.program', ['program' => $program]);
+        return view('client.program.programs', ['program' => $program]);
 
         // return $program;
         // return view('Admin.approve_program');
@@ -102,9 +98,10 @@ class ProgramController extends Controller
      * @param  \App\Models\c  $c
      * @return \Illuminate\Http\Response
      */
-    public function show(c $c)
+    public function show()
     {
-        //
+        $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
+        return view('Client.program.index',['approvedprograms'=>$approvedprograms]);  
     }
 
     /**

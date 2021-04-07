@@ -22,13 +22,13 @@ class ClientProgramController extends Controller
 
         $programdetails =  DB::table('programs')->whereIn('id', $ids)->get();
 
-        return view('Client.registeredprograms',['registeredprograms'=>$registeredprograms,'programdetails'=>$programdetails]);  
+        return view('client.program.registered',['registeredprograms'=>$registeredprograms,'programdetails'=>$programdetails]);  
     }
 
     public function show(ClientProgram $registeredprogram, Program $program)
     {
         $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();
-        return view('Client.registeredprogram',['registeredprogram' => $registeredprogram, 'program' => $program]);  
+        return view('client.program.registered',['registeredprogram' => $registeredprogram, 'program' => $program]);  
     }
 }
