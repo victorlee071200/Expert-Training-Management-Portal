@@ -47,22 +47,30 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 Route::get('admin/program/view', [AdminProgramController::class, 'index']);
 
+//to be approved
 Route::get('admin/programs/{program}', [AdminProgramController::class, 'show']);
+
 
 Route::put('/admin/programs/{program}', [AdminProgramController::class, 'update']);
 
 //Client Routes
+
+//view all available programs
 Route::get('client/programs', [ProgramController::class, 'index']);
 
+//show one program
 Route::get('client/programs/{program}', [ProgramController::class, 'client_showprogram']);
 
+//register
 Route::get('client/programs/{program}/register', [ProgramController::class, 'register']);
 
-Route::post('client/programs/{program}/register', [ProgramController::class, 'client_store']);
+//register
+Route::post('client/programs/{program}', [ProgramController::class, 'client_store']);
 
-Route::get('client/registeredprograms', [ClientProgramController::class, 'index']);
+//view registered programs
+Route::get('Client/registeredprograms', [ClientProgramController::class, 'index']);
 
-Route::get('client/registeredprograms/{registeredprogram}/{program}', [ClientProgramController::class, 'show']);
+Route::get('Client/registeredprograms/{registeredprogram}/{program}', [ClientProgramController::class, 'show']);
 
 //Staff Routes
 Route::get('Staff/create_program', function () {

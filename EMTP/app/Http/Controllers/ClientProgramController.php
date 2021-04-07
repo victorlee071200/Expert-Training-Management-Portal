@@ -29,6 +29,6 @@ class ClientProgramController extends Controller
     {
         $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();
-        return view('client.program.registered',['registeredprogram' => $registeredprogram, 'program' => $program]);  
+        return view('client.program.detail',['registeredprogram' => $registeredprogram, 'program' => $program]);  
     }
 }

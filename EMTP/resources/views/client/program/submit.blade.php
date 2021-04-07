@@ -86,4 +86,5 @@
 
 </form>
 
-@endsection
+</x-app-layout>
+{{-- @endsection --}}

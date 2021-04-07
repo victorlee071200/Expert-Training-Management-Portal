@@ -26,7 +26,7 @@ class ProgramController extends Controller
     public function client_showprogram(Program $program)
     {
 
-        return view('client.program.programs', ['program' => $program]);
+        return view('client.program.submit', ['program' => $program]);
 
         // return $program;
         // return view('Admin.approve_program');
@@ -62,7 +62,7 @@ class ProgramController extends Controller
 
         $clientprogram->save();
 
-        return redirect('Client/allprogram');
+        // return redirect('Client/allprogram');
 
         // return $request->all();
     }
