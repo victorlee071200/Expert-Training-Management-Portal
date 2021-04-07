@@ -1,5 +1,4 @@
 <x-app-layout title="Client View Program">
-
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Home') }}
@@ -24,7 +23,4 @@
             </div>
         </div>
     </div>
-
-    {{-- <a href="cars/create">Add New Car</a> --}}
-
 </x-app-layout>

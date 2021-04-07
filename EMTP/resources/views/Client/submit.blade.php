@@ -1,6 +1,4 @@
-@extends('layout')
-@section('title', 'This is our home')
-@section('content')
+<x-app-layout title="New Program Detial Page">
 <h1>Register Program</h1>
 
 <div>
