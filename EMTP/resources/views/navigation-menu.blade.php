@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('client-dashboard') }}">
+                    <a href="{{ route('client-home') }}">
                         <x-jet-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
@@ -154,10 +154,25 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden md:hidden">
+        <div class="pt-1 pb-1">
+            <x-jet-responsive-nav-link href="{{ route('client-home') }}" :active="request()->routeIs('client-home')">
+                {{ __('Home') }}
+            </x-jet-responsive-nav-link>
+        </div>
+        <div class="pt-1 pb-1">
             <x-jet-responsive-nav-link href="{{ route('client-dashboard') }}" :active="request()->routeIs('client-dashboard')">
                 {{ __('Dashboard') }}
+            </x-jet-responsive-nav-link>
+        </div>
+        <div class="pt-1 pb-1">
+            <x-jet-responsive-nav-link href="{{ route('aboutus') }}" :active="request()->routeIs('aboutus')">
+                {{ __('About Us') }}
+            </x-jet-responsive-nav-link>
+        </div>
+        <div class="pt-1 pb-1">
+            <x-jet-responsive-nav-link href="{{ route('support') }}" :active="request()->routeIs('support')">
+                {{ __('Support') }}
             </x-jet-responsive-nav-link>
         </div>
 
