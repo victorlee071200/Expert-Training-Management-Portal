@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('aboutus') }}" :active="request()->routeIs('aboutus')">
+                    <x-jet-nav-link href="{{ route('about-us') }}" :active="request()->routeIs('about-us')">
                         {{ __('About Us') }}
                     </x-jet-nav-link>
                 </div>
@@ -177,7 +177,7 @@
             </x-jet-responsive-nav-link>
         </div>
         <div class="pt-1 pb-1">
-            <x-jet-responsive-nav-link href="{{ route('aboutus') }}" :active="request()->routeIs('aboutus')">
+            <x-jet-responsive-nav-link href="{{ route('about-us') }}" :active="request()->routeIs('about-us')">
                 {{ __('About Us') }}
             </x-jet-responsive-nav-link>
         </div>

@@ -16,7 +16,7 @@ class AdminProgramController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function ShowAllPrograms()
     {
         $pendingprograms =  DB::table('programs')->where('status', 'to-be-confirmed')->get();
         $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
@@ -51,7 +51,7 @@ class AdminProgramController extends Controller
 
         $program->save();
 
-        return redirect('Staff');
+        return redirect('staff');
 
         // return $request->all();
     }
@@ -89,10 +89,11 @@ class AdminProgramController extends Controller
      * @param  \App\Models\Program  $program
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Program $program)
+    public function UpdateApprovedProgram(Request $request, Program $program)
     {
         $program->status = 'approved';
         $program->save();
+        return redirect('/admin/program/view');
     }
 
     /**

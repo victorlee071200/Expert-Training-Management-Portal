@@ -8,26 +8,27 @@ use App\Models\ClientProgram;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+
 class ProgramController extends Controller
 {
-        /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function StaffCreateProgramPage()
+    {
+        return view('staff.create_program');
+    }
+    public function ClientViewAllProgram()
     {
         $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
-        return view('client.program.index',['approvedprograms'=>$approvedprograms]);  
+        return view('client.program.view-all',['approvedprograms'=>$approvedprograms]);  
+        
     }
 
-    public function searchbar()
+    public function ClientViewSpecificProgram()
     {
         $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
-        return view('client.program.program',['approvedprograms'=>$approvedprograms]);  
+        return view('client.program.view-specific',['approvedprograms'=>$approvedprograms]);  
     }    
 
-    public function client_showprogram(Program $program)
+    public function ClientShowProgram(Program $program)
     {
         return view('client.program.submit', ['program' => $program]);
 
@@ -35,17 +36,14 @@ class ProgramController extends Controller
         // return view('Admin.approve_program');
     }
 
-    public function create()
+    public function ClientRegisterProgram(Program $program)
     {
-        //
+        return view('client.program.register', ['program' => $program]);
+        $program->session()->flash('flash.banner', 'Yay it works!');
+        $program->session()->flash('flash.bannerStyle', 'success');
     }
 
-    public function register(Program $program)
-    {
-        return view('client.submit', ['program' => $program]);
-    }
-
-    public function client_store($program, Request $request)
+    public function ClientStoreProgram($program, Request $request)
     {
         // Validate the request...
 
@@ -70,13 +68,22 @@ class ProgramController extends Controller
         // return $request->all();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function ClientViewRegisteredProgram()
+    {
+        $registeredprograms =  DB::table('client_programs')->where('client_email', 'TODO@gmail.com')->get();
+
+        $ids = array();
+
+        foreach($registeredprograms as $program) {
+            array_push($ids, $program->program_id);
+        }
+
+        $programdetails =  DB::table('programs')->whereIn('id', $ids)->get();
+
+        return view('client.program.registered',['registeredprograms'=>$registeredprograms,'programdetails'=>$programdetails]);
+    }
+
+    public function StaffRegisterProgram(Request $request)
     {
         // Validate the request...
 
@@ -90,54 +97,12 @@ class ProgramController extends Controller
 
         $program->save();
 
+        $request->session()->flash('flash.banner', 'Yay it works!');
+        $request->session()->flash('flash.bannerStyle', 'success');
+
         return back();
 
         // return $request->all();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\c  $c
-     * @return \Illuminate\Http\Response
-     */
-    public function show()
-    {
-        $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
-        return view('Client.program.index',['approvedprograms'=>$approvedprograms]);  
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\c  $c
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(c $c)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\c  $c
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, c $c)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\c  $c
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(c $c)
-    {
-        //
-    }
 }

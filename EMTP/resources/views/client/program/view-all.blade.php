@@ -15,7 +15,7 @@
                     <tbody>
                     @foreach($approvedprograms as $program)
                     <tr>
-                        <td><a class="hover:bg-blue-700" href="programs/{{$program->id}}">{{$program->name}}</a> </td>
+                        <td><a class="hover:bg-blue-700" href="program/{{$program->id}}">{{$program->name}}</a> </td>
                     </tr>
                     @endforeach
                     </tbody>

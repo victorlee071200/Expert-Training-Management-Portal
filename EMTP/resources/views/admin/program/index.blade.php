@@ -14,7 +14,7 @@
                     <tbody>
                     @foreach($pendingprograms as $program)
                     <tr>
-                        <td><a class="hover:bg-blue-700" href="/programs/{{$program->id}}">{{$program->name}}</a> </td>
+                        <td><a class="hover:bg-blue-700" href="/admin/programs/{{$program->id}}">{{$program->name}}</a> </td>
                     </tr>
                     @endforeach
                     </tbody>
@@ -26,7 +26,7 @@
                     <tbody>
                     @foreach($approvedprograms as $program)
                     <tr>
-                        <td><a class="hover:bg-blue-700" href="programs/edit/{{$program->id}}">{{$program->name}}</a> </td>
+                        <td><a class="hover:bg-blue-700" href="admin/rograms/edit/{{$program->id}}">{{$program->name}}</a> </td>
                     </tr>
                     @endforeach
                     </tbody>
