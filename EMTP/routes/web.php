@@ -30,10 +30,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     // Dashboard Department
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('client-dashboard');
-    Route::get('/home', [HomepageController::class, 'show'])->name('client-home');
-    Route::get('/program', [HomepageController::class, 'show'])->name('client-program');
-    Route::get('/about-us', [AboutUsController::class, 'show'])->name('aboutus');
-    Route::get('/support', [SupportController::class, 'show'])->name('support');
+    Route::get('/home', [HomepageController::class, 'index'])->name('client-home');
+    Route::get('/program', [ProgramController::class, 'searchbar'])->name('client-program');
+    Route::get('/aboutus', [AboutUsController::class, 'index'])->name('aboutus');
+    Route::get('/support', [SupportController::class, 'index'])->name('support');
 
     // Admin Routes
   

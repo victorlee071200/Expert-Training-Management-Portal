@@ -1,6 +1,6 @@
 <x-app-layout title="Program">
     <!--Search bar-->
-    <div class="w-full h-11 bg-white flex border border-black border-width-2">
+    <div class="w-auto h-11 bg-white flex border border-black border-width-2 mt-5 mx-60">
         <!--Search Input-->
         <input type="search" name="search" id="search" placeholder="Search for Training Program" class="border-none w-full"/>
         <!--Search icon button-->
@@ -12,7 +12,7 @@
     </div>
 
     <!--Search result-->
-    <div>
+    <div class="mt-5 mx-60">
         <p>Search result</p>
     </div>
 </x-app-layout>

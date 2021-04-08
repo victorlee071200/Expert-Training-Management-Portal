@@ -21,11 +21,14 @@ class ProgramController extends Controller
         return view('client.program.index',['approvedprograms'=>$approvedprograms]);  
     }
 
-    
+    public function searchbar()
+    {
+        $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
+        return view('client.program.program',['approvedprograms'=>$approvedprograms]);  
+    }    
 
     public function client_showprogram(Program $program)
     {
-
         return view('client.program.submit', ['program' => $program]);
 
         // return $program;
