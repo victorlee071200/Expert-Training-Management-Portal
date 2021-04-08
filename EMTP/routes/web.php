@@ -35,6 +35,16 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/aboutus', [AboutUsController::class, 'index'])->name('aboutus');
     Route::get('/support', [SupportController::class, 'index'])->name('support');
 
+
+    //Steps to create program
+
+    //Staff Routes
+    Route::get('staff/create_program', function () {
+        return view('staff.create_program');
+    });
+
+    Route::post('staff/create_program', [ProgramController::class, 'store']);
+
     // Admin Routes
 
 });
@@ -72,17 +82,10 @@ Route::get('Client/registeredprograms', [ClientProgramController::class, 'index'
 
 Route::get('Client/registeredprograms/{registeredprogram}/{program}', [ClientProgramController::class, 'show']);
 
-//Staff Routes
-Route::get('Staff/create_program', function () {
-    return view('Staff.create_program');
-});
 
-Route::post('Staff/create_program', [ProgramController::class, 'store']);
+
+
 
 Route::get('/test', function () {
     return view('admin.dashboard.index');
-});
-
-Route::get('/home2', function () {
-    return view('physical-booking');
 });

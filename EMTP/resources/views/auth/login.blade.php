@@ -7,11 +7,7 @@
 
         <x-jet-validation-errors class="mb-4" />
 
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
-            </div>
-        @endif
+        
         <div class="max-w-md mx-auto my-10">
             <div class="text-center">
                 <h1 class="my-3 text-3xl font-semibold text-gray-700 dark:text-gray-200">Sign in</h1>

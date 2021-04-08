@@ -42,7 +42,7 @@ class ProgramController extends Controller
 
     public function register(Program $program)
     {
-        return view('Client.submit', ['program' => $program]);
+        return view('client.submit', ['program' => $program]);
     }
 
     public function client_store($program, Request $request)
@@ -90,7 +90,7 @@ class ProgramController extends Controller
 
         $program->save();
 
-        return redirect('Staff/create_program');
+        return back();
 
         // return $request->all();
     }
