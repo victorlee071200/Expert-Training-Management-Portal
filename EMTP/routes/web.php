@@ -38,7 +38,9 @@ Route::get('Admin/view_program', [AdminProgramController::class, 'index']);
 
 Route::get('Admin/programs/{program}', [AdminProgramController::class, 'show']);
 
-Route::put('/Admin/programs/{program}', [AdminProgramController::class, 'update']);
+Route::get('Admin/programs/edit/{program}', [AdminProgramController::class, 'showapproved']);
+
+Route::put('Admin/programs/{program}', [AdminProgramController::class, 'update']);
 
 //Client Routes
 Route::get('Client/allprogram', [ProgramController::class, 'programindex']);

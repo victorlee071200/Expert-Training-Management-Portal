@@ -34,6 +34,11 @@ class AdminProgramController extends Controller
         //
     }
 
+    public function showapproved(Program $program)
+    {
+        return view('Admin.edit_program', ['program' => $program]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
