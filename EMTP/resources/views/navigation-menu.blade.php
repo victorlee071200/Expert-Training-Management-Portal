@@ -158,7 +158,7 @@
             </div>
         </div>
     </div>
-s
+
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-1 pb-1">
