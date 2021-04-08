@@ -24,7 +24,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified','auth'])->group(function () {
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     // Client Side
 
@@ -66,7 +66,7 @@ Route::middleware(['auth:sanctum', 'verified','auth'])->group(function () {
 });
 
 //Staff routes
-Route::middleware(['auth:sanctum', 'verified','auth.staff','auth'])->group(function () {
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //Program Module
     //Create a program
@@ -77,7 +77,7 @@ Route::middleware(['auth:sanctum', 'verified','auth.staff','auth'])->group(funct
 });
 
 // Admin Routes
-Route::middleware(['auth:sanctum', 'verified','auth.admin', 'auth'])->group(function () {
+Route::middleware(['auth:sanctum', 'verified','auth.admin'])->group(function () {
 
     //Program Module
     // View 
