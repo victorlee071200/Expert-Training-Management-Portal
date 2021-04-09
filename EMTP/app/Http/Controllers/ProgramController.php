@@ -11,10 +11,11 @@ use Illuminate\Support\Facades\Route;
 
 class ProgramController extends Controller
 {
-    public function StaffCreateProgramPage()
+    public function StaffCreateProgram()
     {
         return view('staff.create_program');
     }
+
     public function ClientViewAllProgram()
     {
         $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
@@ -97,10 +98,7 @@ class ProgramController extends Controller
 
         $program->save();
 
-        $request->session()->flash('flash.banner', 'Yay it works!');
-        $request->session()->flash('flash.bannerStyle', 'success');
-
-        return back();
+        return view('/dashboard');
 
         // return $request->all();
     }
