@@ -1,5 +1,5 @@
 <x-app-layout title="EMTP - Homepage">
-    <div class="bg-cover bg-left-top md:bg-left-top h-auto sm:h-3/4 text-white py-24 px-10" style="background-image: url(https://www.denny.co.uk/wp-content/uploads/2016/04/in-house-training-banner.jpg)">
+    <div class="bg-cover bg-left-top md:bg-left-top h-auto sm:h-3/4 text-white py-24 px-10" style="background-image: url(../../../img/home_banner.jfif)">
         <div class="ml-5 md:ml-14 xl:ml-24 2xl:ml-32 md:w-1/2">
             <p class="font-bold text-sm uppercase text-black">Services</p>
             <p class="text-3xl md:text-4xl font-bold text-black">Training Programs</p>
