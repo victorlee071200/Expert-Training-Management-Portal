@@ -1,10 +1,10 @@
 <x-app-layout title="EMTP - Homepage">
-    <div class="bg-cover bg-left-top md:bg-left-top h-auto sm:h-3/4 text-white py-24 px-10" style="background-image: url(../../../img/home_banner.jfif)">
+    <div class="bg-cover bg-left-top md:bg-left-top h-auto sm:h-3/4 text-white py-24 px-10" style="background-image: url(/img/home_banner.jpg)">
         <div class="ml-5 md:ml-14 xl:ml-24 2xl:ml-32 md:w-1/2">
             <p class="font-bold text-sm uppercase text-black">Services</p>
             <p class="text-3xl md:text-4xl font-bold text-black">Training Programs</p>
             <p class="text-2xl md:text-3xl mb-10 leading-none text-black">Train for your future</p>
-            <a href="{{ route('client-program') }}" class="bg-purple-800 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Register Now</a>
+            <a href="{{ route('client-program') }}" class="bg-purple-800 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Learn more</a>
         </div>  
     </div>
 
