@@ -1,8 +1,9 @@
 <x-app-layout title="Staff | Create Program">
   <x-slot name="header">
-      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-          {{ __('Staff | Create Program') }}
-      </h2>
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+      {{ __('Staff') }}
+    </h2>
+      
   </x-slot>
 
   <x-jet-validation-errors class="mb-4" />
@@ -10,13 +11,20 @@
   
 
   <div class="py-12">
-      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        
+      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">        
           <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-
             <div class="m-10">
+              <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Staff | Create Program') }}
+              </h2>
+
+            </div>
+            <div class="m-10">
+              
               <form method="post" class="w-full max-w-lg" action="create_program">
                 @csrf
+
+                
                 {{-- <div class="flex flex-wrap -mx-3 mb-6">
                   <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
