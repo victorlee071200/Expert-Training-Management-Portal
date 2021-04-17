@@ -11,11 +11,6 @@ use Illuminate\Support\Facades\Route;
 
 class ProgramController extends Controller
 {
-    public function StaffCreateProgram()
-    {
-        return view('staff.create_program');
-    }
-
     public function ClientViewAllProgram()
     {
         $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
@@ -84,6 +79,11 @@ class ProgramController extends Controller
         return view('client.program.registered',['registeredprograms'=>$registeredprograms,'programdetails'=>$programdetails]);
     }
 
+    public function StaffCreateProgram()
+    {
+        return view('staff.program.create');
+    }
+
     public function StaffRegisterProgram(Request $request)
     {
         // Validate the request...
@@ -98,9 +98,40 @@ class ProgramController extends Controller
 
         $program->save();
 
-        return view('/dashboard');
+        return view('staff.dashboard.index');
 
         // return $request->all();
+    }
+
+    public function AdminShowAllPrograms()
+    {
+        $pendingprograms =  DB::table('programs')->where('status', 'to-be-confirmed')->get();
+        $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
+        $allprograms =  DB::table('programs')->get();
+        return view('admin.program.index',['pendingprograms'=>$pendingprograms, 'allprograms'=>$allprograms, 'approvedprograms'=>$approvedprograms]);
+
+    }
+
+    public function AdminViewSpecificProgram(Program $program)
+    {
+
+        return view('admin.program.approve', ['program' => $program]);
+
+        // return $program;
+        // return view('Admin.approve_program');
+    }
+
+    public function AdminApprovedProgram(Request $request, Program $program)
+    {
+        $program->status = 'approved';
+        $program->save();
+        return redirect('/admin/view/program');
+    }
+
+    public function AdminViewApprovedProgram(Program $program)
+    {
+        return view('admin.program.approved', ['program' => $program]);
+
     }
 
 }

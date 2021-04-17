@@ -29,7 +29,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // Client Side
 
     // Dashboard Page
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('client-dashboard');
+    Route::get('/client/dashboard', [DashboardController::class, 'ClientDashboard'])->name('client-dashboard');
 
     // Home Page
     Route::get('/home', [HomepageController::class, 'index'])->name('client-home');
@@ -69,6 +69,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //Program Module
+    //Staff Dashboard
+    Route::get('/staff/dashboard', [DashboardController::class, 'StaffDashboard'])->name('staff-dashboard');
+
     //Create a program
     Route::get('/staff/create/program', [ProgramController::class, 'StaffCreateProgram'])->name('staff-create-program');
 
@@ -80,14 +83,20 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 Route::middleware(['auth:sanctum', 'verified','auth.admin'])->group(function () {
 
     //Program Module
+    //Dashboard
+    Route::get('/admin/dashboard', [DashboardController::class, 'AdminDashboard'])->name('admin-dashboard');
     // View 
-    Route::get('/admin/view/program', [AdminProgramController::class, 'ShowAllPrograms'])->name('admin-view-all-programs');
+    Route::get('/admin/view/program', [ProgramController::class, 'AdminShowAllPrograms'])->name('admin-view-all-programs');
 
     //View Specific Program
-    Route::get('/admin/view/program/{program}', [AdminProgramController::class, 'show'])->name('admin-view-specific-program');
+    Route::get('/admin/view/program/{program}', [ProgramController::class, 'AdminViewSpecificProgram'])->name('admin-view-specific-program');
 
     //Approve Specific Program
-    Route::put('/admin/view/program/{program}', [AdminProgramController::class, 'UpdateApprovedProgram']);
+    Route::put('/admin/view/program/{program}', [ProgramController::class, 'AdminApprovedProgram'])->name('admin-approve-a-program');
+
+    // View Specific Approved Program 
+    Route::get('/admin/view/approved/program/{program}', [ProgramController::class, 'AdminViewApprovedProgram'])->name('admin-view-specific-approved-program');
+    
 
 });
 
