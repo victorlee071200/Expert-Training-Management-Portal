@@ -12,6 +12,7 @@ class ClientProgramController extends Controller
 {
     public function index()
     {
+        // Registered Program
         $registeredprograms =  DB::table('client_programs')->where('client_email', 'TODO@gmail.com')->get();
 
         $ids = array();

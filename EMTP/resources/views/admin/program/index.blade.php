@@ -18,11 +18,9 @@
                                 <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                                     <th class="py-3 px-6 text-left">Name</th>
                                     <th class="py-3 px-6 text-left">Type</th>
-                                    
                                     <th class="py-3 px-6 text-center">Status</th>
                                     <th class="py-3 px-6 text-center">Option</th>
                                     <th class="py-3 px-6 text-center">Created Date</th>
-
                                     <th class="py-3 px-6 text-center">Actions</th>
                                 </tr>
                             </thead>

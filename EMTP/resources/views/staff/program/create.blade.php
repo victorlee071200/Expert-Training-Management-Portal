@@ -15,7 +15,7 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
               <div class="m-10">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                  {{ __('Staff | Create Program') }}
+                  {{ __('Create Program') }}
                 </h2>
   
               </div>
