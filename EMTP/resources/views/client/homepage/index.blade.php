@@ -12,7 +12,7 @@
         <h1 class="text-3xl md:text-4xl font-bold text-center m-5">Training Program Catergories</h1>
         <!--Small Cards list-->
         <div class="grid grid-cols-2 md:grid-cols-4">
-            <div class="hover:bg-gray-100 mx-2 my-2 border-gray-400 border text-center rounded-sm">
+            <div class="hover:bg-gray-200 mx-2 my-2 border-gray-400 border text-center rounded-md">
                 <img src="/storage/img/management.jpg" alt="management"/>
                 <p class="font-bold text-lg pt-2 pb-5">Management</p>
             </div>
