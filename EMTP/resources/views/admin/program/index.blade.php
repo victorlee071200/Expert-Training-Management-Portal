@@ -1,7 +1,7 @@
 <x-app-layout title="About Us">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Admin') }}
+            {{ __('Admin | View') }}
         </h2>
     </x-slot>
 
@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="m-10">
                     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                      {{ __('View | Pending Program List') }}
+                      {{ __('Pending Program List') }}
                     </h2>
                     <div class="bg-white shadow-md rounded my-6">
                         <table class="min-w-max w-full table-auto">
@@ -87,7 +87,7 @@
 
                 <div class="m-10">
                     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                      {{ __('View | Approved Program List') }}
+                      {{ __('Approved Program List') }}
                     </h2>
 
                     <div class="bg-white shadow-md rounded my-6">
@@ -96,11 +96,9 @@
                                 <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                                     <th class="py-3 px-6 text-left">Name</th>
                                     <th class="py-3 px-6 text-left">Type</th>
-                                    
                                     <th class="py-3 px-6 text-center">Status</th>
                                     <th class="py-3 px-6 text-center">Option</th>
                                     <th class="py-3 px-6 text-center">Created Date</th>
-
                                     <th class="py-3 px-6 text-center">Actions</th>
                                 </tr>
                             </thead>
