@@ -1,6 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\SupportController;
+use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AdminProgramController;
+use App\Http\Controllers\ClientProgramController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,22 +24,76 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/home', function () {
-    return view('home');
-})->name('home');
+    // Client Side
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/program', function () {
-    return view('program');
-})->name('program');
+    // Dashboard Page
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('client-dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/aboutus', function () {
-    return view('aboutus');
-})->name('aboutus');
+    // Home Page
+    Route::get('/home', [HomepageController::class, 'index'])->name('client-home');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/support', function () {
-    return view('support');
-})->name('support');
+    // Program Page
+    //View all approved programs
+    Route::get('/client/view/program', [ProgramController::class, 'ClientViewAllProgram'])->name('client-program');
+    //View Specific Program
+    Route::get('/client/view/program/{program}', [ProgramController::class, 'ClientViewSpecificProgram']);
+
+    //Register a program
+    Route::get('/client/view/program/{program}/register', [ProgramController::class, 'ClientRegisterProgram']);
+
+    //What is this
+    // Route::post('/client/view/program/{program}', [ProgramController::class, 'ClientStoreProgram']);
+
+    //View all registered programs
+    Route::get('/client/view/program/registered', [ClientProgramController::class, 'index']);
+
+    //View specific registered program details    
+    Route::get('/client/view/program/registered/{registeredprogram}/{program}', [ClientProgramController::class, 'show']);
+
+    //About Us Page    
+    Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
+
+    //Support & Help Page
+    Route::get('/support', [SupportController::class, 'index'])->name('support');  
+    
+
+    
+
+    
+
+});
+
+//Staff routes
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+    //Program Module
+    //Create a program
+    Route::get('/staff/create/program', [ProgramController::class, 'StaffCreateProgram'])->name('staff-create-program');
+
+    //Register a program with button
+    Route::post('/staff/create/program', [ProgramController::class, 'StaffRegisterProgram'])->name('staff-register-program');
+});
+
+// Admin Routes
+Route::middleware(['auth:sanctum', 'verified','auth.admin'])->group(function () {
+
+    //Program Module
+    // View 
+    Route::get('/admin/view/program', [AdminProgramController::class, 'ShowAllPrograms'])->name('admin-view-all-programs');
+
+    //View Specific Program
+    Route::get('/admin/view/program/{program}', [AdminProgramController::class, 'show'])->name('admin-view-specific-program');
+
+    //Approve Specific Program
+    Route::put('/admin/view/program/{program}', [AdminProgramController::class, 'UpdateApprovedProgram']);
+
+});
+
+
+
+// Route::put('/admin/programs/pending/{program}', [AdminProgramController::class, 'update']);
+
+// Route::put('/admin/programs/approved/{program}', [AdminProgramController::class, 'edit']);
+
