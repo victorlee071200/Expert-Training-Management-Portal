@@ -8,33 +8,41 @@
         </div>  
     </div>
 
-    <div class="mx-5 md:mx-10 xl:mx-24">
+    <div class="mx-5 md:mx-9 xl:mx-20">
         <h1 class="text-3xl md:text-4xl font-bold text-center m-5">Training Program Catergories</h1>
         <!--Small Cards list-->
-        <div class="grid grid-cols-2 md:grid-cols-4 bg-white">
-            <div class="hover:bg-gray-100 mx-2 my-2 px-2 py-2 border-black border-2 text-center">
-                <p>Management</p>
+        <div class="grid grid-cols-2 md:grid-cols-4">
+            <div class="hover:bg-gray-100 mx-2 my-2 border-gray-400 border text-center rounded-sm">
+                <img src="/storage/img/management.jpg" alt="management"/>
+                <p class="font-bold text-lg pt-2 pb-5">Management</p>
             </div>
-            <div class="hover:bg-gray-100 mx-2 my-2 px-2 py-2 border-black border-2 text-center">
-                <p>Software</p>
+            <div class="hover:bg-gray-200 mx-2 my-2 border-gray-400 border text-center rounded-md">
+                <img src="/storage/img/software.jpg" alt="software"/>
+                <p class="font-bold text-lg pt-2 pb-5">Software</p>
             </div>
-            <div class="hover:bg-gray-100 mx-2 my-2 px-2 py-2 border-black border-2 text-center">
-                <p>Creative</p>
+            <div class="hover:bg-gray-200 mx-2 my-2 border-gray-400 border text-center rounded-md">
+                <img src="/storage/img/creative.jpg" alt="creative"/>
+                <p class="font-bold text-lg pt-2 pb-5">Creative</p>
             </div>
-            <div class="hover:bg-gray-100 mx-2 my-2 px-2 py-2 border-black border-2 text-center">
-                <p>Jobs</p>
+            <div class="hover:bg-gray-200 mx-2 my-2 border-gray-400 border text-center rounded-md">
+                <img src="/storage/img/jobs.jpg" alt="jobs"/>
+                <p class="font-bold text-lg pt-2 pb-5">Jobs</p>
             </div>
-            <div class="hover:bg-gray-100 mx-2 my-2 px-2 py-2 border-black border-2 text-center">
-                <p>Communication</p>
+            <div class="hover:bg-gray-200 mx-2 my-2 border-gray-400 border text-center rounded-md">
+                <img src="/storage/img/communication.jpg" alt="communication"/>
+                <p class="font-bold text-lg pt-2 pb-5">Communication</p>
             </div>
-            <div class="hover:bg-gray-100 mx-2 my-2 px-2 py-2 border-black border-2 text-center">
-                <p>Fitness</p>
+            <div class="hover:bg-gray-200 mx-2 my-2 border-gray-400 border text-center rounded-md">
+                <img src="/storage/img/fitness.jpg" alt="fitness"/>
+                <p class="font-bold text-lg pt-2 pb-5">Fitness</p>
             </div>
-            <div class="hover:bg-gray-100 mx-2 my-2 px-2 py-2 border-black border-2 text-center">
-                <p>Skills</p>
+            <div class="hover:bg-gray-200 mx-2 my-2 border-gray-400 border text-center rounded-md">
+                <img src="/storage/img/skills.jpg" alt="skills"/>
+                <p class="font-bold text-lg pt-2 pb-5">Skills</p>
             </div>
-            <div class="hover:bg-gray-100 mx-2 my-2 px-2 py-2 border-black border-2 text-center">
-                <p>Lifestyle</p>
+            <div class="hover:bg-gray-200 mx-2 my-2 border-gray-400 border text-center rounded-md">
+                <img src="/storage/img/lifestyle.jpg" alt="lifestyle"/>
+                <p class="font-bold text-lg pt-2 pb-5">Lifestyle</p>
             </div>
         </div>
     </div>
