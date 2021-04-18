@@ -37,7 +37,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     // Program Page
     //View all approved programs
-    Route::get('/client/view/program', [ProgramController::class, 'ClientViewAllProgram'])->name('client-program');\
+    Route::get('/client/view/program', [ProgramController::class, 'index'])->name('client-program');\
     
     //View Specific Program
     Route::get('/client/view/program/{program}', [ProgramController::class, 'ClientViewSpecificProgram']);
@@ -52,7 +52,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/client/view/registered', [ProgramController::class, 'ClientViewRegisteredProgram']);
 
     //View specific registered program details    
-    Route::get('/client/view/registered/{registeredprogram}/{program}', [ProgramController::class, 'ClientViewSpecificRegisteredProgram']);
+    Route::get('/client/dashboard/registered/{registeredprogram}/{program}', [ProgramController::class, 'ClientViewSpecificRegisteredProgram']);
 
     //About Us Page    
     Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');

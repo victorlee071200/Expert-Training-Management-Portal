@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\Route;
 
 class ProgramController extends Controller
 {
+    public function index()
+    {
+        return view('client.program.index');
+    }
+
+
     public function ClientViewAllProgram()
     {
         $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
