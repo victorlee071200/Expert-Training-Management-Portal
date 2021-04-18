@@ -56,13 +56,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
 
     //Support & Help Page
-    Route::get('/support', [SupportController::class, 'index'])->name('support');  
-    
-
-    
-
-    
-
+    Route::get('/support', [SupportController::class, 'index'])->name('support');
 });
 
 //Staff routes
@@ -77,7 +71,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 });
 
 // Admin Routes
-Route::middleware(['auth:sanctum', 'verified','auth.admin'])->group(function () {
+Route::middleware(['auth:sanctum', 'verified', 'auth.admin'])->group(function () {
 
     //Program Module
     // View 
@@ -88,12 +82,12 @@ Route::middleware(['auth:sanctum', 'verified','auth.admin'])->group(function () 
 
     //Approve Specific Program
     Route::put('/admin/view/program/{program}', [AdminProgramController::class, 'UpdateApprovedProgram']);
-
 });
 
-
+Route::get('/help-support', function () {
+    return view('help-support-page');
+});
 
 // Route::put('/admin/programs/pending/{program}', [AdminProgramController::class, 'update']);
 
 // Route::put('/admin/programs/approved/{program}', [AdminProgramController::class, 'edit']);
-
