@@ -76,6 +76,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //Register a program with button
     Route::post('/staff/create/program', [ProgramController::class, 'StaffRegisterProgram'])->name('staff-register-program');
+
+    //View all pending programs
+    Route::get('/staff/view/pendings', [ProgramController::class, 'StaffViewPendingProgram'])->name('staff-view-program');
+
 });
 
 // Admin Routes

@@ -106,6 +106,13 @@ class ProgramController extends Controller
         return view('staff.dashboard.index');
     }
 
+    public function StaffViewPendingProgram(Request $request)
+    {
+        $registeredprograms =  DB::table('client_programs')->get();
+        $programdetails =  DB::table('programs')->get();
+        return view('staff.program.view_pendings',['registeredprograms'=>$registeredprograms,'programdetails'=>$programdetails]);
+    }
+
     public function AdminShowAllPrograms()
     {
         $pendingprograms =  DB::table('programs')->where('status', 'to-be-confirmed')->get();
