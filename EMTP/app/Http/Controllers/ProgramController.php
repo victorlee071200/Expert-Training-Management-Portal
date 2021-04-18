@@ -14,9 +14,9 @@ class ProgramController extends Controller
 {
     public function index()
     {
-        return view('client.program.index');
+        $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
+        return view('client.program.index',['approvedprograms'=>$approvedprograms]);
     }
-
 
     public function ClientViewAllProgram()
     {
