@@ -37,7 +37,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     // Program Page
     //View all approved programs
-    Route::get('/client/view/program', [ProgramController::class, 'index'])->name('client-program');\
+    Route::get('/client/view/program', [ProgramController::class, 'index'])->name('client-program');
     
     //View Specific Program
     Route::get('/client/view/program/{program}', [ProgramController::class, 'ClientViewSpecificProgram']);
@@ -108,3 +108,19 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 // Route::put('/admin/programs/approved/{program}', [AdminProgramController::class, 'edit']);
 
+// route to Training Requisite Process
+Route::get('/selection', function () {
+    return view('client.requisite_process.selection');
+});
+
+Route::get('/payment_method', function () {
+    return view('client.requisite_process.payment_method');
+});
+
+Route::get('/payment_credit_card', function () {
+    return view('client.requisite_process.payment_credit_card');
+});
+
+Route::get('/payment_result', function () {
+    return view('client.requisite_process.payment_result');
+});
