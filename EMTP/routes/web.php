@@ -24,6 +24,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     // Client Side
@@ -44,14 +45,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //Register a program
     Route::get('/client/view/program/{program}/register', [ProgramController::class, 'ClientRegisterProgram']);
 
-    //What is this
-    // Route::post('/client/view/program/{program}', [ProgramController::class, 'ClientStoreProgram']);
+    //Get registration details from user and save to database
+    Route::post('/client/view/program/{program}/register', [ProgramController::class, 'ClientStoreProgram']);
 
     //View all registered programs
-    Route::get('/client/view/program/registered', [ProgramController::class, 'ClientViewRegisteredProgram']);
+    Route::get('/client/view/registered', [ProgramController::class, 'ClientViewRegisteredProgram']);
 
     //View specific registered program details    
-    Route::get('/client/view/program/registered/{registeredprogram}/{program}', [ProgramController::class, 'ClientViewSpecificRegisteredProgram']);
+    Route::get('/client/view/registered/{registeredprogram}/{program}', [ProgramController::class, 'ClientViewSpecificRegisteredProgram']);
 
     //About Us Page    
     Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');

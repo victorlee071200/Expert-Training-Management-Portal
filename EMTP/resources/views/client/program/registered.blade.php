@@ -14,7 +14,12 @@
                     <tbody>
                     @foreach($registeredprograms as $indexKey => $program)
                     <tr>
-                        <td><a class="hover:bg-blue-700" href="registeredprograms/{{$program->id}}/{{$programdetails[$indexKey]->id}}">{{$programdetails[$indexKey]->name}}</a> </td>
+                        <td>
+                            <a class="hover:bg-blue-700" href="registered/{{$program->id}}/{{$programdetails[$indexKey]->id}}">
+                            <img src = "{{ asset('storage/program_thumbnails/'.$programdetails[$indexKey]->thumbnail_path)}}" width="500" height="600">
+                            {{$programdetails[$indexKey]->name}}
+                            </a> 
+                        </td>
                     </tr>
                     @endforeach
                     </tbody>

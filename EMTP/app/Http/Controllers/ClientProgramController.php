@@ -23,7 +23,7 @@ class ClientProgramController extends Controller
 
         $programdetails =  DB::table('programs')->whereIn('id', $ids)->get();
 
-        return view('client.program.registered',['registeredprograms'=>$registeredprograms,'programdetails'=>$programdetails]);  
+        return view('client.dashboard.index',['registeredprograms'=>$registeredprograms,'programdetails'=>$programdetails]);  
     }
 
     public function show(ClientProgram $registeredprogram, Program $program)

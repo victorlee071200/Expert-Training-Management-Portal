@@ -24,6 +24,7 @@
     </aside>
     <div>
       <h1>Program Details</h1>
+      <img src = "{{ asset('storage/program_thumbnails/'.$program->thumbnail_path)}}" width="500" height="600">
       <h1>Name: {{$program->name}}</h1>
       <p><strong>Type: {{$program->type}}</strong></p>
       <p><strong>Price: {{$program->price}}</strong></p>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Program;
 use App\Models\ClientProgram;
@@ -24,13 +25,6 @@ class ProgramController extends Controller
         return view('client.program.view-specific',['program'=>$program]);  
     }    
 
-    public function ClientShowProgram(Program $program)
-    {
-        return view('client.program.submit', ['program' => $program]);
-
-        // return $program;
-        // return view('Admin.approve_program');
-    }
 
     public function ClientRegisterProgram(Program $program)
     {
@@ -39,15 +33,14 @@ class ProgramController extends Controller
         $program->session()->flash('flash.bannerStyle', 'success');
     }
 
-    public function ClientStoreProgram($program, Request $request)
+    public function ClientStoreProgram($id, Request $request)
     {
         // Validate the request...
 
         $clientprogram = new ClientProgram;
-        //to-do: get client's email
-        $clientprogram->client_email = "TODO@gmail.com";
+        $clientprogram->client_email = Auth::user()->email;
         $clientprogram->company_name = request('company_name');
-        $clientprogram->program_id = $program;
+        $clientprogram->program_id = $id;
         $clientprogram->client_venue = request('client_venue');
         $clientprogram->no_of_employees = request('no_of_employees');
         $clientprogram->start_date = request('start_date');
@@ -59,14 +52,14 @@ class ProgramController extends Controller
 
         $clientprogram->save();
 
-        // return redirect('Client/allprogram');
+        return redirect('client/view-all');
 
         // return $request->all();
     }
 
     public function ClientViewRegisteredProgram()
     {
-        $registeredprograms =  DB::table('client_programs')->where('client_email', 'TODO@gmail.com')->get();
+        $registeredprograms =  DB::table('client_programs')->where('client_email', Auth::user()->email)->get();
 
         $ids = array();
 

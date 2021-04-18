@@ -1,26 +1,61 @@
-<x-app-layout title="Program">
-    {{-- <!--Search bar-->
-    <div class="w-auto h-11 bg-white flex border border-black border-width-2 mt-5 mx-60">
-        <!--Search Input-->
-        <input type="search" name="search" id="search" placeholder="Search for Training Program" class="border-none w-full"/>
-        <!--Search icon button-->
-        <button type="button" class="hover:bg-gray-100 py-2 px-5 border-l border-black">
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-6 h-6">
-                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-            </svg>
-        </button>
+<x-app-layout title="About Us">
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Client | View Speficic Available Programs') }}
+        </h2>
+    </x-slot>
+  
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+
+              <section class="text-gray-700 body-font overflow-hidden bg-white">
+                <div class="container px-5 py-24 mx-auto">
+                  <div class="lg:w-4/5 mx-auto flex flex-wrap">
+                    <img alt="ecommerce" class="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200" src = "{{ asset('storage/program_thumbnails/'.$program->thumbnail_path)}}"> 
+                    <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+                      <div class="m-5">
+                        <h2 class="text-sm title-font text-gray-500 tracking-widest">Name</h2>
+                        <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{$program->name}}</h1>
+                      </div>
+
+                      <div class="m-5">
+                        <h2 class="text-sm title-font text-gray-500 tracking-widest">Option</h2>
+                        <h1 class="text-gray-900 text-2xl title-font font-medium mb-1">{{$program->option}}</h1>
+                      </div>
+
+                      <div class="m-5">
+                        <h2 class="text-sm title-font text-gray-500 tracking-widest">Type</h2>
+                        <h1 class="text-gray-900 text-2xl title-font font-medium mb-1">{{$program->type}}</h1>
+                      </div>
+
+                      <div class="m-5">
+                        <h2 class="text-xs title-font text-gray-500 tracking-widest">Description</h2>
+                        <p class="leading-relaxed">{{ $program->description }}</p>
+                      </div>
+
+                      <div class="m-5">
+                        <h2 class="text-xs title-font text-gray-500 tracking-widest">Price</h2>
+                        <div class="flex">
+                          <span class="title-font font-medium text-2xl text-gray-900">${{ $program->price }}</span>
+                        </div>
+                      </div>                      
+
+                      <div class="m-5">
+                        <div class="col-md-4">
+                          <button name="submit" >
+                            <a href="{{$program->id}}/register" class="block tracking-widest uppercase text-center shadow bg-blue-400 hover:bg-blue-500 focus:shadow-outline focus:outline-none text-white text-xs py-3 px-10 rounded">
+                              Register
+                            </a>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              </div>              
+            </div>
+        </div>
     </div>
-
-    <!--Search result-->
-    <div class="mt-5 mx-60">
-        <p>Search result</p>
-    </div> --}}
-    <h1>Program Details</h1>
-    <img src = "{{ asset('storage/program_thumbnails/'.$program->thumbnail_path)}}" width="500" height="600">
-    <h1>Name: {{$program->name}}</h1>
-    <p><strong>Type: {{$program->type}}</strong></p>
-    <p><strong>Price: {{$program->price}}</strong></p>
-    <p><strong>Option: {{$program->option}}</strong></p>
-    <p><strong>Description: {{$program->description}}</strong></p>
-
-</x-app-layout>
+  </x-app-layout>
