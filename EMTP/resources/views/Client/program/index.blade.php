@@ -80,10 +80,10 @@
                             </svg>
                         </button>
                     </div>
-
+                    
                     <div>
                         <h4 class="font-bold mt-12 pb-2 border-b border-gray-200">Latest Programmes</h4>
-
+                        
                         <div class="mt-8 grid lg:grid-cols-3 gap-10">
                             <!--cards go here-->
                             <div class="card hover:shadow-lg">
@@ -101,6 +101,19 @@
                                 </div>
                             </div>
                         </div>
+
+                        <table class="table table-striped">
+                            <tbody>
+                            @foreach($approvedprograms as $program)
+                            <tr>
+                                <td>
+                                    <a class="hover:bg-blue-700" href="program/{{$program->id}}">
+                                        <img src = "{{ asset('storage/program_thumbnails/'.$program->thumbnail_path)}}" width="500" height="600">{{$program->name}}</a> 
+                                </td>
+                            </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
 
                         <h4 class="font-bold mt-12 pb-2 border-b border-gray-200">Most Popular</h4>
 

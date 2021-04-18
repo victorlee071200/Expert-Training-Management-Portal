@@ -52,7 +52,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/client/view/registered', [ProgramController::class, 'ClientViewRegisteredProgram']);
 
     //View specific registered program details    
-    Route::get('/client/dashboard/registered/{registeredprogram}/{program}', [ProgramController::class, 'ClientViewSpecificRegisteredProgram']);
+    Route::get('/client/registered/{registeredprogram}/{program}', [ProgramController::class, 'ClientViewSpecificRegisteredProgram']);
 
     //About Us Page    
     Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
