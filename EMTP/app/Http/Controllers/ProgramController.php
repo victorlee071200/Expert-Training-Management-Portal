@@ -20,8 +20,8 @@ class ProgramController extends Controller
 
     public function ClientViewSpecificProgram(Program $program)
     {
-        $program =  DB::table('programs')->where('name', $program->name)->get();
-        return view('client.program.view-specific',['$program'=>$program]);  
+
+        return view('client.program.view-specific',['program'=>$program]);  
     }    
 
     public function ClientShowProgram(Program $program)
