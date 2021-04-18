@@ -13,18 +13,6 @@ class DashboardController extends Controller
         return view('client.dashboard.index',['approvedprograms'=>$approvedprograms]);
     }
 
-    public function ClientViewSpecificProgram(Program $program)
-    {
-        return view('client.program.view-specific',['program'=>$program]);  
-    }   
-
-    public function  ClientViewSpecificRegisteredProgram(ClientProgram $registeredprogram, Program $program)
-    {
-        $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
-        $program_ =  DB::table('programs')->where('id', $program)->get();
-        return view('client.program.detail',['registeredprogram' => $registeredprogram, 'program' => $program]);  
-    }
-
     public function StaffDashboard()
     {
         return view('staff.dashboard.index');
