@@ -7,9 +7,7 @@
     </x-slot>
   
     <x-jet-validation-errors class="mb-4" />
-  
     
-  
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">        
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -21,7 +19,7 @@
               </div>
               <div class="m-10">
                 
-                <form method="post" class="w-full max-w-lg" action="/staff/create/program">
+                <form method="post" action="/staff/create/program" class="w-full max-w-lg" enctype="multipart/form-data">
                   @csrf
   
                   
@@ -82,6 +80,16 @@
                         </div>
                   </div>
                   </div>
+
+                  <div class="flex flex-wrap -mx-3 mb-6">
+                    <div class="w-full px-3">
+                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="thumbnail">
+                        Thumbnail
+                      </label>
+                      <input type="file" id="thumbnail" name="thumbnail">
+  
+                    </div>
+                  </div>
   
                   <div class="flex flex-wrap -mx-3 mb-6">
                     <div class="w-full px-3">
@@ -92,6 +100,7 @@
   
                     </div>
                   </div>
+
                   <div class="form-group md:flex md:items-center">
                     <div class="md:w-1/3">
                       <label class="col-md-4 control-label" for="submit"></label>
@@ -101,6 +110,7 @@
                     </div>
                     <div class="md:w-2/3"></div>
                   </div>
+
                 </form>
               </div>            
             </div>

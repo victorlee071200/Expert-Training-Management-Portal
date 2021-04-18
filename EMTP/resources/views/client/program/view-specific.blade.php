@@ -1,5 +1,5 @@
 <x-app-layout title="Program">
-    <!--Search bar-->
+    {{-- <!--Search bar-->
     <div class="w-auto h-11 bg-white flex border border-black border-width-2 mt-5 mx-60">
         <!--Search Input-->
         <input type="search" name="search" id="search" placeholder="Search for Training Program" class="border-none w-full"/>
@@ -14,5 +14,12 @@
     <!--Search result-->
     <div class="mt-5 mx-60">
         <p>Search result</p>
-    </div>
+    </div> --}}
+    <h1>Program Details</h1>
+    <h1>Name: {{$program->name}}</h1>
+    <p><strong>Type: {{$program->type}}</strong></p>
+    <p><strong>Price: {{$program->price}}</strong></p>
+    <p><strong>Option: {{$program->option}}</strong></p>
+    <p><strong>Description: {{$program->description}}</strong></p>
+
 </x-app-layout>

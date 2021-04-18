@@ -36,7 +36,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     // Program Page
     //View all approved programs
-    Route::get('/client/view/program', [ProgramController::class, 'ClientViewAllProgram'])->name('client-program');
+    Route::get('/client/view/program', [ProgramController::class, 'ClientViewAllProgram'])->name('client-program');\
+    
     //View Specific Program
     Route::get('/client/view/program/{program}', [ProgramController::class, 'ClientViewSpecificProgram']);
 
@@ -47,10 +48,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // Route::post('/client/view/program/{program}', [ProgramController::class, 'ClientStoreProgram']);
 
     //View all registered programs
-    Route::get('/client/view/program/registered', [ClientProgramController::class, 'index']);
+    Route::get('/client/view/program/registered', [ProgramController::class, 'ClientViewRegisteredProgram']);
 
     //View specific registered program details    
-    Route::get('/client/view/program/registered/{registeredprogram}/{program}', [ClientProgramController::class, 'show']);
+    Route::get('/client/view/program/registered/{registeredprogram}/{program}', [ProgramController::class, 'ClientViewSpecificRegisteredProgram']);
 
     //About Us Page    
     Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
@@ -59,9 +60,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/support', [SupportController::class, 'index'])->name('support');  
     
 
-    
-
-    
 
 });
 
@@ -80,7 +78,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 });
 
 // Admin Routes
-Route::middleware(['auth:sanctum', 'verified','auth.admin'])->group(function () {
+// Route::middleware(['auth:sanctum', 'verified','auth.admin'])->group(function () {
 
     //Program Module
     //Dashboard
@@ -98,8 +96,7 @@ Route::middleware(['auth:sanctum', 'verified','auth.admin'])->group(function () 
     Route::get('/admin/view/approved/program/{program}', [ProgramController::class, 'AdminViewApprovedProgram'])->name('admin-view-specific-approved-program');
     
 
-});
-
+// });
 
 
 // Route::put('/admin/programs/pending/{program}', [AdminProgramController::class, 'update']);

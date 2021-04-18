@@ -18,10 +18,10 @@ class ProgramController extends Controller
         
     }
 
-    public function ClientViewSpecificProgram()
+    public function ClientViewSpecificProgram(Program $program)
     {
-        $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
-        return view('client.program.view-specific',['approvedprograms'=>$approvedprograms]);  
+        $program =  DB::table('programs')->where('name', $program->name)->get();
+        return view('client.program.view-specific',['$program'=>$program]);  
     }    
 
     public function ClientShowProgram(Program $program)
@@ -79,6 +79,13 @@ class ProgramController extends Controller
         return view('client.program.registered',['registeredprograms'=>$registeredprograms,'programdetails'=>$programdetails]);
     }
 
+    public function  ClientViewSpecificRegisteredProgram(ClientProgram $registeredprogram, Program $program)
+    {
+        $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
+        $program_ =  DB::table('programs')->where('id', $program)->get();
+        return view('client.program.detail',['registeredprogram' => $registeredprogram, 'program' => $program]);  
+    }
+
     public function StaffCreateProgram()
     {
         return view('staff.program.create');
@@ -87,20 +94,23 @@ class ProgramController extends Controller
     public function StaffRegisterProgram(Request $request)
     {
         // Validate the request...
-
         $program = new Program;
         $program->name = request('name');
         $program->type = request('type');
         $program->price = request('price');
         $program->option = request('option');
         $program->description = request('description');
-        $program->status= 'to-be-confirmed';
+        $program->status = 'to-be-confirmed';
+
+        $name = $request->file('thumbnail')->getClientOriginalName();
+        $request->file('thumbnail')->storeAs(
+            'public/program_thumbnails/', $name
+        );
+        $program->thumbnail_path = $name;
 
         $program->save();
-
+        // return $path;
         return view('staff.dashboard.index');
-
-        // return $request->all();
     }
 
     public function AdminShowAllPrograms()

@@ -21,6 +21,7 @@ class CreateProgramsTable extends Migration
             $table->enum('option',['physical','online','both']);
             $table->enum('status',['to-be-confirmed','approved','rejected']);
             $table->text('description');
+            $table->text('thumbnail_path');
             $table->timestamps();
         });
     }
