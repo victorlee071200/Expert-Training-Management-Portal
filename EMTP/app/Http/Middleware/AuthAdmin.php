@@ -24,7 +24,7 @@ class AuthAdmin
         else
         {
             session()->flush();
-            return redirect()->route('/403');
+            return redirect()->route('403');
         }
         return $next($request);
     }
