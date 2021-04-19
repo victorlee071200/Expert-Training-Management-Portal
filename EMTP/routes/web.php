@@ -24,6 +24,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/403', function(){
+    return view('403');
+})->name('403');
+
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     // Client Side
@@ -94,11 +98,13 @@ Route::middleware(['auth:sanctum', 'verified','auth.admin'])->group(function () 
     //Approve Specific Program
     Route::put('/admin/view/program/{program}', [ProgramController::class, 'AdminApprovedProgram'])->name('admin-approve-a-program');
 
-    // View Specific Approved Program 
+    // View Specific Approved Program
     Route::get('/admin/view/approved/program/{program}', [ProgramController::class, 'AdminViewApprovedProgram'])->name('admin-view-specific-approved-program');
     
 
 });
+
+
 
 
 
