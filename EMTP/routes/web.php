@@ -8,6 +8,7 @@ use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminProgramController;
 use App\Http\Controllers\ClientProgramController;
+use App\Http\Controllers\SupportTicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,7 +61,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
 
     //Support & Help Page
-    Route::get('/support', [SupportController::class, 'index'])->name('support');  
+    //View Page
+    Route::get('/support', [SupportController::class, 'index'])->name('support');
+
     
 
     
@@ -100,6 +103,10 @@ Route::middleware(['auth:sanctum', 'verified','auth.admin'])->group(function () 
 
     // View Specific Approved Program
     Route::get('/admin/view/approved/program/{program}', [ProgramController::class, 'AdminViewApprovedProgram'])->name('admin-view-specific-approved-program');
+
+    // Support Ticket Systems
+    // View All Support Ticket
+    Route::get('/admin/view/ticket', [SupportTicketController::class, 'AdminViewAllTickets'])->name('admin-view-all-tickets');
     
 
 });
