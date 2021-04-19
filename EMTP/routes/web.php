@@ -38,7 +38,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // Program Page
     //View all approved programs
     Route::get('/client/view/program', [ProgramController::class, 'index'])->name('client-program');
-    
+
     //View Specific Program
     Route::get('/client/view/program/{program}', [ProgramController::class, 'ClientViewSpecificProgram']);
 
@@ -51,17 +51,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //View all registered programs
     Route::get('/client/view/registered', [ProgramController::class, 'ClientViewRegisteredProgram']);
 
-    //View specific registered program details    
+    //View specific registered program details
     Route::get('/client/registered/{registeredprogram}/{program}', [ProgramController::class, 'ClientViewSpecificRegisteredProgram']);
 
-    //About Us Page    
+    //About Us Page
     Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
 
     //Support & Help Page
-    Route::get('/support', [SupportController::class, 'index'])->name('support');  
-    
-
-
+    Route::get('/support', [SupportController::class, 'index'])->name('support');
 });
 
 //Staff routes
@@ -79,27 +76,26 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //View all pending programs
     Route::get('/staff/view/pendings', [ProgramController::class, 'StaffViewPendingProgram'])->name('staff-view-program');
-
 });
 
 // Admin Routes
 // Route::middleware(['auth:sanctum', 'verified','auth.admin'])->group(function () {
 
-    //Program Module
-    //Dashboard
-    Route::get('/admin/dashboard', [DashboardController::class, 'AdminDashboard'])->name('admin-dashboard');
-    // View 
-    Route::get('/admin/view/program', [ProgramController::class, 'AdminShowAllPrograms'])->name('admin-view-all-programs');
+//Program Module
+//Dashboard
+Route::get('/admin/dashboard', [DashboardController::class, 'AdminDashboard'])->name('admin-dashboard');
+// View
+Route::get('/admin/view/program', [ProgramController::class, 'AdminShowAllPrograms'])->name('admin-view-all-programs');
 
-    //View Specific Program
-    Route::get('/admin/view/program/{program}', [ProgramController::class, 'AdminViewSpecificProgram'])->name('admin-view-specific-program');
+//View Specific Program
+Route::get('/admin/view/program/{program}', [ProgramController::class, 'AdminViewSpecificProgram'])->name('admin-view-specific-program');
 
-    //Approve Specific Program
-    Route::put('/admin/view/program/{program}', [ProgramController::class, 'AdminApprovedProgram'])->name('admin-approve-a-program');
+//Approve Specific Program
+Route::put('/admin/view/program/{program}', [ProgramController::class, 'AdminApprovedProgram'])->name('admin-approve-a-program');
 
-    // View Specific Approved Program 
-    Route::get('/admin/view/approved/program/{program}', [ProgramController::class, 'AdminViewApprovedProgram'])->name('admin-view-specific-approved-program');
-    
+// View Specific Approved Program
+Route::get('/admin/view/approved/program/{program}', [ProgramController::class, 'AdminViewApprovedProgram'])->name('admin-view-specific-approved-program');
+
 
 // });
 
@@ -123,4 +119,8 @@ Route::get('/payment_credit_card', function () {
 
 Route::get('/payment_result', function () {
     return view('client.requisite_process.payment_result');
+});
+
+Route::get('/help_support', function () {
+    return view('help-support-page');
 });
