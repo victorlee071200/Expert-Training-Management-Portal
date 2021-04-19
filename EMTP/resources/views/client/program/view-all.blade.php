@@ -15,7 +15,10 @@
                     <tbody>
                     @foreach($approvedprograms as $program)
                     <tr>
-                        <td><a class="hover:bg-blue-700" href="program/{{$program->id}}">{{$program->name}}</a> </td>
+                        <td>
+                            <a class="hover:bg-blue-700" href="program/{{$program->id}}">
+                                <img src = "{{ asset('storage/program_thumbnails/'.$program->thumbnail_path)}}" width="500" height="600">{{$program->name}}</a> 
+                        </td>
                     </tr>
                     @endforeach
                     </tbody>

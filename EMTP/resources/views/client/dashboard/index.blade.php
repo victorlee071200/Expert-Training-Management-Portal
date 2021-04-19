@@ -8,19 +8,25 @@
   <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
     <!--Card list container-->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-1 mx-2">
+
+      @foreach($registeredprograms as $indexKey => $program)
       <!--card container-->
-      <div href="program_detail" class="hover:bg-gray-100 lg:m-4 shadow-md hover:shadow-lg rounded-lg bg-white w-auto">
+      <div  href="#" class="hover:bg-gray-100 lg:m-4 shadow-md hover:shadow-lg rounded-lg bg-white w-auto">
         <!-- Card Image -->
+        <a class="hover:bg-blue-700" href="registered/{{$program->id}}/{{$programdetails[$indexKey]->id}}">
         <img src="https://www.dmarge.com/wp-content/uploads/2020/01/class-or-cult.jpg" alt="fitness training" class="h-auto">
         <!-- Card Content -->
         <div class="p-4">
-          <h3 class="font-medium text-gray-600 text-lg my-2 uppercase">TPE10003 Fitness Training</h3>
-          <p class="text-justify">Provides basic fitness training every Monday morning</p>
+          <h3 class="font-medium text-gray-600 text-lg my-2 uppercase">{{$programdetails[$indexKey]->name}}</h3>
+          <p class="text-justify">{{$programdetails[$indexKey]->description}}</p>
           <div class="mt-5">
-            <span class="rounded-full py-2 px-3 font-semibold bg-gray-200 text-gray-800 ml-2">On-Going</span>
+            <span class="rounded-full py-2 px-3 font-semibold bg-gray-200 text-gray-800 ml-2">{{$program->status}}</span>
           </div>
         </div>
+        </a>
       </div>
+      @endforeach
+
     </div>
   </div>
 </x-app-layout>
