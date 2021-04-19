@@ -106,7 +106,7 @@ Route::middleware(['auth:sanctum', 'verified','auth.admin'])->group(function () 
 
     // Support Ticket Systems
     // View All Support Ticket
-    Route::get('/admin/view/ticket', [SupportTicketController::class, 'AdminViewAllTickets'])->name('admin-view-all-tickets');
+    Route::get('/admin/support', [SupportTicketController::class, 'AdminViewAllTickets'])->name('admin-view-all-tickets');
     
 
 });

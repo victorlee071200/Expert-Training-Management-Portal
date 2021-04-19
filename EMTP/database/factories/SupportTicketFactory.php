@@ -22,9 +22,9 @@ class SupportTicketFactory extends Factory
     public function definition()
     {
         return [
-            'summary' => $this->faker->sentence,
-            'description' => $this->faker->paragraph,
-            'status' => $this->faker->word
+            // 'summary' => $this->faker->sentence,
+            // 'description' => $this->faker->paragraph,
+            // 'status' => $this->faker->word
         ];
     }
 }

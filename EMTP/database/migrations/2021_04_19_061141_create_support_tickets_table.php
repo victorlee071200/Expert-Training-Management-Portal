@@ -15,11 +15,16 @@ class CreateSupportTicketsTable extends Migration
     {
         Schema::create('support_tickets', function (Blueprint $table) {
             $table->id();
-            $table->string('summary');
+            $table->string('name');
+            $table->string('email');
+            $table->text('title');
             $table->text('description');
-            $table->string('status');
+            $table->enum('priority',['Low', 'Medium', 'High']);
+            $table->enum('status',['Open', 'Closed']);
+            $table->string('assign_to')->nullable();
             $table->timestamps();
         });
+
     }
 
     /**

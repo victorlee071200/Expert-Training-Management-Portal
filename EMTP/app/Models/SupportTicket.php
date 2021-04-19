@@ -10,7 +10,7 @@ class SupportTicket extends Model
     use HasFactory;
 
     protected $fillable = [
-        'summary', 'description', 'status'
+        'name', 'email', 'title', 'description', 'priority', 'assign_to','status',
     ];
 
     protected $hidden = [
