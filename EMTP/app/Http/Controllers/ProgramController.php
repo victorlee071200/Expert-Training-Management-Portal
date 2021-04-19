@@ -27,14 +27,32 @@ class ProgramController extends Controller
 
     public function ClientViewSpecificProgram(Program $program)
     {
+        $clientprogram =  DB::table('client_programs')->where('client_email', Auth::user()->email)
+        ->where('program_id', $program->id)->get();
 
-        return view('client.program.view-specific',['program'=>$program]);  
+        if ($clientprogram->isEmpty()){
+            $registered = false;
+        }else{
+            $registered = true;
+        }
+
+        // return ($clientprogram);
+
+        return view('client.program.view-specific',['program'=>$program, 'registered'=>$registered, 'clientprogram'=>$clientprogram]);  
     }    
 
 
     public function ClientRegisterProgram(Program $program)
     {
-        return view('client.program.register', ['program' => $program]);
+        if ($program->option == 'both'){
+            $options = array('Physical','Online');
+        } else if ($program->option == 'online'){
+            $options = array('Online');
+        } else if ($program->option == 'physical'){
+            $options = array('Physical');
+        }
+
+        return view('client.program.register', ['program' => $program, 'options'=> $options]);
         $program->session()->flash('flash.banner', 'Yay it works!');
         $program->session()->flash('flash.bannerStyle', 'success');
     }
@@ -47,7 +65,15 @@ class ProgramController extends Controller
         $clientprogram->client_email = Auth::user()->email;
         $clientprogram->company_name = request('company_name');
         $clientprogram->program_id = $id;
-        $clientprogram->client_venue = request('client_venue');
+        $clientprogram->admin_id = "";
+        $clientprogram->option = strtolower(request('option'));
+
+        if ($clientprogram->option == "Online"){
+            $clientprogram->client_venue = "online";
+        } else{
+            $clientprogram->client_venue = request('client_venue');
+        }
+
         $clientprogram->no_of_employees = request('no_of_employees');
         $clientprogram->start_date = request('start_date');
         $clientprogram->end_date = request('end_date');
@@ -58,7 +84,7 @@ class ProgramController extends Controller
 
         $clientprogram->save();
 
-        return redirect('client/view-all');
+        return redirect('/client/view/program');
 
         // return $request->all();
     }
@@ -95,6 +121,7 @@ class ProgramController extends Controller
         // Validate the request...
         $program = new Program;
         $program->name = request('name');
+        $program->code = request('code');
         $program->type = request('type');
         $program->price = request('price');
         $program->option = request('option');
@@ -130,11 +157,7 @@ class ProgramController extends Controller
 
     public function AdminViewSpecificProgram(Program $program)
     {
-
         return view('admin.program.approve', ['program' => $program]);
-
-        // return $program;
-        // return view('Admin.approve_program');
     }
 
     public function AdminApprovedProgram(Request $request, Program $program)

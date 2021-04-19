@@ -80,16 +80,18 @@
                             </svg>
                         </button>
                     </div>
-                    
+                                      
                     <div>
                         <h4 class="font-bold mt-12 pb-2 border-b border-gray-200">Latest Programmes</h4>
-                        
+
+                        @foreach($approvedprograms as $program)
+                        <a href="program/{{$program->id}}">
                         <div class="mt-8 grid lg:grid-cols-3 gap-10">
                             <!--cards go here-->
                             <div class="card hover:shadow-lg">
-                                <img src="img/train1.jpg" alt="train1" class="w-full h-32 sm:h-48 object-cover">
+                                <img src="{{ asset('storage/program_thumbnails/'.$program->thumbnail_path)}}" alt="train1" class="w-full h-32 sm:h-48 object-cover">
                                 <div class="m-4">
-                                    <span class="font-bold">Training Programme 1</span>
+                                    <span class="font-bold">{{$program->code}} {{$program->name}}</span>
                                 </div>
                                 <div class="badge">
                                     <svg class="w-5 inline-block" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
@@ -97,23 +99,13 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
                                     </svg>
-                                    <span>Price: RM??</span>
+                                    <span>Price: ${{$program->price}}</span>
                                 </div>
                             </div>
                         </div>
+                        </a>
+                        @endforeach
 
-                        <table class="table table-striped">
-                            <tbody>
-                            @foreach($approvedprograms as $program)
-                            <tr>
-                                <td>
-                                    <a class="hover:bg-blue-700" href="program/{{$program->id}}">
-                                        <img src = "{{ asset('storage/program_thumbnails/'.$program->thumbnail_path)}}" width="500" height="600">{{$program->name}}</a> 
-                                </td>
-                            </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
 
                         <h4 class="font-bold mt-12 pb-2 border-b border-gray-200">Most Popular</h4>
 

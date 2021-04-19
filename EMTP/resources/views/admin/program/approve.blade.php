@@ -13,6 +13,12 @@
                   <div class="lg:w-4/5 mx-auto flex flex-wrap">
                     <img alt="ecommerce" class="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200" src = "{{ asset('storage/program_thumbnails/'.$program->thumbnail_path)}}" width="500" height="600"> 
                     <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+
+                      <div class="m-6">
+                        <h2 class="text-sm title-font text-gray-500 tracking-widest">Code</h2>
+                        <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{$program->code}}</h1>
+                      </div>
+
                       <div class="m-6">
                         <h2 class="text-sm title-font text-gray-500 tracking-widest">Name</h2>
                         <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{$program->name}}</h1>
