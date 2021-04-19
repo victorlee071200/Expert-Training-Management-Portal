@@ -8,6 +8,7 @@ use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminProgramController;
 use App\Http\Controllers\ClientProgramController;
+use App\Http\Controllers\SupportTicketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,6 +96,11 @@ Route::put('/admin/view/program/{program}', [ProgramController::class, 'AdminApp
 
 // View Specific Approved Program
 Route::get('/admin/view/approved/program/{program}', [ProgramController::class, 'AdminViewApprovedProgram'])->name('admin-view-specific-approved-program');
+
+
+Route::get('/admin/support', [SupportTicketController::class, 'AdminViewAllTickets'])->name('admin-view-specific-approved-program');
+
+
 
 
 // });
