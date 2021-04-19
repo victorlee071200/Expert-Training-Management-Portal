@@ -54,21 +54,21 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //View all registered programs
     Route::get('/client/view/program/registered', [ClientProgramController::class, 'index']);
 
-    //View specific registered program details    
+    //View specific registered program details
     Route::get('/client/view/program/registered/{registeredprogram}/{program}', [ClientProgramController::class, 'show']);
 
-    //About Us Page    
+    //About Us Page
     Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
 
     //Support & Help Page
     //View Page
     Route::get('/support', [SupportController::class, 'index'])->name('support');
 
-    
 
-    
 
-    
+
+
+
 
 });
 
@@ -92,7 +92,7 @@ Route::middleware(['auth:sanctum', 'verified','auth.admin'])->group(function () 
     //Program Module
     //Dashboard
     Route::get('/admin/dashboard', [DashboardController::class, 'AdminDashboard'])->name('admin-dashboard');
-    // View 
+    // View
     Route::get('/admin/view/program', [ProgramController::class, 'AdminShowAllPrograms'])->name('admin-view-all-programs');
 
     //View Specific Program
@@ -107,7 +107,7 @@ Route::middleware(['auth:sanctum', 'verified','auth.admin'])->group(function () 
     // Support Ticket Systems
     // View All Support Ticket
     Route::get('/admin/support', [SupportTicketController::class, 'AdminViewAllTickets'])->name('admin-view-all-tickets');
-    
+
 
 });
 
