@@ -101,11 +101,6 @@ Route::get('/admin/view/approved/program/{program}', [ProgramController::class, 
 Route::get('/admin/support', [SupportTicketController::class, 'AdminViewAllTickets'])->name('admin-view-specific-approved-program');
 
 
-
-
-// });
-
-
 // Route::put('/admin/programs/pending/{program}', [AdminProgramController::class, 'update']);
 
 // Route::put('/admin/programs/approved/{program}', [AdminProgramController::class, 'edit']);
