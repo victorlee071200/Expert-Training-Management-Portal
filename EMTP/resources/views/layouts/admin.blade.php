@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>x
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -13,6 +13,8 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+
+    @yield('css')
 
 
 
@@ -736,15 +738,8 @@
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                   <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                     <div class="overflow-hidden border-b border-gray-200 rounded-md shadow-md">
-                      <table class="min-w-full overflow-x-scroll divide-y divide-gray-200">
-                        <thead class="bg-gray-50">
-                            @yield('table-head')
+                        @yield('container')
 
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
-                            @yield('table-body')
-                        </tbody>
-                      </table>
                     </div>
                   </div>
                 </div>

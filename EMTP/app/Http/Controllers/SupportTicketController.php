@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\SupportTicket;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class SupportTicketController extends Controller
 {
@@ -56,8 +57,23 @@ class SupportTicketController extends Controller
 
     }
 
-    public function AdminViewSpecificTicket(SupportTicket $ticket)
+    public function AdminViewSpecificTicket(Request $request, $id)
     {
+        $ticket = SupportTicket::findOrFail($id);
+        return view('admin.support.details', ['ticket'=>$ticket]);
 
     }
+
+    public function AdminAssignTo(Request $request, $id)
+    {
+        $ticket = SupportTicket::find($id);
+        $ticket->assign_to = $request->input('assign_to');
+
+        $ticket->update();
+
+        return redirect('/admin/support');
+
+    }
+
+
 }

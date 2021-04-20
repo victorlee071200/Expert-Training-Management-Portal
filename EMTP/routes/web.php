@@ -62,7 +62,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //About Us Page
     Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
 
-    //Support & Help Page
+    //View Support & Help Page
     Route::get('/client/view/support', [SupportTicketController::class, 'ClientSupportPageView'])->name('client-view-support');
 
     //Client Create Support & Help Page
@@ -108,8 +108,14 @@ Route::put('/admin/view/program/{program}', [ProgramController::class, 'AdminApp
 // View Specific Approved Program
 Route::get('/admin/view/approved/program/{program}', [ProgramController::class, 'AdminViewApprovedProgram'])->name('admin-view-specific-approved-program');
 
+// View All Support Ticket
+Route::get('/admin/support', [SupportTicketController::class, 'AdminViewAllTickets'])->name('admin-view-all-support');
 
-Route::get('/admin/support', [SupportTicketController::class, 'AdminViewAllTickets'])->name('admin-view-specific-approved-program');
+// View Specific Support Ticket
+Route::get('/admin/support/{id}', [SupportTicketController::class, 'AdminViewSpecificTicket'])->name('admin-view-specific-support');
+
+// Assign a ticket to a staff
+Route::post('/admin/support/{id}', [SupportTicketController::class, 'AdminAssignTo'])->name('admin-assign-to');
 
 
 // Route::put('/admin/programs/pending/{program}', [AdminProgramController::class, 'update']);
