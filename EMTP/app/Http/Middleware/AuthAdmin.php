@@ -20,13 +20,13 @@ class AuthAdmin
         {
             return $next($request);
         }
-        
+
         else
         {
             session()->flush();
-            return redirect()->route('403');
+            return redirect()->route('client-home');
         }
         return $next($request);
     }
-    
+
 }

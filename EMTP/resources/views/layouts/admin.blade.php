@@ -21,64 +21,411 @@
 </head>
 
 <body class="">
-    <div>
-        <div class="flex h-screen overflow-y-hidden bg-white" x-data="setup()" x-init="$refs.loading.classList.add('hidden')">
-          <!-- Loading screen -->
-          <div
-            x-ref="loading"
-            class="fixed inset-0 z-50 flex items-center justify-center text-white bg-black bg-opacity-50"
-            style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)"
-          >
-            Loading.....
-          </div>
 
-          <!-- Sidebar backdrop -->
-          <div
-            x-show.in.out.opacity="isSidebarOpen"
-            class="fixed inset-0 z-10 bg-black bg-opacity-20 lg:hidden"
-            style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)"
-          ></div>
+    <style>
+        /* This example part of kwd-dashboard see https://kamona-wd.github.io/kwd-dashboard/ */
+    /* So here we will write some classes to simulate dark mode and some of tailwind css config in our project */
+    :root {
+      --light: #E1E2F0;
+      --dark: #202033;
+      --darker: #1e1e30;
 
-          <!-- Sidebar -->
-          <aside
-            x-transition:enter="transition transform duration-300"
-            x-transition:enter-start="-translate-x-full opacity-30  ease-in"
-            x-transition:enter-end="translate-x-0 opacity-100 ease-out"
-            x-transition:leave="transition transform duration-300"
-            x-transition:leave-start="translate-x-0 opacity-100 ease-out"
-            x-transition:leave-end="-translate-x-full opacity-0 ease-in"
-            class="fixed inset-y-0 z-10 flex flex-col flex-shrink-0 w-64 max-h-screen overflow-hidden transition-all transform bg-white border-r shadow-lg lg:z-auto lg:static lg:shadow-none"
-            :class="{'-translate-x-full lg:translate-x-0 lg:w-20': !isSidebarOpen}"
-          >
-            <!-- sidebar header -->
-            <div class="flex items-center justify-between flex-shrink-0 p-2" :class="{'lg:justify-center': !isSidebarOpen}">
-              <span class="p-2 text-xl font-semibold leading-8 tracking-wider uppercase whitespace-nowrap">
-                E<span :class="{'lg:hidden': !isSidebarOpen}">MTP</span>
-              </span>
-              <button @click="toggleSidbarMenu()" class="p-2 rounded-md lg:hidden">
-                <svg
-                  class="w-6 h-6 text-gray-600"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
+      --color-red: #dc2626;
+      --color-green: #16a34a;
+      --color-indigo: #2563eb;
+      --color-cyan: #0891b2;
+      --color-teal: #0d9488;
+      --color-fuchsia: #c026d3;
+      --color-orange: #ea580c;
+      --color-yellow: #ca8a04;
+      --color-violet: #7c3aed;
+    }
+
+    [x-cloak] { display: none; }
+
+    .dark .dark\:text-light {
+      color: var(--light);
+    }
+
+    .dark .dark\:bg-dark {
+      background-color: var(--dark);
+    }
+
+    .dark .dark\:bg-darker {
+      background-color: var(--darker);
+    }
+
+    .dark .dark\:text-gray-300 {
+      color: #D1D5DB;
+    }
+
+    .dark .dark\:text-indigo-500 {
+      color: #6366F1;
+    }
+
+    .dark .dark\:text-indigo-100 {
+      color: #E0E7FF;
+    }
+
+    .dark .dark\:hover\:text-light:hover {
+      color: var(--light);
+    }
+
+    .dark .dark\:border-indigo-800 {
+      border-color: #3730A3;
+    }
+
+    .dark .dark\:border-indigo-700 {
+      border-color: #4338CA;
+    }
+
+    .dark .dark\:bg-indigo-600 {
+        background-color: #4F46E5;
+    }
+
+    .dark .dark\:hover\:bg-indigo-600:hover {
+      background-color: #4F46E5;
+    }
+
+    .hover\:overflow-y-auto:hover {
+        overflow-y: auto;
+    }
+
+    </style>
+
+    <div x-data="setup()" x-init="$refs.loading.classList.add('hidden');" :class="{ 'dark': isDark}">
+          <!--  -->
+          <div class="flex h-screen antialiased text-gray-900 bg-gray-100 dark:bg-dark dark:text-light">
+            <!-- Loading screen -->
+            <div
+              x-ref="loading"
+              class="fixed inset-0 z-50 flex items-center justify-center text-2xl font-semibold text-white bg-opacity-90 bg-indigo-800"
+            >
+              Loading.....
             </div>
-            <!-- Sidebar links -->
-            <nav class="flex-1 overflow-hidden hover:overflow-y-auto">
-              <ul class="p-2 overflow-hidden">
-                <li>
+
+            <!-- Sidebar -->
+            <aside class="flex-shrink-0 hidden w-64 bg-white border-r dark:border-indigo-800 dark:bg-darker md:block">
+              <div class="flex flex-col h-full">
+                <!-- Sidebar links -->
+                <nav aria-label="Main" class="flex-1 px-2 py-4 space-y-2 overflow-y-hidden hover:overflow-y-auto">
+
+                  <!-- Dashboards links -->
+                  <div x-data="{ isActive: false, open: false}">
+                    <!-- active & hover classes 'bg-indigo-100 dark:bg-indigo-600' -->
+                    <a
+                      href="#"
+                      @click="$event.preventDefault(); open = !open"
+                      class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-indigo-100 dark:hover:bg-indigo-600"
+                      :class="{'bg-indigo-100 dark:bg-indigo-600': isActive || open}"
+                      role="button"
+                      aria-haspopup="true"
+                      :aria-expanded="(open || isActive) ? 'true' : 'false'"
+                    >
+                      <span class="ml-2 text-sm"> Dashboards </span>
+                      <span class="ml-auto" aria-hidden="true">
+                        <!-- active class 'rotate-180' -->
+                        <svg
+                          class="w-4 h-4 transition-transform transform"
+                          :class="{ 'rotate-180': open }"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </span>
+                    </a>
+                    <div role="menu" x-show="open" class="mt-2 space-y-2 px-7" aria-label="Dashboards">
+                      <!-- active & hover classes 'text-gray-700 dark:text-light' -->
+                      <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
+                      <a
+                        href="#"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
+                      >
+                        Default
+                      </a>
+                      <a
+                        href="#"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                      >
+                        Project Mangement
+                      </a>
+                      <a
+                        href="#"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                      >
+                        E-Commerce
+                      </a>
+                    </div>
+                  </div>
+
+                  <!-- Components links -->
+                  <div x-data="{ isActive: false, open: false }">
+                    <!-- active classes 'bg-indigo-100 dark:bg-indigo-600' -->
+                    <a
+                      href="#"
+                      @click="$event.preventDefault(); open = !open"
+                      class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-indigo-100 dark:hover:bg-indigo-600"
+                      :class="{ 'bg-indigo-100 dark:bg-indigo-600': isActive || open }"
+                      role="button"
+                      aria-haspopup="true"
+                      :aria-expanded="(open || isActive) ? 'true' : 'false'"
+                    >
+                      <span class="ml-2 text-sm"> Components </span>
+                      <span aria-hidden="true" class="ml-auto">
+                        <!-- active class 'rotate-180' -->
+                        <svg
+                          class="w-4 h-4 transition-transform transform"
+                          :class="{ 'rotate-180': open }"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </span>
+                    </a>
+                    <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Components">
+                      <!-- active & hover classes 'text-gray-700 dark:text-light' -->
+                      <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
+                      <a
+                        href="#"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
+                      >
+                        Alerts
+                      </a>
+                      <a
+                        href="#"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
+                      >
+                        Buttons
+                      </a>
+                      <a
+                        href="#"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                      >
+                        Cards
+                      </a>
+                      <a
+                        href="#"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                      >
+                        Dropdowns
+                      </a>
+                      <a
+                        href="#"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                      >
+                        Forms
+                      </a>
+                      <a
+                        href="#"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                      >
+                        Lists
+                      </a>
+                      <a
+                        href="#"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                      >
+                        Modals
+                      </a>
+                    </div>
+                  </div>
+
+                  <!-- Pages links -->
+                  <div x-data="{ isActive: false, open: false }">
+                    <!-- active classes 'bg-indigo-100 dark:bg-indigo-600' -->
+                    <a
+                      href="#"
+                      @click="$event.preventDefault(); open = !open"
+                      class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-indigo-100 dark:hover:bg-indigo-600"
+                      :class="{ 'bg-indigo-100 dark:bg-indigo-600': isActive || open }"
+                      role="button"
+                      aria-haspopup="true"
+                      :aria-expanded="(open || isActive) ? 'true' : 'false'"
+                    >
+                      <span class="ml-2 text-sm"> Pages </span>
+                      <span aria-hidden="true" class="ml-auto">
+                        <!-- active class 'rotate-180' -->
+                        <svg
+                          class="w-4 h-4 transition-transform transform"
+                          :class="{ 'rotate-180': open }"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </span>
+                    </a>
+                    <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Components">
+                      <!-- active & hover classes 'text-gray-700 dark:text-light' -->
+                      <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
+                      <a
+                        href="#"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
+                      >
+                        Alerts
+                      </a>
+                      <a
+                        href="#"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
+                      >
+                        Buttons
+                      </a>
+                      <a
+                        href="#"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                      >
+                        Cards
+                      </a>
+                      <a
+                        href="#"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                      >
+                        Dropdowns
+                      </a>
+                      <a
+                        href="#"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                      >
+                        Forms
+                      </a>
+                      <a
+                        href="#"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                      >
+                        Lists
+                      </a>
+                      <a
+                        href="#"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                      >
+                        Modals
+                      </a>
+                    </div>
+                  </div>
+
+                  <!-- Authentication links -->
+                  <div x-data="{ isActive: false, open: false}">
+                    <!-- active & hover classes 'bg-indigo-100 dark:bg-indigo-600' -->
+                    <a
+                      href="#"
+                      @click="$event.preventDefault(); open = !open"
+                      class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-indigo-100 dark:hover:bg-indigo-600"
+                      :class="{'bg-indigo-100 dark:bg-indigo-600': isActive || open}"
+                      role="button"
+                      aria-haspopup="true"
+                      :aria-expanded="(open || isActive) ? 'true' : 'false'"
+                    >
+                      <span class="ml-2 text-sm"> Authentication </span>
+                      <span aria-hidden="true" class="ml-auto">
+                        <!-- active class 'rotate-180' -->
+                        <svg
+                          class="w-4 h-4 transition-transform transform"
+                          :class="{ 'rotate-180': open }"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </span>
+                    </a>
+                    <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" aria-label="Authentication">
+                      <!-- active & hover classes 'text-gray-700 dark:text-light' -->
+                      <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
+                      <a
+                        href="#"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                      >
+                        Register
+                      </a>
+                      <a
+                        href="#"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                      >
+                        Login
+                      </a>
+                      <a
+                        href="#"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                      >
+                        Password Reset
+                      </a>
+                    </div>
+                  </div>
+                </nav>
+              </div>
+            </aside>
+
+            {{-- Mobile Version --}}
+            <div class="flex flex-col flex-1 min-h-screen overflow-x-hidden overflow-y-auto">
+              <!-- Navbar -->
+              <header class="relative bg-white dark:bg-darker">
+                <div class="flex items-center justify-between p-2 border-b dark:border-indigo-800">
+                  <!-- Mobile menu button -->
+                  <button
+                    @click="isMobileMainMenuOpen = !isMobileMainMenuOpen"
+                    class="p-1 text-indigo-400 transition-colors duration-200 rounded-md bg-indigo-50 hover:text-indigo-600 hover:bg-indigo-100 dark:hover:text-light dark:hover:bg-indigo-700 dark:bg-dark md:hidden focus:outline-none focus:ring"
+                  >
+                    <span class="sr-only">Open main manu</span>
+                    <span aria-hidden="true">
+                      <svg
+                        class="w-8 h-8"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                      </svg>
+                    </span>
+                  </button>
+
+                  <!-- Brand -->
                   <a
                     href="#"
-                    class="flex items-center p-2 space-x-2 rounded-md hover:bg-gray-100"
-                    :class="{'justify-center': !isSidebarOpen}"
+                    class="inline-block text-2xl font-bold tracking-wider text-indigo-700 uppercase dark:text-light"
                   >
-                    <span>
+                    EMTP
+                  </a>
+
+                  <!-- Mobile sub menu button -->
+                  <button
+                    @click="isMobileSubMenuOpen = !isMobileSubMenuOpen"
+                    class="p-1 text-indigo-400 transition-colors duration-200 rounded-md bg-indigo-50 hover:text-indigo-600 hover:bg-indigo-100 dark:hover:text-light dark:hover:bg-indigo-700 dark:bg-dark md:hidden focus:outline-none focus:ring"
+                  >
+                    <span class="sr-only">Open sub manu</span>
+                    <span aria-hidden="true">
                       <svg
-                        class="w-6 h-6 text-gray-400"
+                        class="w-8 h-8"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
@@ -88,79 +435,26 @@
                           stroke-linecap="round"
                           stroke-linejoin="round"
                           stroke-width="2"
-                          d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                          d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
                         />
                       </svg>
                     </span>
-                    <span :class="{ 'lg:hidden': !isSidebarOpen }">Dashboard</span>
-                  </a>
-                </li>
-                <!-- Sidebar Links... -->
-              </ul>
-            </nav>
-            <!-- Sidebar footer -->
-            <div class="flex-shrink-0 p-2 border-t max-h-14">
-              <button
-                class="flex items-center justify-center w-full px-4 py-2 space-x-1 font-medium tracking-wider uppercase bg-gray-100 border rounded-md focus:outline-none focus:ring"
-              >
-                <span>
-                  <svg
-                    class="w-6 h-6"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                    />
-                  </svg>
-                </span>
-                <span :class="{'lg:hidden': !isSidebarOpen}"> Logout </span>
-              </button>
-            </div>
-          </aside>
-
-          <div class="flex flex-col flex-1 h-full overflow-hidden">
-            <!-- Navbar -->
-            <header class="flex-shrink-0 border-b">
-              <div class="flex items-center justify-between p-2">
-                <!-- Navbar left -->
-                <div class="flex items-center space-x-3">
-                  <span class="p-2 text-xl font-semibold tracking-wider uppercase lg:hidden">EMTP</span>
-                  <!-- Toggle sidebar button -->
-                  <button @click="toggleSidbarMenu()" class="p-2 rounded-md focus:outline-none focus:ring">
-                    <svg
-                      class="w-4 h-4 text-gray-600"
-                      :class="{'transform transition-transform -rotate-180': isSidebarOpen}"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
-                    </svg>
                   </button>
-                </div>
 
-                <!-- Mobile search box -->
-                <div
-                  x-show.transition="isSearchBoxOpen"
-                  class="fixed inset-0 z-10 bg-black bg-opacity-20"
-                  style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)"
-                >
-                  <div
-                    @click.away="isSearchBoxOpen = false"
-                    class="absolute inset-x-0 flex items-center justify-between p-2 bg-white shadow-md"
-                  >
-                    <div class="flex items-center flex-1 px-2 space-x-2">
-                      <!-- search icon -->
-                      <span>
+                  <!-- Desktop Right buttons -->
+                  <nav aria-label="Secondary" class="hidden space-x-2 md:flex md:items-center">
+                    <!-- Toggle dark theme button -->
+                    <button aria-hidden="true" class="relative focus:outline-none" x-cloak @click="toggleTheme">
+                      <div
+                        class="w-12 h-6 transition bg-indigo-100 rounded-full outline-none dark:bg-indigo-400"
+                      ></div>
+                      <div
+                        class="absolute top-0 left-0 inline-flex items-center justify-center w-6 h-6 transition-all duration-150 transform scale-110 rounded-full shadow-sm"
+                        :class="{ 'translate-x-0 -translate-y-px  bg-white text-indigo-700': !isDark, 'translate-x-6 text-indigo-100 bg-indigo-800': isDark }"
+                      >
                         <svg
-                          class="w-6 h-6 text-gray-500"
+                          x-show="!isDark"
+                          class="w-4 h-4"
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 24 24"
@@ -170,37 +464,821 @@
                             stroke-linecap="round"
                             stroke-linejoin="round"
                             stroke-width="2"
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
                           />
                         </svg>
-                      </span>
-                      <input
-                        type="text"
-                        placeholder="Search"
-                        class="w-full px-4 py-3 text-gray-600 rounded-md focus:bg-gray-100 focus:outline-none"
-                      />
-                    </div>
-                    <!-- close button -->
-                    <button @click="isSearchBoxOpen = false" class="flex-shrink-0 p-4 rounded-md">
+                        <svg
+                          x-show="isDark"
+                          class="w-4 h-4"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                          />
+                        </svg>
+                      </div>
+                    </button>
+
+                    <!-- Notification button -->
+                    <button
+                      @click="openNotificationsPanel"
+                      class="p-2 text-indigo-400 transition-colors duration-200 rounded-full bg-indigo-50 hover:text-indigo-600 hover:bg-indigo-100 dark:hover:text-light dark:hover:bg-indigo-700 dark:bg-dark focus:outline-none focus:bg-indigo-100 dark:focus:bg-indigo-700 focus:ring-indigo-800"
+                    >
+                      <span class="sr-only">Open Notification panel</span>
                       <svg
-                        class="w-4 h-4 text-gray-500"
+                        class="w-7 h-7"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
+                        aria-hidden="true"
                       >
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                        />
                       </svg>
                     </button>
+
+                    <!-- Search button -->
+                    <button
+                      @click="openSearchPanel"
+                      class="p-2 text-indigo-400 transition-colors duration-200 rounded-full bg-indigo-50 hover:text-indigo-600 hover:bg-indigo-100 dark:hover:text-light dark:hover:bg-indigo-700 dark:bg-dark focus:outline-none focus:bg-indigo-100 dark:focus:bg-indigo-700 focus:ring-indigo-800"
+                    >
+                      <span class="sr-only">Open search panel</span>
+                      <svg
+                        class="w-7 h-7"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        />
+                      </svg>
+                    </button>
+
+                    <!-- User avatar button -->
+                    <div class="relative" x-data="{ open: false }">
+                      <button
+                        @click="open = !open; $nextTick(() => { if(open){ $refs.userMenu.focus() } })"
+                        type="button"
+                        aria-haspopup="true"
+                        :aria-expanded="open ? 'true' : 'false'"
+                        class="transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100"
+                      >
+                        <span class="sr-only">User menu</span>
+
+                        <img class="w-10 h-10 rounded-full" src="{{ Auth::user()->profile_photo_url }}" />
+                      </button>
+
+                      <!-- User dropdown menu -->
+                      <div
+                        x-show="open"
+                        x-ref="userMenu"
+                        x-transition:enter="transition-all transform ease-out"
+                        x-transition:enter-start="translate-y-1/2 opacity-0"
+                        x-transition:enter-end="translate-y-0 opacity-100"
+                        x-transition:leave="transition-all transform ease-in"
+                        x-transition:leave-start="translate-y-0 opacity-100"
+                        x-transition:leave-end="translate-y-1/2 opacity-0"
+                        @click.away="open = false"
+                        @keydown.escape="open = false"
+                        class="absolute right-0 w-48 py-1 bg-white rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-dark focus:outline-none"
+                        tabindex="-1"
+                        role="menu"
+                        aria-orientation="vertical"
+                        aria-label="User menu"
+                      >
+
+                        <a
+                        role="menuitem"
+                        class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-indigo-600"
+                        href="{{ route('profile.show') }}">
+                            {{ __('Profile') }}
+                        </a>
+                        <form
+                        method="POST"
+                        action="{{ route('logout') }}"
+                        role="menuitem"
+
+                        >
+                        @csrf
+                        <a class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-indigo-600" href="{{ route('logout') }}"
+                                     onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                        </a>
+
+
+
+                        </form>
+                      </div>
+                    </div>
+                  </nav>
+
+                  <!-- Mobile sub menu -->
+                  <nav
+                    x-transition:enter="transition duration-200 ease-in-out transform sm:duration-500"
+                    x-transition:enter-start="-translate-y-full opacity-0"
+                    x-transition:enter-end="translate-y-0 opacity-100"
+                    x-transition:leave="transition duration-300 ease-in-out transform sm:duration-500"
+                    x-transition:leave-start="translate-y-0 opacity-100"
+                    x-transition:leave-end="-translate-y-full opacity-0"
+                    x-show="isMobileSubMenuOpen"
+                    @click.away="isMobileSubMenuOpen = false"
+                    class="absolute flex items-center p-4 bg-white rounded-md shadow-lg dark:bg-darker top-16 inset-x-4 md:hidden"
+                    aria-label="Secondary"
+                  >
+                    <div class="space-x-2">
+                      <!-- Toggle dark theme button -->
+                      <button aria-hidden="true" class="relative focus:outline-none" x-cloak @click="toggleTheme">
+                        <div
+                          class="w-12 h-6 transition bg-indigo-100 rounded-full outline-none dark:bg-indigo-400"
+                        ></div>
+                        <div
+                          class="absolute top-0 left-0 inline-flex items-center justify-center w-6 h-6 transition-all duration-200 transform scale-110 rounded-full shadow-sm"
+                          :class="{ 'translate-x-0 -translate-y-px  bg-white text-indigo-700': !isDark, 'translate-x-6 text-indigo-100 bg-indigo-800': isDark }"
+                        >
+                          <svg
+                            x-show="!isDark"
+                            class="w-4 h-4"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                            />
+                          </svg>
+                          <svg
+                            x-show="isDark"
+                            class="w-4 h-4"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
+                            />
+                          </svg>
+                        </div>
+                      </button>
+
+                      <!-- Notification button -->
+                      <button
+                        @click="openNotificationsPanel(); $nextTick(() => { isMobileSubMenuOpen = false })"
+                        class="p-2 text-indigo-400 transition-colors duration-200 rounded-full bg-indigo-50 hover:text-indigo-600 hover:bg-indigo-100 dark:hover:text-light dark:hover:bg-indigo-700 dark:bg-dark focus:outline-none focus:bg-indigo-100 dark:focus:bg-indigo-700 focus:ring-indigo-800"
+                      >
+                        <span class="sr-only">Open notifications panel</span>
+                        <svg
+                          class="w-7 h-7"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          aria-hidden="true"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                          />
+                        </svg>
+                      </button>
+
+                      <!-- Search button -->
+                      <button
+                        @click="openSearchPanel(); $nextTick(() => { $refs.searchInput.focus(); setTimeout(() => {isMobileSubMenuOpen= false}, 100) })"
+                        class="p-2 text-indigo-400 transition-colors duration-200 rounded-full bg-indigo-50 hover:text-indigo-600 hover:bg-indigo-100 dark:hover:text-light dark:hover:bg-indigo-700 dark:bg-dark focus:outline-none focus:bg-indigo-100 dark:focus:bg-indigo-700 focus:ring-indigo-800"
+                      >
+                        <span class="sr-only">Open search panel</span>
+                        <svg
+                          class="w-7 h-7"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          aria-hidden="true"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+
+                    <!-- User avatar button -->
+                    <div class="relative ml-auto" x-data="{ open: false }">
+                      <button
+                        @click="open = !open"
+                        type="button"
+                        aria-haspopup="true"
+                        :aria-expanded="open ? 'true' : 'false'"
+                        class="block transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100"
+                      >
+                        <span class="sr-only">User menu</span>
+                        <img class="w-10 h-10 rounded-full" src="{{ Auth::user()->profile_photo_url }}" />
+                      </button>
+
+                      <!-- User dropdown menu -->
+                      <div
+                        x-show="open"
+                        x-transition:enter="transition-all transform ease-out"
+                        x-transition:enter-start="translate-y-1/2 opacity-0"
+                        x-transition:enter-end="translate-y-0 opacity-100"
+                        x-transition:leave="transition-all transform ease-in"
+                        x-transition:leave-start="translate-y-0 opacity-100"
+                        x-transition:leave-end="translate-y-1/2 opacity-0"
+                        @click.away="open = false"
+                        class="absolute right-0 w-48 py-1 origin-top-right bg-white rounded-md shadow-lg top-12 ring-1 ring-black ring-opacity-5 dark:bg-dark"
+                        role="menu"
+                        aria-orientation="vertical"
+                        aria-label="User menu"
+                      >
+
+                      <a
+                        role="menuitem"
+                        class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-indigo-600"
+                        href="{{ route('profile.show') }}">
+                            {{ __('Profile') }}
+                        </a>
+                        <form
+                        method="POST"
+                        action="{{ route('logout') }}"
+                        role="menuitem"
+
+                        >
+                        @csrf
+                        <a class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-indigo-600" href="{{ route('logout') }}"
+                                     onclick="event.preventDefault();
+                                            this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                        </a>
+                      </div>
+                    </div>
+                  </nav>
+                </div>
+
+
+                <!-- Mobile main menu -->
+                <div
+                  class="border-b md:hidden dark:border-indigo-800"
+                  x-show="isMobileMainMenuOpen"
+                  @click.away="isMobileMainMenuOpen = false"
+                >
+                  <nav aria-label="Main" class="px-2 py-4 space-y-2">
+                    <!-- Dashboards links -->
+                    <div x-data="{ isActive: false, open: false}">
+                      <!-- active & hover classes 'bg-indigo-100 dark:bg-indigo-600' -->
+                      <a
+                        href="#"
+                        @click="$event.preventDefault(); open = !open"
+                        class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-indigo-100 dark:hover:bg-indigo-600"
+                        :class="{'bg-indigo-100 dark:bg-indigo-600': isActive || open}"
+                        role="button"
+                        aria-haspopup="true"
+                        :aria-expanded="(open || isActive) ? 'true' : 'false'"
+                      >
+                        <span class="ml-2 text-sm"> Dashboards </span>
+                        <span class="ml-auto" aria-hidden="true">
+                          <!-- active class 'rotate-180' -->
+                          <svg
+                            class="w-4 h-4 transition-transform transform"
+                            :class="{ 'rotate-180': open }"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </span>
+                      </a>
+                      <div role="menu" x-show="open" class="mt-2 space-y-2 px-7" aria-label="Dashboards">
+                        <!-- active & hover classes 'text-gray-700 dark:text-light' -->
+                        <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
+                        <a
+                          href="#"
+                          role="menuitem"
+                          class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
+                        >
+                          Default
+                        </a>
+                        <a
+                          href="#"
+                          role="menuitem"
+                          class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                        >
+                          Project Mangement
+                        </a>
+                        <a
+                          href="#"
+                          role="menuitem"
+                          class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                        >
+                          E-Commerce
+                        </a>
+                      </div>
+                    </div>
+
+                    {{-- Pages Link --}}
+                    <div x-data="{ isActive: false, open: false }">
+                        <!-- active classes 'bg-indigo-100 dark:bg-indigo-600' -->
+                        <a
+                          href="#"
+                          @click="$event.preventDefault(); open = !open"
+                          class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-indigo-100 dark:hover:bg-indigo-600"
+                          :class="{ 'bg-indigo-100 dark:bg-indigo-600': isActive || open }"
+                          role="button"
+                          aria-haspopup="true"
+                          :aria-expanded="(open || isActive) ? 'true' : 'false'"
+                        >
+                          <span class="ml-2 text-sm"> Pages </span>
+                          <span aria-hidden="true" class="ml-auto">
+                            <!-- active class 'rotate-180' -->
+                            <svg
+                              class="w-4 h-4 transition-transform transform"
+                              :class="{ 'rotate-180': open }"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                          </span>
+                        </a>
+                        <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Components">
+                          <!-- active & hover classes 'text-gray-700 dark:text-light' -->
+                          <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
+                          <a
+                            href="#"
+                            role="menuitem"
+                            class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
+                          >
+                            Alerts
+                          </a>
+                          <a
+                            href="#"
+                            role="menuitem"
+                            class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
+                          >
+                            Buttons
+                          </a>
+                          <a
+                            href="#"
+                            role="menuitem"
+                            class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                          >
+                            Cards
+                          </a>
+                          <a
+                            href="#"
+                            role="menuitem"
+                            class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                          >
+                            Dropdowns
+                          </a>
+                          <a
+                            href="#"
+                            role="menuitem"
+                            class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                          >
+                            Forms
+                          </a>
+                          <a
+                            href="#"
+                            role="menuitem"
+                            class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                          >
+                            Lists
+                          </a>
+                          <a
+                            href="#"
+                            role="menuitem"
+                            class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                          >
+                            Modals
+                          </a>
+                        </div>
+                      </div>
+
+
+
+                    {{-- <!-- Components links --> --}}
+                    <div x-data="{ isActive: false, open: false }">
+                      <!-- active classes 'bg-indigo-100 dark:bg-indigo-600' -->
+                      <a
+                        href="#"
+                        @click="$event.preventDefault(); open = !open"
+                        class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-indigo-100 dark:hover:bg-indigo-600"
+                        :class="{ 'bg-indigo-100 dark:bg-indigo-600': isActive || open }"
+                        role="button"
+                        aria-haspopup="true"
+                        :aria-expanded="(open || isActive) ? 'true' : 'false'"
+                      >
+                        <span class="ml-2 text-sm"> Components </span>
+                        <span aria-hidden="true" class="ml-auto">
+                          <!-- active class 'rotate-180' -->
+                          <svg
+                            class="w-4 h-4 transition-transform transform"
+                            :class="{ 'rotate-180': open }"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </span>
+                      </a>
+                      <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Components">
+                        <!-- active & hover classes 'text-gray-700 dark:text-light' -->
+                        <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
+                        <a
+                          href="#"
+                          role="menuitem"
+                          class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
+                        >
+                          Alerts
+                        </a>
+                        <a
+                          href="#"
+                          role="menuitem"
+                          class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
+                        >
+                          Buttons
+                        </a>
+                        <a
+                          href="#"
+                          role="menuitem"
+                          class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                        >
+                          Cards
+                        </a>
+                        <a
+                          href="#"
+                          role="menuitem"
+                          class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                        >
+                          Dropdowns
+                        </a>
+                        <a
+                          href="#"
+                          role="menuitem"
+                          class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                        >
+                          Forms
+                        </a>
+                        <a
+                          href="#"
+                          role="menuitem"
+                          class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                        >
+                          Lists
+                        </a>
+                        <a
+                          href="#"
+                          role="menuitem"
+                          class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                        >
+                          Modals
+                        </a>
+                      </div>
+                    </div>
+
+                    <!-- Authentication links -->
+                    <div x-data="{ isActive: false, open: false}">
+                      <!-- active & hover classes 'bg-indigo-100 dark:bg-indigo-600' -->
+                      <a
+                        href="#"
+                        @click="$event.preventDefault(); open = !open"
+                        class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-indigo-100 dark:hover:bg-indigo-600"
+                        :class="{'bg-indigo-100 dark:bg-indigo-600': isActive || open}"
+                        role="button"
+                        aria-haspopup="true"
+                        :aria-expanded="(open || isActive) ? 'true' : 'false'"
+                      >
+                        <span class="ml-2 text-sm"> Authentication </span>
+                        <span aria-hidden="true" class="ml-auto">
+                          <!-- active class 'rotate-180' -->
+                          <svg
+                            class="w-4 h-4 transition-transform transform"
+                            :class="{ 'rotate-180': open }"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                          </svg>
+                        </span>
+                      </a>
+                      <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" aria-label="Authentication">
+                        <!-- active & hover classes 'text-gray-700 dark:text-light' -->
+                        <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
+                        <a
+                          href="#"
+                          role="menuitem"
+                          class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                        >
+                          Register (soon)
+                        </a>
+                        <a
+                          href="#"
+                          role="menuitem"
+                          class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                        >
+                          Login (soon)
+                        </a>
+                        <a
+                          href="#"
+                          role="menuitem"
+                          class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                        >
+                          Password Reset (soon)
+                        </a>
+                      </div>
+                    </div>
+                  </nav>
+                </div>
+              </header>
+
+              <!-- Main content -->
+              <main class="flex-1 max-h-full p-5 overflow-hidden overflow-y-scroll">
+                <!-- Main content header -->
+                <div class="flex flex-col items-start justify-between pb-6 space-y-4 border-b lg:items-center lg:space-y-0 lg:flex-row">
+                  <h1 class="text-2xl font-semibold whitespace-nowrap">
+                      @yield('content-header-title')
+                  </h1>
+                </div>
+
+                <!-- Start Content Card -->
+                <div class="grid grid-cols-1 gap-5 mt-6 sm:grid-cols-2 lg:grid-cols-4">
+                    @yield('top-content-card')
+                </div>
+
+                <!-- Table see (https://tailwindui.com/components/application-ui/lists/tables) -->
+                <h3 class="mt-6 text-xl">
+                    @yield('table-title')
+                </h3>
+                <div class="flex flex-col mt-6">
+                  <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                      <div class="overflow-hidden border-b border-gray-200 rounded-md shadow-md">
+                          @yield('container')
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </main>
+
+              <!-- Main footer -->
+            <footer class="flex items-center justify-between flex-shrink-0 p-4 border-t max-h-14">
+                @yield('footer')
+            </footer>
+
+            </div>
+
+            <!-- Panels -->
+
+            <!-- Settings Panel -->
+            <!-- Backdrop -->
+            <div
+              x-transition:enter="transition duration-300 ease-in-out"
+              x-transition:enter-start="opacity-0"
+              x-transition:enter-end="opacity-100"
+              x-transition:leave="transition duration-300 ease-in-out"
+              x-transition:leave-start="opacity-100"
+              x-transition:leave-end="opacity-0"
+              x-show="isSettingsPanelOpen"
+              @click="isSettingsPanelOpen = false"
+              class="fixed inset-0 z-10 bg-indigo-800"
+              style="opacity: 0.5"
+              aria-hidden="true"
+            ></div>
+            <!-- Panel -->
+            <section
+              x-transition:enter="transition duration-300 ease-in-out transform sm:duration-500"
+              x-transition:enter-start="translate-x-full"
+              x-transition:enter-end="translate-x-0"
+              x-transition:leave="transition duration-300 ease-in-out transform sm:duration-500"
+              x-transition:leave-start="translate-x-0"
+              x-transition:leave-end="translate-x-full"
+              x-ref="settingsPanel"
+              tabindex="-1"
+              x-show="isSettingsPanelOpen"
+              @keydown.escape="isSettingsPanelOpen = false"
+              class="fixed inset-y-0 right-0 z-20 w-full max-w-xs bg-white shadow-xl dark:bg-darker dark:text-light sm:max-w-md focus:outline-none"
+              aria-labelledby="settinsPanelLabel"
+            >
+              <div class="absolute left-0 p-2 transform -translate-x-full">
+                <!-- Close button -->
+                <button
+                  @click="isSettingsPanelOpen = false"
+                  class="p-2 text-white rounded-md focus:outline-none focus:ring"
+                >
+                  <svg
+                    class="w-5 h-5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </section>
+
+            <!-- Notification panel -->
+            <!-- Backdrop -->
+            <div
+              x-transition:enter="transition duration-300 ease-in-out"
+              x-transition:enter-start="opacity-0"
+              x-transition:enter-end="opacity-100"
+              x-transition:leave="transition duration-300 ease-in-out"
+              x-transition:leave-start="opacity-100"
+              x-transition:leave-end="opacity-0"
+              x-show="isNotificationsPanelOpen"
+              @click="isNotificationsPanelOpen = false"
+              class="fixed inset-0 z-10 bg-indigo-800 bg-opacity-25"
+              style="opacity: .5;"
+              aria-hidden="true"
+            ></div>
+            <!-- Panel -->
+            <section
+              x-cloak
+              x-transition:enter="transition duration-300 ease-in-out transform sm:duration-500"
+              x-transition:enter-start="-translate-x-full"
+              x-transition:enter-end="translate-x-0"
+              x-transition:leave="transition duration-300 ease-in-out transform sm:duration-500"
+              x-transition:leave-start="translate-x-0"
+              x-transition:leave-end="-translate-x-full"
+              x-ref="notificationsPanel"
+              x-show="isNotificationsPanelOpen"
+              @keydown.escape="isNotificationsPanelOpen = false"
+              tabindex="-1"
+              aria-labelledby="notificationPanelLabel"
+              class="fixed inset-y-0 z-20 w-full max-w-xs bg-white dark:bg-darker dark:text-light sm:max-w-md focus:outline-none"
+            >
+              <div class="flex flex-col h-screen" x-data="{ activeTabe: 'action' }">
+                <!-- Panel header -->
+                <div class="flex-shrink-0">
+                  <div class="flex items-center justify-between px-4 pt-4 border-b dark:border-indigo-800">
+                    <h2 id="notificationPanelLabel" class="pb-4 font-semibold">Notifications</h2>
+                    <div class="space-x-2">
+                      <button
+                        @click.prevent="activeTabe = 'action'"
+                        class="px-px pb-4 transition-all duration-200 transform translate-y-px border-b focus:outline-none"
+                        :class="{'border-indigo-700 dark:border-indigo-600': activeTabe == 'action', 'border-transparent': activeTabe != 'action'}"
+                      >
+                        Action
+                      </button>
+                      <button
+                        @click.prevent="activeTabe = 'user'"
+                        class="px-px pb-4 transition-all duration-200 transform translate-y-px border-b focus:outline-none"
+                        :class="{'border-indigo-700 dark:border-indigo-600': activeTabe == 'user', 'border-transparent': activeTabe != 'user'}"
+                      >
+                        User
+                      </button>
+                    </div>
                   </div>
                 </div>
 
-                <!-- Desktop search box -->
-                <div class="items-center hidden px-2 space-x-2 md:flex-1 md:flex md:mr-auto md:ml-5">
-                  <!-- search icon -->
-                  <span>
+                <!-- Panel content (tabs) -->
+                <div class="flex-1 pt-4 overflow-y-hidden hover:overflow-y-auto">
+                  <!-- Action tab -->
+                  <div class="space-y-4" x-show.transition.in="activeTabe == 'action'">
+                    <a href="#" class="block">
+                      <div class="flex px-4 space-x-4">
+                        <div class="relative flex-shrink-0">
+                          <span
+                            class="z-10 inline-block p-2 overflow-visible text-indigo-500 rounded-full bg-indigo-50 dark:bg-indigo-800"
+                          >
+                            <svg
+                              class="w-7 h-7"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                              />
+                            </svg>
+                          </span>
+                          <div class="absolute h-24 p-px -mt-3 -ml-px bg-indigo-50 left-1/2 dark:bg-indigo-800"></div>
+                        </div>
+                        <div class="flex-1 overflow-hidden">
+                          <h5 class="text-sm font-semibold text-gray-600 dark:text-light">
+                            New project "KWD Dashboard" created
+                          </h5>
+                          <p class="text-sm font-normal text-gray-400 truncate dark:text-indigo-400">
+                            Looks like there might be a new theme soon
+                          </p>
+                          <span class="text-sm font-normal text-gray-400 dark:text-indigo-500"> 9h ago </span>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+
+                  <!-- User tab -->
+                  <div class="space-y-4" x-show.transition.in="activeTabe == 'user'">
+                    <a href="#" class="block">
+                      <div class="flex px-4 space-x-4">
+                        <div class="relative flex-shrink-0">
+                          <span class="relative z-10 inline-block overflow-visible rounded-ful">
+                            <img
+                              class="object-cover rounded-full w-9 h-9"
+                              src="https://avatars.githubusercontent.com/u/57622665?s=460&u=8f581f4c4acd4c18c33a87b3e6476112325e8b38&v=4"
+                              alt="Ahmed kamel"
+                            />
+                          </span>
+                          <div class="absolute h-24 p-px -mt-3 -ml-px bg-indigo-50 left-1/2 dark:bg-indigo-800"></div>
+                        </div>
+                        <div class="flex-1 overflow-hidden">
+                          <h5 class="text-sm font-semibold text-gray-600 dark:text-light">Ahmed Kamel</h5>
+                          <p class="text-sm font-normal text-gray-400 truncate dark:text-indigo-400">
+                            Shared new project "K-WD Dashboard"
+                          </p>
+                          <span class="text-sm font-normal text-gray-400 dark:text-indigo-500"> 1d ago </span>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+            </section>
+
+            <!-- Search panel -->
+            <!-- Backdrop -->
+            <div
+              x-transition:enter="transition duration-300 ease-in-out"
+              x-transition:enter-start="opacity-0"
+              x-transition:enter-end="opacity-100"
+              x-transition:leave="transition duration-300 ease-in-out"
+              x-transition:leave-start="opacity-100"
+              x-transition:leave-end="opacity-0"
+              x-show="isSearchPanelOpen"
+              @click="isSearchPanelOpen = false"
+              class="fixed inset-0 z-10 bg-indigo-800 bg-opacity-25"
+              style="opacity: .5;"
+              aria-hidden="ture"
+            ></div>
+            <!-- Panel -->
+            <section
+              x-cloak
+              x-transition:enter="transition duration-300 ease-in-out transform sm:duration-500"
+              x-transition:enter-start="-translate-x-full"
+              x-transition:enter-end="translate-x-0"
+              x-transition:leave="transition duration-300 ease-in-out transform sm:duration-500"
+              x-transition:leave-start="translate-x-0"
+              x-transition:leave-end="-translate-x-full"
+              x-show="isSearchPanelOpen"
+              @keydown.escape="isSearchPanelOpen = false"
+              class="fixed inset-y-0 z-20 w-full max-w-xs bg-white shadow-xl dark:bg-darker dark:text-light sm:max-w-md focus:outline-none"
+            >
+
+              <h2 class="sr-only">Search panel</h2>
+              <!-- Panel content -->
+              <div class="flex flex-col h-screen">
+                <!-- Panel header (Search input) -->
+                <div
+                  class="relative flex-shrink-0 px-4 py-8 text-gray-400 border-b dark:border-indigo-800 dark:focus-within:text-light focus-within:text-gray-700"
+                >
+                  <span class="absolute inset-y-0 inline-flex items-center px-4">
                     <svg
-                      class="w-5 h-5 text-gray-500"
+                      class="w-5 h-5"
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
                       viewBox="0 0 24 24"
@@ -215,575 +1293,107 @@
                     </svg>
                   </span>
                   <input
+                    x-ref="searchInput"
                     type="text"
-                    placeholder="Search"
-                    class="px-4 py-3 rounded-md hover:bg-gray-100 lg:max-w-sm md:py-2 md:flex-1 focus:outline-none md:focus:bg-gray-100 md:focus:shadow md:focus:border"
+                    class="w-full py-2 pl-10 pr-4 border rounded-full dark:bg-dark dark:border-transparent dark:text-light focus:outline-none focus:ring"
+                    placeholder="Search..."
                   />
                 </div>
 
-                <!-- Navbar right -->
-                <div class="relative flex items-center space-x-3">
-                  <!-- Search button -->
-                  <button
-                    @click="isSearchBoxOpen = true"
-                    class="p-2 bg-gray-100 rounded-full md:hidden focus:outline-none focus:ring hover:bg-gray-200"
-                  >
-                    <svg
-                      class="w-6 h-6 text-gray-500"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                      />
-                    </svg>
-                  </button>
-
-
-
-                  <!-- avatar button -->
-                  {{-- <div class="relative" x-data="{ isOpen: false }">
-                    <button @click="isOpen = !isOpen" class="p-1 bg-gray-200 rounded-full focus:outline-none focus:ring">
-                      <img
-                        class="object-cover w-8 h-8 rounded-full"
-                        src="https://avatars0.githubusercontent.com/u/57622665?s=460&u=8f581f4c4acd4c18c33a87b3e6476112325e8b38&v=4"
-                        alt="Ahmed Kamel"
-                      />
-                    </button>
-                    <!-- green dot -->
-                    <div class="absolute right-0 p-1 bg-green-400 rounded-full bottom-3 animate-ping"></div>
-                    <div class="absolute right-0 p-1 bg-green-400 border border-white rounded-full bottom-3"></div>
-
-                    <!-- Dropdown card -->
-
-
-                    <div
-                      @click.away="isOpen = false"
-                      x-show.transition.opacity="isOpen"
-                      class="absolute mt-3 transform -translate-x-full bg-white rounded-md shadow-lg min-w-max"
-                    >
-                      <div class="flex flex-col p-4 space-y-1 font-medium border-b">
-                        <span class="text-gray-800">Ahmed Kamel</span>
-                        <span class="text-sm text-gray-400">ahmed.kamel@example.com</span>
-                      </div>
-                      <ul class="flex flex-col p-2 my-2 space-y-1">
-                        <li>
-                          <a href="#" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Link</a>
-                        </li>
-                        <li>
-                          <a href="#" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Another Link</a>
-                        </li>
-                      </ul>
-                      <div class="flex items-center justify-center p-4 text-blue-700 underline border-t">
-                        <a href="">Logout</a>
-                      </div>
+                <!-- Panel content (Search result) -->
+                <div class="flex-1 px-4 pb-4 space-y-4 overflow-y-hidden font-sans h hover:overflow-y-auto">
+                  <h3 class="py-2 text-sm font-semibold text-gray-600 dark:text-light">History</h3>
+                  <a href="#" class="flex space-x-4">
+                    <div class="flex-shrink-0">
+                      <img class="w-10 h-10 rounded-lg" src="https://avatars.githubusercontent.com/u/57622665?s=460&u=8f581f4c4acd4c18c33a87b3e6476112325e8b38&v=4" alt="Post cover" />
                     </div>
-                  </div> --}}
-                  <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
-                    <!-- Primary Navigation Menu -->
-                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                        <div class="flex justify-between h-16">
-                            <div class="flex">
-                            <div class="hidden sm:flex sm:items-center sm:ml-6">
-                                <div class="items-center hidden space-x-3 md:flex">
-                                    <!-- Notification Button -->
-                                    <div class="relative" x-data="{ isOpen: false }">
-                                      <!-- red dot -->
-                                      <div class="absolute right-0 p-1 bg-red-400 rounded-full animate-ping"></div>
-                                      <div class="absolute right-0 p-1 bg-red-400 border rounded-full"></div>
-                                      <button
-                                        @click="isOpen = !isOpen"
-                                        class="p-2 bg-gray-100 rounded-full hover:bg-gray-200 focus:outline-none focus:ring"
-                                      >
-                                        <svg
-                                          class="w-6 h-6 text-gray-500"
-                                          xmlns="http://www.w3.org/2000/svg"
-                                          fill="none"
-                                          viewBox="0 0 24 24"
-                                          stroke="currentColor"
-                                        >
-                                          <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-                                          />
-                                        </svg>
-                                      </button>
-
-                                      <!-- Dropdown card -->
-
-                                      <div @click.away="isOpen = false" x-show.transition.opacity="isOpen" class="absolute w-48 max-w-md mt-3 transform bg-white rounded-md shadow-lg -translate-x-3/4 min-w-max">
-                                          <div class="p-4 font-medium border-b">
-                                            <span class="text-gray-800">Notification</span>
-                                          </div>
-                                          <ul class="flex flex-col p-2 my-2 space-y-1">
-                                            <li>
-                                              <a href="#" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Link</a>
-                                            </li>
-                                            <li>
-                                              <a href="#" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Another Link</a>
-                                            </li>
-                                          </ul>
-                                          <div class="flex items-center justify-center p-4 text-blue-700 underline border-t">
-                                            <a href="#">See All</a>
-                                          </div>
-                                      </div>
-                                    </div>
-
-                                    <!-- Services Button -->
-                                    <div x-data="{ isOpen: false }">
-                                      <button
-                                        @click="isOpen = !isOpen"
-                                        class="p-2 bg-gray-100 rounded-full hover:bg-gray-200 focus:outline-none focus:ring"
-                                      >
-                                        <svg
-                                          class="w-6 h-6 text-gray-500"
-                                          xmlns="http://www.w3.org/2000/svg"
-                                          fill="none"
-                                          viewBox="0 0 24 24"
-                                          stroke="currentColor"
-                                        >
-                                          <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
-                                          />
-                                        </svg>
-                                      </button>
-
-                                      <!-- Dropdown -->
-                                      <div
-                                        @click.away="isOpen = false"
-                                        @keydown.escape="isOpen = false"
-                                        x-show.transition.opacity="isOpen"
-                                        class="absolute mt-3 transform bg-white rounded-md shadow-lg -translate-x-3/4 min-w-max"
-                                      >
-                                        <div class="p-4 text-lg font-medium border-b">Web apps & services</div>
-                                        <ul class="flex flex-col p-2 my-3 space-y-3">
-                                          <li>
-                                            <a href="#" class="flex items-start px-2 py-1 space-x-2 rounded-md hover:bg-gray-100">
-                                              <span class="block mt-1">
-                                                <svg
-                                                  class="w-6 h-6 text-gray-500"
-                                                  xmlns="http://www.w3.org/2000/svg"
-                                                  fill="none"
-                                                  viewBox="0 0 24 24"
-                                                  stroke="currentColor"
-                                                >
-                                                  <path fill="#fff" d="M12 14l9-5-9-5-9 5 9 5z" />
-                                                  <path
-                                                    fill="#fff"
-                                                    d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"
-                                                  />
-                                                  <path
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    stroke-width="2"
-                                                    d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"
-                                                  />
-                                                </svg>
-                                              </span>
-                                              <span class="flex flex-col">
-                                                <span class="text-lg">Atlassian</span>
-                                                <span class="text-sm text-gray-400">Lorem ipsum dolor sit.</span>
-                                              </span>
-                                            </a>
-                                          </li>
-                                          <li>
-                                            <a href="#" class="flex items-start px-2 py-1 space-x-2 rounded-md hover:bg-gray-100">
-                                              <span class="block mt-1">
-                                                <svg
-                                                  class="w-6 h-6 text-gray-500"
-                                                  xmlns="http://www.w3.org/2000/svg"
-                                                  fill="none"
-                                                  viewBox="0 0 24 24"
-                                                  stroke="currentColor"
-                                                >
-                                                  <path
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    stroke-width="2"
-                                                    d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
-                                                  />
-                                                </svg>
-                                              </span>
-                                              <span class="flex flex-col">
-                                                <span class="text-lg">Slack</span>
-                                                <span class="text-sm text-gray-400"
-                                                  >Lorem ipsum, dolor sit amet consectetur adipisicing elit.</span
-                                                >
-                                              </span>
-                                            </a>
-                                          </li>
-                                        </ul>
-                                        <div class="flex items-center justify-center p-4 text-blue-700 underline border-t">
-                                          <a href="#">Show all apps</a>
-                                        </div>
-                                      </div>
-                                    </div>
-
-                                    <!-- Options Button -->
-                                    <div class="relative" x-data="{ isOpen: false }">
-                                      <button
-                                        @click="isOpen = !isOpen"
-                                        class="p-2 bg-gray-100 rounded-full hover:bg-gray-200 focus:outline-none focus:ring"
-                                      >
-                                        <svg
-                                          class="w-6 h-6 text-gray-500"
-                                          xmlns="http://www.w3.org/2000/svg"
-                                          fill="none"
-                                          viewBox="0 0 24 24"
-                                          stroke="currentColor"
-                                        >
-                                          <path
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            stroke-width="2"
-                                            d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-                                          />
-                                        </svg>
-                                      </button>
-
-                                      <!-- Dropdown card -->
-                                      <div
-                                        @click.away="isOpen = false"
-                                        x-show.transition.opacity="isOpen"
-                                        class="absolute w-40 max-w-sm mt-3 transform bg-white rounded-md shadow-lg -translate-x-3/4 min-w-max"
-                                      >
-                                        <div class="p-4 font-medium border-b">
-                                          <span class="text-gray-800">Options</span>
-                                        </div>
-                                        <ul class="flex flex-col p-2 my-2 space-y-1">
-                                          <li>
-                                            <a href="#" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Link</a>
-                                          </li>
-                                          <li>
-                                            <a href="#" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Another Link</a>
-                                          </li>
-                                        </ul>
-                                        <div class="flex items-center justify-center p-4 text-blue-700 underline border-t">
-                                          <a href="#">See All</a>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                <!-- Teams Dropdown -->
-                                @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
-                                    <div class="ml-3 relative">
-                                        <x-jet-dropdown align="right" width="60">
-                                            <x-slot name="trigger">
-                                                <span class="inline-flex rounded-md">
-                                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition">
-                                                        {{ Auth::user()->currentTeam->name }}
-
-                                                        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                                            <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                                        </svg>
-                                                    </button>
-                                                </span>
-                                            </x-slot>
-
-                                            <x-slot name="content">
-                                                <div class="w-60">
-                                                    <!-- Team Management -->
-                                                    <div class="block px-4 py-2 text-xs text-gray-400">
-                                                        {{ __('Manage Team') }}
-                                                    </div>
-
-                                                    <!-- Team Settings -->
-                                                    <x-jet-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
-                                                        {{ __('Team Settings') }}
-                                                    </x-jet-dropdown-link>
-
-                                                    @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
-                                                        <x-jet-dropdown-link href="{{ route('teams.create') }}">
-                                                            {{ __('Create New Team') }}
-                                                        </x-jet-dropdown-link>
-                                                    @endcan
-
-                                                    <div class="border-t border-gray-100"></div>
-
-                                                    <!-- Team Switcher -->
-                                                    <div class="block px-4 py-2 text-xs text-gray-400">
-                                                        {{ __('Switch Teams') }}
-                                                    </div>
-
-                                                    @foreach (Auth::user()->allTeams() as $team)
-                                                        <x-jet-switchable-team :team="$team" />
-                                                    @endforeach
-                                                </div>
-                                            </x-slot>
-                                        </x-jet-dropdown>
-                                    </div>
-                                @endif
-
-                                <!-- Settings Dropdown -->
-                                <div class="ml-3 relative">
-                                    <x-jet-dropdown align="right" width="48">
-                                        <x-slot name="trigger">
-                                            @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                                                <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-                                                    <img class="h-8 w-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
-                                                </button>
-                                            @else
-                                                <span class="inline-flex rounded-md">
-                                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition">
-                                                        {{ Auth::user()->name }}
-
-                                                        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                                        </svg>
-                                                    </button>
-                                                </span>
-                                            @endif
-                                        </x-slot>
-
-                                        <x-slot name="content">
-                                            <!-- Account Management -->
-                                            <div class="block px-4 py-2 text-xs text-gray-400">
-                                                {{ __('Manage Account') }}
-                                            </div>
-
-                                            <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                                {{ __('Profile') }}
-                                            </x-jet-dropdown-link>
-
-                                            @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
-                                                <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
-                                                    {{ __('API Tokens') }}
-                                                </x-jet-dropdown-link>
-                                            @endif
-
-                                            <div class="border-t border-gray-100"></div>
-
-                                            <!-- Authentication -->
-                                            <form method="POST" action="{{ route('logout') }}">
-                                                @csrf
-
-                                                <x-jet-dropdown-link href="{{ route('logout') }}"
-                                                         onclick="event.preventDefault();
-                                                                this.closest('form').submit();">
-                                                    {{ __('Log Out') }}
-                                                </x-jet-dropdown-link>
-                                            </form>
-                                        </x-slot>
-                                    </x-jet-dropdown>
-                                </div>
-                            </div>
-
-                            <!-- Hamburger -->
-                            <div class="-mr-2 flex items-center sm:hidden">
-                                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition">
-                                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                                        <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
+                    <div class="flex-1 max-w-xs overflow-hidden">
+                      <h4 class="text-sm font-semibold text-gray-600 dark:text-light">Header</h4>
+                      <p class="text-sm font-normal text-gray-400 truncate dark:text-indigo-400">
+                        Lorem ipsum dolor, sit amet consectetur.
+                      </p>
+                      <span class="text-sm font-normal text-gray-400 dark:text-indigo-500"> Post </span>
                     </div>
-
-
-                    <!-- Responsive Navigation Menu -->
-                    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-                      {{-- <div>
-                        <div class="p-4 font-medium border-b">
-                          <span class="text-gray-800">Notification</span>
-                        </div>
-                        <ul class="flex flex-col p-2 my-2 space-y-1">
-                          <li>
-                            <a href="#" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Link</a>
-                          </li>
-                          <li>
-                            <a href="#" class="block px-2 py-1 transition rounded-md hover:bg-gray-100">Another Link</a>
-                          </li>
-                        </ul>
-                        <div class="flex items-center justify-center p-4 text-blue-700 underline border-t">
-                          <a href="#">See All</a>
-                        </div>
-                      </div> --}}
-
-                      <div class="pt-1 pb-1">
-                          <x-jet-responsive-nav-link href="{{ route('client-home') }}" :active="request()->routeIs('client-home')">
-                              {{ __('Home') }}
-                          </x-jet-responsive-nav-link>
-                      </div>
-                      <div class="pt-1 pb-1">
-                          <x-jet-responsive-nav-link href="{{ route('client-program') }}" :active="request()->routeIs('client-program')">
-                              {{ __('Program') }}
-                          </x-jet-responsive-nav-link>
-                      </div>
-                      <div class="pt-1 pb-1">
-                          <x-jet-responsive-nav-link href="{{ route('client-dashboard') }}" :active="request()->routeIs('client-dashboard')">
-                              {{ __('Dashboard') }}
-                          </x-jet-responsive-nav-link>
-                      </div>
-                      <div class="pt-1 pb-1">
-                          <x-jet-responsive-nav-link href="{{ route('about-us') }}" :active="request()->routeIs('about-us')">
-                              {{ __('About Us') }}
-                          </x-jet-responsive-nav-link>
-                      </div>
-                      <div class="pt-1 pb-1">
-                          <x-jet-responsive-nav-link href="{{ route('client-view-support') }}" :active="request()->routeIs('client-view-support')">
-                              {{ __('Support') }}
-                          </x-jet-responsive-nav-link>
-                      </div>
-                    </div>
-
-                    <!-- Responsive Navigation Menu -->
-                    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-                        <!-- Responsive Settings Options -->
-                        <div class="pt-4 pb-1 border-t border-gray-200">
-                            <div class="flex items-center px-4">
-                                @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                                    <div class="flex-shrink-0 mr-3">
-                                        <img class="h-10 w-10 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
-                                    </div>
-                                @endif
-
-                                <div>
-                                    <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                                    <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-                                </div>
-                            </div>
-
-                            <div class="mt-3 space-y-1">
-                                <!-- Account Management -->
-                                <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
-                                    {{ __('Profile') }}
-                                </x-jet-responsive-nav-link>
-
-                                @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
-                                    <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
-                                        {{ __('API Tokens') }}
-                                    </x-jet-responsive-nav-link>
-                                @endif
-
-                                <!-- Authentication -->
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-
-                                    <x-jet-responsive-nav-link href="{{ route('logout') }}"
-                                                   onclick="event.preventDefault();
-                                                    this.closest('form').submit();">
-                                        {{ __('Log Out') }}
-                                    </x-jet-responsive-nav-link>
-                                </form>
-
-                                <!-- Team Management -->
-                                @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
-                                    <div class="border-t border-gray-200"></div>
-
-                                    <div class="block px-4 py-2 text-xs text-gray-400">
-                                        {{ __('Manage Team') }}
-                                    </div>
-
-                                    <!-- Team Settings -->
-                                    <x-jet-responsive-nav-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}" :active="request()->routeIs('teams.show')">
-                                        {{ __('Team Settings') }}
-                                    </x-jet-responsive-nav-link>
-
-                                    @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
-                                        <x-jet-responsive-nav-link href="{{ route('teams.create') }}" :active="request()->routeIs('teams.create')">
-                                            {{ __('Create New Team') }}
-                                        </x-jet-responsive-nav-link>
-                                    @endcan
-
-                                    <div class="border-t border-gray-200"></div>
-
-                                    <!-- Team Switcher -->
-                                    <div class="block px-4 py-2 text-xs text-gray-400">
-                                        {{ __('Switch Teams') }}
-                                    </div>
-
-                                    @foreach (Auth::user()->allTeams() as $team)
-                                        <x-jet-switchable-team :team="$team" component="jet-responsive-nav-link" />
-                                    @endforeach
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-                </nav>
+                  </a>
                 </div>
               </div>
-            </header>
-            <!-- Main content -->
-            <main class="flex-1 max-h-full p-5 overflow-hidden overflow-y-scroll">
-              <!-- Main content header -->
-              <div class="flex flex-col items-start justify-between pb-6 space-y-4 border-b lg:items-center lg:space-y-0 lg:flex-row">
-                <h1 class="text-2xl font-semibold whitespace-nowrap">
-                    @yield('content-header-title')
-                </h1>
-              </div>
-
-
-
-              <!-- Start Content Card -->
-              <div class="grid grid-cols-1 gap-5 mt-6 sm:grid-cols-2 lg:grid-cols-4">
-                  @yield('top-content-card')
-              </div>
-
-              <!-- Table see (https://tailwindui.com/components/application-ui/lists/tables) -->
-              <h3 class="mt-6 text-xl">
-                  @yield('table-title')
-              </h3>
-              <div class="flex flex-col mt-6">
-                <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                  <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                    <div class="overflow-hidden border-b border-gray-200 rounded-md shadow-md">
-                        @yield('container')
-
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </main>
-            <!-- Main footer -->
-            <footer class="flex items-center justify-between flex-shrink-0 p-4 border-t max-h-14">
-              @yield('footer')
-            </footer>
+            </section>
           </div>
-
         </div>
-        <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script>
-        <script>
+
+    <script src="https://cdn.jsdelivr.net/gh/alpine-collective/alpine-magic-helpers@0.6.x/dist/component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
+
+    <script>
           const setup = () => {
+            const getTheme = () => {
+              if (window.localStorage.getItem('dark')) {
+                return JSON.parse(window.localStorage.getItem('dark'))
+              }
+              return !!window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+            }
+
+            const setTheme = (value) => {
+              window.localStorage.setItem('dark', value)
+            }
+
             return {
               loading: true,
-              isSidebarOpen: false,
-              toggleSidbarMenu() {
-                this.isSidebarOpen = !this.isSidebarOpen
+              isDark: getTheme(),
+              toggleTheme() {
+                this.isDark = !this.isDark
+                setTheme(this.isDark)
+              },
+              setLightTheme() {
+                this.isDark = false
+                setTheme(this.isDark)
+              },
+              setDarkTheme() {
+                this.isDark = true
+                setTheme(this.isDark)
               },
               isSettingsPanelOpen: false,
-              isSearchBoxOpen: false,
+              openSettingsPanel() {
+                this.isSettingsPanelOpen = true
+                this.$nextTick(() => {
+                  this.$refs.settingsPanel.focus()
+                })
+              },
+              isNotificationsPanelOpen: false,
+              openNotificationsPanel() {
+                this.isNotificationsPanelOpen = true
+                this.$nextTick(() => {
+                  this.$refs.notificationsPanel.focus()
+                })
+              },
+              isSearchPanelOpen: false,
+              openSearchPanel() {
+                this.isSearchPanelOpen = true
+                this.$nextTick(() => {
+                  this.$refs.searchInput.focus()
+                })
+              },
+              isMobileSubMenuOpen: false,
+              openMobileSubMenu() {
+                this.isMobileSubMenuOpen = true
+                this.$nextTick(() => {
+                  this.$refs.mobileSubMenu.focus()
+                })
+              },
+              isMobileMainMenuOpen: false,
+              openMobileMainMenu() {
+                this.isMobileMainMenuOpen = true
+                this.$nextTick(() => {
+                  this.$refs.mobileMainMenu.focus()
+                })
+              },
             }
           }
-        </script>
-      </div>
+    </script>
 
-  <!--   Core JS Files   -->
-
-  <script>
-    @if (session('status'))
-      // alert('{{session('status')}}');
-
-      swal({
-        title: "{{session('status')}}",
-        // text: "You clicked the button!",
-        icon: "{{session('statuscode')}}",
-        button: "Okay",
-      });
-    @endif
-  </script>
-
-  @yield('script')
 </body>
 
 </html>
+
+
+

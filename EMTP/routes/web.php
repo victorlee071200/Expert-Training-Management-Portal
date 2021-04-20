@@ -26,8 +26,8 @@ Route::get('/', function () {
 });
 
 Route::get('/403', function(){
-    return view('/403')->name('403');
-});
+    return view('403');
+})->name('403');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
@@ -90,33 +90,32 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/staff/view/pendings', [ProgramController::class, 'StaffViewPendingProgram'])->name('staff-view-program');
 });
 
+
 // Admin Routes
-// Route::middleware(['auth:sanctum', 'verified','auth.admin'])->group(function () {
+Route::middleware(['auth:sanctum', 'verified', 'auth.admin'])->group(function () {
+    //Dashboard
+    Route::get('/admin/dashboard', [DashboardController::class, 'AdminDashboard'])->name('admin-dashboard');
+    // View
+    Route::get('/admin/view/program', [ProgramController::class, 'AdminShowAllPrograms'])->name('admin-view-all-programs');
 
-//Program Module
-//Dashboard
-Route::get('/admin/dashboard', [DashboardController::class, 'AdminDashboard'])->name('admin-dashboard');
-// View
-Route::get('/admin/view/program', [ProgramController::class, 'AdminShowAllPrograms'])->name('admin-view-all-programs');
+    //View Specific Program
+    Route::get('/admin/view/program/{program}', [ProgramController::class, 'AdminViewSpecificProgram'])->name('admin-view-specific-program');
 
-//View Specific Program
-Route::get('/admin/view/program/{program}', [ProgramController::class, 'AdminViewSpecificProgram'])->name('admin-view-specific-program');
+    //Approve Specific Program
+    Route::put('/admin/view/program/{program}', [ProgramController::class, 'AdminApprovedProgram'])->name('admin-approve-a-program');
 
-//Approve Specific Program
-Route::put('/admin/view/program/{program}', [ProgramController::class, 'AdminApprovedProgram'])->name('admin-approve-a-program');
+    // View Specific Approved Program
+    Route::get('/admin/view/approved/program/{program}', [ProgramController::class, 'AdminViewApprovedProgram'])->name('admin-view-specific-approved-program');
 
-// View Specific Approved Program
-Route::get('/admin/view/approved/program/{program}', [ProgramController::class, 'AdminViewApprovedProgram'])->name('admin-view-specific-approved-program');
+    // View All Support Ticket
+    Route::get('/admin/support', [SupportTicketController::class, 'AdminViewAllTickets'])->name('admin-view-all-support');
 
-// View All Support Ticket
-Route::get('/admin/support', [SupportTicketController::class, 'AdminViewAllTickets'])->name('admin-view-all-support');
+    // View Specific Support Ticket
+    Route::get('/admin/support/{id}', [SupportTicketController::class, 'AdminViewSpecificTicket'])->name('admin-view-specific-support');
 
-// View Specific Support Ticket
-Route::get('/admin/support/{id}', [SupportTicketController::class, 'AdminViewSpecificTicket'])->name('admin-view-specific-support');
-
-// Assign a ticket to a staff
-Route::post('/admin/support/{id}', [SupportTicketController::class, 'AdminAssignTo'])->name('admin-assign-to');
-
+    // Assign a ticket to a staff
+    Route::post('/admin/support/{id}', [SupportTicketController::class, 'AdminAssignTo'])->name('admin-assign-to');
+});
 
 // Route::put('/admin/programs/pending/{program}', [AdminProgramController::class, 'update']);
 
