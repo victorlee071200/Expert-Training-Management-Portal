@@ -17,10 +17,12 @@ class CreateSupportTicketsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->text('title');
+            $table->text('subject');
+            $table->enum('department', ['Technical Support', 'Customer Service', 'Billing', 'Feedback']);
             $table->text('description');
             $table->enum('priority',['Low', 'Medium', 'High']);
             $table->enum('status',['Open', 'Closed']);
+            $table->text('thumbnail_path');
             $table->string('assign_to')->nullable();
             $table->timestamps();
         });

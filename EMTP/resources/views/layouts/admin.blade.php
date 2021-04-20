@@ -29,14 +29,14 @@
           >
             Loading.....
           </div>
-      
+
           <!-- Sidebar backdrop -->
           <div
             x-show.in.out.opacity="isSidebarOpen"
             class="fixed inset-0 z-10 bg-black bg-opacity-20 lg:hidden"
             style="backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)"
           ></div>
-      
+
           <!-- Sidebar -->
           <aside
             x-transition:enter="transition transform duration-300"
@@ -121,7 +121,7 @@
               </button>
             </div>
           </aside>
-      
+
           <div class="flex flex-col flex-1 h-full overflow-hidden">
             <!-- Navbar -->
             <header class="flex-shrink-0 border-b">
@@ -143,7 +143,7 @@
                     </svg>
                   </button>
                 </div>
-      
+
                 <!-- Mobile search box -->
                 <div
                   x-show.transition="isSearchBoxOpen"
@@ -192,7 +192,7 @@
                     </button>
                   </div>
                 </div>
-      
+
                 <!-- Desktop search box -->
                 <div class="items-center hidden px-2 space-x-2 md:flex-1 md:flex md:mr-auto md:ml-5">
                   <!-- search icon -->
@@ -218,7 +218,7 @@
                     class="px-4 py-3 rounded-md hover:bg-gray-100 lg:max-w-sm md:py-2 md:flex-1 focus:outline-none md:focus:bg-gray-100 md:focus:shadow md:focus:border"
                   />
                 </div>
-      
+
                 <!-- Navbar right -->
                 <div class="relative flex items-center space-x-3">
                   <!-- Search button -->
@@ -241,9 +241,9 @@
                       />
                     </svg>
                   </button>
-      
-                  
-      
+
+
+
                   <!-- avatar button -->
                   {{-- <div class="relative" x-data="{ isOpen: false }">
                     <button @click="isOpen = !isOpen" class="p-1 bg-gray-200 rounded-full focus:outline-none focus:ring">
@@ -256,10 +256,10 @@
                     <!-- green dot -->
                     <div class="absolute right-0 p-1 bg-green-400 rounded-full bottom-3 animate-ping"></div>
                     <div class="absolute right-0 p-1 bg-green-400 border border-white rounded-full bottom-3"></div>
-      
+
                     <!-- Dropdown card -->
 
-                    
+
                     <div
                       @click.away="isOpen = false"
                       x-show.transition.opacity="isOpen"
@@ -313,9 +313,9 @@
                                           />
                                         </svg>
                                       </button>
-                      
+
                                       <!-- Dropdown card -->
-                
+
                                       <div @click.away="isOpen = false" x-show.transition.opacity="isOpen" class="absolute w-48 max-w-md mt-3 transform bg-white rounded-md shadow-lg -translate-x-3/4 min-w-max">
                                           <div class="p-4 font-medium border-b">
                                             <span class="text-gray-800">Notification</span>
@@ -333,7 +333,7 @@
                                           </div>
                                       </div>
                                     </div>
-                      
+
                                     <!-- Services Button -->
                                     <div x-data="{ isOpen: false }">
                                       <button
@@ -355,7 +355,7 @@
                                           />
                                         </svg>
                                       </button>
-                      
+
                                       <!-- Dropdown -->
                                       <div
                                         @click.away="isOpen = false"
@@ -426,7 +426,7 @@
                                         </div>
                                       </div>
                                     </div>
-                      
+
                                     <!-- Options Button -->
                                     <div class="relative" x-data="{ isOpen: false }">
                                       <button
@@ -448,7 +448,7 @@
                                           />
                                         </svg>
                                       </button>
-                      
+
                                       <!-- Dropdown card -->
                                       <div
                                         @click.away="isOpen = false"
@@ -480,39 +480,39 @@
                                                 <span class="inline-flex rounded-md">
                                                     <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition">
                                                         {{ Auth::user()->currentTeam->name }}
-                
+
                                                         <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                                             <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
                                                         </svg>
                                                     </button>
                                                 </span>
                                             </x-slot>
-                
+
                                             <x-slot name="content">
                                                 <div class="w-60">
                                                     <!-- Team Management -->
                                                     <div class="block px-4 py-2 text-xs text-gray-400">
                                                         {{ __('Manage Team') }}
                                                     </div>
-                
+
                                                     <!-- Team Settings -->
                                                     <x-jet-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
                                                         {{ __('Team Settings') }}
                                                     </x-jet-dropdown-link>
-                
+
                                                     @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
                                                         <x-jet-dropdown-link href="{{ route('teams.create') }}">
                                                             {{ __('Create New Team') }}
                                                         </x-jet-dropdown-link>
                                                     @endcan
-                
+
                                                     <div class="border-t border-gray-100"></div>
-                
+
                                                     <!-- Team Switcher -->
                                                     <div class="block px-4 py-2 text-xs text-gray-400">
                                                         {{ __('Switch Teams') }}
                                                     </div>
-                
+
                                                     @foreach (Auth::user()->allTeams() as $team)
                                                         <x-jet-switchable-team :team="$team" />
                                                     @endforeach
@@ -521,7 +521,7 @@
                                         </x-jet-dropdown>
                                     </div>
                                 @endif
-                
+
                                 <!-- Settings Dropdown -->
                                 <div class="ml-3 relative">
                                     <x-jet-dropdown align="right" width="48">
@@ -534,7 +534,7 @@
                                                 <span class="inline-flex rounded-md">
                                                     <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition">
                                                         {{ Auth::user()->name }}
-                
+
                                                         <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                                                         </svg>
@@ -542,29 +542,29 @@
                                                 </span>
                                             @endif
                                         </x-slot>
-                
+
                                         <x-slot name="content">
                                             <!-- Account Management -->
                                             <div class="block px-4 py-2 text-xs text-gray-400">
                                                 {{ __('Manage Account') }}
                                             </div>
-                
+
                                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
                                                 {{ __('Profile') }}
                                             </x-jet-dropdown-link>
-                
+
                                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                                 <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
                                                     {{ __('API Tokens') }}
                                                 </x-jet-dropdown-link>
                                             @endif
-                
+
                                             <div class="border-t border-gray-100"></div>
-                
+
                                             <!-- Authentication -->
                                             <form method="POST" action="{{ route('logout') }}">
                                                 @csrf
-                
+
                                                 <x-jet-dropdown-link href="{{ route('logout') }}"
                                                          onclick="event.preventDefault();
                                                                 this.closest('form').submit();">
@@ -575,7 +575,7 @@
                                     </x-jet-dropdown>
                                 </div>
                             </div>
-                
+
                             <!-- Hamburger -->
                             <div class="-mr-2 flex items-center sm:hidden">
                                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition">
@@ -607,7 +607,7 @@
                           <a href="#">See All</a>
                         </div>
                       </div> --}}
-                      
+
                       <div class="pt-1 pb-1">
                           <x-jet-responsive-nav-link href="{{ route('client-home') }}" :active="request()->routeIs('client-home')">
                               {{ __('Home') }}
@@ -629,14 +629,14 @@
                           </x-jet-responsive-nav-link>
                       </div>
                       <div class="pt-1 pb-1">
-                          <x-jet-responsive-nav-link href="{{ route('support') }}" :active="request()->routeIs('support')">
+                          <x-jet-responsive-nav-link href="{{ route('client-view-support') }}" :active="request()->routeIs('client-view-support')">
                               {{ __('Support') }}
                           </x-jet-responsive-nav-link>
                       </div>
                     </div>
-                
+
                     <!-- Responsive Navigation Menu -->
-                    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">                
+                    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
                         <!-- Responsive Settings Options -->
                         <div class="pt-4 pb-1 border-t border-gray-200">
                             <div class="flex items-center px-4">
@@ -645,62 +645,62 @@
                                         <img class="h-10 w-10 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
                                     </div>
                                 @endif
-                
+
                                 <div>
                                     <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
                                     <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
                                 </div>
                             </div>
-                
+
                             <div class="mt-3 space-y-1">
                                 <!-- Account Management -->
                                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
                                     {{ __('Profile') }}
                                 </x-jet-responsive-nav-link>
-                
+
                                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                     <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
                                         {{ __('API Tokens') }}
                                     </x-jet-responsive-nav-link>
                                 @endif
-                
+
                                 <!-- Authentication -->
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-                
+
                                     <x-jet-responsive-nav-link href="{{ route('logout') }}"
                                                    onclick="event.preventDefault();
                                                     this.closest('form').submit();">
                                         {{ __('Log Out') }}
                                     </x-jet-responsive-nav-link>
                                 </form>
-                
+
                                 <!-- Team Management -->
                                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                                     <div class="border-t border-gray-200"></div>
-                
+
                                     <div class="block px-4 py-2 text-xs text-gray-400">
                                         {{ __('Manage Team') }}
                                     </div>
-                
+
                                     <!-- Team Settings -->
                                     <x-jet-responsive-nav-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}" :active="request()->routeIs('teams.show')">
                                         {{ __('Team Settings') }}
                                     </x-jet-responsive-nav-link>
-                
+
                                     @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
                                         <x-jet-responsive-nav-link href="{{ route('teams.create') }}" :active="request()->routeIs('teams.create')">
                                             {{ __('Create New Team') }}
                                         </x-jet-responsive-nav-link>
                                     @endcan
-                
+
                                     <div class="border-t border-gray-200"></div>
-                
+
                                     <!-- Team Switcher -->
                                     <div class="block px-4 py-2 text-xs text-gray-400">
                                         {{ __('Switch Teams') }}
                                     </div>
-                
+
                                     @foreach (Auth::user()->allTeams() as $team)
                                         <x-jet-switchable-team :team="$team" component="jet-responsive-nav-link" />
                                     @endforeach
@@ -720,14 +720,14 @@
                     @yield('content-header-title')
                 </h1>
               </div>
-    
-              
-      
+
+
+
               <!-- Start Content Card -->
               <div class="grid grid-cols-1 gap-5 mt-6 sm:grid-cols-2 lg:grid-cols-4">
                   @yield('top-content-card')
               </div>
-      
+
               <!-- Table see (https://tailwindui.com/components/application-ui/lists/tables) -->
               <h3 class="mt-6 text-xl">
                   @yield('table-title')
@@ -739,7 +739,7 @@
                       <table class="min-w-full overflow-x-scroll divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             @yield('table-head')
-                          
+
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             @yield('table-body')
@@ -755,7 +755,7 @@
               @yield('footer')
             </footer>
           </div>
-      
+
         </div>
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script>
         <script>
@@ -773,12 +773,12 @@
         </script>
       </div>
 
-  <!--   Core JS Files   --> 
+  <!--   Core JS Files   -->
 
   <script>
     @if (session('status'))
-      // alert('{{session('status')}}');    
-      
+      // alert('{{session('status')}}');
+
       swal({
         title: "{{session('status')}}",
         // text: "You clicked the button!",

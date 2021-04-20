@@ -25,6 +25,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/403', function(){
+    return view('/403')->name('403');
+});
+
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
@@ -59,7 +63,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
 
     //Support & Help Page
-    Route::get('/support', [SupportController::class, 'index'])->name('support');
+    Route::get('/client/view/support', [SupportTicketController::class, 'ClientSupportPageView'])->name('client-view-support');
+
+    //Client Create Support & Help Page
+    Route::get('/client/create/support', [SupportTicketController::class, 'ClientCreateSupportPageView'])->name('client-create-support');
+
+    //Client Create a Support Ticket
+    Route::post('/client/create/support', [SupportTicketController::class, 'ClientCreateSupport'])->name('client-create-support');
+
 });
 
 //Staff routes
@@ -67,7 +78,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //Program Module
     //Staff Dashboard
-    Route::get('/staff/dashboard', [DashboardController::class, 'StaffDashboard'])->name('staff-dashboard');
+    Route::get('/staff/view/dashboard', [DashboardController::class, 'StaffDashboard'])->name('staff-dashboard');
 
     //Create a program
     Route::get('/staff/create/program', [ProgramController::class, 'StaffCreateProgram'])->name('staff-create-program');
@@ -122,6 +133,3 @@ Route::get('/payment_result', function () {
     return view('client.requisite_process.payment_result');
 });
 
-Route::get('/help_support', function () {
-    return view('help-support-page');
-});

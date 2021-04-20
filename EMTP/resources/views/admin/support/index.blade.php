@@ -50,8 +50,8 @@
                 <img class="w-10 h-10 rounded-full" src="https://avatars0.githubusercontent.com/u/57622665?s=460&u=8f581f4c4acd4c18c33a87b3e6476112325e8b38&v=4" alt=""/>
             </div>
             <div class="ml-4">
-                <div class="text-sm font-medium text-gray-900">User name</div>
-                <div class="text-sm text-gray-500">user email</div>
+                <div class="text-sm font-medium text-gray-900">{{$ticket->name}}</div>
+                <div class="text-sm text-gray-500">{{ $ticket->email }}</div>
             </div>
         </div>
     </td>
@@ -60,7 +60,15 @@
         <div class="text-sm text-gray-500">{{ $ticket->description }}</div>
     </td>
     <td class="px-6 py-4 whitespace-nowrap">
-        <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">{{ $ticket->priority }}</span>
+
+        @if ($ticket->priority == 'Low')
+            <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">{{ $ticket->priority }}</span>
+
+        @elseif ($ticket->priority == 'Medium')
+            <span class="inline-flex px-2 text-xs font-semibold leading-5 text-yellow-800 bg-yellow-100 rounded-full">{{ $ticket->priority }}</span>
+        @else
+            <span class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">{{ $ticket->priority }}</span>
+        @endif
     </td>
     <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
         @if ($ticket->status == 'Open')
@@ -73,7 +81,7 @@
 
     </td>
     <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-        <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+        <a href="#" class="text-indigo-600 hover:text-indigo-900">View More</a>
     </td>
 </tr>
 @endforeach

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Program;
-use App\Models\ClientProgram;
 use Illuminate\Http\Request;
+use App\Models\ClientProgram;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 
 
@@ -21,15 +22,15 @@ class ProgramController extends Controller
     public function ClientViewAllProgram()
     {
         $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
-        return view('client.program.view-all',['approvedprograms'=>$approvedprograms]);  
-        
+        return view('client.program.view-all',['approvedprograms'=>$approvedprograms]);
+
     }
 
     public function ClientViewSpecificProgram(Program $program)
     {
 
-        return view('client.program.view-specific',['program'=>$program]);  
-    }    
+        return view('client.program.view-specific',['program'=>$program]);
+    }
 
 
     public function ClientRegisterProgram(Program $program)
@@ -82,7 +83,7 @@ class ProgramController extends Controller
     {
         $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();
-        return view('client.program.detail',['registeredprogram' => $registeredprogram, 'program' => $program]);  
+        return view('client.program.detail',['registeredprogram' => $registeredprogram, 'program' => $program]);
     }
 
     public function StaffCreateProgram()
