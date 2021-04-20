@@ -77,36 +77,63 @@ class DatabaseSeeder extends Seeder
             'thumbnail_path' => 'tanjiro.png',
         ]);
 
+        DB::table('programs')->insert([
+            'name' => 'Program C',
+            'type' => 'Presentation',
+            'code' => 'PCE10011',
+            'price' => rand(10,100),
+            'option' => Arr::random($option),
+            'status' => 'approved',
+            'description' => 'This is a test',
+            'thumbnail_path' => 'tanjiro.png',
+        ]);
+
         DB::table('client_programs')->insert([
             'client_email' => 'c@c',
-            'company_name' => Str::random(10),
+            'company_name' => 'Company A',
             'program_id' => '1',
             'staff_id' => '2',
-            'option' => Arr::random($clientoption),
-            'client_venue' => Str::random(10),
+            'option' => 'online',
+            'client_venue' => 'Online',
             'no_of_employees' => rand(10,100),
             'payment_type' => 'cash',
             'payment_status' => 'pending',
             'start_date' => '2021-04-13',
             'end_date' => '2021-04-15',
-            'client_notes' => Str::random(10),
+            'client_notes' => 'This is client note',
             'status' => 'pending',
         ]);
 
         DB::table('client_programs')->insert([
-            'client_email' => 'c@c',
-            'company_name' => Str::random(10),
-            'program_id' => '2',
-            'staff_id' => '2',
+            'client_email' => 'companyb@gmail.com',
+            'company_name' => 'Company B',
+            'program_id' => '1',
+            'staff_id' => '3',
             'option' => Arr::random($clientoption),
-            'client_venue' => Str::random(10),
+            'client_venue' => 'Viva City',
+            'no_of_employees' => rand(10,100),
+            'payment_type' => 'cash',
+            'payment_status' => 'pending',
+            'start_date' => '2021-04-13',
+            'end_date' => '2021-04-15',
+            'client_notes' => 'This is client note',
+            'status' => 'to-be-confirmed',
+        ]);
+
+        DB::table('client_programs')->insert([
+            'client_email' => 'c@c',
+            'company_name' => 'Company C',
+            'program_id' => '3',
+            'staff_id' => '2',
+            'option' => 'physical',
+            'client_venue' => 'Viva City',
             'no_of_employees' => rand(10,100),
             'payment_type' => 'cash',
             'payment_status' => 'pending',
             'start_date' => '2021-04-13',
             'end_date' => '2021-04-13',
-            'client_notes' => Str::random(10),
-            'status' => 'pending',
+            'client_notes' => 'This is client note',
+            'status' => 'to-be-confirmed',
         ]);
     }
 }

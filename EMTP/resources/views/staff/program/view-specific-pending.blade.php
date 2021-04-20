@@ -1,7 +1,7 @@
-<x-app-layout title="About Us">
+<x-app-layout title="View Specific Pending Program">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Client | View Speficic Available Programs') }}
+            {{ __('Staff | View Speficic Pending Program') }}
         </h2>
     </x-slot>
   
@@ -53,20 +53,8 @@
                         <div class="col-md-4">
                           <button type="submit" id="submit" name="submit" >
                             <a href="{{$program->id}}/register" class="block tracking-widest uppercase text-center shadow bg-blue-400 hover:bg-blue-500 focus:shadow-outline focus:outline-none text-white text-xs py-3 px-10 rounded">
-                              Register
+                              Approve
                             </a>
-                          </button>
-                        </div>
-                      </div>
-
-                      <div class="m-5">
-                        <div class="col-md-4">
-                          <button hidden type="button" id="view" name="view" >
-                            @if (!($clientprogram->isEmpty()))
-                              <a href="/client/view/registered/{{$clientprogram[0]->id}}/{{$program->id}}" class="block tracking-widest uppercase text-center shadow bg-blue-400 hover:bg-blue-500 focus:shadow-outline focus:outline-none text-white text-xs py-3 px-10 rounded">
-                                View
-                              </a>
-                            @endif
                           </button>
                         </div>
                       </div>
@@ -80,21 +68,3 @@
         </div>
     </div>
   </x-app-layout>
-
-  <script>
-        function update() {
-          var submitbutton = document.getElementById("submit");
-          var viewbutton = document.getElementById("view");
-
-          if ("{{$registered}}"){
-            submit.hidden = true;
-            viewbutton.hidden = false;
-            document.getElementById("text").innerHTML = "Registered";
-          } else {
-            viewbutton.hidden = true;
-          }
-      
-        }
-        
-        window.onload = update;
-    </script>

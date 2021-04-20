@@ -27,6 +27,7 @@ class ProgramController extends Controller
 
     public function ClientViewSpecificProgram(Program $program)
     {
+
         $clientprogram =  DB::table('client_programs')->where('client_email', Auth::user()->email)
         ->where('program_id', $program->id)->get();
 
@@ -138,12 +139,42 @@ class ProgramController extends Controller
         // return $path;
         return view('staff.dashboard.index');
     }
-
+    
     public function StaffViewPendingProgram(Request $request)
     {
-        $registeredprograms =  DB::table('client_programs')->get();
-        $programdetails =  DB::table('programs')->get();
-        return view('staff.program.view_pendings',['registeredprograms'=>$registeredprograms,'programdetails'=>$programdetails]);
+        $pendingprograms =  DB::table('client_programs')->where('status', 'pending')->get();
+
+        $ids = array();
+
+        foreach($pendingprograms as $program) {
+            array_push($ids, $program->program_id);
+        }
+
+        $pendingprogramdetails = DB::table('programs')->whereIn('id', $ids)->get();
+
+        $staffprograms =  DB::table('client_programs')->where('staff_id', Auth::user()->id)
+        ->where('status', 'to-be-confirmed')->get();
+
+        $ids = array();
+        
+        foreach($pendingprograms as $program) {
+            array_push($ids, $program->program_id);
+        }
+
+        $staffprogramdetails = DB::table('programs')->whereIn('id', $ids)->get();
+
+        // return ($ids);
+        return view('staff.program.view_pendings',['pendingprograms'=>$pendingprograms, 'pendingprogramdetails'=>$pendingprogramdetails, 
+        'staffprograms'=>$staffprograms, 'staffprogramdetails'=>$staffprogramdetails]);
+    }
+
+    public function StaffViewSpecificPendingProgram(Request $request, $pendingprogramid, $programid)
+    {
+        $pendingprogram_ = DB::table('client_programs')->where('id', $pendingprogramid)->get();
+        $pendingprogram = $pendingprogram_[0];
+        $program_ = DB::table('programs')->where('id', $programid)->get();
+        $program = $program_[0];
+        return view('staff.program.view-specific-pending',['pendingprogram'=>$pendingprogram,'program'=>$program]);
     }
 
     public function AdminShowAllPrograms()
