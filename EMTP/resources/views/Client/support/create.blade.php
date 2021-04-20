@@ -19,7 +19,7 @@
               </div>
               <div class="m-10">
 
-                <form method="post" action="/client/support/create" class="w-full max-w-lg" enctype="multipart/form-data">
+                <form method="post" action="{{ route('client-send-support') }}" class="w-full max-w-lg" enctype="multipart/form-data">
                   @csrf
 
 

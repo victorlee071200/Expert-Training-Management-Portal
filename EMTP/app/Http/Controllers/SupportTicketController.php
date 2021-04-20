@@ -60,7 +60,10 @@ class SupportTicketController extends Controller
     public function AdminViewSpecificTicket(Request $request, $id)
     {
         $ticket = SupportTicket::findOrFail($id);
-        return view('admin.support.details', ['ticket'=>$ticket]);
+
+        $staffs =  DB::table('users')->where('usertype', 'staff')->get();
+
+        return view('admin.support.details', ['ticket'=>$ticket, 'staffs'=>$staffs]);
 
     }
 

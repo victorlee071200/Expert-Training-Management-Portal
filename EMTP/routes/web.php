@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminProgramController;
 use App\Http\Controllers\ClientProgramController;
 use App\Http\Controllers\SupportTicketController;
+use App\Http\Controllers\UserManagementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,7 +70,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/client/create/support', [SupportTicketController::class, 'ClientCreateSupportPageView'])->name('client-create-support');
 
     //Client Create a Support Ticket
-    Route::post('/client/create/support', [SupportTicketController::class, 'ClientCreateSupport'])->name('client-create-support');
+    Route::post('/client/create/support', [SupportTicketController::class, 'ClientCreateSupport'])->name('client-send-support');
 
 });
 
@@ -108,13 +109,26 @@ Route::middleware(['auth:sanctum', 'verified', 'auth.admin'])->group(function ()
     Route::get('/admin/view/approved/program/{program}', [ProgramController::class, 'AdminViewApprovedProgram'])->name('admin-view-specific-approved-program');
 
     // View All Support Ticket
-    Route::get('/admin/support', [SupportTicketController::class, 'AdminViewAllTickets'])->name('admin-view-all-support');
+    Route::get('/admin/support', [SupportTicketController::class, 'AdminViewAllTickets'])->name('admin-support-dashboard');
 
     // View Specific Support Ticket
     Route::get('/admin/support/{id}', [SupportTicketController::class, 'AdminViewSpecificTicket'])->name('admin-view-specific-support');
 
     // Assign a ticket to a staff
     Route::post('/admin/support/{id}', [SupportTicketController::class, 'AdminAssignTo'])->name('admin-assign-to');
+
+    // Staff Management Module
+    Route::get('/admin/view/staff', [UserManagementController::class, 'AdminViewNewStaff'])->name('admin-management-dashboard');
+
+    // View Specific Staff
+    Route::get('/admin/view/staff/{id}', [UserManagementController::class, 'AdminViewSpecificStaff'])->name('admin-view-specific-staff');
+
+    //Admin Create new staff
+    Route::get('/admin/create/staff', [UserManagementController::class, 'AdminCreateNewStaffPage'])->name('admin-create-staff-page');
+
+
+
+
 });
 
 // Route::put('/admin/programs/pending/{program}', [AdminProgramController::class, 'update']);

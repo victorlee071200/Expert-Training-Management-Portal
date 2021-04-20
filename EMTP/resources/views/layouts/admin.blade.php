@@ -141,25 +141,25 @@
                       <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                       <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                       <a
-                        href="#"
+                        href="{{ route('admin-dashboard') }}"
                         role="menuitem"
                         class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
                       >
-                        Default
+                        Dashboard
                       </a>
                       <a
-                        href="#"
+                        href="{{ route('admin-support-dashboard') }}"
                         role="menuitem"
                         class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                       >
-                        Project Mangement
+                        Support
                       </a>
                       <a
-                        href="#"
+                        href="{{ route('admin-management-dashboard') }}"
                         role="menuitem"
                         class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                       >
-                        E-Commerce
+                        User Management
                       </a>
                     </div>
                   </div>
@@ -328,7 +328,7 @@
                     </div>
                   </div>
 
-                  <!-- Authentication links -->
+                  <!-- User Management links -->
                   <div x-data="{ isActive: false, open: false}">
                     <!-- active & hover classes 'bg-indigo-100 dark:bg-indigo-600' -->
                     <a
@@ -340,7 +340,7 @@
                       aria-haspopup="true"
                       :aria-expanded="(open || isActive) ? 'true' : 'false'"
                     >
-                      <span class="ml-2 text-sm"> Authentication </span>
+                      <span class="ml-2 text-sm"> User Management </span>
                       <span aria-hidden="true" class="ml-auto">
                         <!-- active class 'rotate-180' -->
                         <svg
@@ -363,21 +363,21 @@
                         role="menuitem"
                         class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                       >
-                        Register
+                        View
+                      </a>
+                      <a
+                        href="{{ route('admin-create-staff-page') }}"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                      >
+                        Create
                       </a>
                       <a
                         href="#"
                         role="menuitem"
                         class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                       >
-                        Login
-                      </a>
-                      <a
-                        href="#"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        Password Reset
+                        X
                       </a>
                     </div>
                   </div>
@@ -570,21 +570,11 @@
                         href="{{ route('profile.show') }}">
                             {{ __('Profile') }}
                         </a>
-                        <form
-                        method="POST"
-                        action="{{ route('logout') }}"
-                        role="menuitem"
-
-                        >
+                        <form method="POST" action="{{ route('logout') }}" role="menuitem">
                         @csrf
-                        <a class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-indigo-600" href="{{ route('logout') }}"
-                                     onclick="event.preventDefault();
-                                            this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                        <a class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-indigo-600" href="{{ route('logout') }}">
+                            {{ __('Log Out') }}
                         </a>
-
-
-
                         </form>
                       </div>
                     </div>
@@ -728,18 +718,12 @@
                         href="{{ route('profile.show') }}">
                             {{ __('Profile') }}
                         </a>
-                        <form
-                        method="POST"
-                        action="{{ route('logout') }}"
-                        role="menuitem"
-
-                        >
-                        @csrf
-                        <a class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-indigo-600" href="{{ route('logout') }}"
-                                     onclick="event.preventDefault();
-                                            this.closest('form').submit();">
+                        <form method="POST" action="{{ route('logout') }}" role="menuitem">
+                            @csrf
+                            <a class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-indigo-600" href="{{ route('logout') }}">
                                 {{ __('Log Out') }}
-                        </a>
+                            </a>
+                        </form>
                       </div>
                     </div>
                   </nav>

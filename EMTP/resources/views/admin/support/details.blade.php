@@ -153,10 +153,9 @@
                         <div class="py-3">
                             <div class="relative">
                                 <select name="assign_to" class="rounded border appearance-none border-gray-400 py-2 text-base pl-3 pr-10">
-                                <option>Staff Name</option>
-                                <option>M</option>
-                                <option>L</option>
-                                <option>XL</option>
+                                @foreach ($staffs as $staff)
+                                    <option>{{ $staff->name }}</option>
+                                @endforeach
                                 </select>
                             </div>
                         </div>
@@ -178,7 +177,7 @@
         </div>
       </div>
     </div>
-  </section>
+</section>
 
 @endsection
 
