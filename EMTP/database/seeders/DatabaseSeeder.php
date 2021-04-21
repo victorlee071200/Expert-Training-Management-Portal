@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
         //client
         DB::table('users')->insert([
             'name' => 'Ali',
+            'company_name' => 'Techsim',
             'email_verified_at' => '2021-04-19 23:01:02',
             'email' => 'c@c',
             'password' => Hash::make('1234567890'),
@@ -59,6 +60,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Program A',
             'type' => 'Communication',
             'code' => 'ICT30005',
+            'length' => 3,
             'price' => rand(10,100),
             'option' => Arr::random($option),
             'status' => 'to-be-confirmed',
@@ -70,6 +72,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Program B',
             'type' => 'Presentation',
             'code' => 'PCE10023',
+            'length' => 3,
             'price' => rand(10,100),
             'option' => Arr::random($option),
             'status' => 'approved',
@@ -81,6 +84,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Program C',
             'type' => 'Presentation',
             'code' => 'PCE10011',
+            'length' => 3,
             'price' => rand(10,100),
             'option' => Arr::random($option),
             'status' => 'approved',
@@ -102,6 +106,22 @@ class DatabaseSeeder extends Seeder
             'end_date' => '2021-04-15',
             'client_notes' => 'This is client note',
             'status' => 'pending',
+        ]);
+
+        DB::table('client_programs')->insert([
+            'client_email' => 'c@c',
+            'company_name' => 'Company G',
+            'program_id' => '2',
+            'staff_id' => '2',
+            'option' => 'online',
+            'client_venue' => 'Online',
+            'no_of_employees' => rand(10,100),
+            'payment_type' => 'cash',
+            'payment_status' => 'pending',
+            'start_date' => '2021-04-13',
+            'end_date' => '2021-04-15',
+            'client_notes' => 'This is client note',
+            'status' => 'approved',
         ]);
 
         DB::table('client_programs')->insert([

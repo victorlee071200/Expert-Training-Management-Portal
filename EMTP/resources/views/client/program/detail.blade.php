@@ -40,6 +40,21 @@
         <p>Notes: {{$registeredprogram->client_notes}}</p>
         <p>Status: {{$registeredprogram->status}}</p> 
       </div>
+
+      @if ($registeredprogram->status == "to-be-confirmed")
+      <div class="form-group md:flex md:items-center ml-10">
+        <div class="md:w-1/3">
+          <label class="col-md-4 control-label" for="submit"></label>
+          <div class="col-md-4">
+            <a href = "{{ url('/registered/' . $registeredprogram->id . '/confirm') }}">
+            <button id="submit" name="submit" class="shadow bg-teal-400 hover:bg-teal-400 focus:shadow-outline bg-indigo-400 focus:outline-none text-gray-200 hover:bg-indigo-600 hover:text-white font-bold py-2 px-4 rounded" >Confirm</button>
+            </a>
+          </div>
+        </div>
+        <div class="md:w-2/3"></div>
+      </div>
+      @endif
+
     </div>
   </div>
 </x-app-layout>

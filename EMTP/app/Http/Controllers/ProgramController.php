@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 use App\Models\Program;
 use App\Models\ClientProgram;
 use Illuminate\Http\Request;
@@ -64,7 +65,7 @@ class ProgramController extends Controller
 
         $clientprogram = new ClientProgram;
         $clientprogram->client_email = Auth::user()->email;
-        $clientprogram->company_name = request('company_name');
+        $clientprogram->company_name = Auth::user()->company_name;
         $clientprogram->program_id = $id;
         $clientprogram->admin_id = "";
         $clientprogram->option = strtolower(request('option'));
@@ -105,11 +106,36 @@ class ProgramController extends Controller
         return view('client.program.registered',['registeredprograms'=>$registeredprograms,'programdetails'=>$programdetails]);
     }
 
-    public function  ClientViewSpecificRegisteredProgramDetail(ClientProgram $registeredprogram, Program $program)
+    public function ClientViewSpecificRegisteredProgramDetail(ClientProgram $registeredprogram, Program $program)
     {
         $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();
         return view('client.program.detail',['registeredprogram'=>$registeredprogram, 'program'=>$program]);  
+    }
+
+    public function ClientEditSpecificRegisteredProgramDetail(ClientProgram $registeredprogram, Program $program)
+    {
+        return view('client.program.edit',['registeredprogram'=>$registeredprogram, 'program'=>$program]);
+    }
+
+    public function ClientSaveRegisteredProgram(Request $request, ClientProgram $registeredprogram)
+    {
+        $registeredprogram->option = request('option');
+        $registeredprogram->no_of_employees = request('no_of_employees');
+        $registeredprogram->start_date = request('start_date');
+        $registeredprogram->end_date = request('end_date');
+        $registeredprogram->payment_type = request('payment_type');
+        $registeredprogram->client_notes = request('client_notes');
+
+        $registeredprogram->save();
+
+        return redirect('/client/view/registered');
+    }
+
+    public function ClientConfirmProgram(ClientProgram $registeredprogram){
+        $registeredprogram->status = "approved";
+        $registeredprogram->save();
+        return redirect('/client/view/registered');
     }
 
     public function ClientViewSpecificRegisteredProgramAnnouncement(ClientProgram $registeredprogram, Program $program)
@@ -145,6 +171,7 @@ class ProgramController extends Controller
         $program->name = request('name');
         $program->code = request('code');
         $program->type = request('type');
+        $program->length = request('length');
         $program->price = request('price');
         $program->option = request('option');
         $program->description = request('description');
@@ -174,7 +201,7 @@ class ProgramController extends Controller
         $pendingprogramdetails = DB::table('programs')->whereIn('id', $ids)->get();
 
         $staffprograms =  DB::table('client_programs')->where('staff_id', Auth::user()->id)
-        ->where('status', 'to-be-confirmed')->get();
+        ->where('status', 'to-be-confirmed')->orWhere('status', 'approved')->orWhere('status', 'completed')->get();
 
         $ids = array();
         
@@ -196,6 +223,22 @@ class ProgramController extends Controller
         $program_ = DB::table('programs')->where('id', $programid)->get();
         $program = $program_[0];
         return view('staff.program.view-specific-pending',['pendingprogram'=>$pendingprogram,'program'=>$program]);
+    }
+
+    public function StaffViewSpecificProgram($id, ClientProgram $clientprogram)
+    {
+        $programs = DB::table('programs')->where('id', $clientprogram->program_id)->get();
+        $program = $programs[0];
+        // return $clientprogram;
+        return view('staff.program.view-specific-incharge',['clientprogram'=>$clientprogram,'program'=>$program]);
+    }
+
+    public function StaffMarkProgramComplete(ClientProgram $clientprogram)
+    {
+        $clientprogram->status = "completed";
+        $clientprogram->save();
+        return redirect('/staff/view/pendings');
+
     }
 
     public function AdminShowAllPrograms()

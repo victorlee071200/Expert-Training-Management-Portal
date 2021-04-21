@@ -48,7 +48,16 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/client/view/registered', [ProgramController::class, 'ClientViewRegisteredProgram']);
 
     // Program Page - View specific registered program details    
-    Route::get('/client/registered/{registeredprogram}/{program}/detail', [ProgramController::class, 'ClientViewSpecificRegisteredProgramDetail'])->name('client-program-detail');
+    Route::get('/client/view/registered/{registeredprogram}/{program}/detail', [ProgramController::class, 'ClientViewSpecificRegisteredProgramDetail'])->name('client-program-detail');
+
+    // Program Page - Edit specific registered program details (Before staff approves it)
+    Route::get('/client/view/registered/{registeredprogram}/{program}/edit', [ProgramController::class, 'ClientEditSpecificRegisteredProgramDetail'])->name('client-program-edit');
+
+    // POST - Program Page - Edit specific registered program details (Before staff approves it)
+    Route::post('/client/view/registered/{registeredprogram}/{program}/edit', [ProgramController::class, 'ClientSaveRegisteredProgram']);
+
+    // Program Page - Client confirms the program
+    Route::get('/registered/{registeredprogram}/confirm', [ProgramController::class, 'ClientConfirmProgram'])->name('client-program-confirm');
 
     // Program Page - View specific registered program announcement    
     Route::get('/client/registered/{registeredprogram}/{program}/announcement', [ProgramController::class, 'ClientViewSpecificRegisteredProgramAnnouncement'])->name('client-program-announcement');
@@ -84,6 +93,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //View a specific pending program
     Route::get('/staff/view/pendings/{program}/{clientprogram}', [ProgramController::class, 'StaffViewSpecificPendingProgram'])->name('staff-view-specific');
+
+    //View a specific in charge program
+    Route::get('/staffpending/view/{user}/{clientprogram}', [ProgramController::class, 'StaffViewSpecificProgram'])->name('staff-view-specific-incharge');
+
+    //Mark a program as completed
+    Route::get('/approved/{clientprogram}/completed', [ProgramController::class, 'StaffMarkProgramComplete'])->name('staff-mark-program-complee');
 });
 
 // Admin Routes
