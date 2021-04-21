@@ -105,11 +105,32 @@ class ProgramController extends Controller
         return view('client.program.registered',['registeredprograms'=>$registeredprograms,'programdetails'=>$programdetails]);
     }
 
-    public function  ClientViewSpecificRegisteredProgram(ClientProgram $registeredprogram, Program $program)
+    public function  ClientViewSpecificRegisteredProgramDetail(ClientProgram $registeredprogram, Program $program)
     {
         $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();
-        return view('client.program.detail',['registeredprogram' => $registeredprogram, 'program' => $program]);  
+        return view('client.program.detail',['registeredprogram'=>$registeredprogram, 'program'=>$program]);  
+    }
+
+    public function ClientViewSpecificRegisteredProgramAnnouncement(ClientProgram $registeredprogram, Program $program)
+    {
+        $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
+        $program_ =  DB::table('programs')->where('id', $program)->get();
+        return view('client.program.announcement',['registeredprogram'=>$registeredprogram, 'program'=>$program]); 
+    }
+
+    public function ClientViewSpecificRegisteredProgramMaterial(ClientProgram $registeredprogram, Program $program)
+    {
+        $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
+        $program_ =  DB::table('programs')->where('id', $program)->get();
+        return view('client.program.material',['registeredprogram'=>$registeredprogram, 'program'=>$program]); 
+    }
+
+    public function ClientViewSpecificRegisteredProgramFeedback(ClientProgram $registeredprogram, Program $program)
+    {
+        $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
+        $program_ =  DB::table('programs')->where('id', $program)->get();
+        return view('client.program.feedback',['registeredprogram'=>$registeredprogram, 'program'=>$program]); 
     }
 
     public function StaffCreateProgram()

@@ -24,40 +24,45 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+// Client Side
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-
-    // Client Side
-
     // Dashboard Page
     Route::get('/client/dashboard', [DashboardController::class, 'ClientDashboard'])->name('client-dashboard');
 
     // Home Page
     Route::get('/home', [HomepageController::class, 'index'])->name('client-home');
 
-    // Program Page
-    //View all approved programs
+    // Program Page - View all approved programs
     Route::get('/client/view/program', [ProgramController::class, 'index'])->name('client-program');
 
-    //View Specific Program
+    // Program Page - View Specific Program
     Route::get('/client/view/program/{program}', [ProgramController::class, 'ClientViewSpecificProgram']);
 
-    //Register a program
+    // Program Page - Register a program
     Route::get('/client/view/program/{program}/register', [ProgramController::class, 'ClientRegisterProgram']);
 
-    //Get registration details from user and save to database
+    // Program Page - Get registration details from user and save to database
     Route::post('/client/view/program/{program}/register', [ProgramController::class, 'ClientStoreProgram']);
 
-    //View all registered programs
+    // Program Page - View all registered programs
     Route::get('/client/view/registered', [ProgramController::class, 'ClientViewRegisteredProgram']);
 
-    //View specific registered program details    
-    Route::get('/client/view/registered/{registeredprogram}/{program}', [ProgramController::class, 'ClientViewSpecificRegisteredProgram']);
+    // Program Page - View specific registered program details    
+    Route::get('/client/registered/{registeredprogram}/{program}/detail', [ProgramController::class, 'ClientViewSpecificRegisteredProgramDetail'])->name('client-program-detail');
 
-    //About Us Page
+    // Program Page - View specific registered program announcement    
+    Route::get('/client/registered/{registeredprogram}/{program}/announcement', [ProgramController::class, 'ClientViewSpecificRegisteredProgramAnnouncement'])->name('client-program-announcement');
+
+    // Program Page - View specific registered program material  
+    Route::get('/client/registered/{registeredprogram}/{program}/material', [ProgramController::class, 'ClientViewSpecificRegisteredProgramMaterial'])->name('client-program-material');
+
+    // Program Page - View specific registered program feedback    
+    Route::get('/client/registered/{registeredprogram}/{program}/feedback', [ProgramController::class, 'ClientViewSpecificRegisteredProgramFeedback'])->name('client-program-feedback');
+
+    // About Us Page
     Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
 
-    //Support & Help Page
+    // Support & Help Page
     Route::get('/support', [SupportController::class, 'index'])->name('support');
 });
 
@@ -122,8 +127,4 @@ Route::get('/payment_credit_card', function () {
 
 Route::get('/payment_result', function () {
     return view('client.requisite_process.payment_result');
-});
-
-Route::get('/help_support', function () {
-    return view('help-support-page');
 });
