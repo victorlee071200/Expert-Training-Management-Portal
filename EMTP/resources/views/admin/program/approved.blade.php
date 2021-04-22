@@ -1,10 +1,17 @@
-<x-app-layout title="About Us">
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Admin | Approved Program') }}
-        </h2>
-    </x-slot>
-  
+@extends('layouts.admin')
+
+
+
+@section('container')
+
+    <div class="flex flex-col items-start justify-between pb-6 space-y-4 border-b lg:items-center lg:space-y-0 lg:flex-row">
+        <h1 class="text-2xl font-semibold whitespace-nowrap">
+            Dashboard | Program
+        </h1>
+
+    </div>
+
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -12,7 +19,7 @@
               <section class="text-gray-700 body-font overflow-hidden bg-white">
                 <div class="container px-5 py-24 mx-auto">
                   <div class="lg:w-4/5 mx-auto flex flex-wrap">
-                    <img alt="ecommerce" class="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200" src = "{{ asset('storage/program_thumbnails/'.$program->thumbnail_path)}}" width="500" height="600"> 
+                    <img alt="ecommerce" class="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200" src = "{{ asset('storage/program_thumbnails/'.$program->thumbnail_path)}}" width="500" height="600">
                     <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                       <div class="m-5">
                         <h2 class="text-sm title-font text-gray-500 tracking-widest">Name</h2>
@@ -39,7 +46,7 @@
                         <div class="flex">
                           <span class="title-font font-medium text-2xl text-gray-900">${{ $program->price }}</span>
                         </div>
-                      </div>                      
+                      </div>
 
                       <div class="m-5">
                         <div class="col-md-4">
@@ -54,8 +61,19 @@
                   </div>
                 </div>
               </section>
-              </div>              
+              </div>
             </div>
         </div>
     </div>
-  </x-app-layout>
+
+
+
+
+
+
+@endsection
+
+
+
+
+

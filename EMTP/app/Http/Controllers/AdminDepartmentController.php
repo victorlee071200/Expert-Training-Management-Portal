@@ -53,7 +53,8 @@ class AdminDepartmentController extends Controller
      */
     public function show($id)
     {
-        //
+        $department = Department::find($id);
+        return view('admin.department.details', ['department'=>$department]);
     }
 
     /**
@@ -77,12 +78,14 @@ class AdminDepartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $department = Department::find($id);
+        $department = Department::findOrFail($id);
         $department->name = $request->input('name');
         $department->description = $request->input('description');
         $department->update();
 
-        return redirect('/admin/view/department')->withToastInfo($department->name.' Update Successfully!');
+        return redirect('/admin/view/department')->withToastInfo($department->name.' Updated Successfully!');
+
+
     }
 
     /**
@@ -91,8 +94,10 @@ class AdminDepartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        $department = Department::find($id);
+        $department->delete();
+        return redirect('/admin/view/department')->withToastError($department->name.' Deleted Successfully!');
     }
 }

@@ -4,8 +4,8 @@
             <p class="font-bold text-sm uppercase text-black">Services</p>
             <p class="text-3xl md:text-4xl font-bold text-black mb-1">Training Programs</p>
             <p class="text-2xl md:text-3xl mb-10 leading-none text-black">Train for your future</p>
-            <a href="{{ route('client-program') }}" class="bg-purple-800 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Learn more</a>
-        </div>  
+            <a href="{{ route('client-program-dashboard') }}" class="bg-purple-800 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Learn more</a>
+        </div>
     </div>
 
     <div class="mx-5 md:mx-9 xl:mx-20">

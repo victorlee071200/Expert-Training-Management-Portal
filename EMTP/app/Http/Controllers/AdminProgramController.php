@@ -17,7 +17,7 @@ class AdminProgramController extends Controller
     {
         $pendingprograms =  DB::table('programs')->where('status', 'to-be-confirmed')->get();
         $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
-        $allprograms =  DB::table('programs')->get();
+        $allprograms =  Program::all();
         return view('admin.program.index',['pendingprograms'=>$pendingprograms, 'allprograms'=>$allprograms, 'approvedprograms'=>$approvedprograms]);
     }
 
@@ -48,12 +48,13 @@ class AdminProgramController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show_pending($id)
     {
         $program = Program::find($id);
-        return view('admin.program.approved', ['program' => $program]);
+        return view('admin.program.approve', ['program' => $program]);
 
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -61,10 +62,11 @@ class AdminProgramController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function show_approved($id)
     {
         $program = Program::find($id);
-        return view('admin.program.approve', ['program' => $program]);
+        return view('admin.program.approved', ['program' => $program]);
+
     }
 
     /**

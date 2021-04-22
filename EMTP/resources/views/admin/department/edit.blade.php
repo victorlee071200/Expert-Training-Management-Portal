@@ -31,53 +31,44 @@
 
 
             <div  class="w-full max-w-lg">
-                <div class="flex flex-wrap -mx-3 mb-6">
-                    <div class="w-full px-3">
-                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="name">
-                        Name
-                      </label>
-                      <input id="name" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" name="name" value="{{ $department->name }}"/>
-                    </div>
-                  </div>
-    
-                  <div class="flex flex-wrap -mx-3 mb-6">
-                    <div class="w-full px-3">
-                      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="description">
-                        Description
-                      </label>
-                      <textarea required id="description" name="description" type="text" class="resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48"> {{$department->description}} </textarea>
-                    </div>
-                  </div>
-    
-                  {{-- <div class="form-group md:flex md:items-center">
-                    <div class="md:w-1/3">
-                      <label class="col-md-4 control-label" for="submit"></label>
-                      <div class="col-md-4">
-                        <button id="submit" name="submit" class="shadow bg-teal-400 hover:bg-teal-400 focus:shadow-outline bg-green-400 focus:outline-none text-gray-200 hover:bg-green-600 hover:text-white font-bold py-2 px-4 rounded" >Update</button>
+                <form action="/admin/update/department/{{$department->id}}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="w-full px-3">
+                          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="name">
+                            Name
+                          </label>
+                          <input id="name" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" name="name" value="{{ $department->name }}"/>
+                        </div>
+                      </div>
+
+                      <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="w-full px-3">
+                          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="description">
+                            Description
+                          </label>
+                          <textarea required id="description" name="description" type="text" class="resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48"> {{$department->description}} </textarea>
+                        </div>
+                      </div>
+
+                      <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="w-full px-3">
+                            <button type="submit" class="block tracking-widest uppercase text-center shadow bg-green-400 hover:bg-green-500 focus:shadow-outline focus:outline-none text-white text-xs py-3 px-10 rounded">Update</button>
+                        </div>
                       </div>
                     </div>
-                    <div class="md:w-2/3"></div>
-                  </div> --}}
-
-                  <div class="m-6">
-                    <form class="form-horizontal" method="post">
-                      @csrf
-                      @method('put')
-                      <!-- Button -->
-                      <div class="form-group">
+                      {{-- <div class="form-group md:flex md:items-center">
+                        <div class="md:w-1/3">
                           <label class="col-md-4 control-label" for="submit"></label>
                           <div class="col-md-4">
-                            <button id="submit" name="submit" class="block tracking-widest uppercase text-center shadow bg-green-400 hover:bg-green-500 focus:shadow-outline focus:outline-none text-white text-xs py-3 px-10 rounded">Update</button>
+                            <button id="submit" name="submit" class="shadow bg-teal-400 hover:bg-teal-400 focus:shadow-outline bg-green-400 focus:outline-none text-gray-200 hover:bg-green-600 hover:text-white font-bold py-2 px-4 rounded" >Update</button>
                           </div>
-                      </div>
-                    </form>
-                  </div>
-
+                        </div>
+                        <div class="md:w-2/3"></div>
+                      </div> --}}
+                </form>
             </div>
-
-              
-
-              
           </div>
         </div>
     </div>

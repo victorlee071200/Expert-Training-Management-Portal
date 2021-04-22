@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SupportTicket;
+use Illuminate\Support\Facades\DB;
 
 class AdminSupportController extends Controller
 {
@@ -47,7 +48,11 @@ class AdminSupportController extends Controller
      */
     public function show($id)
     {
-        //
+        $ticket = SupportTicket::find($id);
+        $staffs =  DB::table('users')->where('usertype', 'staff')->get();
+
+        return view('admin.support.details', ['ticket'=>$ticket, 'staffs'=>$staffs]);
+
     }
 
     /**
@@ -70,7 +75,11 @@ class AdminSupportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $ticket = SupportTicket::findOrFail($id);
+        $ticket->assign_to = $request->input('assign_to');
+        $ticket->update();
+
+        return redirect('/admin/view/support')->withToastInfo($ticket->name.'&#39;s support ticket has been assigned to '.$ticket->assign_to.' Successfully!');
     }
 
     /**

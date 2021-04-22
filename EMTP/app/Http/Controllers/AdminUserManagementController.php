@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Foundation\Auth\User;
@@ -28,7 +29,8 @@ class AdminUserManagementController extends Controller
      */
     public function create()
     {
-        return view('admin.management.create');
+        $departments = Department::all();
+        return view('admin.management.create', ['departments'=> $departments]);
     }
 
     /**
@@ -39,7 +41,16 @@ class AdminUserManagementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $staff = new User;
+        $staff->name = request('name');
+        $staff->email = request('email');
+        $staff->password = request('password');
+        $staff->department = request('department');
+        $staff->company_name = ('EMTP');
+        $staff->usertype = ('staff');
+        $staff->save();
+        // return $path;
+        return redirect('/admin/view/user')->withToastSuccess($staff->name.' Created Successfully!');;
     }
 
     /**

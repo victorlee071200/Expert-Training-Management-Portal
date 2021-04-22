@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Program;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ClientProgramController extends Controller
 {
@@ -13,7 +16,8 @@ class ClientProgramController extends Controller
      */
     public function index()
     {
-        //
+        $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
+        return view('client.program.approved.index',['approvedprograms'=>$approvedprograms]);
     }
 
     /**
@@ -45,7 +49,22 @@ class ClientProgramController extends Controller
      */
     public function show($id)
     {
-        //
+        $program = Program::find($id);
+
+        $clientprogram =  DB::table('client_programs')->where('client_email', Auth::user()->email)
+        ->where('program_id', $program->id)->get();
+
+        if ($clientprogram->isEmpty()){
+            $registered = false;
+        }
+        else
+        {
+            $registered = true;
+        }
+
+        // return ($clientprogram);
+
+        return view('client.program.view-specific',['program'=>$program, 'registered'=>$registered, 'clientprogram'=>$clientprogram]);
     }
 
     /**

@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('client-program') }}" :active="request()->routeIs('client-program')">
+                    <x-jet-nav-link href="{{ route('client-program-dashboard') }}" :active="request()->routeIs('client-program-dashboard')">
                         {{ __('Program') }}
                     </x-jet-nav-link>
                 </div>
@@ -36,7 +36,7 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('support') }}" :active="request()->routeIs('support')">
+                    <x-jet-nav-link href="{{ route('client-support-dashboard') }}" :active="request()->routeIs('client-support-dashboard')">
                         {{ __('Support') }}
                     </x-jet-nav-link>
                 </div>
@@ -167,7 +167,7 @@
             </x-jet-responsive-nav-link>
         </div>
         <div class="pt-1 pb-1">
-            <x-jet-responsive-nav-link href="{{ route('client-program') }}" :active="request()->routeIs('client-program')">
+            <x-jet-responsive-nav-link href="{{ route('client-program-dashboard') }}" :active="request()->routeIs('client-program-dashboard')">
                 {{ __('Program') }}
             </x-jet-responsive-nav-link>
         </div>
@@ -182,7 +182,7 @@
             </x-jet-responsive-nav-link>
         </div>
         <div class="pt-1 pb-1">
-            <x-jet-responsive-nav-link href="{{ route('support') }}" :active="request()->routeIs('support')">
+            <x-jet-responsive-nav-link href="{{ route('client-support-dashboard') }}" :active="request()->routeIs('client-support-dashboard')">
                 {{ __('Support') }}
             </x-jet-responsive-nav-link>
         </div>

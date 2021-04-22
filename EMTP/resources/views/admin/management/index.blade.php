@@ -32,7 +32,7 @@
         </div>
         </div>
     </template>
-  </div>
+</div>
 
 <h3 class="mt-6 text-xl">
     Staff List

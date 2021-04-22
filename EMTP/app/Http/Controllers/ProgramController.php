@@ -185,7 +185,7 @@ class ProgramController extends Controller
 
         $program->save();
         // return $path;
-        return view('staff.dashboard.index');
+        return redirect('/staff/view/program')->withToastSuccess($program->name.' has been Created Successfully!');;
     }
 
     public function StaffViewPendingProgram(Request $request)
@@ -264,11 +264,12 @@ class ProgramController extends Controller
         return view('admin.program.approve', ['program' => $program]);
     }
 
-    public function AdminApprovedProgram(Request $request, Program $program)
+    public function AdminApprovedProgram(Request $request, $id)
     {
+        $program = Program::find($id);
         $program->status = 'approved';
         $program->save();
-        return redirect('/admin/view/program');
+        return redirect('/admin/view/program')->withToastSuccess($program->name.' has been approved Successfully!');
     }
 
     public function AdminViewApprovedProgram(Program $program)

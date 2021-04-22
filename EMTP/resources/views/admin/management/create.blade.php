@@ -76,9 +76,9 @@
                     Department
                     </label>
                     <div class="relative">
-                    <select id="option" name="option" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                    <select id="department" name="department" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                         @foreach ($departments as $department)
-                            <option value="department">{{ $department->name }}</option>
+                            <option name="department">{{ $department->name }}</option>
                         @endforeach
                     </select>
 
@@ -90,7 +90,7 @@
                 <div class="md:w-1/3">
                   <label class="col-md-4 control-label" for="submit"></label>
                   <div class="col-md-4">
-                    <button id="submit" name="submit" class="shadow bg-teal-400 hover:bg-teal-400 focus:shadow-outline bg-indigo-400 focus:outline-none text-gray-200 hover:bg-indigo-600 hover:text-white font-bold py-2 px-4 rounded" >Submit</button>
+                    <button id="submit" name="submit" class="shadow bg-teal-400 hover:bg-teal-400 focus:shadow-outline bg-indigo-400 focus:outline-none text-gray-200 hover:bg-indigo-600 hover:text-white font-bold py-2 px-4 rounded" >Create</button>
                   </div>
                 </div>
               </div>

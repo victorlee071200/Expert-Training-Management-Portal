@@ -77,18 +77,35 @@
                         Dashboard
                       </a>
                       <a
-                        href="{{ route('admin-support-dashboard') }}"
+                        href="{{ route('admin-program-dashboard') }}"
                         role="menuitem"
                         class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                       >
-                        Support
+                        Program
                       </a>
+
+                      <a
+                        href="{{ route('admin-department-dashboard') }}"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                      >
+                        Department
+                      </a>
+
                       <a
                         href="{{ route('admin-management-dashboard') }}"
                         role="menuitem"
                         class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                       >
                         User Management
+                      </a>
+
+                      <a
+                        href="{{ route('admin-support-dashboard') }}"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                      >
+                        Support
                       </a>
                     </div>
                   </div>
@@ -341,7 +358,7 @@
                   <!-- Brand -->
                   <a
                     href="#"
-                    class="inline-block text-2xl font-bold tracking-wider text-indigo-700 uppercase dark:text-light"
+                    class="inline-block m-6 text-2xl font-bold tracking-wider text-indigo-700 uppercase dark:text-light"
                   >
                     EMTP
                   </a>
@@ -372,47 +389,6 @@
 
                   <!-- Desktop Right buttons -->
                   <nav aria-label="Secondary" class="hidden space-x-2 md:flex md:items-center">
-                    <!-- Toggle dark theme button -->
-                    <button aria-hidden="true" class="relative focus:outline-none" x-cloak @click="toggleTheme">
-                      <div
-                        class="w-12 h-6 transition bg-indigo-100 rounded-full outline-none dark:bg-indigo-400"
-                      ></div>
-                      <div
-                        class="absolute top-0 left-0 inline-flex items-center justify-center w-6 h-6 transition-all duration-150 transform scale-110 rounded-full shadow-sm"
-                        :class="{ 'translate-x-0 -translate-y-px  bg-white text-indigo-700': !isDark, 'translate-x-6 text-indigo-100 bg-indigo-800': isDark }"
-                      >
-                        <svg
-                          x-show="!isDark"
-                          class="w-4 h-4"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                          />
-                        </svg>
-                        <svg
-                          x-show="isDark"
-                          class="w-4 h-4"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                          />
-                        </svg>
-                      </div>
-                    </button>
 
                     <!-- Notification button -->
                     <button
@@ -500,10 +476,10 @@
                             {{ __('Profile') }}
                         </a>
                         <form method="POST" action="{{ route('logout') }}" role="menuitem">
-                        @csrf
-                        <a class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-indigo-600" href="{{ route('logout') }}">
-                            {{ __('Log Out') }}
-                        </a>
+                            @csrf
+                            <a class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-indigo-600" href="{{ route('logout') }}">
+                                {{ __('Log Out') }}
+                            </a>
                         </form>
                       </div>
                     </div>
@@ -523,47 +499,6 @@
                     aria-label="Secondary"
                   >
                     <div class="space-x-2">
-                      <!-- Toggle dark theme button -->
-                      <button aria-hidden="true" class="relative focus:outline-none" x-cloak @click="toggleTheme">
-                        <div
-                          class="w-12 h-6 transition bg-indigo-100 rounded-full outline-none dark:bg-indigo-400"
-                        ></div>
-                        <div
-                          class="absolute top-0 left-0 inline-flex items-center justify-center w-6 h-6 transition-all duration-200 transform scale-110 rounded-full shadow-sm"
-                          :class="{ 'translate-x-0 -translate-y-px  bg-white text-indigo-700': !isDark, 'translate-x-6 text-indigo-100 bg-indigo-800': isDark }"
-                        >
-                          <svg
-                            x-show="!isDark"
-                            class="w-4 h-4"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                            />
-                          </svg>
-                          <svg
-                            x-show="isDark"
-                            class="w-4 h-4"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              stroke-width="2"
-                              d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                            />
-                          </svg>
-                        </div>
-                      </button>
 
                       <!-- Notification button -->
                       <button
@@ -697,26 +632,43 @@
                         <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                         <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                         <a
-                          href="#"
-                          role="menuitem"
-                          class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
-                        >
-                          Default
-                        </a>
-                        <a
-                          href="#"
-                          role="menuitem"
-                          class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                        >
-                          Project Mangement
-                        </a>
-                        <a
-                          href="#"
-                          role="menuitem"
-                          class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                        >
-                          E-Commerce
-                        </a>
+                        href="{{ route('admin-dashboard') }}"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
+                      >
+                        Dashboard
+                      </a>
+                      <a
+                        href="{{ route('admin-program-dashboard') }}"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                      >
+                        Program
+                      </a>
+
+                      <a
+                        href="{{ route('admin-department-dashboard') }}"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                      >
+                        Department
+                      </a>
+
+                      <a
+                        href="{{ route('admin-management-dashboard') }}"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                      >
+                        User Management
+                      </a>
+
+                      <a
+                        href="{{ route('admin-support-dashboard') }}"
+                        role="menuitem"
+                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                      >
+                        Support
+                      </a>
                       </div>
                     </div>
 
