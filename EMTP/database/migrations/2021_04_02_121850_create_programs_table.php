@@ -19,6 +19,7 @@ class CreateProgramsTable extends Migration
             $table->string('name')->unique();
             $table->string('type');
             $table->decimal('price', $precision = 8, $scale = 2);
+            $table->integer('length');
             $table->enum('option',['physical','online','both']);
             $table->enum('status',['to-be-confirmed','approved','rejected']);
             $table->text('description');
