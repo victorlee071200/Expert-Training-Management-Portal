@@ -57,25 +57,23 @@
                 </div>
                                     
                 <div>
-                    @foreach($approvedprograms as $program)
-                    <a href="program/{{$program->id}}">
-                        <div class="mt-8 grid lg:grid-cols-3 gap-10">
-                            <!--cards go here-->
-                            <div class="card hover:shadow-lg">
-                                <img src="{{ asset('storage/program_thumbnails/'.$program->thumbnail_path)}}" alt="train1" class="w-full h-32 sm:h-48 object-cover">
-                                <div class="m-4">
-                                    <span class="font-bold">{{$program->code}} {{$program->name}}</span>
-                                </div>
-                                <div class="badge">
-                                    <svg class="w-5 inline-block" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
-                                    </svg>
-                                    <span>Price: ${{$program->price}}</span>
-                                </div>
+                    <div class="mt-8 grid lg:grid-cols-3 gap-10">
+                        @foreach($approvedprograms as $program)
+                        <!--cards go here-->
+                        <a class="card hover:shadow-lg" href="program/{{$program->id}}">
+                            <img src="{{ asset('storage/program_thumbnails/'.$program->thumbnail_path)}}" alt="train1" class="w-full h-32 sm:h-48 object-cover">
+                            <div class="m-4">
+                                <span class="font-bold">{{$program->code}} {{$program->name}}</span>
                             </div>
-                        </div>
-                    </a>
-                    @endforeach
+                            <div class="badge">
+                                <svg class="w-5 inline-block" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                                <span>Price: ${{$program->price}}</span>
+                            </div>
+                        </a>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
