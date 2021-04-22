@@ -126,6 +126,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //View a specific pending program
     Route::get('/staff/view/pendings/{program}/{clientprogram}', [ProgramController::class, 'StaffViewSpecificPendingProgram'])->name('staff-view-specific');
 
+    //Approve a specific pending program
+    Route::get('/{clientprogram}/{id}/approve', [ProgramController::class, 'StaffApproveSpecificPendingProgram'])->name('staff-approve-specific');
+
     //View a specific in charge program
     Route::get('/staffpending/view/{user}/{clientprogram}', [ProgramController::class, 'StaffViewSpecificProgram'])->name('staff-view-specific-incharge');
 
