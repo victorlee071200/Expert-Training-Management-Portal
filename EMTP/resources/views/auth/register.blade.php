@@ -19,6 +19,11 @@
                     <x-jet-label for="name" value="{{ __('Name') }}" />
                     <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" placeholder="e.g John" />
                 </div>
+                <!--company name field-->
+                <div class="mb-6">
+                    <x-jet-label for="company_name" value="{{ __('CompanyName') }}" />
+                    <x-jet-input id="company_name" class="block mt-1 w-full" type="text" name="company_name" :value="old('name')" required autofocus autocomplete="company_name" placeholder="e.g Alibaba" />
+                </div>
                 <!--email field-->
                 <div class="mb-6">
                     <x-jet-label for="email" value="{{ __('Email') }}" />

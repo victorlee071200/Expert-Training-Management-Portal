@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
-use App\Models\Program;
-use Illuminate\Http\Request;
-use App\Models\ClientProgram;
+use Auth;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
+use App\Models\User;
+use App\Models\Program;
+use App\Models\ClientProgram;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
@@ -22,20 +22,39 @@ class ProgramController extends Controller
     public function ClientViewAllProgram()
     {
         $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
-        return view('client.program.view-all',['approvedprograms'=>$approvedprograms]);
-
+        return view('client.program.view-all',['approvedprograms'=>$approvedprograms]);  
+        
     }
 
     public function ClientViewSpecificProgram(Program $program)
     {
 
-        return view('client.program.view-specific',['program'=>$program]);
-    }
+        $clientprogram =  DB::table('client_programs')->where('client_email', Auth::user()->email)
+        ->where('program_id', $program->id)->get();
+
+        if ($clientprogram->isEmpty()){
+            $registered = false;
+        }else{
+            $registered = true;
+        }
+
+        // return ($clientprogram);
+
+        return view('client.program.view-specific',['program'=>$program, 'registered'=>$registered, 'clientprogram'=>$clientprogram]);  
+    }    
 
 
     public function ClientRegisterProgram(Program $program)
     {
-        return view('client.program.register', ['program' => $program]);
+        if ($program->option == 'both'){
+            $options = array('Physical','Online');
+        } else if ($program->option == 'online'){
+            $options = array('Online');
+        } else if ($program->option == 'physical'){
+            $options = array('Physical');
+        }
+
+        return view('client.program.register', ['program' => $program, 'options'=> $options]);
         $program->session()->flash('flash.banner', 'Yay it works!');
         $program->session()->flash('flash.bannerStyle', 'success');
     }
@@ -46,9 +65,17 @@ class ProgramController extends Controller
 
         $clientprogram = new ClientProgram;
         $clientprogram->client_email = Auth::user()->email;
-        $clientprogram->company_name = request('company_name');
+        $clientprogram->company_name = Auth::user()->company_name;
         $clientprogram->program_id = $id;
-        $clientprogram->client_venue = request('client_venue');
+        $clientprogram->admin_id = "";
+        $clientprogram->option = strtolower(request('option'));
+
+        if ($clientprogram->option == "Online"){
+            $clientprogram->client_venue = "online";
+        } else{
+            $clientprogram->client_venue = request('client_venue');
+        }
+
         $clientprogram->no_of_employees = request('no_of_employees');
         $clientprogram->start_date = request('start_date');
         $clientprogram->end_date = request('end_date');
@@ -59,7 +86,7 @@ class ProgramController extends Controller
 
         $clientprogram->save();
 
-        return redirect('client/view-all');
+        return redirect('/client/view/program');
 
         // return $request->all();
     }
@@ -79,11 +106,57 @@ class ProgramController extends Controller
         return view('client.program.registered',['registeredprograms'=>$registeredprograms,'programdetails'=>$programdetails]);
     }
 
-    public function  ClientViewSpecificRegisteredProgram(ClientProgram $registeredprogram, Program $program)
+    public function ClientViewSpecificRegisteredProgramDetail(ClientProgram $registeredprogram, Program $program)
     {
         $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();
-        return view('client.program.detail',['registeredprogram' => $registeredprogram, 'program' => $program]);
+        return view('client.program.detail',['registeredprogram'=>$registeredprogram, 'program'=>$program]);  
+    }
+
+    public function ClientEditSpecificRegisteredProgramDetail(ClientProgram $registeredprogram, Program $program)
+    {
+        return view('client.program.edit',['registeredprogram'=>$registeredprogram, 'program'=>$program]);
+    }
+
+    public function ClientSaveRegisteredProgram(Request $request, ClientProgram $registeredprogram)
+    {
+        $registeredprogram->option = request('option');
+        $registeredprogram->no_of_employees = request('no_of_employees');
+        $registeredprogram->start_date = request('start_date');
+        $registeredprogram->end_date = request('end_date');
+        $registeredprogram->payment_type = request('payment_type');
+        $registeredprogram->client_notes = request('client_notes');
+
+        $registeredprogram->save();
+
+        return redirect('/client/view/registered');
+    }
+
+    public function ClientConfirmProgram(ClientProgram $registeredprogram){
+        $registeredprogram->status = "approved";
+        $registeredprogram->save();
+        return redirect('/client/view/registered');
+    }
+
+    public function ClientViewSpecificRegisteredProgramAnnouncement(ClientProgram $registeredprogram, Program $program)
+    {
+        $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
+        $program_ =  DB::table('programs')->where('id', $program)->get();
+        return view('client.program.announcement',['registeredprogram'=>$registeredprogram, 'program'=>$program]); 
+    }
+
+    public function ClientViewSpecificRegisteredProgramMaterial(ClientProgram $registeredprogram, Program $program)
+    {
+        $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
+        $program_ =  DB::table('programs')->where('id', $program)->get();
+        return view('client.program.material',['registeredprogram'=>$registeredprogram, 'program'=>$program]); 
+    }
+
+    public function ClientViewSpecificRegisteredProgramFeedback(ClientProgram $registeredprogram, Program $program)
+    {
+        $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
+        $program_ =  DB::table('programs')->where('id', $program)->get();
+        return view('client.program.feedback',['registeredprogram'=>$registeredprogram, 'program'=>$program]); 
     }
 
     public function StaffCreateProgram()
@@ -96,7 +169,9 @@ class ProgramController extends Controller
         // Validate the request...
         $program = new Program;
         $program->name = request('name');
+        $program->code = request('code');
         $program->type = request('type');
+        $program->length = request('length');
         $program->price = request('price');
         $program->option = request('option');
         $program->description = request('description');
@@ -112,12 +187,58 @@ class ProgramController extends Controller
         // return $path;
         return view('staff.dashboard.index');
     }
-
+    
     public function StaffViewPendingProgram(Request $request)
     {
-        $registeredprograms =  DB::table('client_programs')->get();
-        $programdetails =  DB::table('programs')->get();
-        return view('staff.program.view_pendings',['registeredprograms'=>$registeredprograms,'programdetails'=>$programdetails]);
+        $pendingprograms =  DB::table('client_programs')->where('status', 'pending')->get();
+
+        $ids = array();
+
+        foreach($pendingprograms as $program) {
+            array_push($ids, $program->program_id);
+        }
+
+        $pendingprogramdetails = DB::table('programs')->whereIn('id', $ids)->get();
+
+        $staffprograms =  DB::table('client_programs')->where('staff_id', Auth::user()->id)
+        ->where('status', 'to-be-confirmed')->orWhere('status', 'approved')->orWhere('status', 'completed')->get();
+
+        $ids = array();
+        
+        foreach($pendingprograms as $program) {
+            array_push($ids, $program->program_id);
+        }
+
+        $staffprogramdetails = DB::table('programs')->whereIn('id', $ids)->get();
+
+        // return ($ids);
+        return view('staff.program.view_pendings',['pendingprograms'=>$pendingprograms, 'pendingprogramdetails'=>$pendingprogramdetails, 
+        'staffprograms'=>$staffprograms, 'staffprogramdetails'=>$staffprogramdetails]);
+    }
+
+    public function StaffViewSpecificPendingProgram(Request $request, $pendingprogramid, $programid)
+    {
+        $pendingprogram_ = DB::table('client_programs')->where('id', $pendingprogramid)->get();
+        $pendingprogram = $pendingprogram_[0];
+        $program_ = DB::table('programs')->where('id', $programid)->get();
+        $program = $program_[0];
+        return view('staff.program.view-specific-pending',['pendingprogram'=>$pendingprogram,'program'=>$program]);
+    }
+
+    public function StaffViewSpecificProgram($id, ClientProgram $clientprogram)
+    {
+        $programs = DB::table('programs')->where('id', $clientprogram->program_id)->get();
+        $program = $programs[0];
+        // return $clientprogram;
+        return view('staff.program.view-specific-incharge',['clientprogram'=>$clientprogram,'program'=>$program]);
+    }
+
+    public function StaffMarkProgramComplete(ClientProgram $clientprogram)
+    {
+        $clientprogram->status = "completed";
+        $clientprogram->save();
+        return redirect('/staff/view/pendings');
+
     }
 
     public function AdminShowAllPrograms()
@@ -131,11 +252,7 @@ class ProgramController extends Controller
 
     public function AdminViewSpecificProgram(Program $program)
     {
-
         return view('admin.program.approve', ['program' => $program]);
-
-        // return $program;
-        // return view('Admin.approve_program');
     }
 
     public function AdminApprovedProgram(Request $request, Program $program)
@@ -150,7 +267,5 @@ class ProgramController extends Controller
         return view('admin.program.approved', ['program' => $program]);
 
     }
-
-
 
 }
