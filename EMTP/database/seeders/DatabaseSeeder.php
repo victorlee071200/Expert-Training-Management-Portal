@@ -65,7 +65,7 @@ class DatabaseSeeder extends Seeder
             'option' => Arr::random($option),
             'status' => 'to-be-confirmed',
             'description' => 'This is a test',
-            'thumbnail_path' => 'tanjiro.png',
+            'thumbnail_path' => 'test.png',
         ]);
 
         DB::table('programs')->insert([
@@ -77,7 +77,7 @@ class DatabaseSeeder extends Seeder
             'option' => Arr::random($option),
             'status' => 'approved',
             'description' => 'This is a test',
-            'thumbnail_path' => 'tanjiro.png',
+            'thumbnail_path' => 'test.png',
         ]);
 
         DB::table('programs')->insert([
@@ -89,7 +89,7 @@ class DatabaseSeeder extends Seeder
             'option' => Arr::random($option),
             'status' => 'approved',
             'description' => 'This is a test',
-            'thumbnail_path' => 'tanjiro.png',
+            'thumbnail_path' => 'test.png',
         ]);
 
         DB::table('client_programs')->insert([
