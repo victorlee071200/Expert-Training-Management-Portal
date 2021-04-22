@@ -18,7 +18,7 @@ class CreateClientProgramsTable extends Migration
             $table->string('client_email');
             $table->string('company_name');
             $table->integer('program_id');
-            $table->integer('staff_id');
+            $table->integer('staff_id')->nullable();
             $table->enum('option',['physical','online']);
             $table->string('client_venue');
             $table->integer('no_of_employees');

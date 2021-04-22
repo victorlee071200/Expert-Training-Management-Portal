@@ -52,7 +52,7 @@
                       <div class="m-5">
                         <div class="col-md-4">
                           <button type="submit" id="submit" name="submit" >
-                            <a href="{{$program->id}}/register" class="block tracking-widest uppercase text-center shadow bg-blue-400 hover:bg-blue-500 focus:shadow-outline focus:outline-none text-white text-xs py-3 px-10 rounded">
+                            <a href="{{ route('staff-approve-specific', [$pendingprogram->id,"0"]) }}" class="block tracking-widest uppercase text-center shadow bg-blue-400 hover:bg-blue-500 focus:shadow-outline focus:outline-none text-white text-xs py-3 px-10 rounded">
                               Approve
                             </a>
                           </button>

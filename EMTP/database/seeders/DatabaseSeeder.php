@@ -66,6 +66,7 @@ class DatabaseSeeder extends Seeder
             'status' => 'to-be-confirmed',
             'description' => 'This is a test',
             'thumbnail_path' => 'test.png',
+            'created_at' => '2021-04-22 12:53:34',
         ]);
 
         DB::table('programs')->insert([
@@ -78,6 +79,7 @@ class DatabaseSeeder extends Seeder
             'status' => 'approved',
             'description' => 'This is a test',
             'thumbnail_path' => 'test.png',
+            'created_at' => '2021-04-22 12:53:34',
         ]);
 
         DB::table('programs')->insert([
@@ -90,11 +92,12 @@ class DatabaseSeeder extends Seeder
             'status' => 'approved',
             'description' => 'This is a test',
             'thumbnail_path' => 'test.png',
+            'created_at' => '2021-04-22 12:53:34',
         ]);
 
         DB::table('client_programs')->insert([
             'client_email' => 'c@c',
-            'company_name' => 'Company A',
+            'company_name' => 'Techsim',
             'program_id' => '1',
             'staff_id' => '2',
             'option' => 'online',
@@ -109,7 +112,23 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('client_programs')->insert([
-            'client_email' => 'c@c',
+            'client_email' => 'e@c',
+            'company_name' => 'Company E',
+            'program_id' => '3',
+            'staff_id' => '2',
+            'option' => 'online',
+            'client_venue' => 'Online',
+            'no_of_employees' => rand(10,100),
+            'payment_type' => 'cash',
+            'payment_status' => 'pending',
+            'start_date' => '2021-04-13',
+            'end_date' => '2021-04-15',
+            'client_notes' => 'This is client note',
+            'status' => 'pending',
+        ]);
+
+        DB::table('client_programs')->insert([
+            'client_email' => 'x@x',
             'company_name' => 'Company G',
             'program_id' => '2',
             'staff_id' => '2',
@@ -142,7 +161,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('client_programs')->insert([
             'client_email' => 'c@c',
-            'company_name' => 'Company C',
+            'company_name' => 'Techsim',
             'program_id' => '3',
             'staff_id' => '2',
             'option' => 'physical',

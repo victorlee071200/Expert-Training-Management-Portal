@@ -63,7 +63,7 @@
                         <div class="col-md-4">
                           <button hidden type="button" id="view" name="view" >
                             @if (!($clientprogram->isEmpty()))
-                              <a href="/client/view/registered/{{$clientprogram[0]->id}}/{{$program->id}}" class="block tracking-widest uppercase text-center shadow bg-blue-400 hover:bg-blue-500 focus:shadow-outline focus:outline-none text-white text-xs py-3 px-10 rounded">
+                              <a href="/client/view/registered/{{$clientprogram[0]->id}}/{{$program->id}}/detail" class="block tracking-widest uppercase text-center shadow bg-blue-400 hover:bg-blue-500 focus:shadow-outline focus:outline-none text-white text-xs py-3 px-10 rounded">
                                 View
                               </a>
                             @endif

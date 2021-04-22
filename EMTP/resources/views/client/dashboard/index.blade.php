@@ -12,8 +12,8 @@
       <!--card container-->
       <div  href="#" class="hover:bg-gray-100 lg:m-4 shadow-md hover:shadow-lg rounded-lg bg-white w-auto">
         <!-- Card Image -->
-        <a class="hover:bg-blue-700" href="registered/{{$program->id}}/{{$programdetails[$indexKey]->id}}/detail">
-          <img src="https://www.dmarge.com/wp-content/uploads/2020/01/class-or-cult.jpg" alt="fitness training" class="h-auto">
+        <a class="hover:bg-blue-700" href="view/program/{{$program->program_id}}">
+          <img src = "{{ asset('storage/program_thumbnails/'.$programdetails[$indexKey]->thumbnail_path)}}" alt="fitness training" class="h-auto">
           <!-- Card Content -->
           <div class="p-4">
             <h3 class="font-medium text-gray-600 text-lg my-2 uppercase">{{$programdetails[$indexKey]->name}}</h3>

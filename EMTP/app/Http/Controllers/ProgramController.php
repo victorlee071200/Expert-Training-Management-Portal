@@ -67,10 +67,10 @@ class ProgramController extends Controller
         $clientprogram->client_email = Auth::user()->email;
         $clientprogram->company_name = Auth::user()->company_name;
         $clientprogram->program_id = $id;
-        $clientprogram->admin_id = "";
+        $clientprogram->staff_id = 0;
         $clientprogram->option = strtolower(request('option'));
 
-        if ($clientprogram->option == "Online"){
+        if ($clientprogram->option == "online"){
             $clientprogram->client_venue = "online";
         } else{
             $clientprogram->client_venue = request('client_venue');
@@ -82,7 +82,7 @@ class ProgramController extends Controller
         $clientprogram->payment_type = request('payment_type');
         $clientprogram->payment_status = "pending";
         $clientprogram->client_notes = request('client_notes');
-        $clientprogram->status= 'to-be-confirmed';
+        $clientprogram->status= 'pending';
 
         $clientprogram->save();
 
@@ -216,7 +216,16 @@ class ProgramController extends Controller
         'staffprograms'=>$staffprograms, 'staffprogramdetails'=>$staffprogramdetails]);
     }
 
-    public function StaffViewSpecificPendingProgram(Request $request, $pendingprogramid, $programid)
+    public function StaffApproveSpecificPendingProgram(ClientProgram $clientprogram){
+
+        $clientprogram->status = "to-be-confirmed";
+        $clientprogram->staff_id = Auth::user()->id;
+        $clientprogram->save();
+
+        return redirect('/staff/view/pendings');
+    }
+
+    public function StaffViewSpecificPendingProgram(Request $request, $programid, $pendingprogramid)
     {
         $pendingprogram_ = DB::table('client_programs')->where('id', $pendingprogramid)->get();
         $pendingprogram = $pendingprogram_[0];
