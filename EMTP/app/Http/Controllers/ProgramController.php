@@ -22,8 +22,8 @@ class ProgramController extends Controller
     public function ClientViewAllProgram()
     {
         $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
-        return view('client.program.view-all',['approvedprograms'=>$approvedprograms]);  
-        
+        return view('client.program.view-all',['approvedprograms'=>$approvedprograms]);
+
     }
 
     public function ClientViewSpecificProgram(Program $program)
@@ -40,8 +40,8 @@ class ProgramController extends Controller
 
         // return ($clientprogram);
 
-        return view('client.program.view-specific',['program'=>$program, 'registered'=>$registered, 'clientprogram'=>$clientprogram]);  
-    }    
+        return view('client.program.view-specific',['program'=>$program, 'registered'=>$registered, 'clientprogram'=>$clientprogram]);
+    }
 
 
     public function ClientRegisterProgram(Program $program)
@@ -110,7 +110,7 @@ class ProgramController extends Controller
     {
         $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();
-        return view('client.program.detail',['registeredprogram'=>$registeredprogram, 'program'=>$program]);  
+        return view('client.program.detail',['registeredprogram'=>$registeredprogram, 'program'=>$program]);
     }
 
     public function ClientEditSpecificRegisteredProgramDetail(ClientProgram $registeredprogram, Program $program)
@@ -142,21 +142,21 @@ class ProgramController extends Controller
     {
         $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();
-        return view('client.program.announcement',['registeredprogram'=>$registeredprogram, 'program'=>$program]); 
+        return view('client.program.announcement',['registeredprogram'=>$registeredprogram, 'program'=>$program]);
     }
 
     public function ClientViewSpecificRegisteredProgramMaterial(ClientProgram $registeredprogram, Program $program)
     {
         $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();
-        return view('client.program.material',['registeredprogram'=>$registeredprogram, 'program'=>$program]); 
+        return view('client.program.material',['registeredprogram'=>$registeredprogram, 'program'=>$program]);
     }
 
     public function ClientViewSpecificRegisteredProgramFeedback(ClientProgram $registeredprogram, Program $program)
     {
         $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();
-        return view('client.program.feedback',['registeredprogram'=>$registeredprogram, 'program'=>$program]); 
+        return view('client.program.feedback',['registeredprogram'=>$registeredprogram, 'program'=>$program]);
     }
 
     public function StaffCreateProgram()
@@ -187,7 +187,7 @@ class ProgramController extends Controller
         // return $path;
         return view('staff.dashboard.index');
     }
-    
+
     public function StaffViewPendingProgram(Request $request)
     {
         $pendingprograms =  DB::table('client_programs')->where('status', 'pending')->get();
@@ -204,7 +204,7 @@ class ProgramController extends Controller
         ->where('status', 'to-be-confirmed')->orWhere('status', 'approved')->orWhere('status', 'completed')->get();
 
         $ids = array();
-        
+
         foreach($pendingprograms as $program) {
             array_push($ids, $program->program_id);
         }
@@ -212,7 +212,7 @@ class ProgramController extends Controller
         $staffprogramdetails = DB::table('programs')->whereIn('id', $ids)->get();
 
         // return ($ids);
-        return view('staff.program.view_pendings',['pendingprograms'=>$pendingprograms, 'pendingprogramdetails'=>$pendingprogramdetails, 
+        return view('staff.program.view_pendings',['pendingprograms'=>$pendingprograms, 'pendingprogramdetails'=>$pendingprogramdetails,
         'staffprograms'=>$staffprograms, 'staffprogramdetails'=>$staffprogramdetails]);
     }
 

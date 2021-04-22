@@ -20,7 +20,7 @@ class AuthAdmin
         {
             return $next($request);
         }
-        
+
         else
         {
             session()->flush();
@@ -28,5 +28,5 @@ class AuthAdmin
         }
         return $next($request);
     }
-    
+
 }

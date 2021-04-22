@@ -2,12 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\AdminDepartmentController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\SupportController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminProgramController;
+use App\Http\Controllers\AdminSupportController;
 use App\Http\Controllers\ClientProgramController;
+use App\Http\Controllers\AdminUserManagementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,7 +50,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // Program Page - View all registered programs
     Route::get('/client/view/registered', [ProgramController::class, 'ClientViewRegisteredProgram']);
 
-    // Program Page - View specific registered program details    
+    // Program Page - View specific registered program details
     Route::get('/client/view/registered/{registeredprogram}/{program}/detail', [ProgramController::class, 'ClientViewSpecificRegisteredProgramDetail'])->name('client-program-detail');
 
     // Program Page - Edit specific registered program details (Before staff approves it)
@@ -59,13 +62,13 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // Program Page - Client confirms the program
     Route::get('/registered/{registeredprogram}/confirm', [ProgramController::class, 'ClientConfirmProgram'])->name('client-program-confirm');
 
-    // Program Page - View specific registered program announcement    
+    // Program Page - View specific registered program announcement
     Route::get('/client/registered/{registeredprogram}/{program}/announcement', [ProgramController::class, 'ClientViewSpecificRegisteredProgramAnnouncement'])->name('client-program-announcement');
 
-    // Program Page - View specific registered program material  
+    // Program Page - View specific registered program material
     Route::get('/client/registered/{registeredprogram}/{program}/material', [ProgramController::class, 'ClientViewSpecificRegisteredProgramMaterial'])->name('client-program-material');
 
-    // Program Page - View specific registered program feedback    
+    // Program Page - View specific registered program feedback
     Route::get('/client/registered/{registeredprogram}/{program}/feedback', [ProgramController::class, 'ClientViewSpecificRegisteredProgramFeedback'])->name('client-program-feedback');
 
     // About Us Page
@@ -94,9 +97,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //View a specific pending program
     Route::get('/staff/view/pendings/{program}/{clientprogram}', [ProgramController::class, 'StaffViewSpecificPendingProgram'])->name('staff-view-specific');
 
-    //Approve a specific pending program
-    Route::get('/{clientprogram}/{id}/approve', [ProgramController::class, 'StaffApproveSpecificPendingProgram'])->name('staff-approve-specific');
-
     //View a specific in charge program
     Route::get('/staffpending/view/{user}/{clientprogram}', [ProgramController::class, 'StaffViewSpecificProgram'])->name('staff-view-specific-incharge');
 
@@ -110,8 +110,26 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 //Program Module
 //Dashboard
 Route::get('/admin/dashboard', [DashboardController::class, 'AdminDashboard'])->name('admin-dashboard');
-// View
-Route::get('/admin/view/program', [ProgramController::class, 'AdminShowAllPrograms'])->name('admin-view-all-programs');
+
+// Program Module
+Route::get('/admin/view/program', [AdminProgramController::class, 'index'])->name('admin-view-all-programs');
+
+// Support Module
+Route::get('/admin/view/support', [AdminSupportController::class, 'index'])->name('admin-support-dashboard');
+
+// User Management Module
+Route::get('/admin/view/user', [AdminUserManagementController::class, 'index'])->name('admin-management-dashboard');
+Route::get('/admin/create/staff', [AdminUserManagementController::class, 'create'])->name('admin-create-staff-page');
+Route::post('/admin/create/staff', [AdminUserManagementController::class, 'store'])->name('admin-create-a-staff');
+Route::get('/admin/view/user/{id}', [AdminUserManagementController::class, 'show'])->name('admin-view-specific-user');
+
+// Department Module
+Route::get('/admin/view/department', [AdminDepartmentController::class, 'index'])->name('admin-department-dashboard');
+Route::get('/admin/create/department', [AdminDepartmentController::class, 'create'])->name('admin-create-department-page');
+Route::post('/admin/create/department', [AdminDepartmentController::class, 'store'])->name('admin-create-a-department');
+Route::get('/admin/view/department/{id}', [AdminDepartmentController::class, 'show'])->name('admin-view-specific-department');
+Route::get('/admin/edit/department/{id}', [AdminDepartmentController::class, 'edit'])->name('admin-edit-specific-department');
+Route::put('/admin/edit/department/{id}', [AdminDepartmentController::class, 'update'])->name('admin-update-specific-department');
 
 //View Specific Program
 Route::get('/admin/view/program/{program}', [ProgramController::class, 'AdminViewSpecificProgram'])->name('admin-view-specific-program');
