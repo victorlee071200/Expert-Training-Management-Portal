@@ -18,8 +18,6 @@ class CreateClientProgramsTable extends Migration
             $table->string('client_email');
             $table->string('company_name');
             $table->integer('program_id');
-            $table->integer('staff_id');
-            $table->enum('option',['physical','online']);
             $table->string('client_venue');
             $table->integer('no_of_employees');
             $table->enum('payment_type',['cash','online banking','credit/debit card']);
@@ -27,7 +25,7 @@ class CreateClientProgramsTable extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->text('client_notes');
-            $table->enum('status',['pending','to-be-confirmed','approved','completed','rejected']);
+            $table->enum('status',['pending','to-be-confirmed','approved','rejected']);
             $table->timestamps();
         });
         
