@@ -60,7 +60,7 @@
                     <div class="mt-8 grid lg:grid-cols-3 gap-10">
                         @foreach($approvedprograms as $program)
                         <!--cards go here-->
-                        <div class="card hover:shadow-lg" href="program/{{$program->id}}">
+                        <a class="card hover:shadow-lg" href="program/{{$program->id}}">
                             <img src="{{ asset('storage/program_thumbnails/'.$program->thumbnail_path)}}" alt="train1" class="w-full h-32 sm:h-48 object-cover">
                             <div class="m-4">
                                 <span class="font-bold">{{$program->code}} {{$program->name}}</span>
@@ -71,7 +71,7 @@
                                 </svg>
                                 <span>Price: ${{$program->price}}</span>
                             </div>
-                        </div>
+                        </a>
                         @endforeach
                     </div>
                 </div>
