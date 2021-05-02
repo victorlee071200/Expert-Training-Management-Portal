@@ -13,6 +13,7 @@ use App\Http\Controllers\ClientProgramController;
 use App\Http\Controllers\ClientSupportController;
 use App\Http\Controllers\AdminDepartmentController;
 use App\Http\Controllers\AdminUserManagementController;
+use App\Http\Controllers\TrainingMaterialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -203,3 +204,6 @@ Route::get('/payment_credit_card', function () {
 Route::get('/payment_result', function () {
     return view('client.requisite_process.payment_result');
 });
+
+// Staff and Admin CRUD for Material
+Route::get('/staff/program/material', [TrainingMaterialController::class, 'index'])->name('staff-program-material');
