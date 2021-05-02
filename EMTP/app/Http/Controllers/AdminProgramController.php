@@ -2,25 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
 use App\Models\Program;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 class AdminProgramController extends Controller
 {
-    protected $table = 'programs';
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function ShowAllPrograms()
+    public function index()
     {
         $pendingprograms =  DB::table('programs')->where('status', 'to-be-confirmed')->get();
         $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
-        $allprograms =  DB::table('programs')->get();
+        $allprograms =  Program::all();
         return view('admin.program.index',['pendingprograms'=>$pendingprograms, 'allprograms'=>$allprograms, 'approvedprograms'=>$approvedprograms]);
     }
 
@@ -42,68 +39,71 @@ class AdminProgramController extends Controller
      */
     public function store(Request $request)
     {
-        $program = new Program;
-        $program->name = request('name');
-        $program->type = request('type');
-        $program->price = request('price');
-        $program->option = request('option');
-        $program->description = request('description');
-
-        $program->save();
-
-        return redirect('staff');
-
-        // return $request->all();
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Program  $program
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Program $program)
+    public function show_pending($id)
     {
-
+        $program = Program::find($id);
         return view('admin.program.approve', ['program' => $program]);
 
-        // return $program;
-        // return view('Admin.approve_program');
     }
+
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Program  $program
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Program $program)
+    public function show_approved($id)
     {
-        //
+        $program = Program::find($id);
+        return view('admin.program.approved', ['program' => $program]);
+
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Program  $program
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function UpdateApprovedProgram(Request $request, Program $program)
+    public function update(Request $request, $id)
     {
+        $program = Program::find($id);
         $program->status = 'approved';
         $program->save();
-        return redirect('/admin/program/view');
+
+        return redirect('/admin/view/program')->withToastSuccess('Successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Program  $program
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Program $program)
+    public function destroy($id)
     {
         //
+    }
+
+    public function AdminApprovedProgram(Request $request, Program $program)
+    {
+
+    }
+
+    public function AdminViewApprovedProgram(Program $program)
+    {
+
+
     }
 }

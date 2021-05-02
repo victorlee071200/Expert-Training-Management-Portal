@@ -41,8 +41,10 @@
 
         @stack('modals')
 
-        
+
 
         @livewireScripts
     </body>
+
+    @include('sweetalert::alert')
 </html>
