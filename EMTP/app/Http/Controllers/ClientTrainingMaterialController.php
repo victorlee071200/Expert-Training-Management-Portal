@@ -15,8 +15,10 @@ class TrainingMaterialController extends Controller
      */
     public function index()
     {
+        $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
+        $program_ =  DB::table('programs')->where('id', $program)->get();
         $trainingMaterial = DB::table('material')->where('state', 'ACTIVE')->get();
-        return view('staff.program.material',['trainingMaterial'=>$trainingMaterial]);
+        return view('staff.program.material',['registeredprogram'=>$registeredprogram, 'program'=>$program, 'trainingMaterial'=>$trainingMaterial]);
     }
 
     public function view_material()

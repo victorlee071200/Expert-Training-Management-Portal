@@ -1,4 +1,4 @@
-<x-app-layout title="Staff Specific Program - View Material">
+<x-app-layout title="client registered Specific Program - View Material">
     <div class="bg-white sm:rounded-lg flex">
         <!-- side nav -->
         <div class="bg-gray-300 text-gray-800 hidden md:flex h-auto">

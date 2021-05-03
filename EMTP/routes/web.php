@@ -207,3 +207,4 @@ Route::get('/payment_result', function () {
 
 // Staff and Admin CRUD for Material
 Route::get('/staff/program/material', [TrainingMaterialController::class, 'index'])->name('staff-program-material');
+Route::get('/staff/program/material', [TrainingMaterialController::class, 'view_material'])->name('staff-program-view-material');

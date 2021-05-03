@@ -149,7 +149,8 @@ class ProgramController extends Controller
     {
         $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();
-        return view('client.program.material',['registeredprogram'=>$registeredprogram, 'program'=>$program]);
+        $trainingMaterial = DB::table('material')->where('state', 'ACTIVE')->get();
+        return view('client.program.material',['registeredprogram'=>$registeredprogram, 'program'=>$program, 'trainingMaterial'=> $trainingMaterial]);
     }
 
     public function ClientViewSpecificRegisteredProgramFeedback(ClientProgram $registeredprogram, Program $program)
