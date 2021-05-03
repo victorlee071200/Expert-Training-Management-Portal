@@ -130,7 +130,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/{clientprogram}/{id}/approve', [ProgramController::class, 'StaffApproveSpecificPendingProgram'])->name('staff-approve-specific');
 
     //View a specific in charge program
-    Route::get('/staffpending/view/{user}/{clientprogram}', [ProgramController::class, 'StaffViewSpecificProgram'])->name('staff-view-specific-incharge');
+    Route::get('/staff/incharge/view/{user}/{clientprogram}', [ProgramController::class, 'StaffViewSpecificProgram'])->name('staff-view-specific-incharge');
 
     //Mark a program as completed
     Route::get('/approved/{clientprogram}/completed', [ProgramController::class, 'StaffMarkProgramComplete'])->name('staff-mark-program-complee');

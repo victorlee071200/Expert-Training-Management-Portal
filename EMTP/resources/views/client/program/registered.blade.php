@@ -13,8 +13,8 @@
             <table class="min-w-max w-full table-auto">
                 <thead>
                     <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                        <th class="py-3 px-6 text-left">Code</th>
-                        <th class="py-3 px-6 text-left">Name</th>
+                        <th class="py-3 px-6 text-center">Code</th>
+                        <th class="py-3 px-6 text-center">Name</th>
                         <th class="py-3 px-6 text-center">Option</th>
                         <th class="py-3 px-6 text-center">Status</th>
                         <th class="py-3 px-6 text-center">Actions</th>
@@ -24,18 +24,16 @@
                 <tbody class="text-gray-600 text-sm font-light ">
                     <tr class="border-b border-gray-200 hover:bg-gray-100">
 
-                        <td class="py-3 px-6 text-left whitespace-nowrap">
-                            <div class="flex items-center">
-                                <span class="font-medium " href="/admin/view/program/{{$program->id}}">{{ $programdetails[$indexKey]->code }}</span>
-                            </div>
+                        <td class="py-3 px-6 text-center whitespace-nowrap">
+                            <span class="font-medium " href="/admin/view/program/{{$program->id}}">{{ $programdetails[$indexKey]->code }}</span>
                         </td>
 
                         <td class="py-3 px-6 text-center">
-                            <span class="bg-yellow-200 text-yellow-600 py-1 px-3 rounded-full text-xs">{{ $programdetails[$indexKey]->name }}</span>
+                            <span>{{ $programdetails[$indexKey]->name }}</span>
                         </td>
 
                         <td class="py-3 px-6 text-center">
-                            <span class="bg-pink-200 text-pink-600 py-1 px-3 rounded-full text-xs">{{ $program->option }}</span>
+                            <span>{{ $program->option }}</span>
                         </td>
 
                         <td class="py-3 px-6 text-center">

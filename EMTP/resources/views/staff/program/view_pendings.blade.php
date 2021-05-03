@@ -16,8 +16,8 @@
                         <table class="min-w-max w-full table-auto">
                             <thead>
                                 <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                                    <th class="py-3 px-6 text-left">Company</th>
-                                    <th class="py-3 px-6 text-left">Program Code</th>
+                                    <th class="py-3 px-6 text-center">Company</th>
+                                    <th class="py-3 px-6 text-center">Program Code</th>
                                     <th class="py-3 px-6 text-center">Program Name</th>
                                     <th class="py-3 px-6 text-center">Status</th>
                                     <th class="py-3 px-6 text-center">Actions</th>
@@ -27,10 +27,8 @@
                             <tbody class="text-gray-600 text-sm font-light ">
                                 <tr class="border-b border-gray-200 hover:bg-gray-100">
 
-                                    <td class="py-3 px-6 text-left">
-                                        <div class="flex items-center ">
-                                            <span class="bg-blue-200 text-blue-600 py-1 px-3 rounded-full text-xs">{{ $program->company_name }}</span>
-                                        </div>
+                                    <td class="py-3 px-6 text-center">
+                                        <span>{{ $program->company_name }}</span>
                                     </td>
                                     {{-- <td class="py-3 px-6 text-center">
                                         <div class="flex items-center justify-center">
@@ -40,10 +38,10 @@
                                         </div>
                                     </td> --}}
                                     <td class="py-3 px-6 text-center">
-                                        <span class="bg-yellow-200 text-yellow-600 py-1 px-3 rounded-full text-xs">{{ $pendingprogramdetails[$indexKey]->code }}</span>
+                                        <span>{{ $pendingprogramdetails[$indexKey]->code }}</span>
                                     </td>
                                     <td class="py-3 px-6 text-center">
-                                        <span class="bg-pink-200 text-pink-600 py-1 px-3 rounded-full text-xs">{{ $pendingprogramdetails[$indexKey]->name }}</span>
+                                        <span>{{ $pendingprogramdetails[$indexKey]->name }}</span>
                                     </td>
                                     <td class="py-3 px-6 text-center">
                                         <span class="bg-indigo-200 text-indigo-600 py-1 px-3 rounded-full text-xs">{{ $program->status }}</span>
@@ -88,19 +86,17 @@
                         <table class="min-w-max w-full table-auto">
                             <thead>
                                 <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                                    <th class="py-3 px-6 text-left">Company</th>
-                                    <th class="py-3 px-6 text-left">Program Code</th>
+                                    <th class="py-3 px-6 text-center">Company</th>
+                                    <th class="py-3 px-6 text-center">Program Code</th>
                                     <th class="py-3 px-6 text-center">Program Name</th>
                                     <th class="py-3 px-6 text-center">Status</th>
                                     <th class="py-3 px-6 text-center">Actions</th>
                                 </tr>
                             </thead>
-                            @foreach($staffprograms as $program)       
+                            @foreach($staffprograms as $indexKey => $program)       
                             <tbody class="text-gray-600 text-sm font-light">
-                                <td class="py-3 px-6 text-left">
-                                    <div class="flex items-center ">
-                                        <span class="bg-blue-200 text-blue-600 py-1 px-3 rounded-full text-xs">{{ $program->company_name }}</span>
-                                    </div>
+                                <td class="py-3 px-6 text-center">
+                                    <span>{{ $program->company_name }}</span>
                                 </td>
                                 {{-- <td class="py-3 px-6 text-center">
                                     <div class="flex items-center justify-center">
@@ -110,10 +106,10 @@
                                     </div>
                                 </td> --}}
                                 <td class="py-3 px-6 text-center">
-                                    <span class="bg-yellow-200 text-yellow-600 py-1 px-3 rounded-full text-xs">{{ $staffprogramdetails[$indexKey]->code }}</span>
+                                    <span>{{ $staffprogramdetails[$indexKey][0]->code }}</span>
                                 </td>
                                 <td class="py-3 px-6 text-center">
-                                    <span class="bg-pink-200 text-pink-600 py-1 px-3 rounded-full text-xs">{{ $staffprogramdetails[$indexKey]->name }}</span>
+                                    <span>{{ $staffprogramdetails[$indexKey][0]->name }}</span>
                                 </td>
                                 <td class="py-3 px-6 text-center">
                                     <span class="bg-indigo-200 text-indigo-600 py-1 px-3 rounded-full text-xs">{{ $program->status }}</span>

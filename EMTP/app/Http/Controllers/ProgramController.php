@@ -205,13 +205,16 @@ class ProgramController extends Controller
 
         $ids = array();
 
-        foreach($pendingprograms as $program) {
+        foreach($staffprograms as $program) {
             array_push($ids, $program->program_id);
         }
 
-        $staffprogramdetails = DB::table('programs')->whereIn('id', $ids)->get();
+        $staffprogramdetails = array();
 
-        // return ($ids);
+        foreach($ids as $id){
+            array_push($staffprogramdetails, DB::table('programs')->where('id', $id)->get());
+        }
+
         return view('staff.program.view_pendings',['pendingprograms'=>$pendingprograms, 'pendingprogramdetails'=>$pendingprogramdetails,
         'staffprograms'=>$staffprograms, 'staffprogramdetails'=>$staffprogramdetails]);
     }
