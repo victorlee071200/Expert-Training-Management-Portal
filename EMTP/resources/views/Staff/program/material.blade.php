@@ -24,7 +24,7 @@
                 </h2>
                 <button class="m-5 px-5 py-2 bg-green-400 rounded text-sm">Create Material</button>
             </div>
-            <div class="p-3 mx-2">
+            <div class="p-3 mx-2" href="">
                 <table class="w-full">
                     @foreach($trainingMaterial as $indexKey => $material)
                         @if($material->program_code == $program->code)

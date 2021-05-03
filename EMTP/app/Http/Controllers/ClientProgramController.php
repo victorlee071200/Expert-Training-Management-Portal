@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Program;
+use App\Models\ClientProgram;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,35 @@ class ClientProgramController extends Controller
     {
         $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
         return view('client.program.approved.index',['approvedprograms'=>$approvedprograms]);
+    }
+
+    public function ClientViewSpecificRegisteredProgramDetail(ClientProgram $registeredprogram, Program $program)
+    {
+        $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
+        $program_ =  DB::table('programs')->where('id', $program)->get();
+        return view('client.program.detail',['registeredprogram'=>$registeredprogram, 'program'=>$program]);
+    }
+
+    public function ClientViewSpecificRegisteredProgramAnnouncement(ClientProgram $registeredprogram, Program $program)
+    {
+        $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
+        $program_ =  DB::table('programs')->where('id', $program)->get();
+        return view('client.program.announcement',['registeredprogram'=>$registeredprogram, 'program'=>$program]);
+    }
+
+    public function ClientViewSpecificRegisteredProgramMaterial(ClientProgram $registeredprogram, Program $program)
+    {
+        $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
+        $program_ =  DB::table('programs')->where('id', $program)->get();
+        $trainingMaterial = DB::table('material')->where('state', 'ACTIVE')->get();
+        return view('client.program.material',['registeredprogram'=>$registeredprogram, 'program'=>$program, 'trainingMaterial'=> $trainingMaterial]);
+    }
+
+    public function ClientViewSpecificRegisteredProgramFeedback(ClientProgram $registeredprogram, Program $program)
+    {
+        $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
+        $program_ =  DB::table('programs')->where('id', $program)->get();
+        return view('client.program.feedback',['registeredprogram'=>$registeredprogram, 'program'=>$program]);
     }
 
     /**
