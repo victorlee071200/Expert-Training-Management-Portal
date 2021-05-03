@@ -24,6 +24,13 @@ class DatabaseSeeder extends Seeder
         $option = ['online','physical','both'];
         $clientoption = ['physical','online'];
 
+        $content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+                    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur 
+                    sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim 
+                    id est laborum.";
+
         // User::factory()
         // ->count(10)
         // ->create();
@@ -173,6 +180,54 @@ class DatabaseSeeder extends Seeder
             'end_date' => '2021-04-13',
             'client_notes' => 'This is client note',
             'status' => 'to-be-confirmed',
+        ]);
+
+        DB::table('material')->insert([
+            'program_code' => 'ICT30005',
+            'program_name' => 'Program A',
+            'title' => 'Introduction',
+            'content' => $content,
+            'state' => 'ACTIVE',
+        ]);
+
+        DB::table('material')->insert([
+            'program_code' => 'PCE10023',
+            'program_name' => 'Program B',
+            'title' => 'Introduction',
+            'content' => $content,
+            'state' => 'ACTIVE',
+        ]);
+
+        DB::table('material')->insert([
+            'program_code' => 'PCE10011',
+            'program_name' => 'Program C',
+            'title' => 'Introduction',
+            'content' => $content,
+            'state' => 'ACTIVE',
+        ]);
+
+        DB::table('material')->insert([
+            'program_code' => 'ICT30005',
+            'program_name' => 'Program A',
+            'title' => 'Chapter 1',
+            'content' => $content,
+            'state' => 'ACTIVE',
+        ]);
+
+        DB::table('material')->insert([
+            'program_code' => 'PCE10011',
+            'program_name' => 'Program C',
+            'title' => 'Chapter 1',
+            'content' => $content,
+            'state' => 'ACTIVE',
+        ]);
+
+        DB::table('material')->insert([
+            'program_code' => 'PCE10011',
+            'program_name' => 'Program C',
+            'title' => 'Chapter 2',
+            'content' => $content,
+            'state' => 'ACTIVE',
         ]);
     }
 }
