@@ -72,7 +72,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/client/registered/{registeredprogram}/{program}/material', [ClientProgramController::class, 'ClientViewSpecificRegisteredProgramMaterial'])->name('client-program-material');
 
     Route::get('/client/registered/{registeredprogram}/{program}/material/{trainingMaterial}', [ClientProgramController::class, 'ClientViewSpecificRegisteredProgramMaterialView'])->name('client-program-material-view');
-    
+
     // Program Page - View specific registered program feedback
     Route::get('/client/registered/{registeredprogram}/{program}/feedback', [ClientProgramController::class, 'ClientViewSpecificRegisteredProgramFeedback'])->name('client-program-feedback');
 
@@ -130,7 +130,16 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 });
 
 // Admin Routes
-// Route::middleware(['auth:sanctum', 'verified','auth.admin'])->group(function () {
+
+Route::prefix('admin')->name('admin.')->group(function () {
+
+    // User Management Module
+    Route::resource('/users', AdminUserManagementController::class);
+
+    //Department module
+    Route::resource('/department', AdminDepartmentController::class);
+});
+
 
 //Program Module
 //Dashboard
@@ -149,19 +158,19 @@ Route::get('/admin/edit/support/{id}', [AdminSupportController::class, 'edit'])-
 
 
 // User Management Module
-Route::get('/admin/view/user', [AdminUserManagementController::class, 'index'])->name('admin-management-dashboard');
-Route::get('/admin/create/staff', [AdminUserManagementController::class, 'create'])->name('admin-create-staff-page');
-Route::post('/admin/create/staff', [AdminUserManagementController::class, 'store'])->name('admin-create-a-staff');
-Route::get('/admin/view/user/{id}', [AdminUserManagementController::class, 'show'])->name('admin-view-specific-user');
+// Route::get('/admin/view/user', [AdminUserManagementController::class, 'index'])->name('admin-management-dashboard');
+// Route::get('/admin/create/staff', [AdminUserManagementController::class, 'create'])->name('admin-create-staff-page');
+// Route::post('/admin/create/staff', [AdminUserManagementController::class, 'store'])->name('admin-create-a-staff');
+// Route::get('/admin/view/user/{id}', [AdminUserManagementController::class, 'show'])->name('admin-view-specific-user');
 
 // Department Module
-Route::get('/admin/view/department', [AdminDepartmentController::class, 'index'])->name('admin-department-dashboard');
-Route::get('/admin/create/department', [AdminDepartmentController::class, 'create'])->name('admin-create-department-page');
-Route::post('/admin/create/department', [AdminDepartmentController::class, 'store'])->name('admin-create-a-department');
-Route::get('/admin/view/department/{id}', [AdminDepartmentController::class, 'show'])->name('admin-view-specific-department');
-Route::get('/admin/edit/department/{id}', [AdminDepartmentController::class, 'edit'])->name('admin-edit-specific-department');
-Route::put('/admin/update/department/{id}', [AdminDepartmentController::class, 'update'])->name('admin-update-specific-department');
-Route::delete('/admin/delete/department/{id}', [AdminDepartmentController::class, 'delete'])->name('admin-delete-specific-department');
+// Route::get('/admin/view/department', [AdminDepartmentController::class, 'index'])->name('admin-department-dashboard');
+// Route::get('/admin/create/department', [AdminDepartmentController::class, 'create'])->name('admin-create-department-page');
+// Route::post('/admin/create/department', [AdminDepartmentController::class, 'store'])->name('admin-create-a-department');
+// Route::get('/admin/view/department/{id}', [AdminDepartmentController::class, 'show'])->name('admin-view-specific-department');
+// Route::get('/admin/edit/department/{id}', [AdminDepartmentController::class, 'edit'])->name('admin-edit-specific-department');
+// Route::put('/admin/update/department/{id}', [AdminDepartmentController::class, 'update'])->name('admin-update-specific-department');
+// Route::delete('/admin/delete/department/{id}', [AdminDepartmentController::class, 'delete'])->name('admin-delete-specific-department');
 
 //View Specific Program
 Route::get('/admin/view/program/{program}', [ProgramController::class, 'AdminViewSpecificProgram'])->name('admin-view-specific-program');
