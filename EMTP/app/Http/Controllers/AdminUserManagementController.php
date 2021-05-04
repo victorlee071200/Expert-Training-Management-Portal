@@ -19,7 +19,7 @@ class AdminUserManagementController extends Controller
         $staffs =  DB::table('users')->where('usertype', 'staff')->get();
         $clients =  DB::table('users')->where('usertype', 'client')->get();
         $admins =  DB::table('users')->where('usertype', 'admin')->get();
-        return view('admin.management.index',['staffs'=>$staffs, 'clients'=>$clients, 'admins'=>$admins]);
+        return view('admin.users.index',['staffs'=>$staffs, 'clients'=>$clients, 'admins'=>$admins]);
     }
 
     /**
@@ -30,7 +30,7 @@ class AdminUserManagementController extends Controller
     public function create()
     {
         $departments = Department::all();
-        return view('admin.management.create', ['departments'=> $departments]);
+        return view('admin.users.create', ['departments'=> $departments]);
     }
 
     /**
@@ -50,7 +50,7 @@ class AdminUserManagementController extends Controller
         $staff->usertype = ('staff');
         $staff->save();
         // return $path;
-        return redirect('/admin/view/user')->withToastSuccess($staff->name.' Created Successfully!');;
+        return redirect(route('admin.users.index'))->withToastSuccess($staff->name.' Created Successfully!');;
     }
 
     /**
@@ -62,7 +62,7 @@ class AdminUserManagementController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return view('admin.management.details',['user'=>$user]);
+        return view('admin.users.show',['user'=>$user]);
 
 
     }
@@ -75,7 +75,7 @@ class AdminUserManagementController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -98,6 +98,7 @@ class AdminUserManagementController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::destroy($id);
+        return redirect(route('admin.users.index'));
     }
 }

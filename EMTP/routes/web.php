@@ -163,6 +163,7 @@ Route::get('/admin/edit/support/{id}', [AdminSupportController::class, 'edit'])-
 // Route::post('/admin/create/staff', [AdminUserManagementController::class, 'store'])->name('admin-create-a-staff');
 // Route::get('/admin/view/user/{id}', [AdminUserManagementController::class, 'show'])->name('admin-view-specific-user');
 
+
 // Department Module
 // Route::get('/admin/view/department', [AdminDepartmentController::class, 'index'])->name('admin-department-dashboard');
 // Route::get('/admin/create/department', [AdminDepartmentController::class, 'create'])->name('admin-create-department-page');

@@ -9,7 +9,7 @@
     </h1>
 
     <div class="space-y-8 mb-6">
-        <a href="/admin/create/department" class="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-indigo-500 rounded shadow ripple hover:shadow-lg hover:bg-indigo-600 focus:outline-none">
+        <a href="{{ route('admin.department.create') }}" class="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-indigo-500 rounded shadow ripple hover:shadow-lg hover:bg-indigo-600 focus:outline-none">
         Create
         </a>
     </div>
@@ -74,7 +74,7 @@
 
                                 <td class="py-3 px-6 text-center">
                                     <div class="flex item-center justify-center">
-                                        <a class="font-medium " href="/admin/view/department/{{$department->id}}">
+                                        <a class="font-medium " href="{{ route('admin.department.show', $department->id) }}">
                                             <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -82,35 +82,28 @@
                                                 </svg>
                                             </div>
                                         </a>
-                                        <a class="font-medium" href="/admin/edit/department/{{$department->id}}">
-                                            <div class="w-4 mr-2 transform hover:text-yellow-500 hover:scale-110">
+                                        <a class="font-medium " href="{{ route('admin.department.edit', $department->id) }}">
+                                            <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                                 </svg>
                                             </div>
                                         </a>
+                                        <button type="button" class="w-4 mr-2 transform hover:text-red-500 hover:scale-110"
+                                         onclick="event.preventDefault();
+                                         document.getElementById('delete-user-form-{{ $department->id }}').submit();
+                                        ">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
+                                        </button>
 
-                                        <form method="POST" action="/admin/delete/department/{{$department->id}}">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
+                                        <form id="delete-user-form-{{ $department->id }}" action="{{ route('admin.department.destroy', $department->id) }}" method="POST" style="display: none">
+                                            @csrf
+                                            @method('DELETE')
 
-                                            <a type="submit" class="w-4 mr-2 transform hover:text-red-500 hover:scale-110">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                </svg>
-                                            </a>
                                         </form>
 
-                                        {{-- <a class="font-medium" href="/admin/delete/department/{{$department->id}}">
-                                            <div class="form-group">
-                                                <input type="submit">
-                                            </div>
-                                            <div class="w-4 mr-2 transform hover:text-red-500 hover:scale-110">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                </svg>
-                                            </div>
-                                        </a> --}}
                                     </div>
                                 </td>
                             </tr>

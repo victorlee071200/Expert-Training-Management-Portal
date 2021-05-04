@@ -85,7 +85,7 @@
                       </a>
 
                       <a
-                        href="{{ route('admin-department-dashboard') }}"
+                        href="{{ route('admin.department.index') }}"
                         role="menuitem"
                         class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                       >
@@ -93,7 +93,7 @@
                       </a>
 
                       <a
-                        href="{{ route('admin-management-dashboard') }}"
+                        href="{{ route('admin.users.index') }}"
                         role="menuitem"
                         class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                       >
@@ -647,7 +647,7 @@
                       </a>
 
                       <a
-                        href="{{ route('admin-department-dashboard') }}"
+                        href="{{ route('admin.department.index') }}"
                         role="menuitem"
                         class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                       >
@@ -655,7 +655,7 @@
                       </a>
 
                       <a
-                        href="{{ route('admin-management-dashboard') }}"
+                        href="{{ route('admin.users.index') }}"
                         role="menuitem"
                         class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                       >

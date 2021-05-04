@@ -42,7 +42,7 @@ class AdminDepartmentController extends Controller
         $department->description = request('description');
         $department->save();
         // return $path;
-        return redirect('/admin/view/department')->withToastSuccess($department->name.' Created Successfully!');;
+        return redirect(route('admin.department.index'))->withToastSuccess($department->name.' Created Successfully!');;
     }
 
     /**
@@ -54,7 +54,7 @@ class AdminDepartmentController extends Controller
     public function show($id)
     {
         $department = Department::find($id);
-        return view('admin.department.details', ['department'=>$department]);
+        return view('admin.department.show', ['department'=>$department]);
     }
 
     /**
@@ -83,7 +83,7 @@ class AdminDepartmentController extends Controller
         $department->description = $request->input('description');
         $department->update();
 
-        return redirect('/admin/view/department')->withToastInfo($department->name.' Updated Successfully!');
+        return redirect(route('admin.department.index'))->withToastInfo($department->name.' Updated Successfully!');
 
 
     }
@@ -94,10 +94,10 @@ class AdminDepartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete($id)
+    public function destroy($id)
     {
         $department = Department::find($id);
         $department->delete();
-        return redirect('/admin/view/department')->withToastError($department->name.' Deleted Successfully!');
+        return redirect(route('admin.department.index'))->withToastError($department->name.' Deleted Successfully!');
     }
 }
