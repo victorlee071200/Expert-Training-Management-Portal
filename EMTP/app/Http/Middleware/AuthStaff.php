@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class AuthAdmin
+class AuthStaff
 {
     /**
      * Handle an incoming request.
@@ -16,14 +16,11 @@ class AuthAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(session('usertype') === 'admin')
+        if(session('usertype') === 'staff')
         {
             return $next($request);
         }
-        else if(session('usertype') === 'staff')
-        {
-            return $next($request);
-        }
+
         else
         {
             session()->flush();
@@ -31,5 +28,4 @@ class AuthAdmin
         }
         return $next($request);
     }
-
 }

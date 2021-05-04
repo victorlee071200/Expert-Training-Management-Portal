@@ -23,16 +23,6 @@ class DashboardController extends Controller
         return view('client.dashboard.index',['registeredprograms'=>$registeredprograms,'programdetails'=>$programdetails]);
     }
 
-    public function StaffDashboard()
-    {
-        return view('staff.dashboard.index');
-    }
-
-    public function AdminDashboard()
-    {
-        return view('admin.dashboard.index');
-    }
 
 
-    
 }

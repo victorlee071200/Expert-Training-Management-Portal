@@ -11,6 +11,8 @@ use App\Http\Controllers\AdminSupportController;
 use App\Http\Controllers\StaffProgramController;
 use App\Http\Controllers\ClientProgramController;
 use App\Http\Controllers\ClientSupportController;
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\StaffDashboardController;
 use App\Http\Controllers\AdminDepartmentController;
 use App\Http\Controllers\AdminUserManagementController;
 
@@ -103,21 +105,21 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //Staff Dashboard
     Route::get('/staff/dashboard', [DashboardController::class, 'StaffDashboard'])->name('staff-dashboard');
 
-    // Program Module
-    Route::get('/staff/view/program', [StaffProgramController::class, 'index'])->name('staff-program-dashboard');
-    Route::get('/staff/create/program', [ProgramController::class, 'StaffCreateProgram'])->name('staff-create-program');
+    // // Program Module
+    // Route::get('/staff/view/program', [StaffProgramController::class, 'index'])->name('staff-program-dashboard');
+    // Route::get('/staff/create/program', [ProgramController::class, 'StaffCreateProgram'])->name('staff-create-program');
 
-    //Create a program
-    Route::get('/staff/create/program', [ProgramController::class, 'StaffCreateProgram'])->name('staff-create-program');
+    // //Create a program
+    // Route::get('/staff/create/program', [ProgramController::class, 'StaffCreateProgram'])->name('staff-create-program');
 
-    //Register a program with button
-    Route::post('/staff/create/program', [ProgramController::class, 'StaffRegisterProgram'])->name('staff-register-program');
+    // //Register a program with button
+    // Route::post('/staff/create/program', [ProgramController::class, 'StaffRegisterProgram'])->name('staff-register-program');
 
-    //View all pending and in charge programs
-    Route::get('/staff/view/pendings', [ProgramController::class, 'StaffViewPendingProgram'])->name('staff-view-programs');
+    // //View all pending and in charge programs
+    // Route::get('/staff/view/pendings', [ProgramController::class, 'StaffViewPendingProgram'])->name('staff-view-programs');
 
-    //View a specific pending program
-    Route::get('/staff/view/pendings/{program}/{clientprogram}', [ProgramController::class, 'StaffViewSpecificPendingProgram'])->name('staff-view-specific');
+    // //View a specific pending program
+    // Route::get('/staff/view/pendings/{program}/{clientprogram}', [ProgramController::class, 'StaffViewSpecificPendingProgram'])->name('staff-view-specific');
 
     //Approve a specific pending program
     Route::get('/{clientprogram}/{id}/approve', [ProgramController::class, 'StaffApproveSpecificPendingProgram'])->name('staff-approve-specific');
@@ -129,16 +131,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/approved/{clientprogram}/completed', [ProgramController::class, 'StaffMarkProgramComplete'])->name('staff-mark-program-complete');
 });
 
-// Admin Routes
 
-Route::prefix('admin')->name('admin.')->group(function () {
-
-    // User Management Module
-    Route::resource('/users', AdminUserManagementController::class);
-
-    //Department module
-    Route::resource('/department', AdminDepartmentController::class);
-});
 
 
 //Program Module
@@ -202,3 +195,38 @@ Route::get('/payment_credit_card', function () {
 Route::get('/payment_result', function () {
     return view('client.requisite_process.payment_result');
 });
+
+
+
+// Admin Routes
+
+Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', 'verified','authadmin'])->group(function () {
+
+    // Admin Dashboard Module
+    Route::resource('/dashboard', AdminDashboardController::class);
+
+    // Admin User Management
+    Route::resource('/users', AdminUserManagementController::class);
+
+    // Admin Department module
+    Route::resource('/department', AdminDepartmentController::class);
+});
+
+
+Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified','authstaff'])->group(function () {
+
+    // Admin Dashboard Module
+    Route::resource('/dashboard', StaffDashboardController::class);
+
+    // Admin User Management
+    Route::resource('/program', StaffProgramController::class);
+
+    // Admin Department module
+    Route::resource('/department', AdminDepartmentController::class);
+});
+
+
+
+
+
+

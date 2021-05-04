@@ -8,7 +8,6 @@
     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
         <!--Card list container-->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-1 mx-2">
-            @foreach
             <!--card container-->
             <div  href="#" class="hover:bg-gray-100 lg:m-4 shadow-md hover:shadow-lg rounded-lg bg-white w-auto">
                 <!-- Card Image -->
@@ -24,7 +23,6 @@
                     </div>
                 </a>
             </div>
-            @endforeach
         </div>
     </div>
 </x-app-layout>
