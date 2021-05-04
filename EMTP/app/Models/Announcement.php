@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class StaffProgram extends Model
+class Announcement extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'staff_email','program_code','program_name','start_date', 'end_date', 'state'
+        'title', 'content', 'state'
     ];
 
     protected $hidden = [

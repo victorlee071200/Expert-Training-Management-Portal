@@ -69,9 +69,9 @@ class DatabaseSeeder extends Seeder
             'code' => 'ICT30005',
             'length' => 3,
             'price' => rand(10,100),
-            'option' => Arr::random($option),
-            'status' => 'to-be-confirmed',
-            'description' => 'This is a test',
+            'option' => 'online',
+            'status' => 'approved',
+            'description' => $content,
             'thumbnail_path' => 'test.png',
             'created_at' => '2021-04-22 12:53:34',
         ]);
@@ -82,9 +82,9 @@ class DatabaseSeeder extends Seeder
             'code' => 'PCE10023',
             'length' => 3,
             'price' => rand(10,100),
-            'option' => Arr::random($option),
+            'option' => 'online',
             'status' => 'approved',
-            'description' => 'This is a test',
+            'description' => $content,
             'thumbnail_path' => 'test.png',
             'created_at' => '2021-04-22 12:53:34',
         ]);
@@ -95,9 +95,9 @@ class DatabaseSeeder extends Seeder
             'code' => 'PCE10011',
             'length' => 3,
             'price' => rand(10,100),
-            'option' => Arr::random($option),
+            'option' => 'physical',
             'status' => 'approved',
-            'description' => 'This is a test',
+            'description' => $content,
             'thumbnail_path' => 'test.png',
             'created_at' => '2021-04-22 12:53:34',
         ]);
@@ -115,7 +115,7 @@ class DatabaseSeeder extends Seeder
             'start_date' => '2021-04-13',
             'end_date' => '2021-04-15',
             'client_notes' => 'This is client note',
-            'status' => 'pending',
+            'status' => 'approved',
         ]);
 
         DB::table('client_programs')->insert([
@@ -123,15 +123,15 @@ class DatabaseSeeder extends Seeder
             'company_name' => 'Company E',
             'program_id' => '3',
             'staff_id' => '2',
-            'option' => 'online',
-            'client_venue' => 'Online',
+            'option' => 'physical',
+            'client_venue' => 'CityOne',
             'no_of_employees' => rand(10,100),
             'payment_type' => 'cash',
             'payment_status' => 'pending',
             'start_date' => '2021-04-13',
             'end_date' => '2021-04-15',
             'client_notes' => 'This is client note',
-            'status' => 'pending',
+            'status' => 'approved',
         ]);
 
         DB::table('client_programs')->insert([
@@ -179,7 +179,7 @@ class DatabaseSeeder extends Seeder
             'start_date' => '2021-04-13',
             'end_date' => '2021-04-13',
             'client_notes' => 'This is client note',
-            'status' => 'to-be-confirmed',
+            'status' => 'approved',
         ]);
 
         DB::table('materials')->insert([
@@ -229,6 +229,63 @@ class DatabaseSeeder extends Seeder
             'content' => $content,
             'state' => 'ACTIVE',
         ]);
+
+        DB::table('announcements')->insert([
+            'program_code' => 'ICT30005',
+            'program_name' => 'Program A',
+            'title' => 'Announcement 1',
+            'content' => $content,
+            'state' => 'ACTIVE',
+        ]);
+
+        DB::table('announcements')->insert([
+            'program_code' => 'PCE10023',
+            'program_name' => 'Program B',
+            'title' => 'Announcement 1',
+            'content' => $content,
+            'state' => 'ACTIVE',
+        ]);
+
+        DB::table('announcements')->insert([
+            'program_code' => 'PCE10011',
+            'program_name' => 'Program C',
+            'title' => 'Announcement 1',
+            'content' => $content,
+            'state' => 'ACTIVE',
+        ]);
+
+        DB::table('announcements')->insert([
+            'program_code' => 'ICT30005',
+            'program_name' => 'Program A',
+            'title' => 'Announcement 2',
+            'content' => $content,
+            'state' => 'ACTIVE',
+        ]);
+
+        DB::table('announcements')->insert([
+            'program_code' => 'PCE10023',
+            'program_name' => 'Program B',
+            'title' => 'Announcement 2',
+            'content' => $content,
+            'state' => 'ACTIVE',
+        ]);
+
+        DB::table('announcements')->insert([
+            'program_code' => 'PCE10011',
+            'program_name' => 'Program C',
+            'title' => 'Announcement 2',
+            'content' => $content,
+            'state' => 'ACTIVE',
+        ]);
+
+        DB::table('announcements')->insert([
+            'program_code' => 'PCE10011',
+            'program_name' => 'Program C',
+            'title' => 'Announcement 3',
+            'content' => $content,
+            'state' => 'ACTIVE',
+        ]);
+
 
         // $this->call(UserSeeder::class);
         // $this->call(RoleSeeder::class);

@@ -69,10 +69,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     // Program Page - View specific registered program announcement
     Route::get('/client/registered/{registeredprogram}/{program}/announcement', [ClientProgramController::class, 'ClientViewSpecificRegisteredProgramAnnouncement'])->name('client-program-announcement');
+    Route::get('/client/registered/{registeredprogram}/{program}/announcement/{announcement}', [ClientProgramController::class, 'ClientViewSpecificRegisteredProgramAnnouncementView'])->name('client-program-announcement-view');
 
     // Program Page - View specific registered program material
     Route::get('/client/registered/{registeredprogram}/{program}/material', [ClientProgramController::class, 'ClientViewSpecificRegisteredProgramMaterial'])->name('client-program-material');
-
     Route::get('/client/registered/{registeredprogram}/{program}/material/{trainingMaterial}', [ClientProgramController::class, 'ClientViewSpecificRegisteredProgramMaterialView'])->name('client-program-material-view');
 
     // Program Page - View specific registered program feedback

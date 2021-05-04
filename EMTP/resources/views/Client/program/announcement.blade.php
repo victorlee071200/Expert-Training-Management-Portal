@@ -17,11 +17,26 @@
                 </li>
             </ul>
         </div>
-        <div class="block  w-full">
+        <div class="block w-full min-h-screen">
             <div class="mb-5">
-                <h2 class="text-3xl font-bold text-gray-800 py-4 px-4 border-b border-gray-100 w-full">
+                <h2 class="text-3xl font-bold text-gray-800 py-4 px-4 border-b border-gray-100 w-auto">
                     {{ __('Announcement') }}
                 </h2>
+            </div>
+            <div class="p-3 mx-2">
+                <table class="w-full">
+                    @foreach($announcement as $indexKey => $announcements)
+                        @if($announcements->program_code == $program->code)
+                            <tr class="grid-cols-1 rounded shadow-sm">
+                                <th class="w-auto py-5 px-2 hover:bg-gray-50">
+                                    <a href="{{ route('client-program-announcement-view', [$registeredprogram, $program, $announcements->id]) }}">
+                                        <h2 class="text-left pl-10">{{$announcements->title}}</h2>
+                                    </a>
+                                </th>
+                            </tr>
+                        @endif
+                    @endforeach
+                </table>
             </div>
         </div>
     </div>

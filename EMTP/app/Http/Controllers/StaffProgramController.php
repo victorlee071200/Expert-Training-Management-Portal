@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Program;
-use App\Models\StaffProgram;
+use App\Models\ClientProgram;
+use App\Models\Announcement;
 use App\Models\Material;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,41 +24,50 @@ class StaffProgramController extends Controller
         return view('staff.program.index',['pendingprograms'=>$pendingprograms, 'allprograms'=>$allprograms, 'approvedprograms'=>$approvedprograms]);
     }
 
-    public function StaffViewSpecificProgramDetail(StaffProgram $assignedprogram, Program $program)
+    public function StaffViewSpecificProgramDetail(ClientProgram $registeredprogram, Program $program)
     {
-        $assignedprogram_ = DB::table('staff_programs')->where('id', $assignedprogram)->get();
+        $registeredprogram_ = DB::table('staff_programs')->where('id', $registeredprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();
-        return view('staff.program.detail',['assignedprogram'=>$assignedprogram, 'program'=>$program]);
+        return view('staff.program.detail',['registeredprogram'=>$registeredprogram, 'program'=>$program]);
     }
 
-    public function StaffViewSpecificProgramAnnouncement(StaffProgram $assignedprogram, Program $program)
+    public function StaffViewSpecificProgramAnnouncement(ClientProgram $registeredprogram, Program $program, Announcement $announcement)
     {
-        $assignedprogram_ = DB::table('staff_programs')->where('id', $assignedprogram)->get();
+        $registeredprogram_ = DB::table('staff_programs')->where('id', $registeredprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();
-        return view('staff.program.announcement',['assignedprogram'=>$assignedprogram, 'program'=>$program]);
+        $announcement_ = DB::table('announcements')->get();
+        return view('staff.program.announcement',['registeredprogram'=>$registeredprogram, 'program'=>$program, 'announcement', $announcement]);
     }
 
-    public function StaffViewSpecificProgramMaterial(StaffProgram $assignedprogram, Program $program)
+    public function StaffViewSpecificProgramAnnouncementView(ClientProgram $registeredprogram, Program $program, Announcement $announcement)
     {
-        $assignedprogram_ = DB::table('staff_programs')->where('id', $assignedprogram)->get();
+        $registeredprogram_ = DB::table('staff_programs')->where('id', $registeredprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();
-        $trainingMaterial = DB::table('materials')->where('state', 'ACTIVE')->get();
-        return view('staff.program.material',['assignedprogram'=>$assignedprogram, 'program'=>$program, 'trainingMaterial'=> $trainingMaterial]);
+        $announcement_ = DB::table('announcements')->where('id', $announcement)->get();
+        return view('staff.program.view_announcement',['registeredprogram'=>$registeredprogram, 'program'=>$program, 'announcement', $announcement]);
     }
 
-    public function StaffViewSpecificProgramMaterialView(StaffProgram $assignedprogram, Program $program, Material $trainingMaterial)
+    public function StaffViewSpecificProgramMaterial(ClientProgram $registeredprogram, Program $program)
     {
-        $assignedprogram_ = DB::table('client_programs')->where('id', $assignedprogram)->get();
+        $registeredprogram_ = DB::table('staff_programs')->where('id', $registeredprogram)->get();
+        $program_ =  DB::table('programs')->where('id', $program)->get();
+        $trainingMaterial = DB::table('materials')->get();
+        return view('staff.program.material',['registeredprogram'=>$registeredprogram, 'program'=>$program, 'trainingMaterial'=> $trainingMaterial]);
+    }
+
+    public function StaffViewSpecificProgramMaterialView(ClientProgram $registeredprogram, Program $program, Material $trainingMaterial)
+    {
+        $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();
         $trainingMaterial_ = DB::table('materials')->where('id', $trainingMaterial)->get();
-        return view('staff.program.view_material',['assignedprogram'=>$assignedprogram, 'program'=>$program, 'trainingMaterial'=> $trainingMaterial]);
+        return view('staff.program.view_material',['assignedprogram'=>$registeredprogram, 'program'=>$program, 'trainingMaterial'=> $trainingMaterial]);
     }
 
-    public function StaffViewSpecificProgramFeedback(StaffProgram $assignedprogram, Program $program)
+    public function StaffViewSpecificProgramFeedback(ClientProgram $registeredprogram, Program $program)
     {
-        $assignedprogram_ = DB::table('client_programs')->where('id', $assignedprogram)->get();
+        $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();
-        return view('staff.program.feedback',['assignedprogram'=>$assignedprogram, 'program'=>$program]);
+        return view('staff.program.feedback',['assignedprogram'=>$registeredprogram, 'program'=>$program]);
     }
 
     /**

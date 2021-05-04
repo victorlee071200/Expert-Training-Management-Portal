@@ -18,7 +18,7 @@
               <!-- Card Content -->
               <div class="p-4">
                 <h3 class="font-medium text-gray-600 text-lg my-2 uppercase">{{$programdetails[$indexKey]->name}}</h3>
-                <p class="text-justify">{{$programdetails[$indexKey]->description}}</p>
+                <p class="text-justify">{{substr($programdetails[$indexKey]->description,0,100)}}...</p>
                 <div class="mt-5">
                   <span class="rounded-full py-2 px-3 font-semibold bg-gray-200 text-gray-800 ml-2">{{$program->status}}</span>
                 </div>
@@ -33,7 +33,7 @@
             <!-- Card Content -->
             <div class="p-4">
               <h3 class="font-medium text-gray-600 text-lg my-2 uppercase">{{$programdetails[$indexKey]->name}}</h3>
-              <p class="text-justify">{{$programdetails[$indexKey]->description}}</p>
+              <p class="text-justify">{{substr($programdetails[$indexKey]->description,0,100)}}...</p>
               <div class="mt-5">
                 <span class="rounded-full py-2 px-3 font-semibold bg-gray-200 text-gray-800 ml-2">{{$program->status}}</span>
               </div>
