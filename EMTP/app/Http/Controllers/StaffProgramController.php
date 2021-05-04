@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Program;
+use App\Models\ClientProgram;
+use App\Models\Material;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -21,6 +23,43 @@ class StaffProgramController extends Controller
         return view('staff.program.index',['pendingprograms'=>$pendingprograms, 'allprograms'=>$allprograms, 'approvedprograms'=>$approvedprograms]);
     }
 
+    public function StaffViewSpecificProgramDetail(ClientProgram $registeredprogram, Program $program)
+    {
+        $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
+        $program_ =  DB::table('programs')->where('id', $program)->get();
+        return view('staff.program.detail',['registeredprogram'=>$registeredprogram, 'program'=>$program]);
+    }
+
+    public function StaffViewSpecificProgramAnnouncement(ClientProgram $registeredprogram, Program $program)
+    {
+        $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
+        $program_ =  DB::table('programs')->where('id', $program)->get();
+        return view('staff.program.announcement',['registeredprogram'=>$registeredprogram, 'program'=>$program]);
+    }
+
+    public function StaffViewSpecificProgramMaterial(ClientProgram $registeredprogram, Program $program)
+    {
+        $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
+        $program_ =  DB::table('programs')->where('id', $program)->get();
+        $trainingMaterial = DB::table('materials')->where('state', 'ACTIVE')->get();
+        return view('staff.program.material',['registeredprogram'=>$registeredprogram, 'program'=>$program, 'trainingMaterial'=> $trainingMaterial]);
+    }
+
+    public function StaffViewSpecificProgramMaterialView(ClientProgram $registeredprogram, Program $program, Material $trainingMaterial)
+    {
+        $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
+        $program_ =  DB::table('programs')->where('id', $program)->get();
+        $trainingMaterial_ = DB::table('materials')->where('id', $trainingMaterial)->get();
+        return view('staff.program.view_material',['registeredprogram'=>$registeredprogram, 'program'=>$program, 'trainingMaterial'=> $trainingMaterial]);
+    }
+
+    public function StaffViewSpecificProgramFeedback(ClientProgram $registeredprogram, Program $program)
+    {
+        $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
+        $program_ =  DB::table('programs')->where('id', $program)->get();
+        return view('staff.program.feedback',['registeredprogram'=>$registeredprogram, 'program'=>$program]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -29,6 +68,11 @@ class StaffProgramController extends Controller
     public function create()
     {
         return view('staff.program.create');
+    }
+
+    public function StaffCreateMaterial()
+    {
+        return view('staff.program.create_material');
     }
 
     /**

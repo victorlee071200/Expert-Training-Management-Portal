@@ -79,15 +79,14 @@
                 <div class="w-full px-3">
                   <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="option">
                     Option
-                    </label>
-                    <div class="relative">
+                  </label>
+                  <div class="relative">
                     <select id="option" name="option" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                         <option value="online">Online Only</option>
                         <option value="physical">Physical Only</option>
                         <option value="both">Both</option>
                     </select>
-
-                    </div>
+                  </div>
                 </div>
               </div>
 

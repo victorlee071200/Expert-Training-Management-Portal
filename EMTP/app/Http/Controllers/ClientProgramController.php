@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Program;
 use App\Models\ClientProgram;
+use App\Models\Material;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -39,8 +40,16 @@ class ClientProgramController extends Controller
     {
         $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();
-        $trainingMaterial = DB::table('material')->where('state', 'ACTIVE')->get();
+        $trainingMaterial = DB::table('materials')->where('state', 'ACTIVE')->get();
         return view('client.program.material',['registeredprogram'=>$registeredprogram, 'program'=>$program, 'trainingMaterial'=> $trainingMaterial]);
+    }
+
+    public function ClientViewSpecificRegisteredProgramMaterialView(ClientProgram $registeredprogram, Program $program, Material $trainingMaterial)
+    {
+        $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
+        $program_ =  DB::table('programs')->where('id', $program)->get();
+        $trainingMaterial_ = DB::table('materials')->where('id', $trainingMaterial)->get();
+        return view('client.program.view_material',['registeredprogram'=>$registeredprogram, 'program'=>$program, 'trainingMaterial'=> $trainingMaterial]);
     }
 
     public function ClientViewSpecificRegisteredProgramFeedback(ClientProgram $registeredprogram, Program $program)
