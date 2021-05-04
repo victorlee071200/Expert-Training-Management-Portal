@@ -2,23 +2,23 @@
     <div class="bg-white sm:rounded-lg flex">
         <!-- side nav -->
         <div class="bg-gray-300 text-gray-800 hidden md:flex h-auto">
-            <ul>
-                <li>
-                    <a href="#" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Details</a>
-                </li>
-                <li>
-                    <a href="#" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Announcement</a>
-                </li>
-                <li>
-                    <a href="#" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 bg-white text-indigo-600 h-16 flex justify-center items-center w-auto">Materials</a>
-                </li>
-                <li>
-                    <a href="#" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Feedback</a>
-                </li>
-            </ul>
-        </div>
+        <ul>
+            <li>
+                <a href="" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Details</a>
+            </li>
+            <li>
+                <a href="" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Announcement</a>
+            </li>
+            <li>
+                <a href="" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 bg-white text-indigo-600 h-16 flex justify-center items-center w-auto">Materials</a>
+            </li>
+            <li>
+                <a href="" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Feedback</a>
+            </li>
+        </ul>
+    </div>
         <div class="block w-full">
-            <form method="post" action="/staff/create/material" class="w-auto m-5" enctype="multipart/form-data">
+            <form method="post" action="/staff/material" class="w-auto m-5" enctype="multipart/form-data">
                 @csrf
                 <div class="w-auto mx-3 mb-6">
                     <div class="px-3">

@@ -4,16 +4,16 @@
         <div class="bg-gray-300 text-gray-800 hidden md:flex h-auto">
             <ul>
                 <li>
-                    <a href="{{ route('staff-program-detail', [$registeredprogram, $program]) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Details</a>
+                    <a href="{{ route('staff-program-detail', [$assignedprogram, $program]) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Details</a>
                 </li>
                 <li>
-                    <a href="{{ route('staff-program-announcement', [$registeredprogram, $program]) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Announcement</a>
+                    <a href="{{ route('staff-program-announcement', [$assignedprogram, $program]) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Announcement</a>
                 </li>
                 <li>
-                    <a href="{{ route('staff-program-material', [$registeredprogram, $program]) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 bg-white text-indigo-600 h-16 flex justify-center items-center w-auto">Materials</a>
+                    <a href="{{ route('staff-program-material', [$assignedprogram, $program]) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 bg-white text-indigo-600 h-16 flex justify-center items-center w-auto">Materials</a>
                 </li>
                 <li>
-                    <a href="{{ route('staff-program-feedback', [$registeredprogram, $program]) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Feedback</a>
+                    <a href="{{ route('staff-program-feedback', [$assignedprogram, $program]) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Feedback</a>
                 </li>
             </ul>
         </div>
@@ -23,19 +23,23 @@
             </div>
             <div class="p-3 mx-2" href="">
                 <table class="w-full">
-                    <tr>
-                        <th><button class="m-5 px-5 py-2 bg-green-400 rounded text-sm">Create Material</button></th>
+                    <tr class="grid-cols-1">
+                        <td>
+                            <button class="m-5 px-5 py-2 bg-green-400 rounded text-sm">
+                                <a href="{{ route('staff-program-material-create', [$assignedprogram, $program]) }}">
+                                    Create Material
+                                </a>
+                            </button>
+                        </td>
                     </tr>
                     @foreach($trainingMaterial as $indexKey => $material)
                         @if($material->program_code == $program->code)
                             <tr class="grid-cols-1 rounded shadow-sm m-2">
-                                <tr class="grid-cols-1 rounded shadow-sm m-2">
-                                    <th class="w-auto py-5 px-2 m-0">
-                                        <a href="{{ route('client-program-material-view', [$registeredprogram, $program, $material->id]) }}">
-                                            <h2 class="text-left pl-10">{{$material->title}}</h2>
-                                        </a>
-                                    </th>
-                                </tr>
+                                <th class="w-auto py-5 px-2 m-0">
+                                    <a href="{{ route('staff-program-material-view', [$assignedprogram, $program, $material->id]) }}">
+                                        <h2 class="text-left pl-10">{{$material->title}}</h2>
+                                    </a>
+                                </th>
                                 <th class="w-4">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />

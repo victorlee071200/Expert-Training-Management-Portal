@@ -76,12 +76,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/{clientprogram}/{id}/approve', [ProgramController::class, 'StaffApproveSpecificPendingProgram'])->name('staff-approve-specific');
     Route::get('/staffpending/view/{user}/{clientprogram}', [ProgramController::class, 'StaffViewSpecificProgram'])->name('staff-view-specific-incharge');
     Route::get('/approved/{clientprogram}/completed', [ProgramController::class, 'StaffMarkProgramComplete'])->name('staff-mark-program-complete');
-    Route::get('/staff/view/{program}/detail', [StaffProgramController::class, 'StaffViewSpecificProgramDetail'])->name('staff-program-detail');
-    Route::get('/staff/view/{program}/announcement', [StaffProgramController::class, 'StaffViewSpecificProgramAnnouncement'])->name('staff-program-announcement');
-    Route::get('/staff/view/{registeredprogram}/{program}/material', [StaffProgramController::class, 'StaffViewSpecificProgramMaterial'])->name('staff-program-material');
-    Route::get('/staff/view/{program}/material/{trainingMaterial}', [StaffProgramController::class, 'StaffViewSpecificProgramMaterialView'])->name('staff-program-material-view');
+    Route::get('/staff/view/{assignedprogram}/{program}/detail', [StaffProgramController::class, 'StaffViewSpecificProgramDetail'])->name('staff-program-detail');
+    Route::get('/staff/view/{assignedprogram}/{program}/announcement', [StaffProgramController::class, 'StaffViewSpecificProgramAnnouncement'])->name('staff-program-announcement');
+    Route::get('/staff/view/{assignedprogram}/{program}/material', [StaffProgramController::class, 'StaffViewSpecificProgramMaterial'])->name('staff-program-material');
+    Route::get('/staff/view/{assignedprogram}/{program}/material/{trainingMaterial}', [StaffProgramController::class, 'StaffViewSpecificProgramMaterialView'])->name('staff-program-material-view');
     Route::get('/staff/material/create', [StaffProgramController::class, 'StaffCreateMaterial'])->name('staff-program-material-create');
-    Route::get('/staff/view/{program}/feedback', [StaffProgramController::class, 'StaffViewSpecificProgramFeedback'])->name('staff-program-feedback');
+    Route::get('/staff/view/{assignedprogram}/{program}/feedback', [StaffProgramController::class, 'StaffViewSpecificProgramFeedback'])->name('staff-program-feedback');
 });
 
 // Admin Routes
