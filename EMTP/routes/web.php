@@ -71,6 +71,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // Program Page - View specific registered program material
     Route::get('/client/registered/{registeredprogram}/{program}/material', [ClientProgramController::class, 'ClientViewSpecificRegisteredProgramMaterial'])->name('client-program-material');
 
+    // Program Page - View specific material
     Route::get('/client/registered/{registeredprogram}/{program}/material/{trainingMaterial}', [ClientProgramController::class, 'ClientViewSpecificRegisteredProgramMaterialView'])->name('client-program-material-view');
     
     // Program Page - View specific registered program feedback
@@ -127,6 +128,21 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //Mark a program as completed
     Route::get('/approved/{clientprogram}/completed', [ProgramController::class, 'StaffMarkProgramComplete'])->name('staff-mark-program-complete');
+
+    // Program Page - View specific registered program details
+    Route::get('/staff/view/{program}/detail', [StaffProgramController::class, 'StaffViewSpecificProgramDetail'])->name('staff-program-detail');
+
+    // Program Page - View specific registered program announcement
+    Route::get('/staff/view/{program}/announcement', [StaffProgramController::class, 'StaffViewSpecificProgramAnnouncement'])->name('staff-program-announcement');
+
+    // Program Page - View specific registered program material
+    Route::get('/staff/view/{program}/material', [StaffProgramController::class, 'StaffViewSpecificProgramMaterial'])->name('staff-program-material');
+
+    // Program Page - View specific material 
+    Route::get('/staff/view/{program}/material/{trainingMaterial}', [ClientProgramController::class, 'StaffViewSpecificProgramMaterialView'])->name('staff-program-material-view');
+    
+    // Program Page - View specific registered program feedback
+    Route::get('/staff/view/{program}/feedback', [StaffProgramController::class, 'StaffViewSpecificProgramFeedback'])->name('staff-program-feedback');
 });
 
 // Admin Routes

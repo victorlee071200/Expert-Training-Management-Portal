@@ -182,7 +182,7 @@ class DatabaseSeeder extends Seeder
             'status' => 'to-be-confirmed',
         ]);
 
-        DB::table('material')->insert([
+        DB::table('materials')->insert([
             'program_code' => 'ICT30005',
             'program_name' => 'Program A',
             'title' => 'Introduction',
@@ -190,7 +190,7 @@ class DatabaseSeeder extends Seeder
             'state' => 'ACTIVE',
         ]);
 
-        DB::table('material')->insert([
+        DB::table('materials')->insert([
             'program_code' => 'PCE10023',
             'program_name' => 'Program B',
             'title' => 'Introduction',
@@ -198,7 +198,7 @@ class DatabaseSeeder extends Seeder
             'state' => 'ACTIVE',
         ]);
 
-        DB::table('material')->insert([
+        DB::table('materials')->insert([
             'program_code' => 'PCE10011',
             'program_name' => 'Program C',
             'title' => 'Introduction',
@@ -206,7 +206,7 @@ class DatabaseSeeder extends Seeder
             'state' => 'ACTIVE',
         ]);
 
-        DB::table('material')->insert([
+        DB::table('materials')->insert([
             'program_code' => 'ICT30005',
             'program_name' => 'Program A',
             'title' => 'Chapter 1',
@@ -214,7 +214,7 @@ class DatabaseSeeder extends Seeder
             'state' => 'ACTIVE',
         ]);
 
-        DB::table('material')->insert([
+        DB::table('materials')->insert([
             'program_code' => 'PCE10011',
             'program_name' => 'Program C',
             'title' => 'Chapter 1',
@@ -222,7 +222,7 @@ class DatabaseSeeder extends Seeder
             'state' => 'ACTIVE',
         ]);
 
-        DB::table('material')->insert([
+        DB::table('materials')->insert([
             'program_code' => 'PCE10011',
             'program_name' => 'Program C',
             'title' => 'Chapter 2',

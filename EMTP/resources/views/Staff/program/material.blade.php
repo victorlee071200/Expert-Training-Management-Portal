@@ -29,7 +29,13 @@
                     @foreach($trainingMaterial as $indexKey => $material)
                         @if($material->program_code == $program->code)
                             <tr class="grid-cols-1 rounded shadow-sm m-2">
-                                <th class="w-auto py-5 px-2"><h2 class="text-left pl-10">{{$material->title}}</h2></th>
+                                <tr class="grid-cols-1 rounded shadow-sm m-2">
+                                    <th class="w-auto py-5 px-2 m-0">
+                                        <a href="{{ route('client-program-material-view', [$registeredprogram, $program, $material->id]) }}">
+                                            <h2 class="text-left pl-10">{{$material->title}}</h2>
+                                        </a>
+                                    </th>
+                                </tr>
                                 <th class="w-4">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
