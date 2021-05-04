@@ -31,7 +31,7 @@
 
 
             <div  class="w-full max-w-lg">
-                <form action="/admin/update/department/{{$department->id}}" method="POST">
+                <form action="{{ route('admin.department.update', $department->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="flex flex-wrap -mx-3 mb-6">

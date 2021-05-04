@@ -51,7 +51,7 @@
                   </div>
 
                   <div class="m-6">
-                    <a href="/admin/view/user" class="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-500 rounded shadow ripple hover:shadow-lg hover:bg-indigo-600 focus:outline-none">
+                    <a href="{{ route('admin.users.index') }}" class="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-500 rounded shadow ripple hover:shadow-lg hover:bg-indigo-600 focus:outline-none">
                         Back
                     </a>
                   </div>
