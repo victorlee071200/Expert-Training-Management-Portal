@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Program;
 use App\Models\ClientProgram;
+use App\Models\Material;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -67,6 +68,11 @@ class StaffProgramController extends Controller
     public function create()
     {
         return view('staff.program.create');
+    }
+
+    public function StaffCreateMaterial()
+    {
+        return view('staff.program.create_material');
     }
 
     /**

@@ -19,13 +19,13 @@
         </div>
         <div class="block  w-full">
             <div class="mb-5 text-3xl font-bold text-gray-800 py-4 px-4 border-b border-gray-100 grid grid-cols-2">
-                <h2 class="">
-                    {{ __('Material') }}
-                </h2>
-                <button class="m-5 px-5 py-2 bg-green-400 rounded text-sm">Create Material</button>
+                <h2>{{ __('Material') }}</h2>
             </div>
             <div class="p-3 mx-2" href="">
                 <table class="w-full">
+                    <tr>
+                        <th><button class="m-5 px-5 py-2 bg-green-400 rounded text-sm">Create Material</button></th>
+                    </tr>
                     @foreach($trainingMaterial as $indexKey => $material)
                         @if($material->program_code == $program->code)
                             <tr class="grid-cols-1 rounded shadow-sm m-2">
