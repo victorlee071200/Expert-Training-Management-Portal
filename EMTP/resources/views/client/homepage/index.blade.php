@@ -9,7 +9,7 @@
     </div>
 
     <div class="mx-5 md:mx-9 xl:mx-20">
-        <h1 class="text-3xl md:text-4xl font-bold text-center m-5">Training Program Catergories</h1>
+        <h1 class="text-3xl md:text-4xl font-bold text-center m-5">Training Program Categories</h1>
         <!--Small Cards list-->
         <div class="grid grid-cols-2 md:grid-cols-4">
             <div class="hover:bg-gray-200 mx-2 my-2 border-gray-400 border text-center rounded-md">

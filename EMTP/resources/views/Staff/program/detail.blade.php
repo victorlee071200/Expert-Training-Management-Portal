@@ -21,22 +21,19 @@
       <h2 class="text-3xl font-bold text-gray-800 py-4 px-4 pb-2 border-b border-gray-100 w-auto">
         {{ __('Program Detail') }}
       </h2>
-      <img alt="ecommerce" class="rounded border border-gray-200 m-10 h-auto" src="{{ asset('storage/program_thumbnails/'.$program->thumbnail_path)}}">
-      <div class="title-font text-2xl text-gray-900 px-10"> 
-        <p>Code: {{$program->code}}</p>
-        <p>Name: {{$program->name}}</p>
-        <p>Option: {{$program->option}}</p>
-        <p>Type: {{$program->type}}</p>
-        <p>Description: {{ $program->description }}</p>
+      <div class="title-font text-2xl text-gray-900 px-10 mt-5"> 
+        <p class="text-3xl font-semibold">{{$program->code}} {{$program->name}} ({{$program->type}})</p>
+        <p class="text-gray-600 text-base">Time Period: {{$registeredprogram->start_date}} - {{$registeredprogram->end_date}} Mode: {{$program->option}}</p>
+        <img alt="ecommerce" class="rounded border border-gray-200 h-auto" src="{{ asset('storage/program_thumbnails/'.$program->thumbnail_path)}}">
+        <p class="my-5">{{ $program->description }}</p>
         <p>Price: ${{ $program->price }}</p>
-        <p>Email: {{$registeredprogram->client_email}}</p>
+        <p class="text-3xl font-semibold mt-5">Contact</p>
         <p>Company Name: {{$registeredprogram->company_name}}</p>
+        <p>Email: {{$registeredprogram->client_email}}</p>
         <p>Number of employees: {{$registeredprogram->no_of_employees}}</p>
         <p>Mode: {{$registeredprogram->option}}</p>
         <p>Payment Type: {{$registeredprogram->payment_type}}</p>
         <p>Payment Status: {{$registeredprogram->payment_status}}</p>
-        <p>Start Date: {{$registeredprogram->start_date}}</p>
-        <p>End Date: {{$registeredprogram->end_date}}</p>
         <p>Notes: {{$registeredprogram->client_notes}}</p>
         <p>Status: {{$registeredprogram->status}}</p> 
       </div>
