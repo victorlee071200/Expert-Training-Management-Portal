@@ -17,7 +17,7 @@
                 </li>
             </ul>
         </div>
-        <div class="block w-full">
+        <div class="block w-full min-h-screen">
             <div class="mb-5">
                 <h2 class="text-3xl font-bold text-gray-800 py-4 px-4 border-b border-gray-100 w-auto">
                     {{ __('Material') }}

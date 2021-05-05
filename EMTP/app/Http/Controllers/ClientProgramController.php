@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Program;
 use App\Models\ClientProgram;
 use App\Models\Material;
+use App\Models\Announcement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -29,11 +30,20 @@ class ClientProgramController extends Controller
         return view('client.program.detail',['registeredprogram'=>$registeredprogram, 'program'=>$program]);
     }
 
-    public function ClientViewSpecificRegisteredProgramAnnouncement(ClientProgram $registeredprogram, Program $program)
+    public function ClientViewSpecificRegisteredProgramAnnouncement(ClientProgram $registeredprogram, Program $program, Announcement $announcement)
     {
         $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();
-        return view('client.program.announcement',['registeredprogram'=>$registeredprogram, 'program'=>$program]);
+        $announcement = DB::table('announcements')->where('state', 'ACTIVE')->get();
+        return view('client.program.announcement',['registeredprogram'=>$registeredprogram, 'program'=>$program, 'announcement'=>$announcement]);
+    }
+
+    public function ClientViewSpecificRegisteredProgramAnnouncementView(ClientProgram $registeredprogram, Program $program, Announcement $announcement)
+    {
+        $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
+        $program_ =  DB::table('programs')->where('id', $program)->get();
+        $announcement_ = DB::table('announcements')->where('id', $announcement)->get();
+        return view('client.program.view_announcement',['registeredprogram'=>$registeredprogram, 'program'=>$program, 'announcement'=>$announcement]);
     }
 
     public function ClientViewSpecificRegisteredProgramMaterial(ClientProgram $registeredprogram, Program $program)
