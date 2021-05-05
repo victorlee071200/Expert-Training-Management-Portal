@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Announcement;
+use App\Models\ClientProgram;
+use App\Models\Program;
+
+use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\DB;
 
 class AnnouncementController extends Controller
 {
@@ -35,8 +40,12 @@ class AnnouncementController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, ClientProgram $assignedprogram, Program $program, Announcement $announcement)
     {
+        $assignedprogram_ = DB::table('client_programs')->where('id', $assignedprogram)->get();
+        $program_ =  DB::table('programs')->where('id', $program)->get();
+        $announcement = DB::table('announcements')->get();
+
         request()->validate([
             'title' => 'required',
             'content' => 'required',
@@ -44,12 +53,14 @@ class AnnouncementController extends Controller
         ]);
 
         Announcement::create([
+            'program_code' => $program->code,
+            'program_name' => $program->name,
             'title' => request('title'),
             'content' => request('content'),
             'state' => request('state'),
         ]);
         
-        return redirect(route('staff.program.announcement'));
+        return redirect(route('staff-program-announcement',['assignedprogram'=>$assignedprogram, 'program'=>$program, 'announcement'=>$announcement]));
     }
 
     /**

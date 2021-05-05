@@ -1,4 +1,4 @@
-<x-app-layout title="Staff Specific Program - Material">
+<x-app-layout title="Staff Specific Program - Announcement">
     <div class="bg-white sm:rounded-lg flex">
         <!-- side nav -->
         <div class="bg-gray-300 text-gray-800 hidden md:flex h-auto">
@@ -18,28 +18,28 @@
             </ul>
         </div>
         <div class="block w-full min-h-screen">
-            <form method="post" action="/staff/assigned/{{$assignedprogram->id}}/{{$program->id}}/announcement" class="w-auto m-5" enctype="multipart/form-data">
+            <form method="post" action="{{ route('staff-program-announcement', [$assignedprogram, $program, 'name'=>$program->name, 'code'=>$program->code]) }}" class="w-auto m-5" enctype="multipart/form-data">
                 @csrf
                 <div class="w-auto mx-3 mb-6">
                     <div class="px-3">
                         <label class="text-gray-700 text-xl font-bold mb-2" for="title">Title</label>
-                        <input id="title" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 focus:outline-none focus:bg-white focus:border-gray-500" type="text" name="code" required autofocus autocomplete="name" />
+                        <input id="title" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 focus:outline-none focus:bg-white focus:border-gray-500" type="text" name="title" required autofocus autocomplete="name" />
                     </div>
                 </div>
                 <div class="w-auto mx-3 mb-6">
                     <div class="px-3">
                         <label class="text-gray-700 text-xl font-bold mb-2" for="title">Content</label>
-                        <textarea id="content" class="h-96 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 focus:outline-none focus:bg-white focus:border-gray-500" type="text" name="code" required autofocus autocomplete="name">
+                        <textarea id="content" class="h-96 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 focus:outline-none focus:bg-white focus:border-gray-500" type="text" name="content" required autofocus autocomplete="name">
                         </textarea>
                     </div>
                 </div>
                 <div class="w-auto mx-3 mb-6">
                     <div class="w-full px-3">
                       <label class="block text-gray-700 text-xl font-bold mb-2" for="option">
-                        Option
+                        Status
                       </label>
                       <div class="relative">
-                        <select id="option" name="option" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded focus:outline-none focus:bg-white focus:border-gray-500">
+                        <select id="state" name="state" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded focus:outline-none focus:bg-white focus:border-gray-500">
                             <option value="ACTIVE">Active</option>
                             <option value="INACTIVE">Inactive</option>
                         </select>

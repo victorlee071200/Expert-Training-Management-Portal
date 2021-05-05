@@ -16,6 +16,7 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\StaffDashboardController;
 use App\Http\Controllers\AdminDepartmentController;
 use App\Http\Controllers\AdminUserManagementController;
+use App\Http\Controllers\AnnouncementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -111,8 +112,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
      Route::get('/staff/view/program/{id}', [StaffProgramController::class, 'show'])->name('staff-view-specific-program');
      Route::get('/staff/assigned/{assignedprogram}/{program}/detail', [StaffProgramController::class, 'StaffViewSpecificAssignedProgramDetail'])->name('staff-program-detail');
      Route::get('/staff/assigned/{assignedprogram}/{program}/announcement', [StaffProgramController::class, 'StaffViewSpecificAssignedProgramAnnouncement'])->name('staff-program-announcement');
+     Route::get('/staff/assigned/{assignedprogram}/{program}/announcement/create', [AnnouncementController::class, 'create'])->name('staff-program-announcement-create');
+     Route::post('/staff/assigned/{assignedprogram}/{program}/announcement', [AnnouncementController::class, 'store'])->name('staff-program-announcement');
+     Route::get('/staff/assigned/{assignedprogram}/{program}/announcement/{announcement}/edit', [AnnouncementController::class, 'edit'])->name('staff-program-announcement-edit');
      Route::get('/staff/assigned/{assignedprogram}/{program}/announcement/{announcement}', [StaffProgramController::class, 'StaffViewSpecificAssignedProgramAnnouncementView'])->name('staff-program-announcement-view');
      Route::get('/staff/assigned/{assignedprogram}/{program}/material', [StaffProgramController::class, 'StaffViewSpecificAssignedProgramMaterial'])->name('staff-program-material');
+     Route::get('/staff/assigned/{assignedprogram}/{program}/material/create', [StaffProgramController::class, 'StaffCreateMaterial'])->name('staff-program-material-create');
      Route::get('/staff/assigned/{assignedprogram}/{program}/material/{trainingMaterial}', [StaffProgramController::class, 'StaffViewSpecificAssignedProgramMaterialView'])->name('staff-program-material-view');
      Route::get('/staff/assigned/{assignedprogram}/{program}/feedback', [StaffProgramController::class, 'StaffViewSpecificAssignedProgramFeedback'])->name('staff-program-feedback');
 });

@@ -29,17 +29,17 @@
                         <td>
                             <button class="m-5 px-5 py-2 bg-green-400 rounded text-sm">
                                 <a href="{{ route('staff-program-announcement-create', [$assignedprogram, $program]) }}">
-                                    Create Material
+                                    Create Announcement
                                 </a>
                             </button>
                         </td>
                     </tr>
-                    @foreach($trainingMaterial as $indexKey => $material)
-                        @if($material->program_code == $program->code)
+                    @foreach($announcement as $indexKey => $announcements)
+                        @if($announcements->program_code == $program->code)
                             <tr class="grid-cols-1 rounded shadow-sm m-2">
                                 <th class="w-auto py-5 px-2 m-0">
-                                    <a href="{{ route('staff-program-material-view', [$assignedprogram, $program, $material->id]) }}">
-                                        <h2 class="text-left pl-10">{{$material->title}}</h2>
+                                    <a href="{{ route('staff-program-announcement-view', [$assignedprogram, $program, $announcements->id]) }}">
+                                        <h2 class="text-left pl-10">{{$announcements->title}}</h2>
                                     </a>
                                 </th>
                                 <th class="w-4">
