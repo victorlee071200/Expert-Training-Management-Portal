@@ -17,11 +17,11 @@
                 </li>
             </ul>
         </div>
-        <div class="block  w-full">
+        <div class="block  w-full min-h-screen">
             <div class="mb-5 text-3xl font-bold text-gray-800 py-4 px-4 border-b border-gray-100 grid grid-cols-2">
                 <h2>{{ __('Material') }}</h2>
             </div>
-            <div class="p-3 mx-2" href="">
+            <div class="p-3 mx-2">
                 <table class="w-full">
                     <tr class="grid-cols-1">
                         <td>

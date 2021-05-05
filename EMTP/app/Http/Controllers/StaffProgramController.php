@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Program;
 use App\Models\Announcement;
 use App\Models\Material;
-use App\Models\StaffProgram;
 use Illuminate\Http\Request;
 use App\Models\ClientProgram;
 use Illuminate\Support\Facades\DB;
@@ -26,14 +25,14 @@ class StaffProgramController extends Controller
         return view('staff.program.index',['pendingprograms'=>$pendingprograms, 'allprograms'=>$allprograms, 'approvedprograms'=>$approvedprograms]);
     }
 
-    public function StaffViewSpecificProgramDetail(ClientProgram $registeredprogram, Program $program)
+    public function StaffViewSpecificAssignedProgramDetail(ClientProgram $registeredprogram, Program $program)
     {
         $registeredprogram_ = DB::table('staff_programs')->where('id', $registeredprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();
         return view('staff.program.detail',['registeredprogram'=>$registeredprogram, 'program'=>$program]);
     }
 
-    public function StaffViewSpecificProgramAnnouncement(ClientProgram $registeredprogram, Program $program, Announcement $announcement)
+    public function StaffViewSpecificAssignedProgramAnnouncement(ClientProgram $registeredprogram, Program $program, Announcement $announcement)
     {
         $registeredprogram_ = DB::table('staff_programs')->where('id', $registeredprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();
@@ -41,7 +40,7 @@ class StaffProgramController extends Controller
         return view('staff.program.announcement',['registeredprogram'=>$registeredprogram, 'program'=>$program, 'announcement', $announcement]);
     }
 
-    public function StaffViewSpecificProgramAnnouncementView(ClientProgram $registeredprogram, Program $program, Announcement $announcement)
+    public function StaffViewSpecificAssignedProgramAnnouncementView(ClientProgram $registeredprogram, Program $program, Announcement $announcement)
     {
         $registeredprogram_ = DB::table('staff_programs')->where('id', $registeredprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();
@@ -49,7 +48,7 @@ class StaffProgramController extends Controller
         return view('staff.program.view_announcement',['registeredprogram'=>$registeredprogram, 'program'=>$program, 'announcement', $announcement]);
     }
 
-    public function StaffViewSpecificProgramMaterial(ClientProgram $registeredprogram, Program $program)
+    public function StaffViewSpecificAssignedProgramMaterial(ClientProgram $registeredprogram, Program $program)
     {
         $registeredprogram_ = DB::table('staff_programs')->where('id', $registeredprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();
@@ -57,7 +56,7 @@ class StaffProgramController extends Controller
         return view('staff.program.material',['registeredprogram'=>$registeredprogram, 'program'=>$program, 'trainingMaterial'=> $trainingMaterial]);
     }
 
-    public function StaffViewSpecificProgramMaterialView(ClientProgram $registeredprogram, Program $program, Material $trainingMaterial)
+    public function StaffViewSpecificAssignedProgramMaterialView(ClientProgram $registeredprogram, Program $program, Material $trainingMaterial)
     {
         $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();
@@ -65,7 +64,7 @@ class StaffProgramController extends Controller
         return view('staff.program.view_material',['assignedprogram'=>$registeredprogram, 'program'=>$program, 'trainingMaterial'=> $trainingMaterial]);
     }
 
-    public function StaffViewSpecificProgramFeedback(ClientProgram $registeredprogram, Program $program)
+    public function StaffViewSpecificAssignedProgramFeedback(ClientProgram $registeredprogram, Program $program)
     {
         $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();

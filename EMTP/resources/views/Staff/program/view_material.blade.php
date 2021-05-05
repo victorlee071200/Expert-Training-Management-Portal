@@ -17,7 +17,7 @@
                 </li>
             </ul>
         </div>
-        <div class="block  w-full">
+        <div class="block w-full min-h-screen">
             <div class="mb-5 text-3xl font-bold text-gray-800 py-4 px-4 border-b border-gray-100 grid grid-cols-2">
                 <h2 class="">
                     {{$trainingMaterial->title}}
