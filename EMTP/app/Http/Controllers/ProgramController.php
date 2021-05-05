@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Program;
-use App\Models\ClientProgram;
 use Illuminate\Http\Request;
+use App\Models\ClientProgram;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -131,99 +131,7 @@ class ProgramController extends Controller
         return redirect('/client/view/registered');
     }
 
-    public function StaffCreateProgram()
-    {
-        return view('staff.program.create');
-    }
 
-    public function StaffRegisterProgram(Request $request)
-    {
-        // Validate the request...
-        $program = new Program;
-        $program->name = request('name');
-        $program->code = request('code');
-        $program->type = request('type');
-        $program->length = request('length');
-        $program->price = request('price');
-        $program->option = request('option');
-        $program->description = request('description');
-        $program->status = 'to-be-confirmed';
-
-        $name = $request->file('thumbnail')->getClientOriginalName();
-        $request->file('thumbnail')->storeAs(
-            'public/program_thumbnails/', $name
-        );
-        $program->thumbnail_path = $name;
-
-        $program->save();
-        // return $path;
-        return redirect('/staff/view/program')->withToastSuccess($program->name.' has been Created Successfully!');;
-    }
-
-    public function StaffViewPendingProgram(Request $request)
-    {
-        $pendingprograms =  DB::table('client_programs')->where('status', 'pending')->get();
-
-        $ids = array();
-
-        foreach($pendingprograms as $program) {
-            array_push($ids, $program->program_id);
-        }
-
-        $pendingprogramdetails = DB::table('programs')->whereIn('id', $ids)->get();
-
-        $staffprograms =  DB::table('client_programs')->where('staff_id', Auth::user()->id)
-        ->where('status', 'to-be-confirmed')->orWhere('status', 'approved')->orWhere('status', 'completed')->get();
-
-        $ids = array();
-
-        foreach($staffprograms as $program) {
-            array_push($ids, $program->program_id);
-        }
-
-        $staffprogramdetails = array();
-
-        foreach($ids as $id){
-            array_push($staffprogramdetails, DB::table('programs')->where('id', $id)->get());
-        }
-
-        return view('staff.program.view_pendings',['pendingprograms'=>$pendingprograms, 'pendingprogramdetails'=>$pendingprogramdetails,
-        'staffprograms'=>$staffprograms, 'staffprogramdetails'=>$staffprogramdetails]);
-    }
-
-    public function StaffApproveSpecificPendingProgram(ClientProgram $clientprogram){
-
-        $clientprogram->status = "to-be-confirmed";
-        $clientprogram->staff_id = Auth::user()->id;
-        $clientprogram->save();
-
-        return redirect('/staff/view/pendings');
-    }
-
-    public function StaffViewSpecificPendingProgram(Request $request, $programid, $pendingprogramid)
-    {
-        $pendingprogram_ = DB::table('client_programs')->where('id', $pendingprogramid)->get();
-        $pendingprogram = $pendingprogram_[0];
-        $program_ = DB::table('programs')->where('id', $programid)->get();
-        $program = $program_[0];
-        return view('staff.program.view-specific-pending',['pendingprogram'=>$pendingprogram,'program'=>$program]);
-    }
-
-    public function StaffViewSpecificProgram($id, ClientProgram $clientprogram)
-    {
-        $programs = DB::table('programs')->where('id', $clientprogram->program_id)->get();
-        $program = $programs[0];
-        // return $clientprogram;
-        return view('staff.program.view-specific-incharge',['clientprogram'=>$clientprogram,'program'=>$program]);
-    }
-
-    public function StaffMarkProgramComplete(ClientProgram $clientprogram)
-    {
-        $clientprogram->status = "completed";
-        $clientprogram->save();
-        return redirect('/staff/view/pendings');
-
-    }
 
     public function AdminShowAllPrograms()
     {

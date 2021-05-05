@@ -221,6 +221,12 @@ Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified','
     // Admin User Management
     Route::resource('/program', StaffProgramController::class);
 
+    //View all pending and in charge programs
+    Route::get('/view/pendings', [StaffProgramController::class, 'StaffViewPendingProgram'])->name('staff-view-programs');
+
+    //View a specific pending program
+    Route::get('/view/pendings/{program}/{clientprogram}', [ProgramController::class, 'StaffViewSpecificPendingProgram'])->name('staff-view-specific');
+
     // Admin Department module
     Route::resource('/department', AdminDepartmentController::class);
 });

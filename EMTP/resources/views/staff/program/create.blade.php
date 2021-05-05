@@ -27,7 +27,7 @@
           </div>
           <div class="m-10">
 
-            <form method="post" action="/staff/create/program" class="w-full max-w-lg" enctype="multipart/form-data">
+            <form method="post" action="{{ route('staff.program.store') }}" class="w-full max-w-lg" enctype="multipart/form-data">
               @csrf
 
               <div class="flex flex-wrap -mx-3 mb-6">

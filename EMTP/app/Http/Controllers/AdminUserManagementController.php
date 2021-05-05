@@ -98,7 +98,8 @@ class AdminUserManagementController extends Controller
      */
     public function destroy($id)
     {
+        $user = User::find($id);
         User::destroy($id);
-        return redirect(route('admin.users.index'));
+        return redirect(route('admin.users.index'))->withToastError($user->name.' Deleted Successfully!');;
     }
 }
