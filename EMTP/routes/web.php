@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\CheckoutComponent;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\SupportController;
@@ -230,6 +231,18 @@ Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified','
     // Admin Department module
     Route::resource('/department', AdminDepartmentController::class);
 });
+
+
+
+//Staff routes
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+    Route::get('/shop', CheckoutComponent::class);
+
+
+});
+
+
 
 
 
