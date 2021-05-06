@@ -27,8 +27,9 @@
           </div>
         @else
           <!--card container-->
-          <div class="lg:m-4 shadow-md hover:shadow-lg rounded-lg bg-gray-50 w-auto opacity-50">
+          <div class="lg:m-4 shadow-md hover:shadow-lg rounded-lg bg-gray-50 w-auto">
             <!-- Card Image -->
+            <a class="hover:bg-blue-700" href="/client/view/registered/{{$program->id}}/{{$programdetails[$indexKey]->id}}/detail">
             <img src = "{{ asset('storage/program_thumbnails/'.$programdetails[$indexKey]->thumbnail_path)}}" alt="fitness training" class="h-auto">
             <!-- Card Content -->
             <div class="p-4">
@@ -38,6 +39,7 @@
                 <span class="rounded-full py-2 px-3 font-semibold bg-gray-200 text-gray-800 ml-2">{{$program->status}}</span>
               </div>
             </div>
+            </a>
           </div>
         @endif
       @endforeach

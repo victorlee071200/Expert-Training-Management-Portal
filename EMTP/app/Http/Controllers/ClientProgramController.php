@@ -54,9 +54,20 @@ class ClientProgramController extends Controller
 
     public function ClientViewSpecificRegisteredProgramFeedback(ClientProgram $registeredprogram, Program $program)
     {
+        $status = "";
+        $feedbacks = DB::table('feedbacks')->where('program_id',$program->id)
+        ->where('client_id','!=',Auth::user()->id)->orderBy('updated_at', 'desc')->get();
+
+        $feedback_ = DB::table('feedbacks')->where('program_id',$program->id)
+        ->where('client_id',Auth::user()->id)->get();
+
+        $feedback_ = DB::table('feedbacks')->where('program_id',$program->id)
+        ->where('client_id',Auth::user()->id)->get();
+        $feedback = $feedback_[0];
+
         $registeredprogram_ = DB::table('client_programs')->where('id', $registeredprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();
-        return view('client.program.feedback',['registeredprogram'=>$registeredprogram, 'program'=>$program]);
+        return view('client.program.feedback',['registeredprogram'=>$registeredprogram, 'program'=>$program, 'feedbacks'=>$feedbacks, 'feedback'=>$feedback]);
     }
 
     /**

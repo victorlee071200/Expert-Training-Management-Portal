@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -37,19 +38,21 @@ class DatabaseSeeder extends Seeder
 
         //client
         DB::table('users')->insert([
-            'name' => 'Ali',
+            'name' => 'Techsim',
             'company_name' => 'Techsim',
             'email_verified_at' => '2021-04-19 23:01:02',
             'email' => 'c@c',
+            'profile_photo_path' => 'profile.jpg',
             'password' => Hash::make('1234567890'),
             'usertype' => 'client',
         ]);
 
         //staff
         DB::table('users')->insert([
-            'name' => 'Abu',
+            'name' => 'Alibaba',
             'email_verified_at' => '2021-04-19 23:01:02',
             'email' => 's@s',
+            'profile_photo_path' => 'profile.jpg',
             'password' => Hash::make('1234567890'),
             'usertype' => 'staff',
         ]);
@@ -59,6 +62,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'JoJo',
             'email_verified_at' => '2021-04-19 23:01:02',
             'email' => 'a@a',
+            'profile_photo_path' => 'profile.jpg',
             'password' => Hash::make('1234567890'),
             'usertype' => 'admin',
         ]);
@@ -93,6 +97,19 @@ class DatabaseSeeder extends Seeder
             'name' => 'Program C',
             'type' => 'Presentation',
             'code' => 'PCE10011',
+            'length' => 3,
+            'price' => rand(10,100),
+            'option' => Arr::random($option),
+            'status' => 'approved',
+            'description' => 'This is a test',
+            'thumbnail_path' => 'test.png',
+            'created_at' => '2021-04-22 12:53:34',
+        ]);
+
+        DB::table('programs')->insert([
+            'name' => 'Program D',
+            'type' => 'Presentation',
+            'code' => 'SWE10011',
             'length' => 3,
             'price' => rand(10,100),
             'option' => Arr::random($option),
@@ -182,6 +199,22 @@ class DatabaseSeeder extends Seeder
             'status' => 'to-be-confirmed',
         ]);
 
+        DB::table('client_programs')->insert([
+            'client_email' => 'c@c',
+            'company_name' => 'Techsim',
+            'program_id' => '4',
+            'staff_id' => '2',
+            'option' => 'physical',
+            'client_venue' => 'Viva City',
+            'no_of_employees' => rand(10,100),
+            'payment_type' => 'cash',
+            'payment_status' => 'approved',
+            'start_date' => '2021-04-13',
+            'end_date' => '2021-04-13',
+            'client_notes' => 'This is client note',
+            'status' => 'completed',
+        ]);
+
         DB::table('materials')->insert([
             'program_code' => 'ICT30005',
             'program_name' => 'Program A',
@@ -228,6 +261,50 @@ class DatabaseSeeder extends Seeder
             'title' => 'Chapter 2',
             'content' => $content,
             'state' => 'ACTIVE',
+        ]);
+
+        DB::table('feedbacks')->insert([
+            'client_id' => 1,
+            'client_name' => "Techsim",
+            'profile_thumbnail'=>"profile.jpg",
+            'program_id' => 3,
+            'feedback' => 'This program is awesome!',
+            'image_path' => 'test.png',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('feedbacks')->insert([
+            'client_id' => 2,
+            'client_name' => "Alibaba",
+            'profile_thumbnail'=>"profile.jpg",
+            'program_id' => 3,
+            'feedback' => 'This program is awesome too!',
+            'image_path' => 'test.png',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('feedbacks')->insert([
+            'client_id' => 2,
+            'client_name' => "Alibaba",
+            'profile_thumbnail'=>"profile.jpg",
+            'program_id' => 4,
+            'feedback' => 'This program is awesome too!',
+            'image_path' => 'test.png',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+        ]);
+
+        DB::table('feedbacks')->insert([
+            'client_id' => 1,
+            'client_name' => "Techsim",
+            'profile_thumbnail'=>"profile.jpg",
+            'program_id' => 4,
+            'feedback' => 'This program is awesome!',
+            'image_path' => 'test.png',
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
     }
 }

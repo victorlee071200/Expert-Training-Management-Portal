@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Program;
 use App\Models\ClientProgram;
+use App\Models\Feedback;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -38,9 +39,14 @@ class ProgramController extends Controller
             $registered = true;
         }
 
+        $feedbacks = DB::table('feedbacks')->where('program_id',$program->id)->get();
+
+        // return $feedback;
+
         // return ($clientprogram);
 
-        return view('client.program.view-specific',['program'=>$program, 'registered'=>$registered, 'clientprogram'=>$clientprogram]);
+        return view('client.program.view-specific',['program'=>$program, 'registered'=>$registered, 
+        'clientprogram'=>$clientprogram, 'feedbacks'=>$feedbacks]);
     }
 
 
@@ -250,7 +256,6 @@ class ProgramController extends Controller
     public function AdminViewApprovedProgram(Program $program)
     {
         return view('admin.program.approved', ['program' => $program]);
-
     }
 
 }
