@@ -114,6 +114,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
      Route::get('/staff/assigned/{assignedprogram}/{program}/announcement', [StaffProgramController::class, 'StaffViewSpecificAssignedProgramAnnouncement'])->name('staff-program-announcement');
      Route::get('/staff/assigned/{assignedprogram}/{program}/announcement/create', [AnnouncementController::class, 'create'])->name('staff-program-announcement-create');
      Route::post('/staff/assigned/{assignedprogram}/{program}/announcement', [AnnouncementController::class, 'store'])->name('staff-program-announcement');
+     Route::put('/staff/assigned/{assignedprogram}/{program}/announcement/{announcement}', [AnnouncementController::class, 'update'])->name('staff-program-announcement-update');
+     Route::delete('/staff/assigned/{assignedprogram}/{program}/announcement/{announcement}', [AnnouncementController::class, 'destroy'])->name('staff-program-announcement-delete');
      Route::get('/staff/assigned/{assignedprogram}/{program}/announcement/{announcement}/edit', [AnnouncementController::class, 'edit'])->name('staff-program-announcement-edit');
      Route::get('/staff/assigned/{assignedprogram}/{program}/announcement/{announcement}', [StaffProgramController::class, 'StaffViewSpecificAssignedProgramAnnouncementView'])->name('staff-program-announcement-view');
      Route::get('/staff/assigned/{assignedprogram}/{program}/material', [StaffProgramController::class, 'StaffViewSpecificAssignedProgramMaterial'])->name('staff-program-material');

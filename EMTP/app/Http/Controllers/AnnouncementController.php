@@ -80,9 +80,9 @@ class AnnouncementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ClientProgram $assignedprogram, Program $program, Announcement $announcement)
     {
-        //
+        return view('staff.program.edit_announcement',['assignedprogram'=>$assignedprogram, 'program'=>$program, 'announcement'=>$announcement]);
     }
 
     /**
@@ -92,9 +92,21 @@ class AnnouncementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ClientProgram $assignedprogram, Program $program, Announcement $announcement)
     {
-        //
+        request()->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'state' => 'required',
+        ]);
+
+        $announcement->update([
+            'title' => request('title'),
+            'content' => request('content'),
+            'state' => request('state'),
+        ]);
+
+        return redirect(route('staff-program-announcement',['assignedprogram'=>$assignedprogram, 'program'=>$program, 'announcement'=>$announcement]));
     }
 
     /**
@@ -103,8 +115,9 @@ class AnnouncementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ClientProgram $assignedprogram, Program $program, Announcement $announcement)
     {
-        //
+        $announcement->delete();
+        return redirect(route('staff-program-announcement',['assignedprogram'=>$assignedprogram, 'program'=>$program, 'announcement'=>$announcement]));
     }
 }
