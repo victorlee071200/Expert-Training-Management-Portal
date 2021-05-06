@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
-use App\Http\Livewire\CheckoutComponent;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\SupportController;
@@ -48,7 +47,7 @@ Route::get('/', function () {
 // Client Side
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // Dashboard Page
-    Route::get('/client/dashboard', [DashboardController::class, 'ClientDashboard'])->name('client-dashboard');
+    // Route::get('/client/dashboard', [DashboardController::class, 'ClientDashboard'])->name('client-dashboard');
 
     // Home Page
     Route::get('/home', [HomepageController::class, 'index'])->name('client-home');
@@ -235,14 +234,6 @@ Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified','
 
 
 
-//Staff routes
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-
-    Route::get('/shop', CheckoutComponent::class);
-
-
-});
-
 
 
 
@@ -265,7 +256,7 @@ Route::get('courses/{courseId}', [FrontendCourseController::class, 'show'])->nam
 Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', 'verified','admin'])->group(function () {
 
     // Admin dashboard
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     //Course routes
     Route::get('courses', [CourseController::class, 'index'])->name('courses');
     Route::get('courses/create', [CourseController::class, 'create'])->name('courses.create');
@@ -298,6 +289,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', 'verified','
     Route::get('orders', [OrdersController::class, 'index'])->name('orders');
     Route::delete('orders/{orderId}', [OrdersController::class, 'destroy'])->name('orders.destroy');
 
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+
 
 });
 
@@ -310,9 +303,11 @@ Route::group([
     function() {
         Route::get('dashboard', [MemberDashboardController::class, 'index'])->name('dash');
     }
+
 );
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+
+
 
 
 

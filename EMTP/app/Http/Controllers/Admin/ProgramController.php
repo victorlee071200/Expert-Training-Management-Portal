@@ -4,24 +4,24 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Models\program\program;
 use App\Helpers\CurrencyHelper;
+use App\Models\Program\Program;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Userprogram\Userprogram;
+use App\Models\UserProgram\UserProgram;
 use Illuminate\Support\Facades\Validator;
 
-class CourseController extends Controller
+class ProgramController extends Controller
 {
     public function index() {
-        $meta_title = "programs";
-        $programs = program::orderBy('id', 'DESC')->paginate(5);
+        $meta_title = "Programs";
+        $programs = Program::orderBy('id', 'DESC')->paginate(5);
         $currency = CurrencyHelper::getCurrencyString();
         return view('admin.programs.index', compact('meta_title', 'programs', 'currency'));
     }
 
     public function create() {
-        $meta_title = "Create New programs";
+        $meta_title = "Create New Programs";
         return view('admin.programs.create', compact('meta_title'));
     }
 
@@ -39,7 +39,7 @@ class CourseController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        $program = new program;
+        $program = new Program;
         $program->title = $request->program_title;
         $program->slug = Str::slug($request->program_title);
         $program->description = $request->short_description;
@@ -59,7 +59,7 @@ class CourseController extends Controller
             $program->save();
         }
 
-        return redirect()->route('admin.programs')->with('successMsg', 'The program has been successfully created!');
+        return redirect()->route('admin.programs')->with('successMsg', 'The Program has been successfully created!');
     }
 
     public function edit($programId)
@@ -75,7 +75,7 @@ class CourseController extends Controller
 
     public function update(Request $request, $programId)
     {
-        $program = program::findOrFail($programId);
+        $program = Program::findOrFail($programId);
 
         $validator = Validator::make($request->all(), [
             'program_title' => ['required', 'string', 'max:1000', 'unique:programs,title,' . $programId],

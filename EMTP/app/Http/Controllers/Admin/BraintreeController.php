@@ -10,8 +10,8 @@ use App\Helpers\OrderDataHelper;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Models\UserCourse\UserCourse;
 use App\Helpers\AmountConverterHelper;
+use App\Models\Userprogram\Userprogram;
 use Illuminate\Support\Facades\Validator;
 use App\Models\PaymentGateway\BraintreeSetting;
 
@@ -71,10 +71,10 @@ class BraintreeController extends Controller
           return redirect()->back()->withInput()->with('failureMsg', 'Braintree settings not found!');
         }
 
-        $course = DB::table('courses')->find($request->course);
-        if(is_null($course))
+        $program = DB::table('programs')->find($request->program);
+        if(is_null($program))
         {
-            return redirect()->back()->withInput()->with('failureMsg', 'The course has not been found!');
+            return redirect()->back()->withInput()->with('failureMsg', 'The program has not been found!');
         }
 
         if( $braintreeSettings->braintree_environment == 'sandbox' )
@@ -120,7 +120,7 @@ class BraintreeController extends Controller
             }
 
             $orderData = array();
-            OrderDataHelper::getOrderData($orderData, $request, $user, $course->title, $transactionId);
+            OrderDataHelper::getOrderData($orderData, $request, $user, $program->title, $transactionId);
             $order = new Order;
             foreach($orderData as $key => $orderValue)
             {
@@ -128,13 +128,13 @@ class BraintreeController extends Controller
             }
             $order->save();
 
-            $userCourse = DB::table('user_courses')->where('user_id', $user->id)->where('course_id', $course->id)->first();
-            if(is_null($userCourse))
+            $userProgram = DB::table('user_programs')->where('user_id', $user->id)->where('program_id', $program->id)->first();
+            if(is_null($userProgram))
             {
-                $newUserCourse = new UserCourse;
-                $newUserCourse->user_id = $user->id;
-                $newUserCourse->course_id = $course->id;
-                $newUserCourse->save();
+                $newUserProgram = new UserProgram;
+                $newUserProgram->user_id = $user->id;
+                $newUserProgram->program_id = $program->id;
+                $newUserProgram->save();
             }
 
             return redirect()->route('thanks');

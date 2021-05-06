@@ -46,7 +46,7 @@
             <i class="fas fa-cog mr-2"></i> My Dashboard
           </a>
           <div class="dropdown-divider"></div>
-          <a href="{{route('home')}}" target="_blank" class="dropdown-item">
+          <a href="#" target="_blank" class="dropdown-item">
             <i class="fas fa-globe mr-2"></i> View Site
           </a>
           <div class="dropdown-divider"></div>

@@ -17,7 +17,8 @@ class CreateClientProgramsTable extends Migration
             $table->id();
             $table->string('client_email');
             $table->string('company_name');
-            $table->integer('program_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('program_id');
             $table->integer('staff_id')->nullable();
             $table->enum('option',['physical','online']);
             $table->string('client_venue');
@@ -30,7 +31,7 @@ class CreateClientProgramsTable extends Migration
             $table->enum('status',['pending','to-be-confirmed','approved','completed','rejected']);
             $table->timestamps();
         });
-        
+
     }
 
 

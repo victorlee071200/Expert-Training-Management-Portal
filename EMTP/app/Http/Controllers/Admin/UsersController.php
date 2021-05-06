@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\UserCourse\UserCourse;
+use App\Models\UserProgram\UserProgram;
 
 class UsersController extends Controller
 {
@@ -24,8 +24,8 @@ class UsersController extends Controller
             return redirect()->route('admin.users')->with('failureMsg', 'The User with the following id could NOT be deleted: ' . $userId);
         }
 
-        $userCourses = UserCourse::where('user_id', $user->id)->get();
-        foreach($userCourses as $item)
+        $userPrograms = UserProgram::where('user_id', $user->id)->get();
+        foreach($userPrograms as $item)
         {
             $item->delete();
         }
