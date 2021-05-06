@@ -1,22 +1,34 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PageController;
 use App\Http\Livewire\CheckoutComponent;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\SupportController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomepageController;
-use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\OrdersController;
+use App\Http\Controllers\Admin\PaypalController;
+use App\Http\Controllers\Admin\StripeController;
 use App\Http\Controllers\AdminProgramController;
 use App\Http\Controllers\AdminSupportController;
+use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\StaffProgramController;
 use App\Http\Controllers\ClientProgramController;
 use App\Http\Controllers\ClientSupportController;
+use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\FrontendCourseController;
 use App\Http\Controllers\StaffDashboardController;
+use App\Http\Controllers\Admin\BraintreeController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\AdminDepartmentController;
 use App\Http\Controllers\AdminUserManagementController;
-use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\Member\MemberDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -153,7 +165,7 @@ Route::get('/admin/edit/support/{id}', [AdminSupportController::class, 'edit'])-
 // Route::post('/admin/create/department', [AdminDepartmentController::class, 'store'])->name('admin-create-a-department');
 // Route::get('/admin/view/department/{id}', [AdminDepartmentController::class, 'show'])->name('admin-view-specific-department');
 // Route::get('/admin/edit/department/{id}', [AdminDepartmentController::class, 'edit'])->name('admin-edit-specific-department');
-// Route::put('/admin/update/department/{id}', [AdminDepartmentController::class, 'update'])->name('admin-update-specific-department');
+// Route::put('/admin/update/department/{id}', pAdminDepartmentController::class, 'update'])->name('admin-update-specific-department');
 // Route::delete('/admin/delete/department/{id}', [AdminDepartmentController::class, 'delete'])->name('admin-delete-specific-department');
 
 //View Specific Program
@@ -190,7 +202,7 @@ Route::get('/payment_result', function () {
 
 // Admin Routes
 
-Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', 'verified','authadmin'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', 'verified','admin'])->group(function () {
 
     // Admin Dashboard Module
     Route::resource('/dashboard', AdminDashboardController::class);
@@ -200,10 +212,12 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', 'verified','
 
     // Admin Department module
     Route::resource('/department', AdminDepartmentController::class);
+
+
 });
 
 
-Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified','authstaff'])->group(function () {
+Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified','staff'])->group(function () {
 
     // Admin Dashboard Module
     Route::resource('/dashboard', StaffDashboardController::class);
@@ -230,6 +244,77 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 
 });
+
+
+
+
+// To-Be-Confirmed
+
+Route::get('checkout/{courseSlug}', [CheckoutController::class, 'index'])->name('checkout')->middleware('auth');
+Route::post('checkout/validate/{courseId}/{courseSlug}', [CheckoutController::class, 'prePaymentValidation'])->name('checkout.validate');
+Route::post('checkout/fulfill/order', [CheckoutController::class, 'fulfillOrder'])->name('checkout.fulfill.order');
+Route::post('payment/braintree', [BraintreeController::class, 'braintreePayment'])->name('braintree.payment');
+Route::post('payment/stripe/{paymentIntentId}', [StripeController::class, 'getStripePaymentIntent'])->name('stripe.payment');
+Route::get('checkout/success/thank-you', [CheckoutController::class, 'showThanks'])->name('thanks');
+
+Route::get('privacy', [PageController::class, 'privacy'])->name('privacy');
+Route::get('terms', [PageController::class, 'terms'])->name('terms');
+
+Route::get('courses', [FrontendCourseController::class, 'index'])->name('courses.index');
+Route::get('courses/{courseId}', [FrontendCourseController::class, 'show'])->name('courses.show');
+
+// Admin To Be Confirmed
+Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', 'verified','admin'])->group(function () {
+
+    // Admin dashboard
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    //Course routes
+    Route::get('courses', [CourseController::class, 'index'])->name('courses');
+    Route::get('courses/create', [CourseController::class, 'create'])->name('courses.create');
+    Route::post('courses', [CourseController::class, 'store'])->name('courses.store');
+    Route::get('courses/{courseId}/edit', [CourseController::class, 'edit'])->name('courses.edit');
+    Route::put('courses/{courseId}', [CourseController::class, 'update'])->name('courses.update');
+    Route::delete('courses/{courseId}', [CourseController::class, 'destroy'])->name('courses.destroy');
+
+    // Braintree routes
+    Route::get('payments/braintree', [BraintreeController::class, 'index'])->name('braintree');
+    Route::put('payments/braintree/update', [BraintreeController::class, 'update'])->name('braintree.update');
+
+    // Stripe routes
+    Route::get('payments/stripe', [StripeController::class, 'index'])->name('stripe');
+    Route::put('payments/stripe/update', [StripeController::class, 'update'])->name('stripe.update');
+
+    // PayPal routes
+    Route::get('payments/paypal', [PaypalController::class, 'index'])->name('paypal');
+    Route::put('payments/paypal/update', [PaypalController::class, 'update'])->name('paypal.update');
+
+    // Settings route
+    Route::get('payments/settings', [SettingsController::class, 'index'])->name('settings');
+    Route::put('payments/settings/update', [SettingsController::class, 'update'])->name('settings.update');
+
+    // Users route
+    Route::get('users', [UsersController::class, 'index'])->name('users');
+    Route::delete('users/{userId}', [UsersController::class, 'destroy'])->name('users.destroy');
+
+    // Orders route
+    Route::get('orders', [OrdersController::class, 'index'])->name('orders');
+    Route::delete('orders/{orderId}', [OrdersController::class, 'destroy'])->name('orders.destroy');
+
+
+});
+
+// Routes for Member group
+Route::group([
+    'as'=>'member.',
+    'prefix'=>'member',
+    'middleware' => ['auth']],
+
+    function() {
+        Route::get('dashboard', [MemberDashboardController::class, 'index'])->name('dash');
+    }
+);
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 

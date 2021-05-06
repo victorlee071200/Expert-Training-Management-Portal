@@ -4,6 +4,9 @@ namespace App\Http;
 
 use App\Http\Middleware\AuthAdmin;
 use App\Http\Middleware\AuthStaff;
+use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\StaffMiddleware;
+use App\Http\Middleware\MemberMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -56,8 +59,8 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'authadmin'=> \App\Http\Middleware\AuthAdmin::class,
-        'authstaff'=> \App\Http\Middleware\AuthStaff::class,
+        // 'authadmin'=> \App\Http\Middleware\AuthAdmin::class,
+        // 'authstaff'=> \App\Http\Middleware\AuthStaff::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
@@ -67,6 +70,9 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'admin' => AdminMiddleware::class,
+        'member' => MemberMiddleware::class,
+        'staff' => StaffMiddleware::class,
 
 
     ];
