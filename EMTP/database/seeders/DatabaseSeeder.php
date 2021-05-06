@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-Use App\Models\User;
-Use App\Models\Program;
-Use App\Models\ClientProgram;
+use App\Models\User;
+use App\Models\Program;
+use App\Models\ClientProgram;
 
 
 class DatabaseSeeder extends Seeder
@@ -21,8 +21,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $option = ['online','physical','both'];
-        $clientoption = ['physical','online'];
+        $option = ['online', 'physical', 'both'];
+        $clientoption = ['physical', 'online'];
 
         // User::factory()
         // ->count(10)
@@ -61,7 +61,7 @@ class DatabaseSeeder extends Seeder
             'type' => 'Communication',
             'code' => 'ICT30005',
             'length' => 3,
-            'price' => rand(10,100),
+            'price' => rand(10, 100),
             'option' => Arr::random($option),
             'status' => 'to-be-confirmed',
             'description' => 'This is a test',
@@ -74,7 +74,7 @@ class DatabaseSeeder extends Seeder
             'type' => 'Presentation',
             'code' => 'PCE10023',
             'length' => 3,
-            'price' => rand(10,100),
+            'price' => rand(10, 100),
             'option' => Arr::random($option),
             'status' => 'approved',
             'description' => 'This is a test',
@@ -87,7 +87,7 @@ class DatabaseSeeder extends Seeder
             'type' => 'Presentation',
             'code' => 'PCE10011',
             'length' => 3,
-            'price' => rand(10,100),
+            'price' => rand(10, 100),
             'option' => Arr::random($option),
             'status' => 'approved',
             'description' => 'This is a test',
@@ -102,7 +102,7 @@ class DatabaseSeeder extends Seeder
             'staff_id' => '2',
             'option' => 'online',
             'client_venue' => 'Online',
-            'no_of_employees' => rand(10,100),
+            'no_of_employees' => rand(10, 100),
             'payment_type' => 'cash',
             'payment_status' => 'pending',
             'start_date' => '2021-04-13',
@@ -118,7 +118,7 @@ class DatabaseSeeder extends Seeder
             'staff_id' => '2',
             'option' => 'online',
             'client_venue' => 'Online',
-            'no_of_employees' => rand(10,100),
+            'no_of_employees' => rand(10, 100),
             'payment_type' => 'cash',
             'payment_status' => 'pending',
             'start_date' => '2021-04-13',
@@ -134,7 +134,7 @@ class DatabaseSeeder extends Seeder
             'staff_id' => '2',
             'option' => 'online',
             'client_venue' => 'Online',
-            'no_of_employees' => rand(10,100),
+            'no_of_employees' => rand(10, 100),
             'payment_type' => 'cash',
             'payment_status' => 'pending',
             'start_date' => '2021-04-13',
@@ -150,7 +150,7 @@ class DatabaseSeeder extends Seeder
             'staff_id' => '3',
             'option' => Arr::random($clientoption),
             'client_venue' => 'Viva City',
-            'no_of_employees' => rand(10,100),
+            'no_of_employees' => rand(10, 100),
             'payment_type' => 'cash',
             'payment_status' => 'pending',
             'start_date' => '2021-04-13',
@@ -166,13 +166,20 @@ class DatabaseSeeder extends Seeder
             'staff_id' => '2',
             'option' => 'physical',
             'client_venue' => 'Viva City',
-            'no_of_employees' => rand(10,100),
+            'no_of_employees' => rand(10, 100),
             'payment_type' => 'cash',
             'payment_status' => 'pending',
             'start_date' => '2021-04-13',
             'end_date' => '2021-04-13',
             'client_notes' => 'This is client note',
             'status' => 'to-be-confirmed',
+        ]);
+
+        DB::table('help_questions')->insert([
+            'title' => 'testing',
+            'description' => 'testing',
+            'content' => 'testing',
+            'email' => 'c@c',
         ]);
     }
 }
