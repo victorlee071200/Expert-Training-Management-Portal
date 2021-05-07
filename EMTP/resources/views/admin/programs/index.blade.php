@@ -58,7 +58,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                             </form>
-                                            - <a href="{{route('programs.show', $program->id)}}" target="_blank">View</a></td>
+                                            - <a href="{{route('admin.programs.show', $program->id)}}" target="_blank">View</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -113,7 +113,7 @@
                             </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
-                        
+
                         @foreach ($programs as $program)
                             <tr class="transition-all hover:shadow-lg">
                                 <td class="px-6 py-4 whitespace-nowrap text-left">

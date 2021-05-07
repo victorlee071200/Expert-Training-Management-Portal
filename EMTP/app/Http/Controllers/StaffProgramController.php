@@ -115,7 +115,7 @@ class StaffProgramController extends Controller
 
          $program->save();
          // return $path;
-         return redirect(route('staff.program.index'))->withToastSuccess($program->name.' has been Created Successfully!');;
+         return redirect(route('admin.programs.index'))->withToastSuccess($program->name.' has been Created Successfully!');;
     }
 
     /**
