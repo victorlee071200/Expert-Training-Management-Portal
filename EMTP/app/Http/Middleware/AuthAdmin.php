@@ -20,14 +20,16 @@ class AuthAdmin
         {
             return $next($request);
         }
+
         else if(session('usertype') === 'staff')
         {
             return $next($request);
         }
+
         else
         {
             session()->flush();
-            return redirect()->route('login');
+            return redirect()->route('client-home');
         }
         return $next($request);
     }

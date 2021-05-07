@@ -21,6 +21,7 @@ class RouteServiceProvider extends ServiceProvider
     public const ADMIN = '/admin/dashboard';
     public const STAFF = '/staff/dashboard';
 
+
     /**
      * The controller namespace for the application.
      *

@@ -4,7 +4,7 @@
             {{ __('Registered Program List') }}
         </h2>
     </x-slot>
-  
+
     <div class="m-10">
         {{-- <h2 class="font-semibold text-xl text-gray-800 leading-tight">
           {{ __('Registered Program List') }}
@@ -20,7 +20,7 @@
                         <th class="py-3 px-6 text-center">Actions</th>
                     </tr>
                 </thead>
-                @foreach($registeredprograms as $indexKey => $program)       
+                @foreach($registeredprograms as $indexKey => $program)
                 <tbody class="text-gray-600 text-sm font-light ">
                     <tr class="border-b border-gray-200 hover:bg-gray-100">
 
@@ -51,27 +51,23 @@
                                     </div>
                                 </a>
 
-                                @if ($program->status == "pending")
-                                <a class="font-medium" href={{ route('client-program-edit',[$program->id, $programdetails[$indexKey]->id])}}>
-                                <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                    </svg>
-                                </div>
-                                </a>
-                                @endif
-                                {{-- <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                    </svg>
-                                </div> --}}
-                            </div>
+                <table class="table table-striped">
+                    <tbody>
+                    @foreach($registeredprograms as $indexKey => $program)
+                    <tr>
+                        <td>
+                            <a class="hover:bg-blue-700" href="registered/{{$program->id}}/{{$programdetails[$indexKey]->id}}">
+                            <img src = "{{ asset('storage/program_thumbnails/'.$programdetails[$indexKey]->thumbnail_path)}}" width="500" height="600">
+                            {{$programdetails[$indexKey]->name}}
+                            </a>
                         </td>
                     </tr>
-                    
-                </tbody>
-                @endforeach
-            </table>
+                    @endforeach
+                    </tbody>
+                </table>
+
+
+            </div>
         </div>
     </div>
   </x-app-layout>

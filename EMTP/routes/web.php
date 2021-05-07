@@ -29,6 +29,8 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\AdminDepartmentController;
 use App\Http\Controllers\AdminUserManagementController;
 use App\Http\Controllers\Member\MemberDashboardController;
+use App\Http\Controllers\SupportTicketController;
+use App\Http\Controllers\UserManagementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,8 +47,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Client Side
+Route::get('/403', function(){
+    return view('403');
+})->name('403');
+
+
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+    // Client Side
+
     // Dashboard Page
     Route::get('/client/dashboard', [DashboardController::class, 'ClientDashboard'])->name('client-dashboard');
 
@@ -96,7 +105,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //Program Module
     //Staff Dashboard
-    Route::get('/staff/dashboard', [DashboardController::class, 'StaffDashboard'])->name('staff-dashboard');
+    Route::get('/staff/view/dashboard', [DashboardController::class, 'StaffDashboard'])->name('staff-dashboard');
 
     // // Program Module
     // Route::get('/staff/view/program', [StaffProgramController::class, 'index'])->name('staff-program-dashboard');
@@ -113,8 +122,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //Approve a specific pending program
     Route::get('/{clientprogram}/{id}/approve', [ProgramController::class, 'StaffApproveSpecificPendingProgram'])->name('staff-approve-specific');
 
-    //View a specific in charge program
-    Route::get('/staffpending/view/{user}/{clientprogram}', [ProgramController::class, 'StaffViewSpecificProgram'])->name('staff-view-specific-incharge');
+// Admin Routes
+Route::middleware(['auth:sanctum', 'verified', 'auth.admin'])->group(function () {
+    //Dashboard
+    Route::get('/admin/dashboard', [DashboardController::class, 'AdminDashboard'])->name('admin-dashboard');
+    // View
+    Route::get('/admin/view/program', [ProgramController::class, 'AdminShowAllPrograms'])->name('admin-view-all-programs');
 
     //Mark a program as completed
     Route::get('/approved/{clientprogram}/completed', [ProgramController::class, 'StaffMarkProgramComplete'])->name('staff-mark-program-complete');
@@ -168,14 +181,14 @@ Route::get('/admin/edit/support/{id}', [AdminSupportController::class, 'edit'])-
 // Route::put('/admin/update/department/{id}', pAdminDepartmentController::class, 'update'])->name('admin-update-specific-department');
 // Route::delete('/admin/delete/department/{id}', [AdminDepartmentController::class, 'delete'])->name('admin-delete-specific-department');
 
-//View Specific Program
-Route::get('/admin/view/program/{program}', [ProgramController::class, 'AdminViewSpecificProgram'])->name('admin-view-specific-program');
+    // Assign a ticket to a staff
+    Route::post('/admin/support/{id}', [SupportTicketController::class, 'AdminAssignTo'])->name('admin-assign-to');
 
 //Approve Specific Program
 Route::put('/admin/view/program/{id}', [ProgramController::class, 'AdminApprovedProgram'])->name('admin-approve-a-program');
 
-// View Specific Approved Program
-Route::get('/admin/view/approved/program/{program}', [ProgramController::class, 'AdminViewApprovedProgram'])->name('admin-view-specific-approved-program');
+    // View Specific Staff
+    Route::get('/admin/view/staff/{id}', [UserManagementController::class, 'AdminViewSpecificStaff'])->name('admin-view-specific-staff');
 
 // });
 // Route::put('/admin/programs/pending/{program}', [AdminProgramController::class, 'update']);
@@ -315,11 +328,6 @@ Route::group([
 );
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
-
-
-
-
 
 
 

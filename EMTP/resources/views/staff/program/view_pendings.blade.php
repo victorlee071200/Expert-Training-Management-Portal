@@ -1,10 +1,10 @@
 <x-app-layout title="Client Programs List">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Staff - Client Programs List') }}
+            {{ __('Client Programs List') }}
         </h2>
     </x-slot>
-  
+
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
@@ -23,7 +23,7 @@
                                     <th class="py-3 px-6 text-center">Actions</th>
                                 </tr>
                             </thead>
-                            @foreach($pendingprograms as $indexKey => $program)       
+                            @foreach($pendingprograms as $indexKey => $program)
                             <tbody class="text-gray-600 text-sm font-light ">
                                 <tr class="border-b border-gray-200 hover:bg-gray-100">
 
@@ -69,7 +69,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                
+
                             </tbody>
                             @endforeach
                         </table>
@@ -93,7 +93,7 @@
                                     <th class="py-3 px-6 text-center">Actions</th>
                                 </tr>
                             </thead>
-                            @foreach($staffprograms as $indexKey => $program)       
+                            @foreach($staffprograms as $indexKey => $program)
                             <tbody class="text-gray-600 text-sm font-light">
                                 <td class="py-3 px-6 text-center">
                                     <span>{{ $program->company_name }}</span>
@@ -137,16 +137,14 @@
                                         </div>
                                     </td>
                                 </tr>
-                                
+
                             </tbody>
                             @endforeach
                         </table>
                     </div>
-      
+
                 </div>
             </div>
-            @endif
-            
         </div>
     </div>
   </x-app-layout>

@@ -15,12 +15,10 @@ class CreateProgramsTable extends Migration
     {
         Schema::create('programs', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
             $table->string('name')->unique();
             $table->string('type');
             $table->String('slug');
             $table->decimal('price', $precision = 8, $scale = 2);
-            $table->integer('length');
             $table->enum('option',['physical','online','both']);
             $table->enum('status',['to-be-confirmed','approved','rejected']);
             $table->text('description');

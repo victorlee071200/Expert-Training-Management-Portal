@@ -1,7 +1,7 @@
-<x-app-layout title="Support">
+<x-app-layout title="template">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Support') }}
+            {{ __('template') }}
         </h2>
     </x-slot>
 
@@ -163,9 +163,14 @@
                         </div>
 
                     </div>
+                </div>
 
-                    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
-                </body>
+                <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+
+                <script>
+                    CKEDITOR.replace('content');
+
+                </script>
 
             </div>
         </div>

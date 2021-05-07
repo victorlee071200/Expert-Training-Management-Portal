@@ -46,15 +46,7 @@ class ProgramController extends Controller
 
     public function ClientRegisterProgram(Program $program)
     {
-        if ($program->option == 'both'){
-            $options = array('Physical','Online');
-        } else if ($program->option == 'online'){
-            $options = array('Online');
-        } else if ($program->option == 'physical'){
-            $options = array('Physical');
-        }
-
-        return view('client.program.register', ['program' => $program, 'options'=> $options]);
+        return view('client.program.register', ['program' => $program]);
         $program->session()->flash('flash.banner', 'Yay it works!');
         $program->session()->flash('flash.bannerStyle', 'success');
     }
@@ -65,7 +57,7 @@ class ProgramController extends Controller
 
         $clientprogram = new ClientProgram;
         $clientprogram->client_email = Auth::user()->email;
-        $clientprogram->company_name = Auth::user()->company_name;
+        $clientprogram->company_name = request('company_name');
         $clientprogram->program_id = $id;
         $clientprogram->staff_id = 0;
         $clientprogram->option = strtolower(request('option'));
@@ -86,7 +78,7 @@ class ProgramController extends Controller
 
         $clientprogram->save();
 
-        return redirect('/client/view/program');
+        return redirect('client/view-all');
 
         // return $request->all();
     }
@@ -144,7 +136,11 @@ class ProgramController extends Controller
 
     public function AdminViewSpecificProgram(Program $program)
     {
+
         return view('admin.program.approve', ['program' => $program]);
+
+        // return $program;
+        // return view('Admin.approve_program');
     }
 
     public function AdminApprovedProgram(Request $request, $id)
@@ -160,5 +156,7 @@ class ProgramController extends Controller
         return view('admin.program.approved', ['program' => $program]);
 
     }
+
+
 
 }
