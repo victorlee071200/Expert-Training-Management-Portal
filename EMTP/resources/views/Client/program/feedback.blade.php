@@ -33,20 +33,20 @@
 
                         <div class="flex mt-6">
                             <div class="flex-shrink-0 mr-3">
-                              <img class="mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10" src = "{{ asset('storage/profile_pictures/'.$feedback->profile_thumbnail)}}" alt="">
+                              <img class="mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10" src = "{{ asset('storage/profile_pictures/'.$feedback[0]->profile_thumbnail)}}" alt="">
                             </div>
                             <div class="flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed">
-                              <strong>{{$feedback->client_name}}</strong> <span class="text-xs text-gray-400">{{$feedback->created_at}}</span>
+                              <strong>{{$feedback[0]->client_name}}</strong> <span class="text-xs text-gray-400">{{$feedback[0]->created_at}}</span>
                               <p class="text-sm">
-                                {{$feedback->feedback}}
+                                {{$feedback[0]->feedback}}
                               </p>
       
-                              @if (!($feedback->image_path == ""))
-                                <img width="300" height="300" src = "{{ asset('storage/feedback_images/'.$feedback->image_path)}}" alt="">
+                              @if (!($feedback[0]->image_path == ""))
+                                <img width="300" height="300" src = "{{ asset('storage/feedback_images/'.$feedback[0]->image_path)}}" alt="">
                               @endif
                               
                             <div class="p-1 justify-end">
-                                <a href="{{ route('client-edit-feedback', [$registeredprogram->id , $program->id, $feedback->id]) }}">
+                                <a href="{{ route('client-edit-feedback', [$registeredprogram->id , $program->id, $feedback[0]->id]) }}">
                                 <button role="submit" class="p-3 bg-blue-500 text-white hover:bg-blue-400" required>Edit</button>
                                 </a>
                             </div>
