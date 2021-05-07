@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
-use App\Http\Livewire\CheckoutComponent;
 use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\SupportController;
@@ -29,8 +28,6 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\AdminDepartmentController;
 use App\Http\Controllers\AdminUserManagementController;
 use App\Http\Controllers\Member\MemberDashboardController;
-use App\Http\Controllers\SupportTicketController;
-use App\Http\Controllers\UserManagementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,17 +44,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/403', function(){
-    return view('403');
-})->name('403');
-
-
+// Client Side
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-
-    // Client Side
-
     // Dashboard Page
-    Route::get('/client/dashboard', [DashboardController::class, 'ClientDashboard'])->name('client-dashboard');
+    // Route::get('/client/dashboard', [DashboardController::class, 'ClientDashboard'])->name('client-dashboard');
 
     // Home Page
     Route::get('/home', [HomepageController::class, 'index'])->name('client-home');
@@ -105,7 +95,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //Program Module
     //Staff Dashboard
-    Route::get('/staff/view/dashboard', [DashboardController::class, 'StaffDashboard'])->name('staff-dashboard');
+    Route::get('/staff/dashboard', [DashboardController::class, 'StaffDashboard'])->name('staff-dashboard');
 
     // // Program Module
     // Route::get('/staff/view/program', [StaffProgramController::class, 'index'])->name('staff-program-dashboard');
@@ -122,12 +112,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //Approve a specific pending program
     Route::get('/{clientprogram}/{id}/approve', [ProgramController::class, 'StaffApproveSpecificPendingProgram'])->name('staff-approve-specific');
 
-// Admin Routes
-Route::middleware(['auth:sanctum', 'verified', 'auth.admin'])->group(function () {
-    //Dashboard
-    Route::get('/admin/dashboard', [DashboardController::class, 'AdminDashboard'])->name('admin-dashboard');
-    // View
-    Route::get('/admin/view/program', [ProgramController::class, 'AdminShowAllPrograms'])->name('admin-view-all-programs');
+    //View a specific in charge program
+    Route::get('/staffpending/view/{user}/{clientprogram}', [ProgramController::class, 'StaffViewSpecificProgram'])->name('staff-view-specific-incharge');
 
     //Mark a program as completed
     Route::get('/approved/{clientprogram}/completed', [ProgramController::class, 'StaffMarkProgramComplete'])->name('staff-mark-program-complete');
@@ -139,8 +125,6 @@ Route::middleware(['auth:sanctum', 'verified', 'auth.admin'])->group(function ()
      Route::get('/staff/assigned/{assignedprogram}/{program}/announcement', [StaffProgramController::class, 'StaffViewSpecificAssignedProgramAnnouncement'])->name('staff-program-announcement');
      Route::get('/staff/assigned/{assignedprogram}/{program}/announcement/create', [AnnouncementController::class, 'create'])->name('staff-program-announcement-create');
      Route::post('/staff/assigned/{assignedprogram}/{program}/announcement', [AnnouncementController::class, 'store'])->name('staff-program-announcement');
-     Route::put('/staff/assigned/{assignedprogram}/{program}/announcement/{announcement}', [AnnouncementController::class, 'update'])->name('staff-program-announcement-update');
-     Route::delete('/staff/assigned/{assignedprogram}/{program}/announcement/{announcement}', [AnnouncementController::class, 'destroy'])->name('staff-program-announcement-delete');
      Route::get('/staff/assigned/{assignedprogram}/{program}/announcement/{announcement}/edit', [AnnouncementController::class, 'edit'])->name('staff-program-announcement-edit');
      Route::get('/staff/assigned/{assignedprogram}/{program}/announcement/{announcement}', [StaffProgramController::class, 'StaffViewSpecificAssignedProgramAnnouncementView'])->name('staff-program-announcement-view');
      Route::get('/staff/assigned/{assignedprogram}/{program}/material', [StaffProgramController::class, 'StaffViewSpecificAssignedProgramMaterial'])->name('staff-program-material');
@@ -153,10 +137,7 @@ Route::middleware(['auth:sanctum', 'verified', 'auth.admin'])->group(function ()
 //Dashboard
 Route::get('/admin/dashboard', [DashboardController::class, 'AdminDashboard'])->name('admin-dashboard');
 
-// Program Module
-Route::get('/admin/view/program', [AdminProgramController::class, 'index'])->name('admin-program-dashboard');
-Route::get('/admin/view/program/{id}', [AdminProgramController::class, 'show_pending'])->name('admin-view-approved-program');
-Route::put('/admin/view/program/{id}', [AdminProgramController::class, 'show_approved'])->name('admin-view-pending-program');
+
 
 // Support Module
 Route::get('/admin/view/support', [AdminSupportController::class, 'index'])->name('admin-support-dashboard');
@@ -181,14 +162,14 @@ Route::get('/admin/edit/support/{id}', [AdminSupportController::class, 'edit'])-
 // Route::put('/admin/update/department/{id}', pAdminDepartmentController::class, 'update'])->name('admin-update-specific-department');
 // Route::delete('/admin/delete/department/{id}', [AdminDepartmentController::class, 'delete'])->name('admin-delete-specific-department');
 
-    // Assign a ticket to a staff
-    Route::post('/admin/support/{id}', [SupportTicketController::class, 'AdminAssignTo'])->name('admin-assign-to');
+//View Specific Program
+Route::get('/admin/view/program/{program}', [ProgramController::class, 'AdminViewSpecificProgram'])->name('admin-view-specific-program');
 
 //Approve Specific Program
 Route::put('/admin/view/program/{id}', [ProgramController::class, 'AdminApprovedProgram'])->name('admin-approve-a-program');
 
-    // View Specific Staff
-    Route::get('/admin/view/staff/{id}', [UserManagementController::class, 'AdminViewSpecificStaff'])->name('admin-view-specific-staff');
+// View Specific Approved Program
+Route::get('/admin/view/approved/program/{program}', [ProgramController::class, 'AdminViewApprovedProgram'])->name('admin-view-specific-approved-program');
 
 // });
 // Route::put('/admin/programs/pending/{program}', [AdminProgramController::class, 'update']);
@@ -226,6 +207,18 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', 'verified','
     // Admin Department module
     Route::resource('/department', AdminDepartmentController::class);
 
+    // Program Module
+    Route::resource('/program', AdminDepartmentController::class);
+
+    Route::resource('/department', AdminDepartmentController::class);
+
+    Route::resource('/programs', AdminProgramController::class);
+
+    Route::resource('/program', StaffProgramController::class);
+
+    // Route::get('/admin/view/program/{id}', [AdminProgramController::class, 'show_pending'])->name('admin-view-approved-program');
+    // Route::put('/admin/view/program/{id}', [AdminProgramController::class, 'show_approved'])->name('admin-view-pending-program');
+
 
 });
 
@@ -250,14 +243,6 @@ Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified','
 
 
 
-//Staff routes
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-
-    Route::get('/shop', CheckoutComponent::class);
-
-
-});
-
 
 
 
@@ -280,7 +265,7 @@ Route::get('courses/{courseId}', [FrontendCourseController::class, 'show'])->nam
 Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', 'verified','admin'])->group(function () {
 
     // Admin dashboard
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     //Course routes
     Route::get('courses', [CourseController::class, 'index'])->name('courses');
     Route::get('courses/create', [CourseController::class, 'create'])->name('courses.create');
@@ -313,6 +298,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', 'verified','
     Route::get('orders', [OrdersController::class, 'index'])->name('orders');
     Route::delete('orders/{orderId}', [OrdersController::class, 'destroy'])->name('orders.destroy');
 
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+
 
 });
 
@@ -325,9 +312,16 @@ Route::group([
     function() {
         Route::get('dashboard', [MemberDashboardController::class, 'index'])->name('dash');
     }
+
 );
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+
+
+
+
+
+
+
 
 
 
