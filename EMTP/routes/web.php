@@ -137,10 +137,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 //Dashboard
 Route::get('/admin/dashboard', [DashboardController::class, 'AdminDashboard'])->name('admin-dashboard');
 
-// Program Module
-Route::get('/admin/view/program', [AdminProgramController::class, 'index'])->name('admin-program-dashboard');
-Route::get('/admin/view/program/{id}', [AdminProgramController::class, 'show_pending'])->name('admin-view-approved-program');
-Route::put('/admin/view/program/{id}', [AdminProgramController::class, 'show_approved'])->name('admin-view-pending-program');
+
 
 // Support Module
 Route::get('/admin/view/support', [AdminSupportController::class, 'index'])->name('admin-support-dashboard');
@@ -209,6 +206,18 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', 'verified','
 
     // Admin Department module
     Route::resource('/department', AdminDepartmentController::class);
+
+    // Program Module
+    Route::resource('/program', AdminDepartmentController::class);
+
+    Route::resource('/department', AdminDepartmentController::class);
+
+    Route::resource('/programs', AdminProgramController::class);
+
+    Route::resource('/program', StaffProgramController::class);
+
+    // Route::get('/admin/view/program/{id}', [AdminProgramController::class, 'show_pending'])->name('admin-view-approved-program');
+    // Route::put('/admin/view/program/{id}', [AdminProgramController::class, 'show_approved'])->name('admin-view-pending-program');
 
 
 });

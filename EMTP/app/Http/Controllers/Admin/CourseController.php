@@ -40,24 +40,39 @@ class CourseController extends Controller
         }
 
         $program = new program;
-        $program->title = $request->program_title;
-        $program->slug = Str::slug($request->program_title);
-        $program->description = $request->short_description;
-        $program->price = $request->program_price;
+        $program->name = $request->name;
+        $program->code = $request->code;
+        $program->type = $request->type;
+        $program->name = $request->name;
+        $program->length = $request->length;
+        $program->price = $request->price;
+        $program->slug = Str::slug($request->name);
+        $program->price = $request->price;
+        $program->option = $request->option;
+        $program->description = $request->description;
+        $program->status = 'to-be-confirmed';
+
+
+        $name = $request->file('thumbnail')->getClientOriginalName();
+        $request->file('thumbnail')->storeAs(
+            'public/program_thumbnails/', $name
+        );
+        $program->thumbnail_path = $name;
+
         $program->save();
 
-        if( $request->hasFile('cover_image')  )
-        {
-            $file = $request->file('cover_image');
-            $extension = $file->getClientOriginalExtension();
-            $originalFileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+        // if( $request->hasFile('cover_image')  )
+        // {
+        //     $file = $request->file('cover_image');
+        //     $extension = $file->getClientOriginalExtension();
+        //     $originalFileName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
 
-            $fileNameToStore = $originalFileName . '_' . $program->id . '.' . $extension;
-            $destinationPath = public_path() . "/uploads/images";
-            $uploadIsSuccessful = $file->move($destinationPath, $fileNameToStore);
-            if($uploadIsSuccessful) { $program->image = $fileNameToStore; }
-            $program->save();
-        }
+        //     $fileNameToStore = $originalFileName . '_' . $program->id . '.' . $extension;
+        //     $destinationPath = public_path() . "/uploads/images";
+        //     $uploadIsSuccessful = $file->move($destinationPath, $fileNameToStore);
+        //     if($uploadIsSuccessful) { $program->image = $fileNameToStore; }
+        //     $program->save();
+        // }
 
         return redirect()->route('admin.programs')->with('successMsg', 'The program has been successfully created!');
     }

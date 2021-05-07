@@ -62,7 +62,7 @@ class AdminProgramController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show_approved($id)
+    public function show($id)
     {
         $program = Program::find($id);
         return view('admin.program.approved', ['program' => $program]);
@@ -94,16 +94,5 @@ class AdminProgramController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function AdminApprovedProgram(Request $request, Program $program)
-    {
-
-    }
-
-    public function AdminViewApprovedProgram(Program $program)
-    {
-
-
     }
 }

@@ -76,7 +76,7 @@
                         Dashboard
                       </a>
                       <a
-                        href="{{ route('admin-program-dashboard') }}"
+                        href="{{ route('admin.program.index') }}"
                         role="menuitem"
                         class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                       >
@@ -431,12 +431,12 @@
                         role="menuitem"
                         class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                       >
-                        Add new Program 
+                        Add new Program
                       </a>
                     </div>
                   </div>
 
-                  
+
                 </nav>
               </div>
             </aside>
@@ -749,7 +749,7 @@
                         Dashboard
                       </a>
                       <a
-                        href="{{ route('admin-program-dashboard') }}"
+                        href="{{ route('admin.program.index') }}"
                         role="menuitem"
                         class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                       >
@@ -1106,7 +1106,7 @@
                         role="menuitem"
                         class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                       >
-                        Add new Program 
+                        Add new Program
                       </a>
                     </div>
                   </div>

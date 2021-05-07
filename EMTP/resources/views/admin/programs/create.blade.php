@@ -1,101 +1,137 @@
-@extends('layouts.backend.admin-app')
+@extends('layouts.admin')
 
-@push('css')
-<link rel="stylesheet" href="{{ asset('public/assets/backend/css/custom-admin.css') }}">
-@endpush
 
-@section('content')
+@section('container')
 
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+<div class="flex flex-col items-start justify-between pb-6 space-y-4 border-b lg:items-center lg:space-y-0 lg:flex-row">
+    <h1 class="text-2xl font-semibold whitespace-nowrap">
+        Create | Program
+    </h1>
 
-    <!-- Main content -->
-    <section class="content">
-        <div class="container-fluid">
 
-            <div class="card card-secondary" style="margin-top: 100px;">
-                <div class="card-header">
-                    <h3 class="card-title">Add new course</h3>
+    {{-- <div class="space-y-8 mb-6">
+        <a href="/admin/create/staff" class="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-indigo-500 rounded shadow ripple hover:shadow-lg hover:bg-indigo-600 focus:outline-none">
+        Create
+        </a>
+    </div> --}}
+  </div>
+
+<div class="py-12">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+          <div class="m-10">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+              {{ __('Create Program') }}
+            </h2>
+
+          </div>
+          <div class="m-10">
+
+            <form method="post" action="{{ route('admin.program.store') }}" class="w-full max-w-lg" enctype="multipart/form-data">
+              @csrf
+
+              <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full px-3">
+                  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="name">
+                    Name
+                  </label>
+                  <x-jet-input id="name" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body">
+              </div>
 
-                    <form action="{{route('admin.courses.store')}}" method="POST" enctype="multipart/form-data" class="mt-2 mb-2">
-                    @csrf
+              <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full px-3">
+                  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="code">
+                    Code
+                  </label>
+                  <x-jet-input id="code" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" name="code" required autofocus autocomplete="name" />
+                </div>
+              </div>
 
-                        <div class="form-group row option-item">
-                            <div class="col-6">
-                                <p class="option-main-title">Course title</p>
-                                <p class="option-description">The title of the course.</p>
+              <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full px-3">
+                  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="type">
+                    Type
+                  </label>
+                  <input id="type" name="type" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required autofocus autocomplete="code">
+                </div>
+             </div>
 
-                            </div>
-                            <div class="col-6">
-                                <input class="form-control" type="text" name="course_title" id="title-text-input" value="{{old('course_title')}}">
-                                <p style="color:red;">{{ $errors->first('course_title') }}</p>
-                            </div>
-                        </div>
-                        <hr>
+            <div class="flex flex-wrap -mx-3 mb-6">
+              <div class="w-full px-3">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="length">
+                  Length(Days)
+                </label>
+                <input id="length" name="length" type="number" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required autofocus autocomplete="length">
+              </div>
+           </div>
 
-                        <div class="form-group row option-item">
-                            <div class="col-6">
-                                <p class="option-main-title">Course description</p>
-                                <p class="option-description">Description of the course.</p>
+              <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full px-3">
+                  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="price">
+                    Price
+                  </label>
+                  <input id="price" name="price" type="number" step="0.01" min=0 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required autofocus autocomplete="price">
+                </div>
+              </div>
 
-                            </div>
-                            <div class="col-6">
-                            <textarea id="short-description-textarea" class="form-control" maxlength="225" rows="5" name="short_description">{{old('short_description')}}</textarea>
-                                <p style="color:red;">{{ $errors->first('short_description') }}</p>
-                            </div>
-                        </div>
-                        <hr>
+              <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full px-3">
+                  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="option">
+                    Option
+                  </label>
+                  <div class="relative">
+                    <select id="option" name="option" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                        <option value="online">Online Only</option>
+                        <option value="physical">Physical Only</option>
+                        <option value="both">Both</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
 
-                        <div class="form-group row option-item">
-                            <div class="col-6">
-                                <p class="option-main-title">Course image</p>
-                                <p class="option-description">Upload a cover image of the course.</p>
-
-                            </div>
-                            <div class="col-6">
-                                <div class="custom-file">
-                                    <input type="file" id="file2" class="custom-file-input" name="cover_image" onchange="showFileName(this)">
-                                    <span class="custom-file-control custom-file-control-primary"></span>
-                                </div>
-                                <p style="color:red;">{{ $errors->first('cover_image') }}</p>
-                            </div>
-                        </div>
-                        <hr>
-
-                        <div class="form-group row option-item">
-                            <div class="col-6">
-                                <p class="option-main-title">Course price</p>
-                                <p class="option-description">The price of the course.</p>
-
-                            </div>
-                            <div class="col-6">
-                                <input class="form-control" type="number" step="0.01" min="1" name="course_price" id="title-text-input" value="{{ old('course_price') }}">
-                                <p style="color:red;">{{ $errors->first('course_price') }}</p>
-                            </div>
-                        </div>
-                        <hr>
-
-                        <div class="form-group row mb-0 mt-4">
-                            <div class="col-sm-12">
-                                <button type="submit" class="btn btn-primary mt-5">Save</button>
-                            </div>
-                        </div>
-
-                    </form>
+              <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full px-3">
+                  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="thumbnail">
+                    Thumbnail
+                  </label>
+                  <input type="file" id="thumbnail" name="thumbnail">
 
                 </div>
+              </div>
 
-            </div>
+              <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full px-3">
+                  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="description">
+                    Description
+                  </label>
+                  <textarea required id="description" name="description" type="text" class="resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48" required autofocus autocomplete="description"></textarea>
 
-        </div><!--/. container-fluid -->
-    </section> <!-- /.content -->
+                </div>
+              </div>
 
-  </div><!-- /.content-wrapper -->
+              <div class="form-group md:flex md:items-center">
+                <div class="md:w-1/3">
+                  <label class="col-md-4 control-label" for="submit"></label>
+                  <div class="col-md-4">
+                    <button id="submit" name="submit" class="shadow bg-teal-400 hover:bg-teal-400 focus:shadow-outline bg-indigo-400 focus:outline-none text-gray-200 hover:bg-indigo-600 hover:text-white font-bold py-2 px-4 rounded" >Submit</button>
+                  </div>
+                </div>
+                <div class="md:w-2/3"></div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 
 @endsection
+
 
 
 @push('js')
