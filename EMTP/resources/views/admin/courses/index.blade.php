@@ -15,7 +15,7 @@
 
             <div class="card card-secondary" style="margin-top: 100px;">
                 <div class="card-header">
-                    <h3 class="card-title">Courses</h3>
+                    <h3 class="card-title">Programs</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -46,25 +46,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($courses as $course)
+                                @foreach($programs as $program)
                                     <tr>
-                                        <td>{{$course->id}}</td>
-                                        <td>{{$course->title}}</td>
-                                        <td>{{Str::limit($course->description, 20, '...')}}</td>
-                                        <td>{{$currency}}{{App\Helpers\CurrencyHelper::getSetPriceFormat($course->price)}}</td>
-                                        <td>{{Carbon\Carbon::parse($course->created_at)->format('Y.m.d')}}</td>
-                                        <td><a href="{{route('admin.courses.edit', $course->id)}}">Edit</a> - <a href="#" onclick="document.getElementById('delete-{{$course->id}}').submit(); return false;">Delete</a>
-                                            <form action="{{route('admin.courses.destroy', $course->id)}}" id="delete-{{$course->id}}" method="POST" style="display:none;">
+                                        <td>{{$program->id}}</td>
+                                        <td>{{$program->title}}</td>
+                                        <td>{{Str::limit($program->description, 20, '...')}}</td>
+                                        <td>{{$currency}}{{App\Helpers\CurrencyHelper::getSetPriceFormat($program->price)}}</td>
+                                        <td>{{Carbon\Carbon::parse($program->created_at)->format('Y.m.d')}}</td>
+                                        <td><a href="{{route('admin.programs.edit', $program->id)}}">Edit</a> - <a href="#" onclick="document.getElementById('delete-{{$program->id}}').submit(); return false;">Delete</a>
+                                            <form action="{{route('admin.programs.destroy', $program->id)}}" id="delete-{{$program->id}}" method="POST" style="display:none;">
                                                 @csrf
                                                 @method('DELETE')
                                             </form>
-                                            - <a href="{{route('courses.show', $course->id)}}" target="_blank">View</a></td>
+                                            - <a href="{{route('programs.show', $program->id)}}" target="_blank">View</a></td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                    </div>
-                   {{ $courses->links() }}
+                   {{ $programs->links() }}
                 </div>
 
             </div>

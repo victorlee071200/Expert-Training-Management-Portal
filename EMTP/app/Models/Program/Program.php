@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Models\Setting;
+namespace App\Models\Program;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Setting extends Model
+class Program extends Model
 {
     use HasFactory;
-
-    protected $guarded = [];
 }

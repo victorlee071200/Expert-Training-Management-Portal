@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order\Order;
 use App\Helpers\CurrencyHelper;
-use App\Models\UserCourse\UserCourse;
+use App\Models\Userprogram\Userprogram;
 
 class OrdersController extends Controller
 {
@@ -26,8 +26,8 @@ class OrdersController extends Controller
             return redirect()->route('admin.orders')->with('failureMsg', 'The Order with the following id could NOT be deleted: ' . $orderId);
         }
 
-        $userCourses = UserCourse::where('user_id', $order->user_id)->where('course_id', $order->purchased_course_id)->get();
-        foreach($userCourses as $item)
+        $userPrograms = UserProgram::where('user_id', $order->user_id)->where('program_id', $order->purchased_program_id)->get();
+        foreach($userPrograms as $item)
         {
             $item->delete();
         }

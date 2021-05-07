@@ -2,33 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Country\Country;
-use DB;
-use Auth;
 use Braintree;
-use App\Helpers\CurrencyHelper;
-use Illuminate\Support\Facades\Validator;
-use App\Rules\OnlyAsciiCharacters;
-use App\Models\UserCourse\UserCourse;
-use App\Helpers\OrderDataHelper;
 use App\Models\Order\Order;
+use Illuminate\Http\Request;
+use App\Helpers\CurrencyHelper;
+use App\Models\Country\Country;
+use App\Helpers\OrderDataHelper;
+use App\Rules\OnlyAsciiCharacters;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Models\UserProgram\UserProgram;
+use Illuminate\Support\Facades\Validator;
 
 class CheckoutController extends Controller
 {
-    public function index($courseSlug)
+    public function index($programSlug)
     {
-        $course = DB::table('courses')->where('slug', $courseSlug)->first();
-        if(is_null($course))
+        $program = DB::table('programs')->where('slug', $programSlug)->first();
+        if(is_null($program))
         {
-            abort(403, 'Invalid course!');
+            abort(403, 'Invalid program!');
         }
 
         $authUser = Auth::user();
-        $userCourse = DB::table('user_courses')->where('user_id', $authUser->id)->where('course_id', $course->id)->first();
-        if( (!is_null($userCourse)) && ($authUser->role->id != 1) )
+        $userProgram = DB::table('user_programs')->where('user_id', $authUser->id)->where('program_id', $program->id)->first();
+        if( (!is_null($userProgram)) && ($authUser->role->id != 1) )
         {
-            abort(403, 'You already have access to this course!');
+            abort(403, 'You already have access to this program!');
         }
 
         $countries = Country::with('statesInOrder')->orderBy('name', 'ASC')->get();
@@ -102,12 +103,12 @@ class CheckoutController extends Controller
         }
 
 
-        return view('checkout', compact('course', 'countries', 'email', 'currency',
+        return view('checkout', compact('program', 'countries', 'email', 'currency',
                                         'braintreeEnabled', 'stripeEnabled', 'payPalSmartEnabled',
                                         'brainTreeLabel', 'btToken', 'stripePubKey', 'currencyTextRaw'));
     }
 
-    public function prePaymentValidation(Request $request, $courseId, $courseSlug)
+    public function prePaymentValidation(Request $request, $programId, $programSlug)
     {
         $validator = Validator::make($request->all(), [
             'first_name' => ['required', 'string', 'max:191', new OnlyAsciiCharacters],
@@ -126,18 +127,18 @@ class CheckoutController extends Controller
             return response()->json($validator->errors());
         }
 
-        $courseToBuy = DB::table('courses')->find($courseId);
-        if(is_null($courseToBuy))
+        $programToBuy = DB::table('programs')->find($programId);
+        if(is_null($programToBuy))
         {
-            return response()->json(['error' => 'The course does not exist.']);
+            return response()->json(['error' => 'The program does not exist.']);
         }
 
-        if($courseToBuy->slug != $courseSlug)
+        if($programToBuy->slug != $programSlug)
         {
-            return response()->json(['error' => 'Discrepancy in course data.']);
+            return response()->json(['error' => 'Discrepancy in program data.']);
         }
 
-        if($courseToBuy->price != $request->total)
+        if($programToBuy->price != $request->total)
         {
             return response()->json(['error' => 'Price discrepancy.']);
         }
@@ -153,15 +154,15 @@ class CheckoutController extends Controller
           return redirect()->back()->withInput()->with('failureMsg', 'Payment received but logged-in user not found!');
         }
 
-        $course = DB::table('courses')->find($request->course);
-        if(is_null($course))
+        $program = DB::table('programs')->find($request->program);
+        if(is_null($program))
         {
-            return redirect()->back()->withInput()->with('failureMsg', 'Payment received but the course has not been found!');
+            return redirect()->back()->withInput()->with('failureMsg', 'Payment received but the program has not been found!');
         }
 
         $transactionId = $request->transaction_id;
         $orderData = array();
-        OrderDataHelper::getOrderData($orderData, $request, $user, $course->title, $transactionId);
+        OrderDataHelper::getOrderData($orderData, $request, $user, $program->title, $transactionId);
         $order = new Order;
         foreach($orderData as $key => $orderValue)
         {
@@ -169,13 +170,13 @@ class CheckoutController extends Controller
         }
         $order->save();
 
-        $userCourse = DB::table('user_courses')->where('user_id', $user->id)->where('course_id', $course->id)->first();
-        if(is_null($userCourse))
+        $userProgram = DB::table('user_programs')->where('user_id', $user->id)->where('program_id', $program->id)->first();
+        if(is_null($userProgram))
         {
-            $newUserCourse = new UserCourse;
-            $newUserCourse->user_id = $user->id;
-            $newUserCourse->course_id = $course->id;
-            $newUserCourse->save();
+            $newUserProgram = new Userprogram;
+            $newUserProgram->user_id = $user->id;
+            $newUserProgram->program_id = $program->id;
+            $newUserProgram->save();
         }
 
         return redirect()->route('thanks');

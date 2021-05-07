@@ -290,7 +290,7 @@ class DatabaseSeeder extends Seeder
             CountriesTableSeeder::class,
             StatesTableSeeder::class,
             CoursesTableSeeder::class,
-            UserCoursesTableSeeder::class,
+            UserProgramsTableSeeder::class,
             OrdersTableSeeder::class,
             SettingsTableSeeder::class,
             BraintreeSettingsTableSeeder::class,

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Program;
-use App\Models\Announcement;
 use App\Models\Material;
+use Illuminate\Support\Str;
+use App\Models\Announcement;
 use Illuminate\Http\Request;
 use App\Models\ClientProgram;
 use Illuminate\Support\Facades\DB;
@@ -103,6 +104,7 @@ class StaffProgramController extends Controller
          $program->price = request('price');
          $program->option = request('option');
          $program->description = request('description');
+         $program->slug = Str::slug($request->name);
          $program->status = 'to-be-confirmed';
 
          $name = $request->file('thumbnail')->getClientOriginalName();
@@ -113,7 +115,7 @@ class StaffProgramController extends Controller
 
          $program->save();
          // return $path;
-         return redirect(route('staff.program.index'))->withToastSuccess($program->name.' has been Created Successfully!');;
+         return redirect(route('admin.programs.index'))->withToastSuccess($program->name.' has been Created Successfully!');;
     }
 
     /**

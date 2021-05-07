@@ -15,7 +15,7 @@ class CreateUserProgramsTable extends Migration
     {
         Schema::create('user_programs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('client_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('program_id');
             $table->timestamps();
         });

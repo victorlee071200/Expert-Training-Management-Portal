@@ -145,37 +145,33 @@
 
           </div> --}}
 
-
-
-
-
-                <div  class="w-full max-w-lg">
-                    <form class="form-horizontal" action="/admin/update/support/{{$ticket->id}}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="pb-5">
-                            <div class="m-6">
-                                <h2 class="text-sm title-font text-gray-500 tracking-widest">Assign To</h2>
-                                <div class="py-3">
-                                    <div class="relative">
-                                        <select name="assign_to" class="rounded border appearance-none border-gray-400 py-2 text-base pl-3 pr-10">
-                                        @foreach ($staffs as $staff)
-                                            <option>{{ $staff->name }}</option>
-                                        @endforeach
-                                        </select>
-                                    </div>
-                                </div>
+        <div  class="w-full max-w-lg">
+            <form class="form-horizontal" action="/admin/update/support/{{$ticket->id}}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="pb-5">
+                    <div class="m-6">
+                        <h2 class="text-sm title-font text-gray-500 tracking-widest">Assign To</h2>
+                        <div class="py-3">
+                            <div class="relative">
+                                <select name="assign_to" class="rounded border appearance-none border-gray-400 py-2 text-base pl-3 pr-10">
+                                @foreach ($staffs as $staff)
+                                    <option>{{ $staff->name }}</option>
+                                @endforeach
+                                </select>
                             </div>
                         </div>
+                    </div>
+                </div>
 
 
-                        <div class="flex flex-wrap -mx-3 mb-6">
-                            <div class="w-full px-3">
-                                <button type="submit" class="block tracking-widest uppercase text-center shadow bg-green-400 hover:bg-green-500 focus:shadow-outline focus:outline-none text-white text-xs py-3 px-10 rounded">Confirm</button>
-                            </div>
-                          </div>
-                        </div>
-                    </form>
+                <div class="flex flex-wrap -mx-3 mb-6">
+                    <div class="w-full px-3">
+                        <button type="submit" class="block tracking-widest uppercase text-center shadow bg-green-400 hover:bg-green-500 focus:shadow-outline focus:outline-none text-white text-xs py-3 px-10 rounded">Confirm</button>
+                    </div>
+                    </div>
+                </div>
+            </form>
         </div>
         </div>
       </div>
