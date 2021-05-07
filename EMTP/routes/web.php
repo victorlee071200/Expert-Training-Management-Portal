@@ -28,6 +28,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\AdminDepartmentController;
 use App\Http\Controllers\AdminUserManagementController;
 use App\Http\Controllers\Member\MemberDashboardController;
+use App\Http\Controllers\FeedbackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +54,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/home', [HomepageController::class, 'index'])->name('client-home');
 
     // Program Module
+    Route::get('/client/view/program', [ClientProgramController::class, 'index'])->name('client-program-dashboard');
+
+    // Program Page - View Specific Program
     Route::get('/client/view/program/{program}', [ProgramController::class, 'ClientViewSpecificProgram']);
     Route::get('/client/view/program/{program}/register', [ProgramController::class, 'ClientRegisterProgram']);
     Route::post('/client/view/program/{program}/register', [ProgramController::class, 'ClientStoreProgram']);
@@ -65,11 +69,22 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/client/view/program', [ClientProgramController::class, 'index'])->name('client-program-dashboard');
     Route::get('/client/view/program/{id}', [ClientProgramController::class, 'show'])->name('client-view-specific-program');
     Route::get('/client/view/registered/{registeredprogram}/{program}/detail', [ClientProgramController::class, 'ClientViewSpecificRegisteredProgramDetail'])->name('client-program-detail');
+
+    //Create Feedback
+    Route::post('/feedback/create', [FeedbackController::class,'store'])->name('client-create-feedback');
+
+    // Program Page - View specific registered program announcement
     Route::get('/client/registered/{registeredprogram}/{program}/announcement', [ClientProgramController::class, 'ClientViewSpecificRegisteredProgramAnnouncement'])->name('client-program-announcement');
     Route::get('/client/registered/{registeredprogram}/{program}/announcement/{announcement}', [ClientProgramController::class, 'ClientViewSpecificRegisteredProgramAnnouncementView'])->name('client-program-announcement-view');
     Route::get('/client/registered/{registeredprogram}/{program}/material', [ClientProgramController::class, 'ClientViewSpecificRegisteredProgramMaterial'])->name('client-program-material');
     Route::get('/client/registered/{registeredprogram}/{program}/material/{trainingMaterial}', [ClientProgramController::class, 'ClientViewSpecificRegisteredProgramMaterialView'])->name('client-program-material-view');
     Route::get('/client/registered/{registeredprogram}/{program}/feedback', [ClientProgramController::class, 'ClientViewSpecificRegisteredProgramFeedback'])->name('client-program-feedback');
+
+    // Program Page - Edit specific registered program feedback
+    Route::get('/client/registered/{registeredprogram}/{program}/{feedback}/edit', [FeedbackController::class, 'show'])->name('client-edit-feedback');
+
+    // Program Page - Edit specific registered program feedback
+    Route::put('{feedback}/edit', [FeedbackController::class, 'update'])->name('client-edit-feedback-put');
 
     // About Us Page
     Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
