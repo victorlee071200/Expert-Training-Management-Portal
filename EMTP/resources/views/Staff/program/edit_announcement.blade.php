@@ -18,7 +18,7 @@
             </ul>
         </div>
         <div class="block w-full min-h-screen">
-            <form method="post" action="{{ route('staff-program-announcement-update', [$assignedprogram, $program, $announcement]) }}" class="w-auto m-5" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('staff-program-announcement', [$assignedprogram, $program, $announcement]) }}" class="w-auto m-5" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div class="w-auto mx-3 mb-6">

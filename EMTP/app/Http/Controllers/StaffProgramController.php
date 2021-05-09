@@ -82,9 +82,9 @@ class StaffProgramController extends Controller
         return view('staff.program.create');
     }
 
-    public function StaffCreateMaterial()
+    public function StaffCreateMaterial(ClientProgram $assignedprogram, Program $program)
     {
-        return view('staff.program.create_material');
+        return view('staff.program.create_material',['assignedprogram'=>$assignedprogram, 'program'=>$program]);
     }
 
     /**
