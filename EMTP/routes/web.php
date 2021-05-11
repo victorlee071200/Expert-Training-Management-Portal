@@ -1,16 +1,21 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\NewController\CheckoutController;
 use App\Http\Controllers\NewController\BraintreeController;
+use App\Http\Controllers\NewController\AdminPaypalController;
+use App\Http\Controllers\NewController\AdminStripeController;
 use App\Http\Controllers\NewController\AdminSupportController;
 use App\Http\Controllers\NewController\AnnouncementController;
 use App\Http\Controllers\NewController\AdminProgramsController;
+use App\Http\Controllers\NewController\AdminSettingsController;
 use App\Http\Controllers\NewController\ClientAboutUsController;
 use App\Http\Controllers\NewController\ClientSupportController;
 use App\Http\Controllers\NewController\StaffFeedbackController;
 use App\Http\Controllers\NewController\StaffMaterialController;
 use App\Http\Controllers\NewController\StaffProgramsController;
+use App\Http\Controllers\NewController\AdminBraintreeController;
 use App\Http\Controllers\NewController\AdminDashboardController;
 use App\Http\Controllers\NewController\ClientHomepageController;
 use App\Http\Controllers\NewController\ClientProgramsController;
@@ -70,6 +75,13 @@ Route::prefix('client')->name('client.')->middleware(['auth:sanctum', 'verified'
     Route::get('/dashboard/{registeredprogram}/material/{material}', [ClientMaterialController::class, 'specific_material'])->name('client-program-specific-material');
     Route::get('/dashboard/{registeredprogram}/feedback', [ClientFeedbackController::class, 'index'])->name('client-program-feedback');
 
+
+    Route::get('/checkout/{programSlug}', [CheckoutController::class, 'index'])->name('checkout')->middleware('auth');
+    Route::post('checkout/validate/{programId}/{programSlug}', [CheckoutController::class, 'prePaymentValidation'])->name('checkout.validate');
+    Route::post('checkout/fulfill/order', [CheckoutController::class, 'fulfillOrder'])->name('checkout.fulfill.order');
+
+});
+
 });
 
 // staff route
@@ -97,9 +109,8 @@ Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified','
 });
 
 // To-Be-Confirmed
-Route::get('checkout/{courseSlug}', [CheckoutController::class, 'index'])->name('checkout')->middleware('auth');
-Route::post('checkout/validate/{courseId}/{courseSlug}', [CheckoutController::class, 'prePaymentValidation'])->name('checkout.validate');
-Route::post('checkout/fulfill/order', [CheckoutController::class, 'fulfillOrder'])->name('checkout.fulfill.order');
+
+
 Route::post('payment/braintree', [BraintreeController::class, 'braintreePayment'])->name('braintree.payment');
 Route::post('payment/stripe/{paymentIntentId}', [StripeController::class, 'getStripePaymentIntent'])->name('stripe.payment');
 Route::get('checkout/success/thank-you', [CheckoutController::class, 'showThanks'])->name('thanks');
@@ -134,8 +145,8 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', 'verified','
     Route::put('payments/paypal/update', [AdminPaypalController::class, 'update'])->name('paypal.update');
 
     // Settings route
-    Route::get('payments/settings', [SettingsController::class, 'index'])->name('settings');
-    Route::put('payments/settings/update', [SettingsController::class, 'update'])->name('settings.update');
+    Route::get('payments/settings', [AdminSettingsController::class, 'index'])->name('settings');
+    Route::put('payments/settings/update', [AdminSettingsController::class, 'update'])->name('settings.update');
 
     // Users route
     Route::get('users', [UsersController::class, 'index'])->name('users');

@@ -30,16 +30,17 @@
 
 
 
-                  @if(!$userBoughtCourse)
-                    <div class="course-price">
-                        <p>{{$currency}}{{App\Helpers\CurrencyHelper::getSetPriceFormat($course->price)}}</p>
-                    </div>
-                    <div class="course-buy-btn">
-                        <a href="{{route('checkout', $course->slug)}}" class="btn btn-warning" onclick="showLoadSpinner();"><span class="spinner-border spinner-border-sm" id="spinnerOnBtn" role="status" aria-hidden="true" style="display:none;"></span> Buy Now <i class="fas fa-cart-plus"></i></a>
-                    </div>
-                @else
+                @if($userBoughtProgram)
                     <div>
                         <p style="color:green;font-size:20px;"><strong>You have access to this course!</strong></p>
+                    </div>
+
+                @else
+                    <div class="course-price">
+                        <p>{{$currency}}{{App\Helpers\CurrencyHelper::getSetPriceFormat($program->price)}}</p>
+                    </div>
+                    <div class="course-buy-btn">
+                        <a href="{{ url('client/checkout/'. $program->slug) }}" class="btn btn-warning" onclick="showLoadSpinner();"><span class="spinner-border spinner-border-sm" id="spinnerOnBtn" role="status" aria-hidden="true" style="display:none;"></span> Buy Now <i class="fas fa-cart-plus"></i></a>
                     </div>
                 @endif
 

@@ -5,9 +5,11 @@ namespace App\Http\Controllers\NewController;
 use App\Models\Program;
 use Illuminate\Http\Request;
 use App\Models\ClientProgram;
+use App\Helpers\CurrencyHelper;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Models\UserProgram\UserProgram;
 
 class ClientProgramsController extends Controller
 {
@@ -49,11 +51,28 @@ class ClientProgramsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($programId)
     {
-        $registeredprogram = ClientProgram::find($id);
-        $program = Program::find($id);
-        return view('client.new.program.details', compact('registeredprogram', 'program'));
+        $authUser = Auth::user();
+        $program = Program::where('id', $programId)->first();
+        if(is_null($program))
+        {
+            abort(403, 'The program has not been found!');
+        }
+
+        $userBoughtProgram = false;
+        if(!is_null($authUser))
+        {
+            $userProgram = UserProgram::where('user_id', $authUser->id)->where('program_id', $program->id)->first();
+            if(!is_null($userProgram))
+            {
+                $userBoughtProgram = true;
+            }
+        }
+
+        $currency = CurrencyHelper::getCurrencyString();
+
+        return view('client.new.program.details', compact('program', 'userBoughtProgram', 'currency'));
     }
 
     /**
@@ -116,4 +135,11 @@ class ClientProgramsController extends Controller
     {
         //
     }
+
+
+    // public function index()
+    // {
+    //     $programs = program::orderBy('id', 'ASC',)->paginate(5);
+    //     return view('programs', compact('programs'));
+    // }
 }

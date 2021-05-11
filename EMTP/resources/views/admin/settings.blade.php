@@ -37,7 +37,7 @@
                                             <p class="text-sm text-gray-500 font-normal leading-relaxed lg:w-3/5">Select currency type that will be used for prices on the front-end.</p>
                                           </div>
                                         </div>
-        
+
                                         <div class="m-6">
                                             <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
                                             <select name="currency" class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none" autocomplete="off">
@@ -51,7 +51,7 @@
                                         </div>
 
                                         <hr>
-        
+
                                         <div class="divide-y divide-gray-200">
                                             <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                                                 <div class="flex flex-col">
@@ -59,7 +59,7 @@
                                                         <label class="leading-loose">Use Integer Prices</label>
                                                         <p class="text-sm text-gray-500 font-normal leading-relaxed lg:w-4/5">Select "Yes" if you do not want to use decimals in the prices.</p>
                                                     </div>
-            
+
                                                     <div class="m-6">
                                                         <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
                                                         <select name="use_integer_prices" class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none" autocomplete="off">
@@ -72,17 +72,17 @@
                                                         </select>
                                                         <p style="color:red;">{{ $errors->first('use_integer_prices') }}</p>
                                                     </div>
-                                                
+
                                                 </div>
 
                                                 <hr>
-                                                
+
                                                 <div class="flex flex-col">
                                                     <div class="m-2">
                                                         <label class="leading-loose">Use Currency Symbol</label>
                                                         <p class="text-sm text-gray-500 font-normal leading-relaxed lg:w-4/5">Select "Yes" if you want to use the symbol of the selected currency on the frontend. Only applicable for the following currencies: USD, EUR, GBP.</p>
                                                     </div>
-            
+
                                                     <div class="m-6">
                                                         <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
                                                         <select name="use_currency_symbol" class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none" autocomplete="off">
@@ -95,17 +95,17 @@
                                                         </select>
                                                         <p style="color:red;">{{ $errors->first('use_currency_symbol') }}</p>
                                                     </div>
-                                                
+
                                                 </div>
 
                                                 <hr>
-            
+
                                                 <div class="flex flex-col">
                                                     <div class="m-2">
                                                         <label class="leading-loose">Use Comma for seperating decimals</label>
                                                         <p class="text-sm text-gray-500 font-normal leading-relaxed lg:w-4/5">Select "Yes" if you want to use the comma "," for separating decimals and the period "." as the thousand separator on the frontend.</p>
                                                     </div>
-            
+
                                                     <div class="m-6">
                                                         <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
                                                         <select name="comma_is_decimal_separator" class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none" autocomplete="off">
@@ -118,7 +118,7 @@
                                                         </select>
                                                         <p style="color:red;">{{ $errors->first('comma_is_decimal_separator') }}</p>
                                                     </div>
-                                                
+
                                                 </div>
 
                                                 <hr>
@@ -132,7 +132,7 @@
                                                         <label class="leading-loose">Enable Braintree</label>
                                                         <p class="text-sm text-gray-500 font-normal leading-relaxed lg:w-4/5">Select "No" if you do not want to enable payment with Braintree.</p>
                                                     </div>
-            
+
                                                     <div class="m-6">
                                                         <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
                                                         <select name="enable_braintree" class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none" autocomplete="off">
@@ -145,7 +145,7 @@
                                                         </select>
                                                         <p style="color:red;">{{ $errors->first('enable_braintree') }}</p>
                                                     </div>
-                                                
+
                                                 </div>
 
                                                 <hr>
@@ -155,7 +155,7 @@
                                                         <label class="leading-loose">Enable PayPal within Braintree</label>
                                                         <p class="text-sm text-gray-500 font-normal leading-relaxed lg:w-4/5">Select "No" if you do not want to enable payment with PayPal within Braintree. If you enable this option, you cannot enable the PayPal Smart Buttons.</p>
                                                     </div>
-            
+
                                                     <div class="m-6">
                                                         <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
                                                         <select name="enable_paypal_in_bt" class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none" autocomplete="off">
@@ -168,7 +168,7 @@
                                                         </select>
                                                         <p style="color:red;">{{ $errors->first('enable_paypal_in_bt') }}</p>
                                                     </div>
-                                                
+
                                                 </div>
 
                                                 <hr>
@@ -178,7 +178,7 @@
                                                         <label class="leading-loose">Enable Stripe</label>
                                                         <p class="text-sm text-gray-500 font-normal leading-relaxed lg:w-4/5">Select "No" if you do not want to enable payment with Stripe.</p>
                                                     </div>
-            
+
                                                     <div class="m-6">
                                                         <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
                                                         <select name="enable_stripe" class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none" autocomplete="off">
@@ -191,7 +191,7 @@
                                                         </select>
                                                         <p style="color:red;">{{ $errors->first('enable_stripe') }}</p>
                                                     </div>
-                                                
+
                                                 </div>
 
                                                 <hr>
@@ -201,7 +201,7 @@
                                                         <label class="leading-loose">Enable PayPal Smart Buttons</label>
                                                         <p class="text-sm text-gray-500 font-normal leading-relaxed lg:w-4/5">Select "No" if you do not want to enable PayPal Smart Buttons. If you enable Braintree and PayPal within it, you cannot enable the PayPal Smart Buttons.</p>
                                                     </div>
-            
+
                                                     <div class="m-6">
                                                         <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
                                                         <select name="enable_paypal_smart" class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none" autocomplete="off">
@@ -223,7 +223,7 @@
                                                         <label class="leading-loose">Enable Paying with Card Smart Button</label>
                                                         <p class="text-sm text-gray-500 font-normal leading-relaxed lg:w-4/5">Select "No" if you do not want to enable paying with card smart button.</p>
                                                     </div>
-            
+
                                                     <div class="m-6">
                                                         <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
                                                         <select name="enable_pp_smart_card" class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none" autocomplete="off">
@@ -245,7 +245,7 @@
                                                         <label class="leading-loose">Enable Paying with Credit Smart Button</label>
                                                         <p class="text-sm text-gray-500 font-normal leading-relaxed lg:w-4/5">Select "No" if you do not want to enable paying with credit smart button.</p>
                                                     </div>
-            
+
                                                     <div class="m-6">
                                                         <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
                                                         <select name="enable_pp_smart_credit" class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none" autocomplete="off">
@@ -267,7 +267,7 @@
                                                         <label class="leading-loose">Enable Paying with Bancontact Smart Button</label>
                                                         <p class="text-sm text-gray-500 font-normal leading-relaxed lg:w-4/5">Select "No" if you do not want to enable paying with Bancontact smart button.</p>
                                                     </div>
-            
+
                                                     <div class="m-6">
                                                         <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
                                                         <select name="enable_pp_smart_bancontact" class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none" autocomplete="off">
@@ -289,7 +289,7 @@
                                                         <label class="leading-loose">Enable Paying with Blink Smart Button</label>
                                                         <p class="text-sm text-gray-500 font-normal leading-relaxed lg:w-4/5">Select "No" if you do not want to enable paying with Blik smart button.</p>
                                                     </div>
-            
+
                                                     <div class="m-6">
                                                         <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
                                                         <select name="enable_pp_smart_blik" class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none" autocomplete="off">
@@ -311,7 +311,7 @@
                                                         <label class="leading-loose">Enable Paying with EPS Smart Button</label>
                                                         <p class="text-sm text-gray-500 font-normal leading-relaxed lg:w-4/5">Select "No" if you do not want to enable paying with EPS smart button.</p>
                                                     </div>
-            
+
                                                     <div class="m-6">
                                                         <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
                                                         <select name="enable_pp_smart_eps" class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none" autocomplete="off">
@@ -333,7 +333,7 @@
                                                         <label class="leading-loose">Enable Paying with Giropay Smart Button</label>
                                                         <p class="text-sm text-gray-500 font-normal leading-relaxed lg:w-4/5">Select "No" if you do not want to enable paying with Giropay smart button.</p>
                                                     </div>
-            
+
                                                     <div class="m-6">
                                                         <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
                                                         <select name="enable_pp_smart_giropay" class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none" autocomplete="off">
@@ -355,7 +355,7 @@
                                                         <label class="leading-loose">Enable Paying with Ideal Smart Button</label>
                                                         <p class="text-sm text-gray-500 font-normal leading-relaxed lg:w-4/5">Select "No" if you do not want to enable paying with iDeal smart button.</p>
                                                     </div>
-            
+
                                                     <div class="m-6">
                                                         <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
                                                         <select name="enable_pp_smart_ideal" class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none" autocomplete="off">
@@ -377,7 +377,7 @@
                                                         <label class="leading-loose">Enable Paying with Mercadopago Smart Button</label>
                                                         <p class="text-sm text-gray-500 font-normal leading-relaxed lg:w-4/5">Select "No" if you do not want to enable paying with Mercadopago smart button.</p>
                                                     </div>
-            
+
                                                     <div class="m-6">
                                                         <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
                                                         <select name="enable_pp_smart_mercadopago" class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none" autocomplete="off">
@@ -399,7 +399,7 @@
                                                         <label class="leading-loose">Enable Paying with MyBank Smart Button</label>
                                                         <p class="text-sm text-gray-500 font-normal leading-relaxed lg:w-4/5">Select "No" if you do not want to enable paying with MyBank smart button.</p>
                                                     </div>
-            
+
                                                     <div class="m-6">
                                                         <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
                                                         <select name="enable_pp_smart_mybank" class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none" autocomplete="off">
@@ -421,7 +421,7 @@
                                                         <label class="leading-loose">Enable Paying with P24 Smart Button</label>
                                                         <p class="text-sm text-gray-500 font-normal leading-relaxed lg:w-4/5">Select "No" if you do not want to enable paying with P24 smart button.</p>
                                                     </div>
-            
+
                                                     <div class="m-6">
                                                         <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
                                                         <select name="enable_pp_smart_p24" class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none" autocomplete="off">
@@ -443,7 +443,7 @@
                                                         <label class="leading-loose">Enable Paying with Sepa Smart Button</label>
                                                         <p class="text-sm text-gray-500 font-normal leading-relaxed lg:w-4/5">Select "No" if you do not want to enable paying with Sepa smart button.</p>
                                                     </div>
-            
+
                                                     <div class="m-6">
                                                         <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
                                                         <select name="enable_pp_smart_sepa" class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none" autocomplete="off">
@@ -465,7 +465,7 @@
                                                         <label class="leading-loose">Enable Paying with Sofort Smart Button</label>
                                                         <p class="text-sm text-gray-500 font-normal leading-relaxed lg:w-4/5">Select "No" if you do not want to enable paying with Sofort smart button.</p>
                                                     </div>
-            
+
                                                     <div class="m-6">
                                                         <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
                                                         <select name="enable_pp_smart_sofort" class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none" autocomplete="off">
@@ -487,7 +487,7 @@
                                                         <label class="leading-loose">Enable Paying with Venmo Smart Button</label>
                                                         <p class="text-sm text-gray-500 font-normal leading-relaxed lg:w-4/5">Select "No" if you do not want to enable paying with Venmo smart button.</p>
                                                     </div>
-            
+
                                                     <div class="m-6">
                                                         <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232"><path d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z" fill="#648299" fill-rule="nonzero"/></svg>
                                                         <select name="enable_pp_smart_venmo" class="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none" autocomplete="off">
@@ -503,7 +503,7 @@
                                                 </div>
 
                                                 <hr>
-            
+
                                                 <div class="lg:w-1/6">
                                                     <div class="col-sm-12">
                                                         <button type="submit" class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">Save</button>
