@@ -179,7 +179,7 @@ class DatabaseSeeder extends Seeder
             'title' => 'testing',
             'description' => 'testing',
             'content' => 'testing',
-            'email' => 'c@c',
+            'email' => 'admin@gmail.com',
         ]);
     }
 }
