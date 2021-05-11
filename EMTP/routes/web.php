@@ -43,7 +43,7 @@ Route::get('/', function () {
 });
 
 // Admin Routes
-Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', 'verified','admin'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', 'verified', 'admin'])->group(function () {
 
     Route::resource('/dashboard', AdminDashboardController::class);
     Route::resource('/department', AdminDepartmentController::class);
@@ -54,8 +54,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', 'verified','
     Route::resource('/management', AdminUserManagementController::class);
     Route::resource('/support', AdminSupportController::class);
     Route::resource('/users', AdminUserManagementController::class);
-
-
 });
 
 // client routes
@@ -79,13 +77,10 @@ Route::prefix('client')->name('client.')->middleware(['auth:sanctum', 'verified'
     Route::get('/checkout/{programSlug}', [CheckoutController::class, 'index'])->name('checkout')->middleware('auth');
     Route::post('checkout/validate/{programId}/{programSlug}', [CheckoutController::class, 'prePaymentValidation'])->name('checkout.validate');
     Route::post('checkout/fulfill/order', [CheckoutController::class, 'fulfillOrder'])->name('checkout.fulfill.order');
-
-});
-
 });
 
 // staff route
-Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified','staff'])->group(function () {
+Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified', 'staff'])->group(function () {
 
     Route::resource('/dashboard', StaffDashboardController::class);
     Route::resource('/program', StaffProgramsController::class);
@@ -105,7 +100,6 @@ Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified','
     Route::get('/dashboard/{assignedprogram}/material', [StaffMaterialController::class, 'index'])->name('staff-program-material');
     Route::get('/dashboard/{assignedprogram}/material/{material}', [StaffMaterialController::class, 'specific_material'])->name('staff-program-specific-material');
     Route::get('/dashboard/{assignedprogram}/feedback', [StaffFeedbackController::class, 'index'])->name('staff-program-feedback');
-
 });
 
 // To-Be-Confirmed
@@ -122,7 +116,7 @@ Route::get('courses', [FrontendProgramController::class, 'index'])->name('course
 Route::get('courses/{courseId}', [FrontendProgramController::class, 'show'])->name('courses.show');
 
 // Admin To Be Confirmed
-Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', 'verified','admin'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', 'verified', 'admin'])->group(function () {
 
     //Course routes
     Route::get('courses', [CourseController::class, 'index'])->name('courses');
@@ -157,16 +151,17 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', 'verified','
     Route::delete('orders/{orderId}', [AdminOrdersController::class, 'destroy'])->name('orders.destroy');
 
     Route::get('/', [HomeController::class, 'index'])->name('home');
-
 });
 
 // Routes for Member group
-Route::group([
-    'as'=>'member.',
-    'prefix'=>'member',
-    'middleware' => ['auth']],
+Route::group(
+    [
+        'as' => 'member.',
+        'prefix' => 'member',
+        'middleware' => ['auth']
+    ],
 
-    function() {
+    function () {
         Route::get('dashboard', [MemberDashboardController::class, 'index'])->name('dash');
     }
 );
