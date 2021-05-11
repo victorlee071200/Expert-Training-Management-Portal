@@ -82,7 +82,7 @@ Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified','
     Route::get('/program/approved/{id}', [StaffProgramsController::class, 'approved']);
 
     // view specific staff assigned program
-    Route::get('/dashboard/{assignedprogram}/detail', [StaffAssignedProgramController::class, 'detail'])->name('staff-program-detail');
+    Route::get('/dashboard/{assignedprogram}/detail', [StaffAssignedProgramController::class, 'index'])->name('staff-program-detail');
     Route::get('/dashboard/{assignedprogram}/announcement', [StaffAnnouncementController::class, 'index'])->name('staff-program-announcement');
     Route::get('/dashboard/{assignedprogram}/announcement/{announcement}', [StaffAnnouncementController::class, 'specific_announcement'])->name('staff-program-specific-announcement');
     Route::post('/dashboard/{assignedprogram}/announcement/create', [StaffAnnouncementController::class, 'create'])->name('staff-program-announcement');

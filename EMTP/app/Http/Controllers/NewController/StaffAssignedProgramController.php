@@ -19,42 +19,14 @@ class StaffAssignedProgramController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $pendingprograms =  DB::table('programs')->where('status', 'to-be-confirmed')->get();
-        $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
-        $allprograms =  Program::all();
-        return view('staff.program.index',['pendingprograms'=>$pendingprograms, 'allprograms'=>$allprograms, 'approvedprograms'=>$approvedprograms]);
-    }
-
-    public function detail(ClientProgram $assignedprogram, Program $program)
+    public function index(ClientProgram $assignedprogram)
     {
         $assignedprogram = DB::table('client_programs')->where('id', $assignedprogram)->get();
-        $program =  DB::table('programs')->where('id', $program)->get();
-        return view('staff.program.detail', compact('assignedprogram','program'));
-    }
-
-    public function StaffViewSpecificAssignedProgramMaterial(ClientProgram $assignedprogram, Program $program)
-    {
-        $assignedprogram_ = DB::table('client_programs')->where('id', $assignedprogram)->get();
-        $program_ =  DB::table('programs')->where('id', $program)->get();
-        $trainingMaterial = DB::table('materials')->get();
-        return view('staff.program.material',['assignedprogram'=>$assignedprogram, 'program'=>$program, 'trainingMaterial'=> $trainingMaterial]);
-    }
-
-    public function StaffViewSpecificAssignedProgramMaterialView(ClientProgram $assignedprogram, Program $program, Material $trainingMaterial)
-    {
-        $assignedprogram_ = DB::table('client_programs')->where('id', $assignedprogram)->get();
-        $program_ =  DB::table('programs')->where('id', $program)->get();
-        $trainingMaterial_ = DB::table('materials')->where('id', $trainingMaterial)->get();
-        return view('staff.program.view_material',['assignedprogram'=>$assignedprogram, 'program'=>$program, 'trainingMaterial'=> $trainingMaterial]);
-    }
-
-    public function StaffViewSpecificAssignedProgramFeedback(ClientProgram $assignedprogram, Program $program)
-    {
-        $assignedprogram_ = DB::table('client_programs')->where('id', $assignedprogram)->get();
-        $program_ =  DB::table('programs')->where('id', $program)->get();
-        return view('staff.program.feedback',['assignedprogram'=>$assignedprogram, 'program'=>$program]);
+        return view('staff.program.detail', compact('assignedprogram'));
+        // $pendingprograms =  DB::table('programs')->where('status', 'to-be-confirmed')->get();
+        // $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
+        // $allprograms =  Program::all();
+        // return view('staff.program.index',['pendingprograms'=>$pendingprograms, 'allprograms'=>$allprograms, 'approvedprograms'=>$approvedprograms]);
     }
 
     /**

@@ -279,61 +279,7 @@ class DatabaseSeeder extends Seeder
         //     'state' => 'ACTIVE',
         // ]);
 
-        // DB::table('announcements')->insert([
-        //     'program_code' => 'ICT30005',
-        //     'program_name' => 'Program A',
-        //     'title' => 'Announcement 1',
-        //     'content' => $content,
-        //     'state' => 'ACTIVE',
-        // ]);
 
-        // DB::table('announcements')->insert([
-        //     'program_code' => 'PCE10023',
-        //     'program_name' => 'Program B',
-        //     'title' => 'Announcement 1',
-        //     'content' => $content,
-        //     'state' => 'ACTIVE',
-        // ]);
-
-        // DB::table('announcements')->insert([
-        //     'program_code' => 'PCE10011',
-        //     'program_name' => 'Program C',
-        //     'title' => 'Announcement 1',
-        //     'content' => $content,
-        //     'state' => 'ACTIVE',
-        // ]);
-
-        // DB::table('announcements')->insert([
-        //     'program_code' => 'ICT30005',
-        //     'program_name' => 'Program A',
-        //     'title' => 'Announcement 2',
-        //     'content' => $content,
-        //     'state' => 'ACTIVE',
-        // ]);
-
-        // DB::table('announcements')->insert([
-        //     'program_code' => 'PCE10023',
-        //     'program_name' => 'Program B',
-        //     'title' => 'Announcement 2',
-        //     'content' => $content,
-        //     'state' => 'ACTIVE',
-        // ]);
-
-        // DB::table('announcements')->insert([
-        //     'program_code' => 'PCE10011',
-        //     'program_name' => 'Program C',
-        //     'title' => 'Announcement 2',
-        //     'content' => $content,
-        //     'state' => 'ACTIVE',
-        // ]);
-
-        // DB::table('announcements')->insert([
-        //     'program_code' => 'PCE10011',
-        //     'program_name' => 'Program C',
-        //     'title' => 'Announcement 3',
-        //     'content' => $content,
-        //     'state' => 'ACTIVE',
-        // ]);
 
 
         // $this->call(UserSeeder::class);
@@ -353,6 +299,7 @@ class DatabaseSeeder extends Seeder
             BraintreeSettingsTableSeeder::class,
             StripeSettingsTableSeeder::class,
             PayPalSettingsTableSeeder::class,
+            AnnouncementsTableSeeder::class,
         ]);
 
         // DB::table('feedbacks')->insert([

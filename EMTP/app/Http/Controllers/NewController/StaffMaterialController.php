@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\NewController;
 
-use App\Http\Controllers\Controller;
+use App\Models\Program;
+use App\Models\Material;
 use Illuminate\Http\Request;
+use App\Models\ClientProgram;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class StaffMaterialController extends Controller
 {
@@ -15,6 +19,22 @@ class StaffMaterialController extends Controller
     public function index()
     {
         //
+    }
+
+    public function material(ClientProgram $assignedprogram, Program $program)
+    {
+        $assignedprogram_ = DB::table('client_programs')->where('id', $assignedprogram)->get();
+        $program_ =  DB::table('programs')->where('id', $program)->get();
+        $trainingMaterial = DB::table('materials')->get();
+        return view('staff.program.material',['assignedprogram'=>$assignedprogram, 'program'=>$program, 'trainingMaterial'=> $trainingMaterial]);
+    }
+
+    public function specific_material(ClientProgram $assignedprogram, Program $program, Material $trainingMaterial)
+    {
+        $assignedprogram_ = DB::table('client_programs')->where('id', $assignedprogram)->get();
+        $program_ =  DB::table('programs')->where('id', $program)->get();
+        $trainingMaterial_ = DB::table('materials')->where('id', $trainingMaterial)->get();
+        return view('staff.program.view_material',['assignedprogram'=>$assignedprogram, 'program'=>$program, 'trainingMaterial'=> $trainingMaterial]);
     }
 
     /**

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\NewController;
 
-use App\Http\Controllers\Controller;
+use App\Models\Program;
 use Illuminate\Http\Request;
+use App\Models\ClientProgram;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class StaffFeedbackController extends Controller
 {
@@ -12,9 +15,11 @@ class StaffFeedbackController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ClientProgram $assignedprogram, Program $program)
     {
-        //
+        $assignedprogram_ = DB::table('client_programs')->where('id', $assignedprogram)->get();
+        $program_ =  DB::table('programs')->where('id', $program)->get();
+        return view('staff.program.feedback',['assignedprogram'=>$assignedprogram, 'program'=>$program]);
     }
 
     /**

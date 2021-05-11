@@ -1,4 +1,4 @@
-<x-app-layout title="Client Specific Registered Program - Announcement">
+<x-app-layout title="Staff Specific Registered Program - Announcement">
     <div class="bg-white sm:rounded-lg flex">
         <!-- side nav -->
         <div class="bg-gray-300 text-gray-800 hidden md:flex h-auto">
