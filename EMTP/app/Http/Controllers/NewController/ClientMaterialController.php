@@ -5,7 +5,7 @@ namespace App\Http\Controllers\NewController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class StaffDashboardController extends Controller
+class ClientMaterialController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class StaffDashboardController extends Controller
      */
     public function index()
     {
-        return view('staff.dashboard.index');
+        //
     }
 
     /**

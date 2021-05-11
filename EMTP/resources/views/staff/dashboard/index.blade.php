@@ -12,7 +12,7 @@
                 <!--card container-->
                 <div class="hover:bg-gray-100 lg:m-4 shadow-md hover:shadow-lg rounded-lg bg-white w-auto">
                     <!-- Card Image -->
-                    <a class="hover:bg-blue-700" href="/client/view/registered/{{$program->id}}/{{$programdetails[$indexKey]->id}}/detail">
+                    <a class="hover:bg-blue-700" href="/staff/assigned/{{$program->id}}/detail">
                         <img src = "{{ asset('storage/program_thumbnails/'.$programdetails[$indexKey]->thumbnail_path)}}" alt="fitness training" class="h-auto">
                         <!-- Card Content -->
                         <div class="p-4">
