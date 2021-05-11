@@ -34,14 +34,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// all
-
-
-
-
-
 // Admin Routes
-
 Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', 'verified','admin'])->group(function () {
 
     Route::resource('/dashboard', AdminDashboardController::class);
@@ -57,6 +50,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', 'verified','
 
 });
 
+// client routes
 Route::prefix('client')->name('client.')->middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::resource('/home', ClientHomepageController::class);
@@ -65,9 +59,17 @@ Route::prefix('client')->name('client.')->middleware(['auth:sanctum', 'verified'
     Route::resource('/aboutus', ClientAboutUsController::class);
     Route::resource('/support', ClientSupportController::class);
 
+    // view specific client registered program
+    Route::get('/dashboard/{id}/detail', [ClientProgramsController::class, 'index'])->name('client-program-detail');
+    Route::get('/dashboard/{id}/announcement', [AnnouncementController::class, 'index'])->name('client-program-announcement');
+    Route::get('/dashboard/{id}/announcement/{announcements}', [AnnouncementController::class, 'specific_announcement'])->name('client-program-specific-announcement');
+    Route::get('/dashboard/{id}/material', [ClientProgramsController::class, 'material'])->name('client-program-material');
+    Route::get('/dashboard/{id}/material/{material}', [ClientProgramsController::class, 'specific_material'])->name('client-program-specific-material');
+    Route::get('/dashboard/{id}/feedback', [ClientProgramsController::class, 'feedback'])->name('client-program-feedback');
+
 });
 
-
+// staff route
 Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified','admin'])->group(function () {
 
     Route::resource('/dashboard', StaffDashboardController::class);
@@ -76,21 +78,22 @@ Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified','
     Route::get('/program/pending/edit/{id}', [StaffProgramsController::class, 'edit']);
     Route::get('/program/approved/{id}', [StaffProgramsController::class, 'approved']);
 
-    Route::get('/program/approved/{id}/announcement', [AnnouncementController::class, 'index'])->name('staff-program-announcement');
-    Route::get('/program/approve/{id}/announcement/create', [AnnouncementController::class, 'create'])->name('staff-program-announcement');
-    Route::post('/program/approved/{id}/announcement', [AnnouncementController::class, 'store'])->name('staff-program-announcement');
-    Route::put('/program/approve/{id}/announcement', [AnnouncementController::class, 'update'])->name('staff-program-announcement');
-    Route::delete('/program/approve/{id}/announcement', [AnnouncementController::class, 'delete'])->name('staff-program-announcement');
+    // view specific staff assigned program
+    Route::get('/dashboard/{id}/detail', [StaffProgramsController::class, 'index'])->name('staff-program-detail');
+    Route::get('/dashboard/{id}/announcement', [AnnouncementController::class, 'index'])->name('staff-program-announcement');
+    Route::get('/dashboard/{id}/announcement/{announcement}', [AnnouncementController::class, 'specific_announcement'])->name('staff-program-specific-announcement');
+    Route::post('/dashboard/{id}/announcement/create', [AnnouncementController::class, 'create'])->name('staff-program-announcement');
+    Route::post('/dashboard/{id}/announcement', [AnnouncementController::class, 'store'])->name('staff-program-announcement');
+    Route::put('/dashboard/{id}/announcement', [AnnouncementController::class, 'update'])->name('staff-program-announcement');
+    Route::delete('/dashboard/{id}/announcement', [AnnouncementController::class, 'delete'])->name('staff-program-announcement');
+    Route::get('/dashboard/{id}/announcement/{announcements}', [AnnouncementController::class, 'index'])->name('staff-program-specific-announcement');
+    Route::get('/dashboard/{id}/material', [StaffProgramsController::class, 'material'])->name('staff-program-material');
+    Route::get('/dashboard/{id}/material/{material}', [StaffProgramsController::class, 'specific_material'])->name('staff-program-specific-material');
+    Route::get('/dashboard/{id}/feedback', [StaffProgramsController::class, 'feedback'])->name('staff-program-feedback');
 
 });
 
-
-
-
-
-
 // To-Be-Confirmed
-
 Route::get('checkout/{courseSlug}', [CheckoutController::class, 'index'])->name('checkout')->middleware('auth');
 Route::post('checkout/validate/{courseId}/{courseSlug}', [CheckoutController::class, 'prePaymentValidation'])->name('checkout.validate');
 Route::post('checkout/fulfill/order', [CheckoutController::class, 'fulfillOrder'])->name('checkout.fulfill.order');
@@ -106,7 +109,6 @@ Route::get('courses/{courseId}', [FrontendProgramController::class, 'show'])->na
 
 // Admin To Be Confirmed
 Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', 'verified','admin'])->group(function () {
-
 
     //Course routes
     Route::get('courses', [CourseController::class, 'index'])->name('courses');
@@ -142,7 +144,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', 'verified','
 
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
-
 });
 
 // Routes for Member group
@@ -154,16 +155,4 @@ Route::group([
     function() {
         Route::get('dashboard', [MemberDashboardController::class, 'index'])->name('dash');
     }
-
 );
-
-
-
-
-
-
-
-
-
-
-
