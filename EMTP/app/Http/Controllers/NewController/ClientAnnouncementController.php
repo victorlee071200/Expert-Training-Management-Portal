@@ -1,10 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\NewController;
 
+use App\Models\Announcement;
+use App\Models\ClientProgram;
+use App\Models\Program;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
-class StaffDashboardController extends Controller
+class ClientAnnouncementController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +18,7 @@ class StaffDashboardController extends Controller
      */
     public function index()
     {
-        return view('staff.dashboard.index');
+        //
     }
 
     /**

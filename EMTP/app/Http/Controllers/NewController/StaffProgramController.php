@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Models\UserProgram\UserProgram;
 use Illuminate\Support\Facades\Validator;
 
-class StaffProgramsController extends Controller
+class StaffProgramController extends Controller
 {
     /**
      * Display a listing of the resource.

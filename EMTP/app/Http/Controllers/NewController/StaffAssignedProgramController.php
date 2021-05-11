@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\NewController;
 
 use App\Models\Program;
 use App\Models\Material;
@@ -8,10 +8,11 @@ use Illuminate\Support\Str;
 use App\Models\Announcement;
 use Illuminate\Http\Request;
 use App\Models\ClientProgram;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-class StaffProgramController extends Controller
+class StaffAssignedProgramController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +27,7 @@ class StaffProgramController extends Controller
         return view('staff.program.index',['pendingprograms'=>$pendingprograms, 'allprograms'=>$allprograms, 'approvedprograms'=>$approvedprograms]);
     }
 
-    public function StaffViewSpecificAssignedProgramDetail(ClientProgram $assignedprogram, Program $program)
+    public function detail(ClientProgram $assignedprogram, Program $program)
     {
         $assignedprogram_ = DB::table('client_programs')->where('id', $assignedprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
-class AnnouncementController extends Controller
+class StaffAnnouncementController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +21,7 @@ class AnnouncementController extends Controller
         $assignedprogram_ = DB::table('client_programs')->where('id', $assignedprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();
         $announcement = DB::table('announcements')->get();
-        return view('staff.program.announcement',['assignedprogram'=>$assignedprogram, 'program'=>$program, 'announcement'=>$announcement]);
+        return view('staff.program.announcement',['assignedprogram'=>$assignedprogram, 'id'=>$program, 'announcement'=>$announcement]);
     }
 
     /**
@@ -33,7 +33,7 @@ class AnnouncementController extends Controller
     {
         $assignedprogram_ = DB::table('client_programs')->where('id', $assignedprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();
-        return view('staff.program.create_announcement',['assignedprogram'=>$assignedprogram, 'program'=>$program]);
+        return view('staff.program.create_announcement',['assignedprogram'=>$assignedprogram, 'id'=>$program]);
     }
 
     /**

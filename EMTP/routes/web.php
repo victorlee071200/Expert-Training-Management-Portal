@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\NewController\AnnouncementController;
 use App\Http\Controllers\NewController\CheckoutController;
+use App\Http\Controllers\NewController\BraintreeController;
 use App\Http\Controllers\NewController\AdminSupportController;
+use App\Http\Controllers\NewController\AnnouncementController;
 use App\Http\Controllers\NewController\AdminProgramsController;
 use App\Http\Controllers\NewController\ClientAboutUsController;
 use App\Http\Controllers\NewController\ClientSupportController;
@@ -15,7 +16,7 @@ use App\Http\Controllers\NewController\StaffDashboardController;
 use App\Http\Controllers\NewController\AdminDepartmentController;
 use App\Http\Controllers\NewController\ClientDashboardController;
 use App\Http\Controllers\NewController\AdminUserManagementController;
-
+use App\Http\Controllers\NewController\StaffAssignedProgramController;
 
 
 
@@ -65,12 +66,12 @@ Route::prefix('client')->name('client.')->middleware(['auth:sanctum', 'verified'
     Route::get('/dashboard/{id}/announcement/{announcements}', [AnnouncementController::class, 'specific_announcement'])->name('client-program-specific-announcement');
     Route::get('/dashboard/{id}/material', [ClientProgramsController::class, 'material'])->name('client-program-material');
     Route::get('/dashboard/{id}/material/{material}', [ClientProgramsController::class, 'specific_material'])->name('client-program-specific-material');
-    Route::get('/dashboard/{id}/feedback', [ClientProgramsController::class, 'feedback'])->name('client-program-feedback');
+    Route::get('/dashboard/{id}/feedback', [ClientFeedbackController::class, 'feedback'])->name('client-program-feedback');
 
 });
 
 // staff route
-Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified','admin'])->group(function () {
+Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified','staff'])->group(function () {
 
     Route::resource('/dashboard', StaffDashboardController::class);
     Route::resource('/program', StaffProgramsController::class);
@@ -79,7 +80,7 @@ Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified','
     Route::get('/program/approved/{id}', [StaffProgramsController::class, 'approved']);
 
     // view specific staff assigned program
-    Route::get('/dashboard/{id}/detail', [StaffDashboardController::class, 'program_detail'])->name('staff-program-detail');
+    Route::get('/dashboard/{program}/detail', [StaffAssignedProgramController::class, 'detail'])->name('staff-program-detail');
     Route::get('/dashboard/{id}/announcement', [AnnouncementController::class, 'index'])->name('staff-program-announcement');
     Route::get('/dashboard/{id}/announcement/{announcement}', [AnnouncementController::class, 'specific_announcement'])->name('staff-program-specific-announcement');
     Route::post('/dashboard/{id}/announcement/create', [AnnouncementController::class, 'create'])->name('staff-program-announcement');
