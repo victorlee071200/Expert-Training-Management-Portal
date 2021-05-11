@@ -43,8 +43,10 @@
 
 
 
+
         @livewireScripts
     </body>
 
     @include('sweetalert::alert')
+    @stack('js')
 </html>

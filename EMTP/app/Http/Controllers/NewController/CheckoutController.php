@@ -107,7 +107,7 @@ class CheckoutController extends Controller
         }
 
 
-        return view('checkout', compact('program', 'countries', 'email', 'currency',
+        return view('client.new.checkout.index', compact('program', 'countries', 'email', 'currency',
                                         'braintreeEnabled', 'stripeEnabled', 'payPalSmartEnabled',
                                         'brainTreeLabel', 'btToken', 'stripePubKey', 'currencyTextRaw'));
     }
