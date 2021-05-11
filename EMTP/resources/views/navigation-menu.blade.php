@@ -5,38 +5,38 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('client-home') }}">
+                    <a href="#">
                         <x-jet-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('client-home') }}" :active="request()->routeIs('client-home')">
+                    <x-jet-nav-link href="{{ route('client.home.index') }}" :active="request()->routeIs('client.home.index')">
                         {{ __('Home') }}
                     </x-jet-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('client-program-dashboard') }}" :active="request()->routeIs('client-program-dashboard')">
+                    <x-jet-nav-link href="{{ route('client.program.index') }}" :active="request()->routeIs('client.program.index')">
                         {{ __('Program') }}
                     </x-jet-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="#" :active="request()->routeIs('client-dashboard')">
+                    <x-jet-nav-link href="{{ route('client.dashboard.index') }}" :active="request()->routeIs('client.dashboard.index')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('about-us') }}" :active="request()->routeIs('about-us')">
+                    <x-jet-nav-link href="{{ route('client.aboutus.index') }}" :active="request()->routeIs('client.aboutus.index')">
                         {{ __('About Us') }}
                     </x-jet-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('client-support-dashboard') }}" :active="request()->routeIs('client-support-dashboard')">
+                    <x-jet-nav-link href="{{ route('client.support.index') }}" :active="request()->routeIs('client.support.index')">
                         {{ __('Support') }}
                     </x-jet-nav-link>
                 </div>
@@ -162,27 +162,27 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-1 pb-1">
-            <x-jet-responsive-nav-link href="{{ route('client-home') }}" :active="request()->routeIs('client-home')">
+            <x-jet-responsive-nav-link href="{{ route('client.home.index') }}" :active="request()->routeIs('client.home.index')">
                 {{ __('Home') }}
             </x-jet-responsive-nav-link>
         </div>
         <div class="pt-1 pb-1">
-            <x-jet-responsive-nav-link href="{{ route('client-program-dashboard') }}" :active="request()->routeIs('client-program-dashboard')">
+            <x-jet-responsive-nav-link href="{{ route('client.program.index') }}" :active="request()->routeIs('client.program.index')">
                 {{ __('Program') }}
             </x-jet-responsive-nav-link>
         </div>
         <div class="pt-1 pb-1">
-            <x-jet-responsive-nav-link href="#" :active="request()->routeIs('client-dashboard')">
+            <x-jet-responsive-nav-link href="{{ route('client.dashboard.index') }}" :active="request()->routeIs('client.dashboard.index')">
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
         </div>
         <div class="pt-1 pb-1">
-            <x-jet-responsive-nav-link href="{{ route('about-us') }}" :active="request()->routeIs('about-us')">
+            <x-jet-responsive-nav-link href="{{ route('client.aboutus.index') }}" :active="request()->routeIs('client.aboutus.index')">
                 {{ __('About Us') }}
             </x-jet-responsive-nav-link>
         </div>
         <div class="pt-1 pb-1">
-            <x-jet-responsive-nav-link href="{{ route('client-support-dashboard') }}" :active="request()->routeIs('client-support-dashboard')">
+            <x-jet-responsive-nav-link href="{{ route('client.support.index') }}" :active="request()->routeIs('client.support.index')">
                 {{ __('Support') }}
             </x-jet-responsive-nav-link>
         </div>

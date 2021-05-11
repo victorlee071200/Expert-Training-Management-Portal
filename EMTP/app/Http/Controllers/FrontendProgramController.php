@@ -14,7 +14,7 @@ class FrontendProgramController extends Controller
     public function index()
     {
         $programs = Program::orderBy('id', 'ASC',)->paginate(5);
-        return view('programs', compact('programs'));
+        return view('courses', compact('programs'));
     }
 
     public function show($programId)

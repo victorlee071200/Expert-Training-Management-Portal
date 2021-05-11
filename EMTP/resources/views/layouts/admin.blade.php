@@ -68,44 +68,27 @@
                     <div role="menu" x-show="open" class="mt-2 space-y-2 px-7" aria-label="Dashboards">
                       <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                       <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                      <a
-                        href="#"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
-                      >
-                        Dashboard
-                      </a>
-                      <a
-                        href="{{ route('admin.program.index') }}"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        Program
-                      </a>
+                      @if (Auth::user()->name == 'admin')
 
-                      <a
-                        href="{{ route('admin.department.index') }}"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        Department
-                      </a>
+                            <a href="{{ route('admin.dashboard.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">Dashboard</a>
 
-                      <a
-                        href="#"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        User Management
-                      </a>
+                            <a href="{{ route('admin.program.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Program</a>
 
-                      <a
-                        href="{{ route('admin-support-dashboard') }}"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        Support
-                      </a>
+                            <a href="{{ route('admin.department.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Department</a>
+
+                            <a href="{{ route('admin.management.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">User Management</a>
+
+                            <a href="{{ route('admin.support.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Support</a>
+
+
+                        @else
+                            <a href="{{ route('staff.dashboard.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">Dashboard</a>
+
+                            <a href="{{ route('staff.program.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Program</a>
+
+                            <a href="{{ route('staff.support.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Support</a>
+
+                        @endif
                     </div>
                   </div>
 
@@ -585,12 +568,18 @@
                         href="{{ route('profile.show') }}">
                             {{ __('Profile') }}
                         </a>
-                        <form method="POST" action="{{ route('logout') }}" role="menuitem">
+
+
+                        <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <a class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-indigo-600" href="{{ route('logout') }}">
+
+                            <x-jet-dropdown-link href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                            this.closest('form').submit();">
                                 {{ __('Log Out') }}
-                            </a>
+                            </x-jet-dropdown-link>
                         </form>
+
                       </div>
                     </div>
                   </nav>
@@ -692,11 +681,14 @@
                         href="{{ route('profile.show') }}">
                             {{ __('Profile') }}
                         </a>
-                        <form method="POST" action="{{ route('logout') }}" role="menuitem">
+                        <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <a class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-indigo-600" href="{{ route('logout') }}">
+
+                            <x-jet-dropdown-link href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                            this.closest('form').submit();">
                                 {{ __('Log Out') }}
-                            </a>
+                            </x-jet-dropdown-link>
                         </form>
                       </div>
                     </div>
@@ -741,44 +733,30 @@
                       <div role="menu" x-show="open" class="mt-2 space-y-2 px-7" aria-label="Dashboards">
                         <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                         <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                        <a
-                        href="#"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
-                      >
-                        Dashboard
-                      </a>
-                      <a
-                        href="{{ route('admin.program.index') }}"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        Program
-                      </a>
+                        @if (Auth::user()->name == 'admin')
 
-                      <a
-                        href="{{ route('admin.department.index') }}"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        Department
-                      </a>
+                            <a href="{{ route('admin.dashboard.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">Dashboard</a>
 
-                      <a
-                        href="#"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        User Management
-                      </a>
+                            <a href="{{ route('admin.program.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Program</a>
+1
+                            <a href="{{ route('admin.department.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Department</a>
 
-                      <a
-                        href="{{ route('admin-support-dashboard') }}"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        Support
-                      </a>
+                            <a href="{{ route('admin.management.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">User Management</a>
+
+                            <a href="{{ route('admin.support.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Support</a>
+
+
+                        @else
+                            <a href="{{ route('staff.dashboard.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">Dashboard</a>
+
+                            <a href="{{ route('staff.program.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Program</a>
+
+                            <a href="{{ route('staff.support.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Support</a>
+
+                        @endif
+
+
+
                       </div>
                     </div>
 

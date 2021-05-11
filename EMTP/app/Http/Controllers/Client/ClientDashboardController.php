@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Member;
 
-use App\Http\Controllers\Controller;
-use Auth;
-use App\Helpers\CurrencyHelper;
 use App\Models\Order\Order;
+use App\Helpers\CurrencyHelper;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class MemberDashboardController extends Controller
 {

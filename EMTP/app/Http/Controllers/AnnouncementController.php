@@ -59,7 +59,7 @@ class AnnouncementController extends Controller
             'content' => request('content'),
             'state' => request('state'),
         ]);
-        
+
         return redirect(route('staff-program-announcement',['assignedprogram'=>$assignedprogram, 'program'=>$program, 'announcement'=>$announcement]));
     }
 

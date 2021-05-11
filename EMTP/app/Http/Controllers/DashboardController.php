@@ -2,25 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
 use Illuminate\Http\Request;
+use App\Models\ClientProgram;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function ClientDashboard()
     {
-        $registeredprograms =  DB::table('client_programs')->where('client_email', Auth::user()->email)->get();
+        $programs =  ClientProgram::where('client_email', Auth::user()->email)->get();
 
         $ids = array();
 
-        foreach($registeredprograms as $program) {
+        foreach($programs as $program) {
             array_push($ids, $program->program_id);
         }
 
-        $programdetails =  DB::table('programs')->whereIn('id', $ids)->get();
+        $details =  DB::table('programs')->whereIn('id', $ids)->get();
 
-        return view('client.dashboard.index',['registeredprograms'=>$registeredprograms,'programdetails'=>$programdetails]);
+        return view('client.dashboard.index',compact('programs', 'details'));
     }
 
 

@@ -64,11 +64,11 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-center">
 
-                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">{{ $department->created_at }}</span>
+                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 rounded-full">{{ $department->created_at }}</span>
 
                                 </td>
                                 <td class="px-6 py-4 text-sm whitespace-nowrap text-center">
-                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">{{ $department->updated_at }}</span>
+                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 rounded-full">{{ $department->updated_at }}</span>
 
                                 </td>
 
@@ -83,7 +83,7 @@
                                             </div>
                                         </a>
                                         <a class="font-medium " href="{{ route('admin.department.edit', $department->id) }}">
-                                            <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                                            <div class="w-4 mr-2 transform hover:text-yellow-500 hover:scale-110">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                                 </svg>
