@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NewController\AnnouncementController;
 use App\Http\Controllers\NewController\CheckoutController;
 use App\Http\Controllers\NewController\AdminSupportController;
 use App\Http\Controllers\NewController\AdminProgramsController;
@@ -75,6 +76,11 @@ Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified','
     Route::get('/program/pending/edit/{id}', [StaffProgramsController::class, 'edit']);
     Route::get('/program/approved/{id}', [StaffProgramsController::class, 'approved']);
 
+    Route::get('/program/approved/{id}/announcement', [AnnouncementController::class, 'index'])->name('staff-program-announcement');
+    Route::get('/program/approve/{id}/announcement/create', [AnnouncementController::class, 'create'])->name('staff-program-announcement');
+    Route::post('/program/approved/{id}/announcement', [AnnouncementController::class, 'store'])->name('staff-program-announcement');
+    Route::put('/program/approve/{id}/announcement', [AnnouncementController::class, 'update'])->name('staff-program-announcement');
+    Route::delete('/program/approve/{id}/announcement', [AnnouncementController::class, 'delete'])->name('staff-program-announcement');
 
 });
 

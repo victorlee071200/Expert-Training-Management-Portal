@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Announcement;
 use App\Models\ClientProgram;
 use App\Models\Program;
-
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\DB;
 
 class AnnouncementController extends Controller
@@ -17,9 +15,12 @@ class AnnouncementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ClientProgram $assignedprogram, Program $program, Announcement $announcement)
     {
-        //
+        $assignedprogram_ = DB::table('client_programs')->where('id', $assignedprogram)->get();
+        $program_ =  DB::table('programs')->where('id', $program)->get();
+        $announcement = DB::table('announcements')->get();
+        return view('staff.program.announcement',['assignedprogram'=>$assignedprogram, 'program'=>$program, 'announcement'=>$announcement]);
     }
 
     /**
