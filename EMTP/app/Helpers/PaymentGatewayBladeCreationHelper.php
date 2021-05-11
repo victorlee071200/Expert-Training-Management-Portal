@@ -8,7 +8,7 @@ class PaymentGatewayBladeCreationHelper
 {
     public static function createBraintreeBladeFile($isPayPalEnabled)
     {
-        $paymentGatewayPath = 'resources/views/js-for-views/payment-gateway-js/';
+        $paymentGatewayPath = resource_path('views/js-for-views/payment-gateway-js/');
         $brainTreeTemplate = file_get_contents($paymentGatewayPath . 'templates/braintree-js-template.blade.php');
         if($isPayPalEnabled)
         {
