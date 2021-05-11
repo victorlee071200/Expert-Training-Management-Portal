@@ -29,25 +29,9 @@ class StaffAssignedProgramController extends Controller
 
     public function detail(ClientProgram $assignedprogram, Program $program)
     {
-        $assignedprogram_ = DB::table('client_programs')->where('id', $assignedprogram)->get();
-        $program_ =  DB::table('programs')->where('id', $program)->get();
-        return view('staff.program.detail',['assignedprogram'=>$assignedprogram, 'program'=>$program]);
-    }
-
-    public function StaffViewSpecificAssignedProgramAnnouncement(ClientProgram $assignedprogram, Program $program, Announcement $announcement)
-    {
-        $assignedprogram_ = DB::table('client_programs')->where('id', $assignedprogram)->get();
-        $program_ =  DB::table('programs')->where('id', $program)->get();
-        $announcement = DB::table('announcements')->get();
-        return view('staff.program.announcement',['assignedprogram'=>$assignedprogram, 'program'=>$program, 'announcement'=>$announcement]);
-    }
-
-    public function StaffViewSpecificAssignedProgramAnnouncementView(ClientProgram $assignedprogram, Program $program, Announcement $announcement)
-    {
-        $assignedprogram_ = DB::table('client_programs')->where('id', $assignedprogram)->get();
-        $program_ =  DB::table('programs')->where('id', $program)->get();
-        $announcement_ = DB::table('announcements')->where('id', $announcement)->get();
-        return view('staff.program.view_announcement',['assignedprogram'=>$assignedprogram, 'program'=>$program, 'announcement'=>$announcement]);
+        $assignedprogram = DB::table('client_programs')->where('id', $assignedprogram)->get();
+        $program =  DB::table('programs')->where('id', $program)->get();
+        return view('staff.program.detail', compact('assignedprogram','program'));
     }
 
     public function StaffViewSpecificAssignedProgramMaterial(ClientProgram $assignedprogram, Program $program)

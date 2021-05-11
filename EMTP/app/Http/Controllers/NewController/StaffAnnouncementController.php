@@ -21,9 +21,16 @@ class StaffAnnouncementController extends Controller
         $assignedprogram_ = DB::table('client_programs')->where('id', $assignedprogram)->get();
         $program_ =  DB::table('programs')->where('id', $program)->get();
         $announcement = DB::table('announcements')->get();
-        return view('staff.program.announcement',['assignedprogram'=>$assignedprogram, 'id'=>$program, 'announcement'=>$announcement]);
+        return view('staff.program.announcement',['assignedprogram'=>$assignedprogram, 'program'=>$program, 'announcement'=>$announcement]);
     }
 
+    public function SpecificAnnouncement(ClientProgram $assignedprogram, Program $program, Announcement $announcement)
+    {
+        $assignedprogram_ = DB::table('client_programs')->where('id', $assignedprogram)->get();
+        $program_ =  DB::table('programs')->where('id', $program)->get();
+        $announcement_ = DB::table('announcements')->where('id', $announcement)->get();
+        return view('staff.program.view_announcement',['assignedprogram'=>$assignedprogram, 'program'=>$program, 'announcement'=>$announcement]);
+    }
     /**
      * Show the form for creating a new resource.
      *

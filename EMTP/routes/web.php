@@ -12,6 +12,8 @@ use App\Http\Controllers\NewController\AdminProgramsController;
 use App\Http\Controllers\NewController\AdminSettingsController;
 use App\Http\Controllers\NewController\ClientAboutUsController;
 use App\Http\Controllers\NewController\ClientSupportController;
+use App\Http\Controllers\NewController\StaffFeedbackController;
+use App\Http\Controllers\NewController\StaffMaterialController;
 use App\Http\Controllers\NewController\StaffProgramsController;
 use App\Http\Controllers\NewController\AdminBraintreeController;
 use App\Http\Controllers\NewController\AdminDashboardController;
@@ -20,10 +22,10 @@ use App\Http\Controllers\NewController\ClientProgramsController;
 use App\Http\Controllers\NewController\StaffDashboardController;
 use App\Http\Controllers\NewController\AdminDepartmentController;
 use App\Http\Controllers\NewController\ClientDashboardController;
+use App\Http\Controllers\NewController\StaffAnnouncementController;
 use App\Http\Controllers\NewController\AdminUserManagementController;
 use App\Http\Controllers\NewController\StaffAssignedProgramController;
-
-
+use App\Http\Controllers\NewController\ClientRegisteredProgramController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,12 +68,12 @@ Route::prefix('client')->name('client.')->middleware(['auth:sanctum', 'verified'
     Route::resource('/support', ClientSupportController::class);
 
     // view specific client registered program
-    Route::get('/dashboard/{id}/detail', [ClientProgramsController::class, 'index'])->name('client-program-detail');
-    Route::get('/dashboard/{id}/announcement', [AnnouncementController::class, 'index'])->name('client-program-announcement');
-    Route::get('/dashboard/{id}/announcement/{announcements}', [AnnouncementController::class, 'specific_announcement'])->name('client-program-specific-announcement');
-    Route::get('/dashboard/{id}/material', [ClientProgramsController::class, 'material'])->name('client-program-material');
-    Route::get('/dashboard/{id}/material/{material}', [ClientProgramsController::class, 'specific_material'])->name('client-program-specific-material');
-    Route::get('/dashboard/{id}/feedback', [ClientFeedbackController::class, 'feedback'])->name('client-program-feedback');
+    Route::get('/dashboard/{registeredprogram}/detail', [ClientRegisteredProgramController::class, 'index'])->name('client-program-detail');
+    Route::get('/dashboard/{registeredprogram}/announcement', [AnnouncementController::class, 'index'])->name('client-program-announcement');
+    Route::get('/dashboard/{registeredprogram}/announcement/{announcements}', [AnnouncementController::class, 'specific_announcement'])->name('client-program-specific-announcement');
+    Route::get('/dashboard/{registeredprogram}/material', [ClientMaterialController::class, 'index'])->name('client-program-material');
+    Route::get('/dashboard/{registeredprogram}/material/{material}', [ClientMaterialController::class, 'specific_material'])->name('client-program-specific-material');
+    Route::get('/dashboard/{registeredprogram}/feedback', [ClientFeedbackController::class, 'index'])->name('client-program-feedback');
 
 
     Route::get('/checkout/{programSlug}', [CheckoutController::class, 'index'])->name('checkout')->middleware('auth');
@@ -92,17 +94,17 @@ Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified','
     Route::get('/program/approved/{id}', [StaffProgramsController::class, 'approved']);
 
     // view specific staff assigned program
-    Route::get('/dashboard/{program}/detail', [StaffAssignedProgramController::class, 'detail'])->name('staff-program-detail');
-    Route::get('/dashboard/{id}/announcement', [AnnouncementController::class, 'index'])->name('staff-program-announcement');
-    Route::get('/dashboard/{id}/announcement/{announcement}', [AnnouncementController::class, 'specific_announcement'])->name('staff-program-specific-announcement');
-    Route::post('/dashboard/{id}/announcement/create', [AnnouncementController::class, 'create'])->name('staff-program-announcement');
-    Route::post('/dashboard/{id}/announcement', [AnnouncementController::class, 'store'])->name('staff-program-announcement');
-    Route::put('/dashboard/{id}/announcement', [AnnouncementController::class, 'update'])->name('staff-program-announcement');
-    Route::delete('/dashboard/{id}/announcement', [AnnouncementController::class, 'delete'])->name('staff-program-announcement');
-    Route::get('/dashboard/{id}/announcement/{announcements}', [AnnouncementController::class, 'index'])->name('staff-program-specific-announcement');
-    Route::get('/dashboard/{id}/material', [StaffDashboardController::class, 'material'])->name('staff-program-material');
-    Route::get('/dashboard/{id}/material/{material}', [StaffDashboardController::class, 'specific_material'])->name('staff-program-specific-material');
-    Route::get('/dashboard/{id}/feedback', [StaffDashboardController::class, 'feedback'])->name('staff-program-feedback');
+    Route::get('/dashboard/{assignedprogram}/detail', [StaffAssignedProgramController::class, 'detail'])->name('staff-program-detail');
+    Route::get('/dashboard/{assignedprogram}/announcement', [StaffAnnouncementController::class, 'index'])->name('staff-program-announcement');
+    Route::get('/dashboard/{assignedprogram}/announcement/{announcement}', [StaffAnnouncementController::class, 'specific_announcement'])->name('staff-program-specific-announcement');
+    Route::post('/dashboard/{assignedprogram}/announcement/create', [StaffAnnouncementController::class, 'create'])->name('staff-program-announcement');
+    Route::post('/dashboard/{assignedprogram}/announcement', [StaffAnnouncementController::class, 'store'])->name('staff-program-announcement');
+    Route::put('/dashboard/{assignedprogram}/announcement', [StaffAnnouncementController::class, 'update'])->name('staff-program-announcement');
+    Route::delete('/dashboard/{assignedprogram}/announcement', [StaffAnnouncementController::class, 'delete'])->name('staff-program-announcement');
+    Route::get('/dashboard/{assignedprogram}/announcement/{announcements}', [StaffAnnouncementController::class, 'index'])->name('staff-program-specific-announcement');
+    Route::get('/dashboard/{assignedprogram}/material', [StaffMaterialController::class, 'index'])->name('staff-program-material');
+    Route::get('/dashboard/{assignedprogram}/material/{material}', [StaffMaterialController::class, 'specific_material'])->name('staff-program-specific-material');
+    Route::get('/dashboard/{assignedprogram}/feedback', [StaffFeedbackController::class, 'index'])->name('staff-program-feedback');
 
 });
 

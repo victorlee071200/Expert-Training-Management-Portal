@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers\NewController;
 
-use Illuminate\Http\Request;
-use App\Models\ClientProgram;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
-class StaffDashboardController extends Controller
+class AdminMaterialController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,17 +14,7 @@ class StaffDashboardController extends Controller
      */
     public function index()
     {
-        $programs =  ClientProgram::where('client_email', Auth::user()->email)->get();
-
-        $ids = array();
-
-        foreach($programs as $program) {
-            array_push($ids, $program->program_id);
-        }
-
-        $details =  DB::table('programs')->whereIn('id', $ids)->get();
-
-        return view('staff.dashboard.index',compact('programs', 'details'));
+        //
     }
 
     /**
