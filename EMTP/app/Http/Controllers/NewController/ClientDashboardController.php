@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\New;
+namespace App\Http\Controllers\NewController;
 
-use App\Models\Department;
 use Illuminate\Http\Request;
+use App\Models\ClientProgram;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
-class AdminDepartmentController extends Controller
+class ClientDashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +17,17 @@ class AdminDepartmentController extends Controller
      */
     public function index()
     {
-        $departments = Department::all();
-        return view('admin.department.index', compact('departments'));
+        $programs =  ClientProgram::where('client_email', Auth::user()->email)->get();
+
+        $ids = array();
+
+        foreach($programs as $program) {
+            array_push($ids, $program->program_id);
+        }
+
+        $details =  DB::table('programs')->whereIn('id', $ids)->get();
+
+        return view('client.new.dashboard.index',compact('programs', 'details'));
     }
 
     /**
@@ -26,7 +37,7 @@ class AdminDepartmentController extends Controller
      */
     public function create()
     {
-        return view('admin.department.create');
+        //
     }
 
     /**
@@ -37,13 +48,7 @@ class AdminDepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate the request...
-        $department = new Department;
-        $department->name = request('name');
-        $department->description = request('description');
-        $department->save();
-        // return $path;
-        return redirect(route('admin.department.index'))->withToastSuccess($department->name.' Created Successfully!');;
+        //
     }
 
     /**
@@ -54,8 +59,7 @@ class AdminDepartmentController extends Controller
      */
     public function show($id)
     {
-        $department = Department::find($id);
-        return view('admin.department.show', compact('department'));
+        //
     }
 
     /**
@@ -66,8 +70,7 @@ class AdminDepartmentController extends Controller
      */
     public function edit($id)
     {
-        $department = Department::find($id);
-        return view('admin.department.edit', compact('department'));
+        //
     }
 
     /**
@@ -79,14 +82,7 @@ class AdminDepartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $department = Department::findOrFail($id);
-        $department->name = $request->input('name');
-        $department->description = $request->input('description');
-        $department->update();
-
-        return redirect(route('admin.department.index'))->withToastInfo($department->name.' Updated Successfully!');
-
-
+        //
     }
 
     /**
@@ -97,8 +93,6 @@ class AdminDepartmentController extends Controller
      */
     public function destroy($id)
     {
-        $department = Department::find($id);
-        $department->delete();
-        return redirect(route('admin.department.index'))->withToastError($department->name.' Deleted Successfully!');
+        //
     }
 }

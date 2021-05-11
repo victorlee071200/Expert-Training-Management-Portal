@@ -1,35 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\Admin\UsersController;
-use App\Http\Controllers\Admin\CourseController;
-use App\Http\Controllers\Admin\OrdersController;
-use App\Http\Controllers\Admin\PaypalController;
-use App\Http\Controllers\Admin\StripeController;
-use App\Http\Controllers\Admin\ProgramController;
-use App\Http\Controllers\Admin\SettingsController;
-use App\Http\Controllers\StaffDashboardController;
-use App\Http\Controllers\Admin\BraintreeController;
-use App\Http\Controllers\FrontendProgramController;
-use App\Http\Controllers\New\AdminOrdersController;
-use App\Http\Controllers\New\AdminPaypalController;
-use App\Http\Controllers\New\AdminStripeController;
-use App\Http\Controllers\New\AdminSupportController;
-use App\Http\Controllers\New\AdminProgramsController;
-use App\Http\Controllers\New\ClientAboutUsController;
-use App\Http\Controllers\New\ClientSupportController;
-use App\Http\Controllers\New\StaffProgramsController;
-use App\Http\Controllers\New\AdminBraintreeController;
-use App\Http\Controllers\New\AdminDashboardController;
-use App\Http\Controllers\New\ClientHomepageController;
-use App\Http\Controllers\New\ClientProgramsController;
-use App\Http\Controllers\New\AdminDepartmentController;
-use App\Http\Controllers\New\ClientDashboardController;
-use App\Http\Controllers\Member\MemberDashboardController;
-use App\Http\Controllers\New\AdminUserManagementController;
+use App\Http\Controllers\NewController\CheckoutController;
+use App\Http\Controllers\NewController\AdminSupportController;
+use App\Http\Controllers\NewController\AdminProgramsController;
+use App\Http\Controllers\NewController\ClientAboutUsController;
+use App\Http\Controllers\NewController\ClientSupportController;
+use App\Http\Controllers\NewController\StaffProgramsController;
+use App\Http\Controllers\NewController\AdminDashboardController;
+use App\Http\Controllers\NewController\ClientHomepageController;
+use App\Http\Controllers\NewController\ClientProgramsController;
+use App\Http\Controllers\NewController\StaffDashboardController;
+use App\Http\Controllers\NewController\AdminDepartmentController;
+use App\Http\Controllers\NewController\ClientDashboardController;
+use App\Http\Controllers\NewController\AdminUserManagementController;
+
 
 
 

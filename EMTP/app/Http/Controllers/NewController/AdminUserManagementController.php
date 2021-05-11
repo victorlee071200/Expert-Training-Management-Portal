@@ -1,16 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\New;
+namespace App\Http\Controllers\NewController;
 
 use App\Models\User;
-use App\Models\Program;
-use App\Models\Order\Order;
 use Illuminate\Http\Request;
-use App\Helpers\CurrencyHelper;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
-class AdminDashboardController extends Controller
+class AdminUserManagementController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,15 +15,9 @@ class AdminDashboardController extends Controller
      */
     public function index()
     {
-        $meta_title = "Dashboard";
-        $userCount = User::count();
-        $programCount = Program::count();
-        $currency = CurrencyHelper::getCurrencyString();
-        $salesTotalSum = Order::sum('price');
-        $salesTotalSum = CurrencyHelper::getSetPriceFormat($salesTotalSum);
-        $orderSum = Order::count();
-
-        return view('admin.dashboard.index', compact('meta_title', 'userCount', 'programCount', 'currency', 'salesTotalSum', 'orderSum'));
+        $staffs =  User::where('role_id', '3')->get();
+        $clients =  User::where('role_id', '2')->get();
+        return view('admin.management.index', compact('staffs', 'clients'));
     }
 
     /**
@@ -37,7 +27,7 @@ class AdminDashboardController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.management.create');
     }
 
     /**
@@ -59,7 +49,9 @@ class AdminDashboardController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $client = User::findOrFail($id);
+        return view('admin.management.details', compact('client'));
     }
 
     /**

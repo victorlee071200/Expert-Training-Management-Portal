@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\New;
+namespace App\Http\Controllers\NewController;
 
-use App\Http\Controllers\Controller;
+use App\Models\Program;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class ClientHomepageController extends Controller
+class AdminProgramsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,11 @@ class ClientHomepageController extends Controller
      */
     public function index()
     {
-        return view('client.new.homepage.index');
+
+        $pending =  Program::where('status', 'to-be-confirmed')->get();
+        $approved =  Program::where('status', 'approved')->get();
+        $all =  Program::all();
+        return view('admin.program.index', compact('pending', 'approved', 'all'));
     }
 
     /**
@@ -46,7 +51,8 @@ class ClientHomepageController extends Controller
      */
     public function show($id)
     {
-        //
+
+
     }
 
     /**
@@ -57,7 +63,7 @@ class ClientHomepageController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.program.edit');
     }
 
     /**
@@ -69,7 +75,12 @@ class ClientHomepageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $program = Program::find($id);
+        $program->status = 'approved';
+        $program->save();
+
+        return redirect(route('admin.program.index'))->withToastSuccess($program->name.' has been approved Successfully!');
+
     }
 
     /**
@@ -80,6 +91,20 @@ class ClientHomepageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $program = Program::find($id);
+        $program->delete();
+        return redirect(route('admin.program.index'))->withToastError($program->name.' Deleted Successfully!');
+    }
+
+    public function approve($id)
+    {
+        $program = Program::find($id);
+        return view('admin.program.approve.index', compact('program'));
+    }
+
+    public function approved($id)
+    {
+        $program = Program::find($id);
+        return view('admin.program.approved.index', compact('program'));
     }
 }

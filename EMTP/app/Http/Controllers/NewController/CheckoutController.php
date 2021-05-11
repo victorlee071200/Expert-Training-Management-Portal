@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\New;
+namespace App\Http\Controllers\NewController;
 
 use Braintree;
 use App\Models\Program;

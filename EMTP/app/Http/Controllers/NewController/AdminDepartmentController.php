@@ -1,14 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\New;
+namespace App\Http\Controllers\NewController;
 
-use App\Models\Program;
+use App\Models\Department;
 use Illuminate\Http\Request;
-use App\Models\ClientProgram;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
-class ClientRegisteredProgramController extends Controller
+class AdminDepartmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,17 +15,8 @@ class ClientRegisteredProgramController extends Controller
      */
     public function index()
     {
-        $programs =  ClientProgram::where('client_email', Auth::user()->email)->get();
-
-        $ids = array();
-
-        foreach($programs as $program) {
-            array_push($ids, $program->program_id);
-        }
-
-        $details =  Program::whereIn('id', $ids)->get();
-
-        return view('client.program.registered', compact('programs', 'details'));
+        $departments = Department::all();
+        return view('admin.department.index', compact('departments'));
     }
 
     /**
@@ -37,7 +26,7 @@ class ClientRegisteredProgramController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.department.create');
     }
 
     /**
@@ -48,7 +37,13 @@ class ClientRegisteredProgramController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the request...
+        $department = new Department;
+        $department->name = request('name');
+        $department->description = request('description');
+        $department->save();
+        // return $path;
+        return redirect(route('admin.department.index'))->withToastSuccess($department->name.' Created Successfully!');;
     }
 
     /**
@@ -59,7 +54,8 @@ class ClientRegisteredProgramController extends Controller
      */
     public function show($id)
     {
-        //
+        $department = Department::find($id);
+        return view('admin.department.show', compact('department'));
     }
 
     /**
@@ -70,8 +66,8 @@ class ClientRegisteredProgramController extends Controller
      */
     public function edit($id)
     {
-        $program = Program::find($id);
-        return view('client.program.edit', compact('program'));
+        $department = Department::find($id);
+        return view('admin.department.edit', compact('department'));
     }
 
     /**
@@ -83,16 +79,14 @@ class ClientRegisteredProgramController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $program = Program::findOrFail($id);
-        $program->option = request('option');
-        $program->no_of_employees = request('no_of_employees');
-        $program->start_date = request('start_date');
-        $program->end_date = request('end_date');
-        $program->payment_type = request('payment_type');
-        $program->client_notes = request('client_notes');
+        $department = Department::findOrFail($id);
+        $department->name = $request->input('name');
+        $department->description = $request->input('description');
+        $department->update();
 
-        $program->update();
-        return redirect(route('client.program.registered'))->withToastInfo($program->name.' Updated Successfully!');
+        return redirect(route('admin.department.index'))->withToastInfo($department->name.' Updated Successfully!');
+
+
     }
 
     /**
@@ -103,6 +97,8 @@ class ClientRegisteredProgramController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $department = Department::find($id);
+        $department->delete();
+        return redirect(route('admin.department.index'))->withToastError($department->name.' Deleted Successfully!');
     }
 }

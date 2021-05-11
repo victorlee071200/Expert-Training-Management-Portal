@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\New;
+namespace App\Http\Controllers\NewController;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;

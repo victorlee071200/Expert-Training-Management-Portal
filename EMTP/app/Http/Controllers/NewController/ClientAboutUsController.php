@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\New;
+namespace App\Http\Controllers\NewController;
 
-use App\Models\User;
-use Illuminate\Http\Request;
-use App\Models\SupportTicket;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
-class AdminSupportController extends Controller
+class ClientAboutUsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +14,7 @@ class AdminSupportController extends Controller
      */
     public function index()
     {
-        $tickets = SupportTicket::all();
-        return view('admin.support.index', compact('tickets'));
+        return view('client.new.aboutus.index');
     }
 
     /**
@@ -49,11 +46,7 @@ class AdminSupportController extends Controller
      */
     public function show($id)
     {
-        $ticket = SupportTicket::find($id);
-        $staffs =  User::where('usertype', 'staff')->get();
-
-        return view('admin.support.details', compact('ticket', 'staffs'));
-
+        //
     }
 
     /**
@@ -76,11 +69,7 @@ class AdminSupportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $ticket = SupportTicket::findOrFail($id);
-        $ticket->assign_to = $request->input('assign_to');
-        $ticket->update();
-
-        return redirect(route('admin.support.index'))->withToastInfo($ticket->name.'&#39;s support ticket has been assigned to '.$ticket->assign_to.' Successfully!');
+        //
     }
 
     /**

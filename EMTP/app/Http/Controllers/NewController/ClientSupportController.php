@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\New;
+namespace App\Http\Controllers\NewController;
 
-use App\Models\User;
+use App\Models\Department;
 use Illuminate\Http\Request;
+use App\Models\SupportTicket;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
-class AdminUserManagementController extends Controller
+class ClientSupportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +17,7 @@ class AdminUserManagementController extends Controller
      */
     public function index()
     {
-        $staffs =  User::where('role_id', '3')->get();
-        $clients =  User::where('role_id', '2')->get();
-        return view('admin.management.index', compact('staffs', 'clients'));
+         return view('client.new.support.index');
     }
 
     /**
@@ -27,7 +27,8 @@ class AdminUserManagementController extends Controller
      */
     public function create()
     {
-        return view('admin.management.create');
+        $departments = Department::all();
+        return view('client.new.support.create', compact('departments'));
     }
 
     /**
@@ -38,7 +39,24 @@ class AdminUserManagementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the request...
+        $ticket = new SupportTicket;
+        $ticket->name = Auth::user()->name;
+        $ticket->email = Auth::user()->email;
+        $ticket->subject = request('subject');
+        $ticket->department = request('department');
+        $ticket->priority = request('priority');
+        $ticket->description = request('description');
+        $ticket->status = ('open');
+        $name = $request->file('thumbnail')->getClientOriginalName();
+        $request->file('thumbnail')->storeAs(
+            'public/ticket_thumbnails/', $name
+        );
+        $ticket->thumbnail_path = $name;
+
+        $ticket->save();
+        // return $path;
+        return redirect('/client/view/support')->withToastSuccess('Support Ticket has been created Successfully!');
     }
 
     /**
@@ -49,9 +67,7 @@ class AdminUserManagementController extends Controller
      */
     public function show($id)
     {
-
-        $client = User::findOrFail($id);
-        return view('admin.management.details', compact('client'));
+        //
     }
 
     /**

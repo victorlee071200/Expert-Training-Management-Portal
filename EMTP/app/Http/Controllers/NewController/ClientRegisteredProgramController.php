@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\New;
+namespace App\Http\Controllers\NewController;
 
 use App\Models\Program;
 use Illuminate\Http\Request;
+use App\Models\ClientProgram;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
-class AdminProgramsController extends Controller
+class ClientRegisteredProgramController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +17,17 @@ class AdminProgramsController extends Controller
      */
     public function index()
     {
+        $programs =  ClientProgram::where('client_email', Auth::user()->email)->get();
 
-        $pending =  Program::where('status', 'to-be-confirmed')->get();
-        $approved =  Program::where('status', 'approved')->get();
-        $all =  Program::all();
-        return view('admin.program.index', compact('pending', 'approved', 'all'));
+        $ids = array();
+
+        foreach($programs as $program) {
+            array_push($ids, $program->program_id);
+        }
+
+        $details =  Program::whereIn('id', $ids)->get();
+
+        return view('client.program.registered', compact('programs', 'details'));
     }
 
     /**
@@ -51,8 +59,7 @@ class AdminProgramsController extends Controller
      */
     public function show($id)
     {
-
-
+        //
     }
 
     /**
@@ -63,7 +70,8 @@ class AdminProgramsController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.program.edit');
+        $program = Program::find($id);
+        return view('client.program.edit', compact('program'));
     }
 
     /**
@@ -75,12 +83,16 @@ class AdminProgramsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $program = Program::find($id);
-        $program->status = 'approved';
-        $program->save();
+        $program = Program::findOrFail($id);
+        $program->option = request('option');
+        $program->no_of_employees = request('no_of_employees');
+        $program->start_date = request('start_date');
+        $program->end_date = request('end_date');
+        $program->payment_type = request('payment_type');
+        $program->client_notes = request('client_notes');
 
-        return redirect(route('admin.program.index'))->withToastSuccess($program->name.' has been approved Successfully!');
-
+        $program->update();
+        return redirect(route('client.program.registered'))->withToastInfo($program->name.' Updated Successfully!');
     }
 
     /**
@@ -91,20 +103,6 @@ class AdminProgramsController extends Controller
      */
     public function destroy($id)
     {
-        $program = Program::find($id);
-        $program->delete();
-        return redirect(route('admin.program.index'))->withToastError($program->name.' Deleted Successfully!');
-    }
-
-    public function approve($id)
-    {
-        $program = Program::find($id);
-        return view('admin.program.approve.index', compact('program'));
-    }
-
-    public function approved($id)
-    {
-        $program = Program::find($id);
-        return view('admin.program.approved.index', compact('program'));
+        //
     }
 }

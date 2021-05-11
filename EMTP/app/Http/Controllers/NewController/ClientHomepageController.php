@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\New;
+namespace App\Http\Controllers\NewController;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ClientAboutUsController extends Controller
+class ClientHomepageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ClientAboutUsController extends Controller
      */
     public function index()
     {
-        return view('client.new.aboutus.index');
+        return view('client.new.homepage.index');
     }
 
     /**
