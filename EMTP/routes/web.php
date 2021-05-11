@@ -79,7 +79,7 @@ Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified','
     Route::get('/program/approved/{id}', [StaffProgramsController::class, 'approved']);
 
     // view specific staff assigned program
-    Route::get('/dashboard/{id}/detail', [StaffProgramsController::class, 'index'])->name('staff-program-detail');
+    Route::get('/dashboard/{id}/detail', [StaffDashboardController::class, 'program_detail'])->name('staff-program-detail');
     Route::get('/dashboard/{id}/announcement', [AnnouncementController::class, 'index'])->name('staff-program-announcement');
     Route::get('/dashboard/{id}/announcement/{announcement}', [AnnouncementController::class, 'specific_announcement'])->name('staff-program-specific-announcement');
     Route::post('/dashboard/{id}/announcement/create', [AnnouncementController::class, 'create'])->name('staff-program-announcement');
@@ -87,9 +87,9 @@ Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified','
     Route::put('/dashboard/{id}/announcement', [AnnouncementController::class, 'update'])->name('staff-program-announcement');
     Route::delete('/dashboard/{id}/announcement', [AnnouncementController::class, 'delete'])->name('staff-program-announcement');
     Route::get('/dashboard/{id}/announcement/{announcements}', [AnnouncementController::class, 'index'])->name('staff-program-specific-announcement');
-    Route::get('/dashboard/{id}/material', [StaffProgramsController::class, 'material'])->name('staff-program-material');
-    Route::get('/dashboard/{id}/material/{material}', [StaffProgramsController::class, 'specific_material'])->name('staff-program-specific-material');
-    Route::get('/dashboard/{id}/feedback', [StaffProgramsController::class, 'feedback'])->name('staff-program-feedback');
+    Route::get('/dashboard/{id}/material', [StaffDashboardController::class, 'material'])->name('staff-program-material');
+    Route::get('/dashboard/{id}/material/{material}', [StaffDashboardController::class, 'specific_material'])->name('staff-program-specific-material');
+    Route::get('/dashboard/{id}/feedback', [StaffDashboardController::class, 'feedback'])->name('staff-program-feedback');
 
 });
 

@@ -17,6 +17,11 @@ class StaffDashboardController extends Controller
         return view('staff.dashboard.index');
     }
 
+    public function program_detail()
+    {
+        return view('staff.program.detail');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
