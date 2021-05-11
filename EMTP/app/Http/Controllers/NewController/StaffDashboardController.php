@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\NewController;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\ClientProgram;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class StaffDashboardController extends Controller
 {
@@ -14,7 +17,17 @@ class StaffDashboardController extends Controller
      */
     public function index()
     {
-        return view('staff.dashboard.index');
+        $programs =  ClientProgram::where('client_email', Auth::user()->email)->get();
+
+        $ids = array();
+
+        foreach($programs as $program) {
+            array_push($ids, $program->program_id);
+        }
+
+        $details =  DB::table('programs')->whereIn('id', $ids)->get();
+
+        return view('staff.dashboard.index',compact('programs', 'details'));
     }
 
     /**

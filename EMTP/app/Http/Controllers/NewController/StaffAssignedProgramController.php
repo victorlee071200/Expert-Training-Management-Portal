@@ -29,9 +29,9 @@ class StaffAssignedProgramController extends Controller
 
     public function detail(ClientProgram $assignedprogram, Program $program)
     {
-        $assignedprogram_ = DB::table('client_programs')->where('id', $assignedprogram)->get();
-        $program_ =  DB::table('programs')->where('id', $program)->get();
-        return view('staff.program.detail',['assignedprogram'=>$assignedprogram, 'program'=>$program]);
+        $assignedprogram = DB::table('client_programs')->where('id', $assignedprogram)->get();
+        $program =  DB::table('programs')->where('id', $program)->get();
+        return view('staff.program.detail', compact('assignedprogram','program'));
     }
 
     public function StaffViewSpecificAssignedProgramMaterial(ClientProgram $assignedprogram, Program $program)

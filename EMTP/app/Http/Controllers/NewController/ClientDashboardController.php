@@ -27,7 +27,7 @@ class ClientDashboardController extends Controller
 
         $details =  DB::table('programs')->whereIn('id', $ids)->get();
 
-        return view('client.new.dashboard.index',compact('programs', 'details'));
+        return view('client.dashboard.index',compact('programs', 'details'));
     }
 
     /**
