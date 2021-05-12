@@ -4,16 +4,16 @@
         <div class="bg-gray-300 text-gray-800 hidden md:flex h-auto">
             <ul>
                 <li>
-                    <a href="{{ route('staff-program-detail', [$assignedprogram, $program]) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Details</a>
+                    <a href="{{ route('staff.program-detail', $assignedprograms->id) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Details</a>
                 </li>
                 <li>
-                    <a href="{{ route('staff-program-announcement', [$assignedprogram, $program]) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 bg-white text-indigo-600 h-16 flex justify-center items-center w-auto">Announcement</a>
+                    <a href="{{ route('staff.program-announcement', $assignedprograms->id) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 bg-white text-indigo-600 h-16 flex justify-center items-center w-auto">Announcement</a>
                 </li>
                 <li>
-                    <a href="{{ route('staff-program-material', [$assignedprogram, $program]) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Materials</a>
+                    <a href="{{ route('staff.program-material', $assignedprograms->id) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Materials</a>
                 </li>
                 <li>
-                    <a href="{{ route('staff-program-feedback', [$assignedprogram, $program]) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Feedback</a>
+                    <a href="{{ route('staff.program-feedback', $assignedprograms->id) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Feedback</a>
                 </li>
             </ul>
         </div>
@@ -28,29 +28,29 @@
                     <tr class="grid-cols-1">
                         <td>
                             <button class="m-5 px-5 py-2 bg-green-400 rounded text-sm">
-                                <a href="{{ route('staff-program-announcement-create', [$assignedprogram, $program]) }}">
+                                <a href="{{ route('staff.program-announcement-create', $assignedprograms->id) }}">
                                     Create Announcement
                                 </a>
                             </button>
                         </td>
                     </tr>
                     @foreach($announcement as $indexKey => $announcements)
-                        @if($announcements->program_code == $program->code)
+                        @if($announcements->program_code == $program_details->code)
                             <tr class="grid-cols-1 rounded shadow-sm m-2">
                                 <th class="w-auto py-5 px-2 m-0">
-                                    <a href="{{ route('staff-program-announcement-view', [$assignedprogram, $program, $announcements->id]) }}">
+                                    <a href="{{ route('staff.program-specific-announcement', [$assignedprograms->id, $announcements->id]) }}">
                                         <h2 class="text-left pl-10">{{$announcements->title}}</h2>
                                     </a>
                                 </th>
                                 <th class="w-4">
-                                    <a href="{{ route('staff-program-announcement-edit', [$assignedprogram, $program, $announcements->id]) }}">
+                                    <a href="{{ route('staff.program-announcement-edit', [$assignedprograms->id, $announcements->id]) }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                                         </svg>
                                     </a>
                                 </th>
                                 <th class="w-4">
-                                    <form method="POST" action="{{ route('staff-program-announcement', [$assignedprogram, $program, $announcements->id]) }}">
+                                    <form method="POST" action="{{ route('staff.program-announcement-delete', [$assignedprograms->id, $announcements->id]) }}">
                                         @method('DELETE')
                                         @csrf
                                         <button id="submit" name="submit">

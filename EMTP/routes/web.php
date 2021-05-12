@@ -91,16 +91,17 @@ Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified', 
     Route::get('/program/approved/{id}', [StaffProgramsController::class, 'approved']);
 
     // view specific staff assigned program
-    Route::get('/dashboard/{assignedprogram}/detail', [StaffAssignedProgramController::class, 'index'])->name('staff-program-detail');
-    Route::get('/dashboard/{assignedprogram}/announcement', [StaffAnnouncementController::class, 'index'])->name('staff-program-announcement');
-    Route::get('/dashboard/{assignedprogram}/announcement/{announcement}', [StaffAnnouncementController::class, 'specific_announcement'])->name('staff-program-specific-announcement');
-    Route::post('/dashboard/{assignedprogram}/announcement/create', [StaffAnnouncementController::class, 'create'])->name('staff-program-announcement-create');
-    Route::post('/dashboard/{assignedprogram}/announcement', [StaffAnnouncementController::class, 'store'])->name('staff-program-announcement-store');
-    Route::put('/dashboard/{assignedprogram}/announcement', [StaffAnnouncementController::class, 'update'])->name('staff-program-announcement-update');
-    Route::delete('/dashboard/{assignedprogram}/announcement', [StaffAnnouncementController::class, 'delete'])->name('staff-program-announcement-delete');
-    Route::get('/dashboard/{assignedprogram}/material', [StaffMaterialController::class, 'index'])->name('staff-program-material');
-    Route::get('/dashboard/{assignedprogram}/material/{material}', [StaffMaterialController::class, 'specific_material'])->name('staff-program-specific-material');
-    Route::get('/dashboard/{assignedprogram}/feedback', [StaffFeedbackController::class, 'index'])->name('staff-program-feedback');
+    Route::get('/dashboard/{id}/detail', [StaffAssignedProgramController::class, 'index'])->name('program-detail');
+    Route::get('/dashboard/{id}/announcement', [StaffAnnouncementController::class, 'index'])->name('program-announcement');
+    Route::get('/dashboard/{id}/announcement/{announcement}', [StaffAnnouncementController::class, 'show'])->name('program-specific-announcement');
+    Route::post('/dashboard/{id}/announcement/create', [StaffAnnouncementController::class, 'create'])->name('program-announcement-create');
+    Route::post('/dashboard/{id}/announcement', [StaffAnnouncementController::class, 'store'])->name('program-announcement-store');
+    Route::get('/dashboard/{id}/announcement/{announcement}/edit', [StaffAnnouncementController::class, 'edit'])->name('program-announcement-edit');
+    Route::put('/dashboard/{id}/announcement/{announcement}', [StaffAnnouncementController::class, 'update'])->name('program-announcement-update');
+    Route::delete('/dashboard/{id}/announcement/{announcement}', [StaffAnnouncementController::class, 'destroy'])->name('program-announcement-delete');
+    Route::get('/dashboard/{id}/material', [StaffMaterialController::class, 'index'])->name('program-material');
+    Route::get('/dashboard/{id}/material/{material}', [StaffMaterialController::class, 'show'])->name('program-specific-material');
+    Route::get('/dashboard/{id}/feedback', [StaffFeedbackController::class, 'index'])->name('program-feedback');
 });
 
 // To-Be-Confirmed

@@ -19,14 +19,13 @@ class StaffAssignedProgramController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ClientProgram $assignedprogram)
+    public function index($id)
     {
-        $assignedprogram = DB::table('client_programs')->where('id', $assignedprogram)->get();
-        return view('staff.program.detail', compact('assignedprogram'));
-        // $pendingprograms =  DB::table('programs')->where('status', 'to-be-confirmed')->get();
-        // $approvedprograms =  DB::table('programs')->where('status', 'approved')->get();
-        // $allprograms =  Program::all();
-        // return view('staff.program.index',['pendingprograms'=>$pendingprograms, 'allprograms'=>$allprograms, 'approvedprograms'=>$approvedprograms]);
+        $user = DB::table('users')->where('email', Auth::user()->email)->get();
+        $assignedprograms =  DB::table('client_programs')->where('staff_id', $user[0]->id)->where('program_id', $id)->get();
+        $program_details =  DB::table('programs')->where('id', $id)->get();
+
+        return view('staff.program.detail',['assignedprograms'=>$assignedprograms[0], 'program_details'=>$program_details[0]]);
     }
 
     /**

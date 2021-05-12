@@ -17,17 +17,11 @@ class StaffDashboardController extends Controller
      */
     public function index()
     {
-        $programs =  ClientProgram::where('client_email', Auth::user()->email)->get();
+        $user = DB::table('users')->where('email', Auth::user()->email)->get();
+        $assignedprograms =  DB::table('client_programs')->where('staff_id', $user->id)->get();
+        $program_details =  DB::table('programs')->get();
 
-        $ids = array();
-
-        foreach($programs as $program) {
-            array_push($ids, $program->program_id);
-        }
-
-        $details =  DB::table('programs')->whereIn('id', $ids)->get();
-
-        return view('staff.dashboard.index',compact('programs', 'details'));
+        return view('staff.dashboard.index',['assignedprograms'=>$assignedprograms, 'program_details'=>$program_details]);
     }
 
     /**
