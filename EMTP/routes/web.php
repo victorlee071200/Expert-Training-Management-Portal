@@ -29,6 +29,7 @@ use App\Http\Controllers\NewController\ClientAnnouncementController;
 use App\Http\Controllers\NewController\AdminUserManagementController;
 use App\Http\Controllers\NewController\StaffAssignedProgramController;
 use App\Http\Controllers\NewController\ClientRegisteredProgramController;
+use App\Http\Controllers\NewController\HelpQuestionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,6 +76,7 @@ Route::prefix('client')->name('client.')->middleware(['auth:sanctum', 'verified'
     Route::get('/dashboard/{id}/material', [ClientMaterialController::class, 'index'])->name('program-material');
     Route::get('/dashboard/{id}/material/{material}', [ClientMaterialController::class, 'show'])->name('program-specific-material');
     Route::get('/dashboard/{id}/feedback', [ClientFeedbackController::class, 'index'])->name('program-feedback');
+    Route::get('/help-questions', [HelpQuestionsController::class, 'index'])->name('help-questions');
 
     Route::get('/checkout/{programSlug}', [CheckoutController::class, 'index'])->name('checkout')->middleware('auth');
     Route::post('checkout/validate/{programId}/{programSlug}', [CheckoutController::class, 'prePaymentValidation'])->name('checkout.validate');
