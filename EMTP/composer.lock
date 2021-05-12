@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4913b7c762f436ac3048e7e536ae4829",
+    "content-hash": "fff26272bcc118926d7c24af39f89e76",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -61,6 +61,59 @@
                 "source": "https://github.com/asm89/stack-cors/tree/v2.0.3"
             },
             "time": "2021-03-11T06:42:03+00:00"
+        },
+        {
+            "name": "awssat/tailwindo",
+            "version": "3.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/awssat/tailwindo.git",
+                "reference": "f4b4b181808227b829eb5201ab0199024ff76c1d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/awssat/tailwindo/zipball/f4b4b181808227b829eb5201ab0199024ff76c1d",
+                "reference": "f4b4b181808227b829eb5201ab0199024ff76c1d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.2|^8.0",
+                "symfony/console": "^4.0|^5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8"
+            },
+            "bin": [
+                "tailwindo"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Awssat\\Tailwindo\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Awssat",
+                    "email": "hello@awssat.com"
+                }
+            ],
+            "description": "Convert Bootstrap CSS to Tailwind CSS",
+            "homepage": "https://github.com/awssat/tailwindo",
+            "keywords": [
+                "bootstrap",
+                "css",
+                "tailwind"
+            ],
+            "support": {
+                "issues": "https://github.com/awssat/tailwindo/issues",
+                "source": "https://github.com/awssat/tailwindo/tree/3.0.5"
+            },
+            "time": "2021-02-23T20:25:27+00:00"
         },
         {
             "name": "bacon/bacon-qr-code",
