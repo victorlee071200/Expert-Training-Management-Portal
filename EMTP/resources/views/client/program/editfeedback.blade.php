@@ -24,11 +24,9 @@
                 </h2>
             </div>
             <div class="p-6">
-   
                 <div class="mb-8">
                     <p class="text-3xl">My Feedback</p>
                 </div>
-
                 <div class="flex mt-6">
                     <form method="post" action="/{{$feedback->id}}/edit" enctype="multipart/form-data">
                         @csrf
@@ -63,7 +61,7 @@
                             </label>
                             <input type="file" id="image" name="image">
                         </div>
-                            
+
                         <input type="hidden" id="programid" name="programid" value={{$program->id}}>
                         <input type="hidden" id="clientprogramid" name="clientprogramid" value={{$registeredprogram->id}}>
 
@@ -71,8 +69,7 @@
                             <button role="submit" class="p-3 bg-blue-500 text-white hover:bg-blue-400" required>Edit</button>
                         </div>
                     </form>
-                    </div>
-              
+                </div>
             </div>
 
             <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>

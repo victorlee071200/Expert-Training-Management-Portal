@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\NewController;
 
-use App\Models\Announcement;
-use App\Models\ClientProgram;
 use App\Models\Program;
+use App\Models\Announcement;
 use Illuminate\Http\Request;
+use App\Models\ClientProgram;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class StaffAnnouncementController extends Controller
 {
@@ -16,31 +17,28 @@ class StaffAnnouncementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ClientProgram $assignedprogram, Program $program, Announcement $announcement)
+    public function index($id)
     {
-        $assignedprogram_ = DB::table('client_programs')->where('id', $assignedprogram)->get();
-        $program_ =  DB::table('programs')->where('id', $program)->get();
+        $user = DB::table('users')->where('email', Auth::user()->email)->get();
+        $assignedprograms =  DB::table('client_programs')->where('staff_id', $user[0]->id)->where('program_id', $id)->get();
+        $program_details =  DB::table('programs')->where('id', $id)->get();
         $announcement = DB::table('announcements')->get();
-        return view('staff.program.announcement',['assignedprogram'=>$assignedprogram, 'program'=>$program, 'announcement'=>$announcement]);
+
+        return view('staff.program.announcement',['assignedprograms'=>$assignedprograms[0], 'program_details'=>$program_details[0], 'announcement'=>$announcement]);
     }
 
-    public function SpecificAnnouncement(ClientProgram $assignedprogram, Program $program, Announcement $announcement)
-    {
-        $assignedprogram_ = DB::table('client_programs')->where('id', $assignedprogram)->get();
-        $program_ =  DB::table('programs')->where('id', $program)->get();
-        $announcement_ = DB::table('announcements')->where('id', $announcement)->get();
-        return view('staff.program.view_announcement',['assignedprogram'=>$assignedprogram, 'program'=>$program, 'announcement'=>$announcement]);
-    }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(ClientProgram $assignedprogram, Program $program)
+    public function create($id)
     {
-        $assignedprogram_ = DB::table('client_programs')->where('id', $assignedprogram)->get();
-        $program_ =  DB::table('programs')->where('id', $program)->get();
-        return view('staff.program.create_announcement',['assignedprogram'=>$assignedprogram, 'id'=>$program]);
+        $user = DB::table('users')->where('email', Auth::user()->email)->get();
+        $assignedprograms =  DB::table('client_programs')->where('staff_id', $user[0]->id)->where('program_id', $id)->get();
+        $program_details =  DB::table('programs')->where('id', $id)->get();
+
+        return view('staff.program.create_announcement',['assignedprograms'=>$assignedprograms, '$program_details'=>$program_details]);
     }
 
     /**
@@ -49,27 +47,28 @@ class StaffAnnouncementController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, ClientProgram $assignedprogram, Program $program, Announcement $announcement)
+    public function store(Request $request, $id)
     {
-        $assignedprogram_ = DB::table('client_programs')->where('id', $assignedprogram)->get();
-        $program_ =  DB::table('programs')->where('id', $program)->get();
+        $user = DB::table('users')->where('email', Auth::user()->email)->get();
+        $assignedprograms =  DB::table('client_programs')->where('staff_id', $user[0]->id)->where('program_id', $id)->get();
+        $program_details =  DB::table('programs')->where('id', $id)->get();
         $announcement = DB::table('announcements')->get();
 
-        request()->validate([
+        $request->validate([
             'title' => 'required',
             'content' => 'required',
             'state' => 'required',
         ]);
 
         Announcement::create([
-            'program_code' => $program->code,
-            'program_name' => $program->name,
-            'title' => request('title'),
-            'content' => request('content'),
-            'state' => request('state'),
+            'program_code' => $program_details->code,
+            'program_name' => $program_details->name,
+            'title' => $request->input('title'),
+            'content' => $request->input('content'),
+            'state' => $request->input('state'),
         ]);
 
-        return redirect(route('staff-program-announcement',['assignedprogram'=>$assignedprogram, 'program'=>$program, 'announcement'=>$announcement]));
+        return redirect(route('staff-program-announcement',['assignedprograms'=>$assignedprograms, 'program'=>$program_details, 'announcement'=>$announcement]));
     }
 
     /**
@@ -78,9 +77,13 @@ class StaffAnnouncementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $announcement)
     {
-        //
+        $user = DB::table('users')->where('email', Auth::user()->email)->get();
+        $assignedprograms =  DB::table('client_programs')->where('staff_id', $user[0]->id)->where('program_id', $id)->get();
+        $program_details =  DB::table('programs')->where('id', $id)->get();
+        $announcements = DB::table('announcements')->where('id', $announcement)->get();
+        return view('staff.program.view_announcement',['assignedprograms'=>$assignedprograms[0], 'program_details'=>$program_details[0], 'announcement'=>$announcements[0]]);
     }
 
     /**
@@ -89,9 +92,13 @@ class StaffAnnouncementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(ClientProgram $assignedprogram, Program $program, Announcement $announcement)
+    public function edit($id, $announcement)
     {
-        return view('staff.program.edit_announcement',['assignedprogram'=>$assignedprogram, 'program'=>$program, 'announcement'=>$announcement]);
+        $user = DB::table('users')->where('email', Auth::user()->email)->get();
+        $assignedprograms =  DB::table('client_programs')->where('staff_id', $user[0]->id)->where('program_id', $id)->get();
+        $program_details =  DB::table('programs')->where('id', $id)->get();
+        $announcements = DB::table('announcements')->where('id', $announcement)->get();
+        return view('staff.program.edit_announcement',['assignedprograms'=>$assignedprograms[0], 'program_details'=>$program_details[0], 'announcements'=>$announcements[0]]);
     }
 
     /**
@@ -101,21 +108,26 @@ class StaffAnnouncementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ClientProgram $assignedprogram, Program $program, Announcement $announcement)
+    public function update(Request $request, $id, $announcement)
     {
-        request()->validate([
+        $user = DB::table('users')->where('email', Auth::user()->email)->get();
+        $assignedprograms =  DB::table('client_programs')->where('staff_id', $user[0]->id)->where('program_id', $id)->get();
+        $program_details =  DB::table('programs')->where('id', $id)->get();
+        $announcements = DB::table('announcements')->where('id', $announcement)->get();
+
+        $request->validate([
             'title' => 'required',
             'content' => 'required',
             'state' => 'required',
         ]);
 
-        $announcement->update([
-            'title' => request('title'),
-            'content' => request('content'),
-            'state' => request('state'),
+        Announcement::where('id', $announcement)->update([
+            'title' => $request->input('title'),
+            'content' => $request->input('content'),
+            'state' => $request->input('state'),
         ]);
 
-        return redirect(route('staff-program-announcement',['assignedprogram'=>$assignedprogram, 'program'=>$program, 'announcement'=>$announcement]));
+        return redirect(route('staff.program-announcement',['assignedprograms'=>$assignedprograms, 'program_details'=>$program_details, 'announcement'=>$announcements, $id]));
     }
 
     /**
@@ -124,9 +136,13 @@ class StaffAnnouncementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ClientProgram $assignedprogram, Program $program, Announcement $announcement)
+    public function destroy($id, $announcement)
     {
-        $announcement->delete();
-        return redirect(route('staff-program-announcement',['assignedprogram'=>$assignedprogram, 'program'=>$program, 'announcement'=>$announcement]));
+        $user = DB::table('users')->where('email', Auth::user()->email)->get();
+        $assignedprograms =  DB::table('client_programs')->where('staff_id', $user[0]->id)->where('program_id', $id)->get();
+        $program_details =  DB::table('programs')->where('id', $id)->get();
+        $announcements = DB::table('announcements')->where('id', $announcement)->get();
+        Announcement::find($announcement)->delete();
+        return redirect(route('staff.program-announcement',['assignedprograms'=>$assignedprograms, 'program_details'=>$program_details, 'announcement'=>$announcements, $id]));
     }
 }
