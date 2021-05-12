@@ -81,7 +81,7 @@ class StaffAssignedProgramController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function showpending($id)
+    public function show($id)
     {
         //
     }

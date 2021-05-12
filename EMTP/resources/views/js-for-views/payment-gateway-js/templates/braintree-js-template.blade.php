@@ -33,7 +33,7 @@
     function validateData()
     {
         $.ajax({
-            url: "{{ url('checkout/validate') }}" + "/" + "{{$course->id}}" + "/" + "{{$course->slug}}",
+            url: "{{ url('checkout/validate') }}" + "/" + "{{$program->id}}" + "/" + "{{$program->slug}}",
             method: "POST",
             data: basicFormBt,
             processData: false,
@@ -83,7 +83,7 @@
                 return;
             }
             document.querySelector('#nonce_bt').value = payload.nonce;
-            document.querySelector('#course_bt').value = "{{$course->id}}";
+            document.querySelector('#program_bt').value = "{{$program->id}}";
             appendPaymentData(basicFormBt, "_bt");
             $("#processingModal").modal('show');
             formBrainTree.submit();

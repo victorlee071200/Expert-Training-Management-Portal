@@ -19,12 +19,12 @@ class StaffProgramsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+{
         $currency = CurrencyHelper::getCurrencyString();
         $pending = Program::where('status', 'to-be-confirmed')->get();
         $approved =  Program::where('status', 'approved')->get();
         $all = Program::orderBy('id', 'DESC')->paginate(5);
-        return view('staff.programs.index', compact('pending', 'currency', 'approved', 'all'));
+        return view('staff.program.index', compact('pending', 'currency', 'approved', 'all'));
     }
 
     /**
@@ -34,7 +34,7 @@ class StaffProgramsController extends Controller
      */
     public function create()
     {
-        return view('staff.programs.create');
+        return view('staff.program.create');
     }
 
     /**
@@ -65,7 +65,7 @@ class StaffProgramsController extends Controller
 
          $program->save();
          // return $path;
-         return redirect(route('staff.programs.index'))->withToastSuccess($program->name.' has been Created Successfully!');
+         return redirect(route('staff.program.index'))->withToastSuccess($program->name.' has been Created Successfully!');
     }
 
     /**
@@ -88,7 +88,7 @@ class StaffProgramsController extends Controller
     public function edit(Request $request, $id)
     {
         $program = Program::findOrFail($id);
-        return view('staff.programs.pending.edit', compact('program'));
+        return view('staff.program.pending.edit', compact('program'));
     }
 
     /**
@@ -139,13 +139,13 @@ class StaffProgramsController extends Controller
     public function pending($id)
     {
         $program = Program::find($id);
-        return view('staff.programs.pending.index', compact('program'));
+        return view('staff.program.pending.index', compact('program'));
     }
 
     public function approved($id)
     {
         $program = Program::find($id);
-        return view('staff.programs.approved.index', compact('program'));
+        return view('staff.program.approved.index', compact('program'));
     }
 
 }

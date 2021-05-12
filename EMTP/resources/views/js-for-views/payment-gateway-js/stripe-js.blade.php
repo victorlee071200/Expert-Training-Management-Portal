@@ -44,7 +44,7 @@
     function validateDataStripe()
     {
         $.ajax({
-            url: "{{ url('checkout/validate') }}" + "/" + "{{$course->id}}" + "/" + "{{$course->slug}}",
+            url: "{{ url('checkout/validate') }}" + "/" + "{{$program->id}}" + "/" + "{{$program->slug}}",
             method: "POST",
             data: basicFormStripe,
             processData: false,
@@ -121,7 +121,7 @@
                 }
                 else if(data.paymentIntent)
                 {
-                    document.querySelector('#course_stripe').value = "{{$course->id}}";
+                    document.querySelector('#program_stripe').value = "{{$program->id}}";
                     document.querySelector('#transaction_stripe').value = data.paymentIntent.id;
                     appendPaymentData(basicFormStripe, "_stripe");
                     $("#processingModal").modal('show');

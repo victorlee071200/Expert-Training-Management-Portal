@@ -1,11 +1,6 @@
-<x-app-layout title="Client View Program">
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Program Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
-
+@section('content')
     <style>
         .bg-image {
           background:url(https://images.unsplash.com/photo-1596079890744-c1a0462d0975?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80);
@@ -13,7 +8,7 @@
           background-repeat:no-repeat;
         }
 
-        body {background:white !important;}
+        body {background:rgb(240, 240, 240) !important;}
 
       </style>
       <!-- section end -->
@@ -198,5 +193,5 @@
         @endforeach
     </div>
 </body>
+@endsection
 
-</x-app-layout>

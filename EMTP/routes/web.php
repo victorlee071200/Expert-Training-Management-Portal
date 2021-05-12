@@ -106,8 +106,8 @@ Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified', 
 // To-Be-Confirmed
 
 
-Route::post('payment/braintree', [BraintreeController::class, 'braintreePayment'])->name('braintree.payment');
-Route::post('payment/stripe/{paymentIntentId}', [StripeController::class, 'getStripePaymentIntent'])->name('stripe.payment');
+Route::post('payment/braintree', [AdminBraintreeController::class, 'braintreePayment'])->name('braintree.payment');
+Route::post('payment/stripe/{paymentIntentId}', [AdminStripeController::class, 'getStripePaymentIntent'])->name('stripe.payment');
 Route::get('checkout/success/thank-you', [CheckoutController::class, 'showThanks'])->name('thanks');
 
 Route::get('privacy', [PageController::class, 'privacy'])->name('privacy');

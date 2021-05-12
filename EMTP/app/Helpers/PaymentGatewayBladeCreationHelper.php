@@ -19,7 +19,7 @@ class PaymentGatewayBladeCreationHelper
             $brainTreeTemplate = str_replace("|paypal-placeholder|", "", $brainTreeTemplate);
         }
 
-        $braintreeBlade = fopen(base_path($paymentGatewayPath . 'braintree-js.blade.php' ), 'w');
+        $braintreeBlade = fopen(base_path('\resources\views\js-for-views\payment-gateway-js\braintree-js.blade.php' ), 'w');
         fwrite($braintreeBlade, $brainTreeTemplate);
         fclose($braintreeBlade);
     }
@@ -48,14 +48,14 @@ class PaymentGatewayBladeCreationHelper
 
         $disabledOptionsString = self::getDisabledOptionsString($settings);
 
-        $payPalPath = 'resources/views/js-for-views/payment-gateway-js/';
+        $payPalPath = '../resources/views/js-for-views/payment-gateway-js/';
 
         $payPalTemplate = file_get_contents($payPalPath . 'templates/paypal-smart-js-template.blade.php');
         $payPalTemplate = str_replace("|paypal-client-id|", $payPalClientId, $payPalTemplate);
         $payPalTemplate = str_replace("|currency|", $settings->currency, $payPalTemplate);
         $payPalTemplate = str_replace("|paypal-disabled-options|", $disabledOptionsString, $payPalTemplate);
 
-        $paypalBlade = fopen(base_path($payPalPath . 'paypal-smart-js.blade.php' ), 'w');
+        $paypalBlade = fopen(base_path('\resources\views\js-for-views\payment-gateway-js\paypal-smart-js.blade.php' ), 'w');
         fwrite($paypalBlade, $payPalTemplate);
         fclose($paypalBlade);
     }

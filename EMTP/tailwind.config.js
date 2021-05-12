@@ -1,13 +1,7 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
-    purge: [
-        "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
-        "./vendor/laravel/jetstream/**/*.blade.php",
-        "./storage/framework/views/*.php",
-        "./resources/views/**/*.blade.php",
-    ],
-
+    purge: ["./resources/views/**/*.blade.php", "./resources/css/**/*.css"],
     theme: {
         extend: {
             fontFamily: {
@@ -15,14 +9,13 @@ module.exports = {
             },
         },
     },
-
     variants: {
         extend: {
             opacity: ["disabled"],
         },
     },
-
     plugins: [
+        require("@tailwindcss/ui"),
         require("@tailwindcss/forms"),
         require("@tailwindcss/typography"),
     ],

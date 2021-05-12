@@ -1,4 +1,4 @@
-<script src="https://www.paypal.com/sdk/js?client-id=&currency=USD"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AS0aPvWjYbPpGok0CXhwd0Nlt4p86acdwqvhI7PJQX5pUEbH48acZMQj-QSL98FDSjOmXrfHgQoM66YB&currency=MYR"></script>
 
 <script>
     var serverErrorPaypal = "server_error_occured_paypal";
@@ -29,7 +29,7 @@
         onApprove: function(data, actions) {
             return actions.order.capture().then(function(details) {
                 $("#processingModal").modal('show');
-                document.querySelector('#course_paypal').value = "{{$course->id}}";
+                document.querySelector('#program_paypal').value = "{{$program->id}}";
                 document.querySelector('#transaction_paypal').value = details.purchase_units[0].payments.captures[0].id;
                 appendPaymentData(basicFormPaypal, "_paypal");
                 var paypalForm = document.querySelector("#payment-form-paypal-smart");
@@ -47,7 +47,7 @@
             changeFieldsAfterPayStart();
             basicFormPaypal = new FormData();
             appendBasicData(basicFormPaypal);
-            return fetch("{{ url('checkout/validate') }}" + "/" + "{{$course->id}}" + "/" + "{{$course->slug}}", {
+            return fetch("{{ url('checkout/validate') }}" + "/" + "{{$program->id}}" + "/" + "{{$program->slug}}", {
                 method: "POST",
                 body: basicFormPaypal
             }).then(function(res){
