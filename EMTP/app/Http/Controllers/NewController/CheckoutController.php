@@ -166,7 +166,7 @@ class CheckoutController extends Controller
 
         $transactionId = $request->transaction_id;
         $orderData = array();
-        OrderDataHelper::getOrderData($orderData, $request, $user, $program->title, $transactionId);
+        OrderDataHelper::getOrderData($orderData, $request, $user, $program->name, $transactionId);
         $order = new Order;
         foreach($orderData as $key => $orderValue)
         {

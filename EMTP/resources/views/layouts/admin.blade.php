@@ -86,7 +86,7 @@
 
                             <a href="{{ route('staff.program.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Program</a>
 
-                            <a href="{{ route('staff.support.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Support</a>
+                            <a href="#" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Support</a>
 
                         @endif
                     </div>
@@ -562,24 +562,6 @@
                         aria-label="User menu"
                       >
 
-                        <a
-                        role="menuitem"
-                        class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-indigo-600"
-                        href="{{ route('profile.show') }}">
-                            {{ __('Profile') }}
-                        </a>
-
-
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-jet-dropdown-link href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                            this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-jet-dropdown-link>
-                        </form>
-
                       </div>
                     </div>
                   </nav>
@@ -674,22 +656,6 @@
                         aria-orientation="vertical"
                         aria-label="User menu"
                       >
-
-                      <a
-                        role="menuitem"
-                        class="block px-4 py-2 text-sm text-gray-700 transition-colors hover:bg-gray-100 dark:text-light dark:hover:bg-indigo-600"
-                        href="{{ route('profile.show') }}">
-                            {{ __('Profile') }}
-                        </a>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-jet-dropdown-link href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                            this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-jet-dropdown-link>
-                        </form>
                       </div>
                     </div>
                   </nav>
@@ -751,7 +717,7 @@
 
                             <a href="{{ route('staff.program.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Program</a>
 
-                            <a href="{{ route('staff.support.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Support</a>
+                            <a href="#" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Support</a>
 
                         @endif
 

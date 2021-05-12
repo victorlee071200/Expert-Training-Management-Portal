@@ -44,7 +44,7 @@
     function validateDataStripe()
     {
         $.ajax({
-            url: "{{ url('checkout/validate') }}" + "/" + "{{$program->id}}" + "/" + "{{$program->slug}}",
+            url: "{{ url('client/checkout/validate') }}" + "/" + "{{$program->id}}" + "/" + "{{$program->slug}}",
             method: "POST",
             data: basicFormStripe,
             processData: false,

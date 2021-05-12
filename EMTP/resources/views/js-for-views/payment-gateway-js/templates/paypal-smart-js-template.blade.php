@@ -47,7 +47,7 @@
             changeFieldsAfterPayStart();
             basicFormPaypal = new FormData();
             appendBasicData(basicFormPaypal);
-            return fetch("{{ url('checkout/validate') }}" + "/" + "{{$program->id}}" + "/" + "{{$program->slug}}", {
+            return fetch("{{ url('client/checkout/validate') }}" + "/" + "{{$program->id}}" + "/" + "{{$program->slug}}", {
                 method: "POST",
                 body: basicFormPaypal
             }).then(function(res){

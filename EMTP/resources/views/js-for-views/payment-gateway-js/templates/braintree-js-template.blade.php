@@ -33,7 +33,7 @@
     function validateData()
     {
         $.ajax({
-            url: "{{ url('checkout/validate') }}" + "/" + "{{$program->id}}" + "/" + "{{$program->slug}}",
+            url: "{{ url('client/checkout/validate') }}" + "/" + "{{$program->id}}" + "/" + "{{$program->slug}}",
             method: "POST",
             data: basicFormBt,
             processData: false,

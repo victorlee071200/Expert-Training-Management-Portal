@@ -19,8 +19,8 @@ class CreateOrdersTable extends Migration
             $table->string('customer_name');
             $table->string('user_email');
             $table->decimal('price', 10, 2);
-            $table->unsignedBigInteger('purchased_course_id');
-            $table->string('purchased_course_title');
+            $table->unsignedBigInteger('purchased_program_id');
+            $table->string('purchased_program_name');
             $table->string('transaction_id');
             $table->string('customer_street')->nullable();
             $table->string('customer_city')->nullable();

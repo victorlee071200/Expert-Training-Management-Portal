@@ -15,14 +15,14 @@ class SettingsTableSeeder extends Seeder
     public function run()
     {
         DB::table('settings')->insert([
-            "currency" => "USD",
+            "currency" => "MYR",
             "use_integer_prices" => 0,
-            "use_currency_symbol" => 1,
+            "use_currency_symbol" => 0,
             "comma_is_decimal_separator" => 0,
-            "enable_braintree" => 1,
-            "enable_paypal_in_bt" => 1,
-            "enable_stripe" => 0,
-            "enable_paypal_smart" => 0,
+            "enable_braintree" => 0,
+            "enable_paypal_in_bt" => 0,
+            "enable_stripe" => 1,
+            "enable_paypal_smart" => 1,
             "enable_pp_smart_card" => 1,
             "enable_pp_smart_credit" => 1,
             "enable_pp_smart_bancontact" => 1,

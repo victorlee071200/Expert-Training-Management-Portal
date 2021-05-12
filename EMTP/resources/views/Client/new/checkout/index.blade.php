@@ -141,13 +141,13 @@
                                             <label class="text-gray-700 pl-6 mb-0" for="braintreePayment"> {{$brainTreeLabel}}</label>
                                         </div>
                                         <div class="tmsonic-braintree-image">
-                                            <img src="{{ asset("public/assets/frontend/images/braintree-cards.png") }}" alt="" class="max-w-full h-auto">
+                                            <img src="{{ asset("storage/frontend/images/braintree-cards.png") }}" alt="" class="max-w-full h-auto">
                                         </div>
                                     </div>
                                     </button>
                                     </h2>
                                 </div>
-                                <div id="tm-braintree-div" class="hidden" aria-labelledby="headingOne" data-parent="#all-payment-methods">
+                                <div id="tm-braintree-div" class="" aria-labelledby="headingOne" data-parent="#all-payment-methods">
                                     <div class="flex-auto p-6">
                                         <div class="wrapper">
                                             <div class="checkout container mx-auto sm:px-4">
@@ -190,13 +190,13 @@
                                             <label class="text-gray-700 pl-6 mb-0" for="stripePayment"> Credit card by Stripe </label>
                                         </div>
                                         <div class="stripe-image">
-                                            <img src="{{ asset("public/assets/frontend/images/stripe-cards.png") }}" alt="" class="max-w-full h-auto">
+                                            <img src="{{ asset("storage/frontend/images/stripe-cards.png") }}" alt="" class="max-w-full h-auto">
                                         </div>
                                     </div>
                                     </button>
                                     </h2>
                                 </div>
-                                <div id="tm-stripe-div" class="hidden" aria-labelledby="headingTwo" data-parent="#all-payment-methods">
+                                <div id="tm-stripe-div" class="" aria-labelledby="headingTwo" data-parent="#all-payment-methods">
                                     <div class="flex-auto p-6">
                                         <div class="wrapper">
                                             <div class="checkout container mx-auto sm:px-4">
@@ -241,13 +241,15 @@
                                             <label class="text-gray-700 pl-6 mb-0" for="paypalSmartPayment"> PayPal Smart Buttons </label>
                                         </div>
                                         <div class="paypal-image">
-                                            <img src="{{ asset("public/assets/frontend/images/paypal-logo.png") }}" alt="" class="max-w-full h-auto">
+                                            <img src="{{ asset("storage/frontend/images/paypal-logo.png") }}" alt="" class="max-w-full h-auto">
                                         </div>
                                     </div>
                                     </button>
                                     </h2>
                                 </div>
-                                <div id="tm-paypal-smart-div" class="hidden" aria-labelledby="headingThree" data-parent="#all-payment-methods">
+
+                                
+                                <div id="tm-paypal-smart-div" class="" aria-labelledby="headingThree" data-parent="#all-payment-methods">
                                     <div class="flex-auto p-6">
                                         <div class="wrapper">
                                             <div class="checkout container mx-auto sm:px-4">
@@ -257,6 +259,7 @@
                                                         </div>
                                                     </div>
                                                 </section>
+                                                
                                                 <form action="{{route('client.checkout.fulfill.order')}}" id="payment-form-paypal-smart" method="POST">
                                                     @csrf
                                                     <input type="hidden" id="first_name_paypal" name="first_name" />

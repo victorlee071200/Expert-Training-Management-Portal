@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Arr;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\ProgramSeeder;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
@@ -17,15 +18,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $option = ['online','physical','both'];
-        $clientoption = ['physical','online'];
-
-        $content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                    sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
-                    id est laborum.";
+        
 
         // User::factory()
         // ->count(10)
@@ -61,30 +54,7 @@ class DatabaseSeeder extends Seeder
         //     'usertype' => 'admin',
         // ]);
 
-        DB::table('programs')->insert([
-            'name' => 'Program A',
-            'type' => 'Communication',
-            'code' => 'ICT30005',
-            'length' => 3,
-            'price' => rand(10,100),
-            'option' => 'online',
-            'status' => 'approved',
-            'description' => $content,
-            'thumbnail_path' => 'test.png',
-            'created_at' => '2021-04-22 12:53:34',
-        ]);
-        DB::table('programs')->insert([
-            'name' => 'Program D',
-            'type' => 'Presentation',
-            'code' => 'SWE10011',
-            'length' => 3,
-            'price' => rand(10,100),
-            'option' => Arr::random($option),
-            'status' => 'approved',
-            'description' => 'This is a test',
-            'thumbnail_path' => 'test.png',
-            'created_at' => '2021-04-22 12:53:34',
-        ]);
+        
 
         // DB::table('client_programs')->insert([
         //     'client_email' => 'c@c',
@@ -300,6 +270,7 @@ class DatabaseSeeder extends Seeder
             StripeSettingsTableSeeder::class,
             PayPalSettingsTableSeeder::class,
             AnnouncementsTableSeeder::class,
+            ProgramSeeder::class,
         ]);
 
         // DB::table('feedbacks')->insert([
