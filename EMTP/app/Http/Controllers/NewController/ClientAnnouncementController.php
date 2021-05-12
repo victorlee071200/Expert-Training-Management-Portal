@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\NewController;
 
-use App\Models\Announcement;
-use App\Models\ClientProgram;
 use App\Models\Program;
+use App\Models\Announcement;
 use Illuminate\Http\Request;
+use App\Models\ClientProgram;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ClientAnnouncementController extends Controller
 {
@@ -16,9 +17,12 @@ class ClientAnnouncementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ClientProgram $registeredprogram, Program $program)
     {
-        //
+        $registeredprograms =  ClientProgram::where('client_email', Auth::user()->email)->get();
+        $programs =  DB::table('programs')->where('id', $program)->get();
+        $announcement = DB::table('announcements')->get();
+        return view('client.program.announcement',compact('registeredprograms', 'programs','announcement'));
     }
 
     /**

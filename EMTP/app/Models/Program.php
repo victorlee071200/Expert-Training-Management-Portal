@@ -10,7 +10,7 @@ class Program extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'type', 'price', 'option', 'status', 'description'
+        'name', 'type', 'price', 'option', 'status', 'description','code'
     ];
 
     protected $hidden = [

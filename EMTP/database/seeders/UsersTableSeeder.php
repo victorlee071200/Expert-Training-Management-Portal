@@ -25,6 +25,17 @@ class UsersTableSeeder extends Seeder
             'created_at'  => date("Y-m-d H:i:s"),
         ]);
 
+        // staff
+        DB::table('users')->insert([
+            'name' => 'staff1',
+            'role_id'  => '3',
+            'company_name' => 'Techslim',
+            'email'  => 'staff@gmail.com',
+            'email_verified_at'  => date("Y-m-d H:i:s"),
+            'password'  => bcrypt('12341234'),
+            'created_at'  => date("Y-m-d H:i:s"),
+        ]);
+
         // Member users
         DB::table('users')->insert([
             'name' => 'users1',

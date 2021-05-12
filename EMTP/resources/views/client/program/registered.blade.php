@@ -50,7 +50,11 @@
                                         </svg>
                                     </div>
                                 </a>
-
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                @endforeach
                 <table class="table table-striped">
                     <tbody>
                     @foreach($registeredprograms as $indexKey => $program)
@@ -65,9 +69,6 @@
                     @endforeach
                     </tbody>
                 </table>
-
-
-            </div>
         </div>
     </div>
   </x-app-layout>

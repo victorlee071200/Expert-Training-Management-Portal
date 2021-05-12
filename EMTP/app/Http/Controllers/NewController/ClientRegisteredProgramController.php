@@ -4,7 +4,7 @@ namespace App\Http\Controllers\NewController;
 
 use App\Models\Program;
 use Illuminate\Http\Request;
-use App\Models\ClientProgram;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,19 +15,12 @@ class ClientRegisteredProgramController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $programs =  ClientProgram::where('client_email', Auth::user()->email)->get();
+        $registeredprograms =  DB::table('client_programs')->where('client_email', Auth::user()->email)->where('program_id', $id)->get();
+        $program_details =  DB::table('programs')->where('id', $id)->get();
 
-        $ids = array();
-
-        foreach($programs as $program) {
-            array_push($ids, $program->program_id);
-        }
-
-        $details =  Program::whereIn('id', $ids)->get();
-
-        return view('client.program.registered', compact('programs', 'details'));
+        return view('client.program.detail',['registeredprograms'=>$registeredprograms[0], 'program_details'=>$program_details[0]]);
     }
 
     /**
