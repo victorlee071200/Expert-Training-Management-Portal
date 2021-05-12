@@ -17,12 +17,12 @@ class ClientAnnouncementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ClientProgram $registeredprogram, Program $program)
+    public function index($id)
     {
-        $registeredprograms =  ClientProgram::where('client_email', Auth::user()->email)->get();
-        $programs =  DB::table('programs')->where('id', $program)->get();
-        $announcement = DB::table('announcements')->get();
-        return view('client.program.announcement',compact('registeredprograms', 'programs','announcement'));
+        $registeredprograms =  DB::table('client_programs')->where('client_email', Auth::user()->email)->where('program_id', $id)->get();
+        $program_details =  DB::table('programs')->where('id', $id)->get();
+        $announcement = DB::table('announcements')->where('program_code', $program_details[0]->code)->get();
+        return view('client.program.announcement',['registeredprograms'=>$registeredprograms[0], 'program_details'=>$program_details[0], 'announcement'=>$announcement]);
     }
 
     /**
@@ -52,9 +52,12 @@ class ClientAnnouncementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $announcement)
     {
-        //
+        $registeredprograms =  DB::table('client_programs')->where('client_email', Auth::user()->email)->where('program_id', $id)->get();
+        $program_details =  DB::table('programs')->where('id', $id)->get();
+        $announcements = DB::table('announcements')->where('id', $announcement)->get();
+        return view('client.program.view_announcement',['registeredprograms'=>$registeredprograms[0], 'program_details'=>$program_details[0], 'announcement'=>$announcements[0]]);
     }
 
     /**

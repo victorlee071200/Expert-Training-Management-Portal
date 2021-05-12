@@ -4,16 +4,16 @@
         <div class="bg-gray-300 text-gray-800 hidden md:flex h-auto">
             <ul>
                 <li>
-                    <a href="{{ route('client-program-detail', [$registeredprogram, $program]) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Details</a>
+                    <a href="{{ route('client.program-detail', $registeredprograms->id) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Details</a>
                 </li>
                 <li>
-                    <a href="{{ route('client-program-announcement', [$registeredprogram, $program]) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Announcement</a>
+                    <a href="{{ route('client.program-announcement', $registeredprograms->id) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Announcement</a>
                 </li>
                 <li>
-                    <a href="{{ route('client-program-material', [$registeredprogram, $program]) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Materials</a>
+                    <a href="{{ route('client.program-material', $registeredprograms->id) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Materials</a>
                 </li>
                 <li>
-                    <a href="{{ route('client-program-feedback', [$registeredprogram, $program]) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 bg-white text-indigo-600 h-16 flex justify-center items-center w-auto">Feedback</a>
+                    <a href="{{ route('client.program-feedback', $registeredprograms->id) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 bg-white text-indigo-600 h-16 flex justify-center items-center w-auto">Feedback</a>
                 </li>
             </ul>
         </div>
@@ -24,8 +24,7 @@
                 </h2>
             </div>
             <div class="p-6">
-                @if ($registeredprogram->status == "completed")
-
+                @if ($registeredprograms->status == "completed")
                     @if($feedback)
                         <div class="mb-8">
                             <p class="text-3xl">My Feedback</p>
@@ -36,24 +35,20 @@
                               <img class="mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10" src = "{{ asset('storage/profile_pictures/'.$feedback[0]->profile_thumbnail)}}" alt="">
                             </div>
                             <div class="flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed">
-                              <strong>{{$feedback[0]->client_name}}</strong> <span class="text-xs text-gray-400">{{$feedback[0]->created_at}}</span>
-                              <p class="text-sm">
-                                {{$feedback[0]->feedback}}
-                              </p>
-      
-                              @if (!($feedback[0]->image_path == ""))
-                                <img width="300" height="300" src = "{{ asset('storage/feedback_images/'.$feedback[0]->image_path)}}" alt="">
-                              @endif
-                              
-                            <div class="p-1 justify-end">
-                                <a href="{{ route('client-edit-feedback', [$registeredprogram->id , $program->id, $feedback[0]->id]) }}">
-                                <button role="submit" class="p-3 bg-blue-500 text-white hover:bg-blue-400" required>Edit</button>
-                                </a>
+                                <strong>{{$feedback[0]->client_name}}</strong> <span class="text-xs text-gray-400">{{$feedback[0]->created_at}}</span>
+                                <p class="text-sm">
+                                    {{$feedback[0]->feedback}}
+                                </p>
+                                @if (!($feedback[0]->image_path == ""))
+                                    <img width="300" height="300" src = "{{ asset('storage/feedback_images/'.$feedback[0]->image_path)}}" alt="">
+                                @endif
+                                <div class="p-1 justify-end">
+                                    <a href="{{ route('client-edit-feedback', [$registeredprogram->id , $program->id, $feedback[0]->id]) }}">
+                                        <button role="submit" class="p-3 bg-blue-500 text-white hover:bg-blue-400" required>Edit</button>
+                                    </a>
+                                </div>
                             </div>
-
-                            </div>
-                          </div>
-
+                        </div>
                     @else
                         <form method="POST" action="/feedback/create" enctype="multipart/form-data">
                             @csrf
@@ -78,41 +73,28 @@
                             </div>
                         </form>
                     @endif
-
                 @endif
 
                 {{-- Feedbacks --}}
                 <div class="mb-8 mt-10">
-
                     <p class="text-3xl">Feedback from others</p>
-
-                    @if (!($feedbacks->isEmpty()))
-
-                    @foreach($feedbacks as $feedback)
-
-                    <div class="flex mt-6">
-                      <div class="flex-shrink-0 mr-3">
-                        <img class="mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10" src = "{{ asset('storage/profile_pictures/'.$feedback->profile_thumbnail)}}" alt="">
-                      </div>
-                      <div class="flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed">
-                        <strong>{{$feedback->client_name}}</strong> <span class="text-xs text-gray-400">{{$feedback->created_at}}</span>
-                        <p class="text-sm">
-                          {{$feedback->feedback}}
-                        </p>
-
-                        @if (!($feedback->image_path == ""))
-                          <img width="300" height="300" src = "{{ asset('storage/feedback_images/'.$feedback->image_path)}}" alt="">
-                        @endif
-
-                      </div>
-                    </div>
-
-                    @endforeach
-
+                    @if (!($feedback->isEmpty()))
+                        @foreach($feedback as $feedbacks)
+                            <div class="flex mt-6">
+                                <div class="flex-shrink-0 mr-3">
+                                    <img class="mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10" src = "{{ asset('storage/profile_pictures/'.$feedbacks->profile_thumbnail)}}" alt="">
+                                </div>
+                                <div class="flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed">
+                                    <strong>{{$feedbacks->client_name}}</strong> <span class="text-xs text-gray-400">{{$feedbacks->created_at}}</span>
+                                    <p class="text-sm">{{$feedbacks->feedback}}</p>
+                                    @if (!($feedbacks->image_path == ""))
+                                        <img width="300" height="300" src = "{{ asset('storage/feedback_images/'.$feedbacks->image_path)}}" alt="">
+                                    @endif
+                                </div>
+                            </div>
+                        @endforeach
                     @endif
-                    
                 </div>
-              
             </div>
 
             <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>

@@ -71,11 +71,10 @@ Route::prefix('client')->name('client.')->middleware(['auth:sanctum', 'verified'
     // view specific client registered program
     Route::get('/dashboard/{id}/detail', [ClientRegisteredProgramController::class, 'index'])->name('program-detail');
     Route::get('/dashboard/{id}/announcement', [ClientAnnouncementController::class, 'index'])->name('program-announcement');
-    Route::get('/dashboard/{id}/announcement/{announcements}', [ClientAnnouncementController::class, 'specific_announcement'])->name('program-specific-announcement');
+    Route::get('/dashboard/{id}/announcement/{announcements}', [ClientAnnouncementController::class, 'show'])->name('program-specific-announcement');
     Route::get('/dashboard/{id}/material', [ClientMaterialController::class, 'index'])->name('program-material');
-    Route::get('/dashboard/{id}/material/{material}', [ClientMaterialController::class, 'specific_material'])->name('program-specific-material');
+    Route::get('/dashboard/{id}/material/{material}', [ClientMaterialController::class, 'show'])->name('program-specific-material');
     Route::get('/dashboard/{id}/feedback', [ClientFeedbackController::class, 'index'])->name('program-feedback');
-
 
     Route::get('/checkout/{programSlug}', [CheckoutController::class, 'index'])->name('checkout')->middleware('auth');
     Route::post('checkout/validate/{programId}/{programSlug}', [CheckoutController::class, 'prePaymentValidation'])->name('checkout.validate');

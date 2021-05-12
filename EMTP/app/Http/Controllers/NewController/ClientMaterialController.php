@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\NewController;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ClientMaterialController extends Controller
 {
@@ -12,9 +14,12 @@ class ClientMaterialController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $registeredprograms =  DB::table('client_programs')->where('client_email', Auth::user()->email)->where('program_id', $id)->get();
+        $program_details =  DB::table('programs')->where('id', $id)->get();
+        $material = DB::table('materials')->where('program_code', $program_details[0]->code)->get();
+        return view('client.program.material',['registeredprograms'=>$registeredprograms[0], 'program_details'=>$program_details[0], 'trainingMaterial'=>$material]);
     }
 
     /**

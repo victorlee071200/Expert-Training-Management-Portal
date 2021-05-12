@@ -6,6 +6,7 @@ use App\Models\Program;
 use App\Models\Feedback;
 use Illuminate\Http\Request;
 use App\Models\ClientProgram;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,9 +17,12 @@ class ClientFeedbackController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ClientProgram $registeredprogram, Program $program)
+    public function index($id)
     {
-        return view('client.program.feedback', ['registeredprogram'=>$registeredprogram, 'program'=>$program]);
+        $registeredprograms =  DB::table('client_programs')->where('client_email', Auth::user()->email)->where('program_id', $id)->get();
+        $program_details =  DB::table('programs')->where('id', $id)->get();
+        $feedbacks = DB::table('feedbacks')->where('program_id', $id)->get();
+        return view('client.program.feedback', ['registeredprograms'=>$registeredprograms[0], 'program_details'=>$program_details[0], 'feedback'=>$feedbacks]);
     }
 
     /**
