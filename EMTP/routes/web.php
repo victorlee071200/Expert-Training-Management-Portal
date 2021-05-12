@@ -80,6 +80,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     // About Us Page
     Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
 
+    //Help Questions Page
+    Route::get('/help-questions', function () {
+        return view('client.helpquestions.index');
+    });
+
     // Support Module
     Route::get('/client/view/support', [ClientSupportController::class, 'index'])->name('client-support-dashboard');
     Route::get('/client/create/support', [ClientSupportController::class, 'create'])->name('client-create-support-page');
