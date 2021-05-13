@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+
+
     <div class="bg-cover bg-right-top md:bg-right-top h-auto sm:h-3/4 text-white py-24 px-10" style="background-image: url(https://i.ibb.co/8gbzPDJ/home-banner.jpg)">
         <div class="ml-5 md:ml-24 xl:ml-40 2xl:ml-60 bg-opacity-70 bg-gray-300 py-10 px-5 md:mr-40 lg:mr-60">
             <p class="font-bold text-sm uppercase text-black">Services</p>
