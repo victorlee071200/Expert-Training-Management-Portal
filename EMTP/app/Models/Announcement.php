@@ -10,7 +10,7 @@ class Announcement extends Model
     use HasFactory;
 
     protected $fillable = [
-        'program_name','program_code','title', 'content', 'state'
+        'program_id','title', 'content', 'state'
     ];
 
     protected $hidden = [

@@ -22,7 +22,7 @@ class StaffAnnouncementController extends Controller
         $user = DB::table('users')->where('email', Auth::user()->email)->get();
         $assignedprograms =  DB::table('client_programs')->where('staff_id', $user[0]->id)->where('program_id', $id)->get();
         $program_details =  DB::table('programs')->where('id', $id)->get();
-        $announcement = DB::table('announcements')->get();
+        $announcement = DB::table('announcements')->where('program_id', $program_details[0]->id)->get();
 
         return view('staff.program.announcement',['assignedprograms'=>$assignedprograms[0], 'program_details'=>$program_details[0], 'announcement'=>$announcement]);
     }
@@ -61,8 +61,7 @@ class StaffAnnouncementController extends Controller
         ]);
 
         Announcement::create([
-            'program_code' => $program_details[0]->code,
-            'program_name' => $program_details[0]->name,
+            'program_id' => $program_details[0]->id,
             'title' => $request->input('title'),
             'content' => $request->input('content'),
             'state' => $request->input('state'),

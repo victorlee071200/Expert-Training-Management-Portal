@@ -27,7 +27,7 @@
             </h2>
         </div>
         <div class="p-6">
-            @if ($registeredprograms->status == "completed")
+            @if ($registeredprograms->status == "approved")
                 @if($feedback)
                     <div class="mb-8">
                         <p class="text-3xl">My Feedback</p>
@@ -46,7 +46,7 @@
                                 <img width="300" height="300" src = "{{ asset('storage/feedback_images/'.$feedback[0]->image_path)}}" alt="">
                             @endif
                             <div class="p-1 justify-end">
-                                <a href="{{ route('client-edit-feedback', [$registeredprogram->id , $program->id, $feedback[0]->id]) }}">
+                                <a href="{{ route('client-edit-feedback', [$registeredprograms->id , $program_details->id, $feedback[0]->id]) }}">
                                     <button role="submit" class="p-3 bg-blue-500 text-white hover:bg-blue-400" required>Edit</button>
                                 </a>
                             </div>
@@ -68,8 +68,8 @@
                             <input type="file" id="image" name="image">
                         </div>
 
-                        <input type="hidden" id="programid" name="programid" value={{$program->id}}>
-                        <input type="hidden" id="clientprogramid" name="clientprogramid" value={{$registeredprogram->id}}>
+                        <input type="hidden" id="programid" name="programid" value={{$program_details->id}}>
+                        <input type="hidden" id="clientprogramid" name="clientprogramid" value={{$registeredprograms->id}}>
 
                         <div class="p-1 justify-end">
                             <button role="submit" class="p-3 bg-blue-500 text-white hover:bg-blue-400" required>Submit</button>

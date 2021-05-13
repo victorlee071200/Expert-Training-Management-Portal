@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\ClientProgram;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class StaffFeedbackController extends Controller
 {
@@ -15,11 +16,13 @@ class StaffFeedbackController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ClientProgram $assignedprogram, Program $program)
+    public function index($id)
     {
-        $assignedprogram_ = DB::table('client_programs')->where('id', $assignedprogram)->get();
-        $program_ =  DB::table('programs')->where('id', $program)->get();
-        return view('staff.program.feedback',['assignedprogram'=>$assignedprogram, 'program'=>$program]);
+        $user = DB::table('users')->where('email', Auth::user()->email)->get();
+        $assignedprograms =  DB::table('client_programs')->where('staff_id', $user[0]->id)->where('program_id', $id)->get();
+        $program_details =  DB::table('programs')->where('id', $id)->get();
+
+        return view('staff.program.feedback',['assignedprograms'=>$assignedprograms[0], 'program_details'=>$program_details[0]]);
     }
 
     /**

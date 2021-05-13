@@ -21,7 +21,7 @@ class ClientAnnouncementController extends Controller
     {
         $registeredprograms =  DB::table('client_programs')->where('client_email', Auth::user()->email)->where('program_id', $id)->get();
         $program_details =  DB::table('programs')->where('id', $id)->get();
-        $announcement = DB::table('announcements')->where('program_code', $program_details[0]->code)->get();
+        $announcement = DB::table('announcements')->where('program_id', $program_details[0]->id)->get();
         return view('client.program.announcement',['registeredprograms'=>$registeredprograms[0], 'program_details'=>$program_details[0], 'announcement'=>$announcement]);
     }
 

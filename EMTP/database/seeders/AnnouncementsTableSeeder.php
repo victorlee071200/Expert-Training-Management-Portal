@@ -22,56 +22,49 @@ class AnnouncementsTableSeeder extends Seeder
                     id est laborum.";
 
         DB::table('announcements')->insert([
-            'program_code' => 'ICT30005',
-            'program_name' => 'Program A',
+            'program_id' => 1,
             'title' => 'Announcement 1',
             'content' => $content,
             'state' => 'ACTIVE',
         ]);
 
         DB::table('announcements')->insert([
-            'program_code' => 'PCE10023',
-            'program_name' => 'Program B',
+            'program_id' => 2,
             'title' => 'Announcement 1',
             'content' => $content,
             'state' => 'ACTIVE',
         ]);
 
         DB::table('announcements')->insert([
-            'program_code' => 'PCE10011',
-            'program_name' => 'Program C',
+            'program_id' => 3,
             'title' => 'Announcement 1',
             'content' => $content,
             'state' => 'ACTIVE',
         ]);
 
         DB::table('announcements')->insert([
-            'program_code' => 'ICT30005',
-            'program_name' => 'Program A',
+            'program_id' => 1,
             'title' => 'Announcement 2',
             'content' => $content,
             'state' => 'ACTIVE',
         ]);
 
         DB::table('announcements')->insert([
-            'program_code' => 'PCE10023',
-            'program_name' => 'Program B',
+            'program_id' => 2,
             'title' => 'Announcement 2',
             'content' => $content,
             'state' => 'ACTIVE',
         ]);
 
         DB::table('announcements')->insert([
-            'program_code' => 'PCE10011',
-            'program_name' => 'Program C',
+            'program_id' => 3,
             'title' => 'Announcement 2',
             'content' => $content,
             'state' => 'ACTIVE',
         ]);
 
         DB::table('announcements')->insert([
-            'program_code' => 'PCE10011',
-            'program_name' => 'Program C',
+            'program_id' => 2,
             'title' => 'Announcement 3',
             'content' => $content,
             'state' => 'ACTIVE',

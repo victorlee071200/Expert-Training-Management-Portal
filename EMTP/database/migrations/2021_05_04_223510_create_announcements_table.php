@@ -15,8 +15,7 @@ class CreateAnnouncementsTable extends Migration
     {
         Schema::create('announcements', function (Blueprint $table) {
             $table->id();
-            $table->string('program_code');
-            $table->string('program_name');
+            $table->integer('program_id');
             $table->string('title');
             $table->longText('content');
             $table->enum('state',['ACTIVE', 'INACTIVE']);

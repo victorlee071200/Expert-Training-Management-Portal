@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        
+
 
         // User::factory()
         // ->count(10)
@@ -54,7 +54,7 @@ class DatabaseSeeder extends Seeder
         //     'usertype' => 'admin',
         // ]);
 
-        
+
 
         // DB::table('client_programs')->insert([
         //     'client_email' => 'c@c',
@@ -271,6 +271,7 @@ class DatabaseSeeder extends Seeder
             PayPalSettingsTableSeeder::class,
             AnnouncementsTableSeeder::class,
             ProgramSeeder::class,
+            ClientProgramTableSeeder::class,
         ]);
 
         // DB::table('feedbacks')->insert([
