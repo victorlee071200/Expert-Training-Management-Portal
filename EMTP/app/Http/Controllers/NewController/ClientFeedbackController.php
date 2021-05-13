@@ -19,10 +19,11 @@ class ClientFeedbackController extends Controller
      */
     public function index($id)
     {
-        $registeredprograms =  DB::table('client_programs')->where('client_email', Auth::user()->email)->where('program_id', $id)->get();
-        $program_details =  DB::table('programs')->where('id', $id)->get();
-        $feedbacks = DB::table('feedbacks')->where('program_id', $id)->get();
-        return view('client.program.feedback', ['registeredprograms'=>$registeredprograms[0], 'program_details'=>$program_details[0], 'feedback'=>$feedbacks]);
+        $registeredprograms =  DB::table('client_programs')->where('client_email', Auth::user()->email)->where('program_id', $id)->first();
+        $program_details =  DB::table('programs')->where('id', $id)->first();
+        $feedbacks = DB::table('feedbacks')->where('program_id', $id)->where('client_id', '!=', Auth::user()->id)->get();
+        $clientfeedback = DB::table('feedbacks')->where('program_id', $id)->where('client_id', '=', Auth::user()->id)->first();
+        return view('client.program.feedback', ['registeredprograms'=>$registeredprograms, 'program_details'=>$program_details, 'feedbacks'=>$feedbacks, 'clientfeedback'=>$clientfeedback]);
     }
 
     /**
@@ -59,7 +60,8 @@ class ClientFeedbackController extends Controller
 
         $feedback->save();
 
-        return redirect('/client/registered/' . $request->clientprogramid . '/' . $request->programid . '/feedback');
+        return redirect('/client/dashboard/'. $request->clientprogramid. '/feedback');
+
     }
 
     /**
@@ -104,7 +106,7 @@ class ClientFeedbackController extends Controller
 
         $feedback->save();
 
-        return redirect('/client/registered/' . $request->clientprogramid . '/' . $request->programid . '/feedback');
+        return redirect('client/dashboard/'. $request->clientprogramid .'/feedback');
     }
 
     /**

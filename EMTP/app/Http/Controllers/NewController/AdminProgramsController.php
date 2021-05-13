@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\NewController;
 
 use App\Models\Program;
+use App\Models\Feedback;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,7 +16,6 @@ class AdminProgramsController extends Controller
      */
     public function index()
     {
-
         $pending =  Program::where('status', 'to-be-confirmed')->get();
         $approved =  Program::where('status', 'approved')->get();
         $all =  Program::all();
@@ -105,6 +105,7 @@ class AdminProgramsController extends Controller
     public function approved($id)
     {
         $program = Program::find($id);
-        return view('admin.program.approved.index', compact('program'));
+        $feedbacks = Feedback::where('program_id',$id)->get();
+        return view('admin.program.approved.index', compact('program','feedbacks'));
     }
 }

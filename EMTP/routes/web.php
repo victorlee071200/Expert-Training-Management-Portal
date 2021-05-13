@@ -78,6 +78,7 @@ Route::prefix('client')->name('client.')->middleware(['auth:sanctum', 'verified'
     Route::resource('/dashboard', ClientDashboardController::class);
     Route::resource('/aboutus', ClientAboutUsController::class);
     Route::resource('/support', ClientSupportController::class);
+    Route::resource('/feedback', ClientFeedbackController::class);
 
     // view specific client registered program
     Route::get('/dashboard/{id}/detail', [ClientRegisteredProgramController::class, 'index'])->name('program-detail');
@@ -86,12 +87,17 @@ Route::prefix('client')->name('client.')->middleware(['auth:sanctum', 'verified'
     Route::get('/dashboard/{id}/material', [ClientMaterialController::class, 'index'])->name('program-material');
     Route::get('/dashboard/{id}/material/{material}', [ClientMaterialController::class, 'show'])->name('program-specific-material');
     Route::get('/dashboard/{id}/feedback', [ClientFeedbackController::class, 'index'])->name('program-feedback');
+
+    Route::put('/feedbacks/{feedback}/edit', [ClientFeedbackController::class, 'update'])->name('client-edit-feedback');
+    
     Route::get('/help-questions', [HelpQuestionsController::class, 'index'])->name('help-questions');
 
     Route::get('/checkout/{programSlug}', [CheckoutController::class, 'index'])->name('checkout')->middleware('auth');
     Route::post('checkout/validate/{programId}/{programSlug}', [CheckoutController::class, 'prePaymentValidation'])->name('checkout.validate');
     Route::post('checkout/fulfill/order', [CheckoutController::class, 'fulfillOrder'])->name('checkout.fulfill.order');
 });
+
+Route::post('/feedback/create', [ClientFeedbackController::class, 'store'])->name('create-program-feedback');
 
 // staff route
 Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified', 'staff'])->group(function () {
@@ -101,6 +107,7 @@ Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified', 
     Route::get('/program/pending/{id}', [StaffProgramsController::class, 'pending']);
     Route::get('/program/pending/edit/{id}', [StaffProgramsController::class, 'edit']);
     Route::get('/program/approved/{id}', [StaffProgramsController::class, 'approved']);
+ 
 
     // view specific staff assigned program
     Route::get('/dashboard/{id}/detail', [StaffAssignedProgramController::class, 'index'])->name('program-detail');
@@ -122,6 +129,7 @@ Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified', 
     Route::put('/dashboard/{id}/material/{material}', [StaffMaterialController::class, 'update'])->name('program-material-update');
     Route::delete('/dashboard/{id}/material/{material}', [StaffMaterialController::class, 'destroy'])->name('program-material-delete');
     Route::get('/dashboard/{id}/feedback', [StaffFeedbackController::class, 'index'])->name('program-feedback');
+
 });
 
 // To-Be-Confirmed

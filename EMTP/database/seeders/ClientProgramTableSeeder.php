@@ -54,5 +54,22 @@ class ClientProgramTableSeeder extends Seeder
             'client_notes' => $content,
             'status' => 'approved',
         ]);
+
+        DB::table('client_programs')->insert([
+            'client_email' => 'member@gmail.com',
+            'company_name' => 'Techsim',
+            'user_id' => 3,
+            'program_id' => 3,
+            'staff_id' => 2,
+            'option' => 'physical',
+            'client_venue' => 'City Two',
+            'no_of_employees' => 30,
+            'payment_type' => 'online banking',
+            'payment_status' => 'approved',
+            'start_date' => date("Y-m-d H:i:s"),
+            'end_date' => '2021-05-28 12:53:34',
+            'client_notes' => $content,
+            'status' => 'completed',
+        ]);
     }
 }

@@ -72,7 +72,9 @@ class ClientProgramsController extends Controller
 
         $currency = CurrencyHelper::getCurrencyString();
 
-        return view('client.new.program.details', compact('program', 'userBoughtProgram', 'currency'));
+        $feedbacks = DB::table('feedbacks')->where('program_id',$program->id)->get();
+
+        return view('client.new.program.details', compact('program', 'userBoughtProgram', 'currency','feedbacks'));
     }
 
     /**

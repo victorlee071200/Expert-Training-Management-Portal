@@ -119,6 +119,67 @@
 </div>
 
 <h3 class="mt-6 text-xl">
+    In-Charge Program List
+</h3>
+
+<div class="flex flex-col mt-6">
+    <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+            <div class="overflow-hidden border-b border-gray-200 rounded-md shadow-md">
+
+                <table class="min-w-full overflow-x-scroll divide-y divide-gray-200">
+                    <thead class="">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">Company</th>
+                            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-center uppercase">Program Code</th>
+                            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-center uppercase">Program Name</th>
+                            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-center uppercase">Status</th>
+                            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-center uppercase">Action</th>
+                            </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        @foreach ($incharge as $index => $program)
+                            <tr class="transition-all hover:shadow-lg">
+                                <td class="px-6 py-4 whitespace-nowrap text-left">
+                                    <div class="text-sm font-medium">{{$program->company_name}}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center">
+                                    <div class="text-sm">{{ $inchargedetails[$index]->code }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center">
+
+                                    <span class="text-sm font-medium">{{ $inchargedetails[$index]->name }}</span>
+
+                                </td>
+                                <td class="px-6 py-4 text-sm whitespace-nowrap text-center">
+                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 bg-green-100 rounded-full">{{ $program->status }}</span>
+
+                                </td>
+
+                                <td class="py-3 px-6 text-center">
+                                    <div class="flex item-center justify-center">
+                                        <a class="font-medium " href="{{ url('/staff/program/approve/'. $program->id) }}">
+                                            <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                </svg>
+                                            </div>
+                                        </a>
+
+                                    </div>
+                                </td>
+
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h3 class="mt-6 text-xl">
     Approved Program List
 </h3>
 

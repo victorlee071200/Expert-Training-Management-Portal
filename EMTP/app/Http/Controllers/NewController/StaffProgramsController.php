@@ -3,13 +3,16 @@
 namespace App\Http\Controllers\NewController;
 
 use App\Models\Program;
+use App\Models\Feedback;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Helpers\CurrencyHelper;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\UserProgram\UserProgram;
+use App\Models\ClientProgram;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class StaffProgramsController extends Controller
 {
@@ -24,7 +27,17 @@ class StaffProgramsController extends Controller
         $pending = Program::where('status', 'to-be-confirmed')->get();
         $approved =  Program::where('status', 'approved')->get();
         $all = Program::orderBy('id', 'DESC')->paginate(5);
-        return view('staff.program.index', compact('pending', 'currency', 'approved', 'all'));
+
+        $incharge = ClientProgram::where('staff_id',Auth::user()->id)->get();
+        $idarray = array();
+        
+        foreach ($incharge as $program){
+            array_push($idarray, $program->id);
+        }
+
+        $inchargedetails = Program::whereIn('id',$idarray)->get();
+
+        return view('staff.program.index', compact('pending', 'currency', 'approved', 'all', 'incharge', 'inchargedetails'));
     }
 
     /**
@@ -145,7 +158,9 @@ class StaffProgramsController extends Controller
     public function approved($id)
     {
         $program = Program::find($id);
-        return view('staff.program.approved.index', compact('program'));
+        $feedbacks = Feedback::where('program_id',$id)->get();
+        return view('staff.program.approved.index', compact('program','feedbacks'));
     }
+
 
 }

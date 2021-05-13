@@ -28,7 +28,7 @@ class CreateClientProgramsTable extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->text('client_notes');
-            $table->enum('status',['pending','to-be-confirmed','approved','rejected']);
+            $table->enum('status',['pending','to-be-confirmed','approved','completed','rejected']);
             $table->timestamps();
         });
 

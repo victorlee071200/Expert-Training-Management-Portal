@@ -22,6 +22,7 @@ class UsersTableSeeder extends Seeder
             'email'  => 'admin@gmail.com',
             'email_verified_at'  => date("Y-m-d H:i:s"),
             'password'  => bcrypt('12341234'),
+            'profile_photo_path' => 'profile.jpg',
             'created_at'  => date("Y-m-d H:i:s"),
         ]);
 
@@ -33,6 +34,7 @@ class UsersTableSeeder extends Seeder
             'email'  => 'staff@gmail.com',
             'email_verified_at'  => date("Y-m-d H:i:s"),
             'password'  => bcrypt('12341234'),
+            'profile_photo_path' => 'profile.jpg',
             'created_at'  => date("Y-m-d H:i:s"),
         ]);
 
@@ -44,6 +46,7 @@ class UsersTableSeeder extends Seeder
             'company_name' => 'Techs123im',
             'email_verified_at'  => date("Y-m-d H:i:s"),
             'password'  => bcrypt('12341234'),
+            'profile_photo_path' => 'profile.jpg',
             'created_at'  => date("Y-m-d H:i:s"),
         ]);
 
@@ -54,6 +57,7 @@ class UsersTableSeeder extends Seeder
             'email'  => 'newmember@gmail.com',
             'email_verified_at'  => date("Y-m-d H:i:s"),
             'password'  => bcrypt('12341234'),
+            'profile_photo_path' => 'profile.jpg',
             'created_at'  => date("Y-m-d H:i:s"),
         ]);
 
@@ -64,6 +68,7 @@ class UsersTableSeeder extends Seeder
             'email'  => 'verynewmember@gmail.com',
             'email_verified_at'  => date("Y-m-d H:i:s"),
             'password'  => bcrypt('12341234'),
+            'profile_photo_path' => 'profile.jpg',
             'created_at'  => date("Y-m-d H:i:s"),
         ]);
 
@@ -74,6 +79,7 @@ class UsersTableSeeder extends Seeder
             'email'  => 'ultranewmember@gmail.com',
             'email_verified_at'  => date("Y-m-d H:i:s"),
             'password'  => bcrypt('12341234'),
+            'profile_photo_path' => 'profile.jpg',
             'created_at'  => date("Y-m-d H:i:s"),
         ]);
 
@@ -84,6 +90,7 @@ class UsersTableSeeder extends Seeder
             'email'  => 'supernewmember@gmail.com',
             'email_verified_at'  => date("Y-m-d H:i:s"),
             'password'  => bcrypt('12341234'),
+            'profile_photo_path' => 'profile.jpg',
             'created_at'  => date("Y-m-d H:i:s"),
         ]);
 

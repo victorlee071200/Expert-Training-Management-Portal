@@ -16,7 +16,7 @@ class CreateFeedbacksTable extends Migration
         Schema::create('feedbacks', function (Blueprint $table) {
             $table->id();
             $table->integer("client_id");
-            $table->string("profile_thumbnail");
+            $table->string("profile_thumbnail")->nullable();
             $table->string("client_name");
             $table->integer("program_id");
             $table->text("feedback");
