@@ -21,7 +21,9 @@
                                 <img src="${window.location.origin}/storage/program_thumbnails/${suggestion.thumbnail_path}" alt="img" class="algolia-thumb">
                                 ${suggestion._highlightResult.name.value}
                             </span>
-                            <span>${suggestion.type}</span>
+
+                            <hr>
+                            <span>Type: ${suggestion._highlightResult.type.value}</span>
                             <span>MYR${suggestion.price}</span>
                         </div>
                     `;
