@@ -95,9 +95,9 @@ Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified', 
     // view specific staff assigned program
     Route::get('/dashboard/{id}/detail', [StaffAssignedProgramController::class, 'index'])->name('program-detail');
     Route::get('/dashboard/{id}/announcement', [StaffAnnouncementController::class, 'index'])->name('program-announcement');
+    Route::get('/dashboard/{id}/announcement/create/new', [StaffAnnouncementController::class, 'create'])->name('program-announcement-create');
     Route::get('/dashboard/{id}/announcement/{announcement}', [StaffAnnouncementController::class, 'show'])->name('program-specific-announcement');
-    Route::get('/dashboard/{id}/announcement/create', [StaffAnnouncementController::class, 'create'])->name('program-announcement-create');
-    Route::post('/dashboard/{id}/announcement', [StaffAnnouncementController::class, 'store'])->name('program-announcement-store');
+    Route::put('/dashboard/{id}/announcement', [StaffAnnouncementController::class, 'store'])->name('program-announcement-store');
     Route::get('/dashboard/{id}/announcement/{announcement}/edit', [StaffAnnouncementController::class, 'edit'])->name('program-announcement-edit');
     Route::put('/dashboard/{id}/announcement/{announcement}', [StaffAnnouncementController::class, 'update'])->name('program-announcement-update');
     Route::delete('/dashboard/{id}/announcement/{announcement}', [StaffAnnouncementController::class, 'destroy'])->name('program-announcement-delete');
