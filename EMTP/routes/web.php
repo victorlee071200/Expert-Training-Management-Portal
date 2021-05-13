@@ -95,14 +95,19 @@ Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified', 
     // view specific staff assigned program
     Route::get('/dashboard/{id}/detail', [StaffAssignedProgramController::class, 'index'])->name('program-detail');
     Route::get('/dashboard/{id}/announcement', [StaffAnnouncementController::class, 'index'])->name('program-announcement');
+    Route::get('/dashboard/{id}/announcement/create/new', [StaffAnnouncementController::class, 'create'])->name('program-announcement-create');
     Route::get('/dashboard/{id}/announcement/{announcement}', [StaffAnnouncementController::class, 'show'])->name('program-specific-announcement');
-    Route::post('/dashboard/{id}/announcement/create', [StaffAnnouncementController::class, 'create'])->name('program-announcement-create');
-    Route::post('/dashboard/{id}/announcement', [StaffAnnouncementController::class, 'store'])->name('program-announcement-store');
+    Route::put('/dashboard/{id}/announcement', [StaffAnnouncementController::class, 'store'])->name('program-announcement-store');
     Route::get('/dashboard/{id}/announcement/{announcement}/edit', [StaffAnnouncementController::class, 'edit'])->name('program-announcement-edit');
     Route::put('/dashboard/{id}/announcement/{announcement}', [StaffAnnouncementController::class, 'update'])->name('program-announcement-update');
     Route::delete('/dashboard/{id}/announcement/{announcement}', [StaffAnnouncementController::class, 'destroy'])->name('program-announcement-delete');
     Route::get('/dashboard/{id}/material', [StaffMaterialController::class, 'index'])->name('program-material');
     Route::get('/dashboard/{id}/material/{material}', [StaffMaterialController::class, 'show'])->name('program-specific-material');
+    Route::get('/dashboard/{id}/material/create', [StaffMaterialController::class, 'create'])->name('program-material-create');
+    Route::post('/dashboard/{id}/material', [StaffMaterialController::class, 'store'])->name('program-material-store');
+    Route::get('/dashboard/{id}/material/{material}/edit', [StaffMaterialController::class, 'edit'])->name('program-material-edit');
+    Route::put('/dashboard/{id}/material/{material}', [StaffMaterialController::class, 'update'])->name('program-material-update');
+    Route::delete('/dashboard/{id}/material/{material}', [StaffMaterialController::class, 'destroy'])->name('program-material-delete');
     Route::get('/dashboard/{id}/feedback', [StaffFeedbackController::class, 'index'])->name('program-feedback');
 });
 
