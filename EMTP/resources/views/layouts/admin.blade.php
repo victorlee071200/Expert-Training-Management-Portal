@@ -92,224 +92,6 @@
                     </div>
                   </div>
 
-                  <!-- Components links -->
-                  <div x-data="{ isActive: false, open: false }">
-                    <!-- active classes 'bg-indigo-100 dark:bg-indigo-600' -->
-                    <a
-                      href="#"
-                      @click="$event.preventDefault(); open = !open"
-                      class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-indigo-100 dark:hover:bg-indigo-600"
-                      :class="{ 'bg-indigo-100 dark:bg-indigo-600': isActive || open }"
-                      role="button"
-                      aria-haspopup="true"
-                      :aria-expanded="(open || isActive) ? 'true' : 'false'"
-                    >
-                      <span class="ml-2 text-sm"> Components </span>
-                      <span aria-hidden="true" class="ml-auto">
-                        <!-- active class 'rotate-180' -->
-                        <svg
-                          class="w-4 h-4 transition-transform transform"
-                          :class="{ 'rotate-180': open }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </span>
-                    </a>
-                    <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Components">
-                      <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                      <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                      <a
-                        href="#"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
-                      >
-                        Alerts
-                      </a>
-                      <a
-                        href="#"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
-                      >
-                        Buttons
-                      </a>
-                      <a
-                        href="#"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        Cards
-                      </a>
-                      <a
-                        href="#"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        Dropdowns
-                      </a>
-                      <a
-                        href="#"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        Forms
-                      </a>
-                      <a
-                        href="#"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        Lists
-                      </a>
-                      <a
-                        href="#"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        Modals
-                      </a>
-                    </div>
-                  </div>
-
-                  <!-- Pages links -->
-                  <div x-data="{ isActive: false, open: false }">
-                    <!-- active classes 'bg-indigo-100 dark:bg-indigo-600' -->
-                    <a
-                      href="#"
-                      @click="$event.preventDefault(); open = !open"
-                      class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-indigo-100 dark:hover:bg-indigo-600"
-                      :class="{ 'bg-indigo-100 dark:bg-indigo-600': isActive || open }"
-                      role="button"
-                      aria-haspopup="true"
-                      :aria-expanded="(open || isActive) ? 'true' : 'false'"
-                    >
-                      <span class="ml-2 text-sm"> Pages </span>
-                      <span aria-hidden="true" class="ml-auto">
-                        <!-- active class 'rotate-180' -->
-                        <svg
-                          class="w-4 h-4 transition-transform transform"
-                          :class="{ 'rotate-180': open }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </span>
-                    </a>
-                    <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Components">
-                      <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                      <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                      <a
-                        href="#"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
-                      >
-                        Alerts
-                      </a>
-                      <a
-                        href="#"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
-                      >
-                        Buttons
-                      </a>
-                      <a
-                        href="#"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        Cards
-                      </a>
-                      <a
-                        href="#"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        Dropdowns
-                      </a>
-                      <a
-                        href="#"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        Forms
-                      </a>
-                      <a
-                        href="#"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        Lists
-                      </a>
-                      <a
-                        href="#"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        Modals
-                      </a>
-                    </div>
-                  </div>
-
-                  <!-- User Management links -->
-                  <div x-data="{ isActive: false, open: false}">
-                    <!-- active & hover classes 'bg-indigo-100 dark:bg-indigo-600' -->
-                    <a
-                      href="#"
-                      @click="$event.preventDefault(); open = !open"
-                      class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-indigo-100 dark:hover:bg-indigo-600"
-                      :class="{'bg-indigo-100 dark:bg-indigo-600': isActive || open}"
-                      role="button"
-                      aria-haspopup="true"
-                      :aria-expanded="(open || isActive) ? 'true' : 'false'"
-                    >
-                      <span class="ml-2 text-sm"> User Management </span>
-                      <span aria-hidden="true" class="ml-auto">
-                        <!-- active class 'rotate-180' -->
-                        <svg
-                          class="w-4 h-4 transition-transform transform"
-                          :class="{ 'rotate-180': open }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </span>
-                    </a>
-                    <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" aria-label="Authentication">
-                      <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                      <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                      <a
-                        href="#"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        View
-                      </a>
-                      <a
-                        {{-- href="{{ route('admin-create-staff-page') }}" --}}
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        Create
-                      </a>
-                      <a
-                        href="#"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        X
-                      </a>
-                    </div>
-                  </div>
-
                   <!-- Payment Management links -->
                   <div x-data="{ isActive: false, open: false}">
                     <!-- active & hover classes 'bg-indigo-100 dark:bg-indigo-600' -->
@@ -371,55 +153,6 @@
                       </a>
                     </div>
                   </div>
-
-                  <!-- Program Management links -->
-                  <div x-data="{ isActive: false, open: false}">
-                    <!-- active & hover classes 'bg-indigo-100 dark:bg-indigo-600' -->
-                    <a
-                      href="#"
-                      @click="$event.preventDefault(); open = !open"
-                      class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-indigo-100 dark:hover:bg-indigo-600"
-                      :class="{'bg-indigo-100 dark:bg-indigo-600': isActive || open}"
-                      role="button"
-                      aria-haspopup="true"
-                      :aria-expanded="(open || isActive) ? 'true' : 'false'"
-                    >
-                      <span class="ml-2 text-sm"> Program Management </span>
-                      <span aria-hidden="true" class="ml-auto">
-                        <!-- active class 'rotate-180' -->
-                        <svg
-                          class="w-4 h-4 transition-transform transform"
-                          :class="{ 'rotate-180': open }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </span>
-                    </a>
-                    <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" aria-label="Authentication">
-                      <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                      <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                      <a
-                        href="{{ route('admin.courses') }}"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        Program
-                      </a>
-                      <a
-                        href="{{ route('admin.courses.create') }}"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        Add new Program
-                      </a>
-                    </div>
-                  </div>
-
-
                 </nav>
               </div>
             </aside>
@@ -586,7 +319,7 @@
                     x-transition:leave-end="-translate-y-full opacity-0"
                     x-show="isMobileSubMenuOpen"
                     @click.away="isMobileSubMenuOpen = false"
-                    class="absolute flex items-center p-4 bg-white rounded-md shadow-lg dark:bg-darker top-16 inset-x-4 md:hidden"
+                    class="absolute flex items-center m-5 p-4 bg-white rounded-md shadow-lg dark:bg-darker top-16 inset-x-4 md:hidden"
                     aria-label="Secondary"
                   >
                     <div class="space-x-2">
@@ -742,182 +475,13 @@
                             <a href="#" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Support</a>
 
                         @endif
-
-
-
                       </div>
                     </div>
 
-                    {{-- Pages Link --}}
-                    <div x-data="{ isActive: false, open: false }">
-                        <!-- active classes 'bg-indigo-100 dark:bg-indigo-600' -->
-                        <a
-                          href="#"
-                          @click="$event.preventDefault(); open = !open"
-                          class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-indigo-100 dark:hover:bg-indigo-600"
-                          :class="{ 'bg-indigo-100 dark:bg-indigo-600': isActive || open }"
-                          role="button"
-                          aria-haspopup="true"
-                          :aria-expanded="(open || isActive) ? 'true' : 'false'"
-                        >
-                          <span class="ml-2 text-sm"> Pages </span>
-                          <span aria-hidden="true" class="ml-auto">
-                            <!-- active class 'rotate-180' -->
-                            <svg
-                              class="w-4 h-4 transition-transform transform"
-                              :class="{ 'rotate-180': open }"
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                            </svg>
-                          </span>
-                        </a>
-                        <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Components">
-                          <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                          <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                          <a
-                            href="#"
-                            role="menuitem"
-                            class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
-                          >
-                            Alerts
-                          </a>
-                          <a
-                            href="#"
-                            role="menuitem"
-                            class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
-                          >
-                            Buttons
-                          </a>
-                          <a
-                            href="#"
-                            role="menuitem"
-                            class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                          >
-                            Cards
-                          </a>
-                          <a
-                            href="#"
-                            role="menuitem"
-                            class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                          >
-                            Dropdowns
-                          </a>
-                          <a
-                            href="#"
-                            role="menuitem"
-                            class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                          >
-                            Forms
-                          </a>
-                          <a
-                            href="#"
-                            role="menuitem"
-                            class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                          >
-                            Lists
-                          </a>
-                          <a
-                            href="#"
-                            role="menuitem"
-                            class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                          >
-                            Modals
-                          </a>
-                        </div>
-                      </div>
-
-
-
-                    {{-- <!-- Components links --> --}}
-                    <div x-data="{ isActive: false, open: false }">
-                      <!-- active classes 'bg-indigo-100 dark:bg-indigo-600' -->
-                      <a
-                        href="#"
-                        @click="$event.preventDefault(); open = !open"
-                        class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-indigo-100 dark:hover:bg-indigo-600"
-                        :class="{ 'bg-indigo-100 dark:bg-indigo-600': isActive || open }"
-                        role="button"
-                        aria-haspopup="true"
-                        :aria-expanded="(open || isActive) ? 'true' : 'false'"
-                      >
-                        <span class="ml-2 text-sm"> Components </span>
-                        <span aria-hidden="true" class="ml-auto">
-                          <!-- active class 'rotate-180' -->
-                          <svg
-                            class="w-4 h-4 transition-transform transform"
-                            :class="{ 'rotate-180': open }"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                          </svg>
-                        </span>
-                      </a>
-                      <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" arial-label="Components">
-                        <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                        <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                        <a
-                          href="#"
-                          role="menuitem"
-                          class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
-                        >
-                          Alerts
-                        </a>
-                        <a
-                          href="#"
-                          role="menuitem"
-                          class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700"
-                        >
-                          Buttons
-                        </a>
-                        <a
-                          href="#"
-                          role="menuitem"
-                          class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                        >
-                          Cards
-                        </a>
-                        <a
-                          href="#"
-                          role="menuitem"
-                          class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                        >
-                          Dropdowns
-                        </a>
-                        <a
-                          href="#"
-                          role="menuitem"
-                          class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                        >
-                          Forms
-                        </a>
-                        <a
-                          href="#"
-                          role="menuitem"
-                          class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                        >
-                          Lists
-                        </a>
-                        <a
-                          href="#"
-                          role="menuitem"
-                          class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                        >
-                          Modals
-                        </a>
-                      </div>
-                    </div>
-
-                    <!-- Authentication links -->
+                    <!-- Payment Management links -->
                     <div x-data="{ isActive: false, open: false}">
-                      <!-- active & hover classes 'bg-indigo-100 dark:bg-indigo-600' -->
-                      <a
+                        <!-- active & hover classes 'bg-indigo-100 dark:bg-indigo-600' -->
+                        <a
                         href="#"
                         @click="$event.preventDefault(); open = !open"
                         class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-indigo-100 dark:hover:bg-indigo-600"
@@ -925,110 +489,56 @@
                         role="button"
                         aria-haspopup="true"
                         :aria-expanded="(open || isActive) ? 'true' : 'false'"
-                      >
-                        <span class="ml-2 text-sm"> Authentication </span>
+                        >
+                        <span class="ml-2 text-sm"> Payment Management </span>
                         <span aria-hidden="true" class="ml-auto">
-                          <!-- active class 'rotate-180' -->
-                          <svg
+                            <!-- active class 'rotate-180' -->
+                            <svg
                             class="w-4 h-4 transition-transform transform"
                             :class="{ 'rotate-180': open }"
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
-                          >
+                            >
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                          </svg>
+                            </svg>
                         </span>
-                      </a>
-                      <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" aria-label="Authentication">
+                        </a>
+                        <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" aria-label="Authentication">
                         <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                         <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
                         <a
-                          href="#"
-                          role="menuitem"
-                          class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                            href="{{ route('admin.braintree') }}"
+                            role="menuitem"
+                            class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                         >
-                          Register (soon)
+                            Braintree
                         </a>
                         <a
-                          href="#"
-                          role="menuitem"
-                          class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                            href="{{ route('admin.stripe') }}"
+                            role="menuitem"
+                            class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                         >
-                          Login (soon)
+                            Stripe
                         </a>
                         <a
-                          href="#"
-                          role="menuitem"
-                          class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
+                            href="{{ route('admin.paypal') }}"
+                            role="menuitem"
+                            class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                         >
-                          Password Reset (soon)
+                            Paypal
                         </a>
-                      </div>
-                    </div>
 
-                    <!-- Payment Management links -->
-                  <div x-data="{ isActive: false, open: false}">
-                    <!-- active & hover classes 'bg-indigo-100 dark:bg-indigo-600' -->
-                    <a
-                      href="#"
-                      @click="$event.preventDefault(); open = !open"
-                      class="flex items-center p-2 text-gray-500 transition-colors rounded-md dark:text-light hover:bg-indigo-100 dark:hover:bg-indigo-600"
-                      :class="{'bg-indigo-100 dark:bg-indigo-600': isActive || open}"
-                      role="button"
-                      aria-haspopup="true"
-                      :aria-expanded="(open || isActive) ? 'true' : 'false'"
-                    >
-                      <span class="ml-2 text-sm"> Payment Management </span>
-                      <span aria-hidden="true" class="ml-auto">
-                        <!-- active class 'rotate-180' -->
-                        <svg
-                          class="w-4 h-4 transition-transform transform"
-                          :class="{ 'rotate-180': open }"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
+                        <a
+                            href="{{ route('admin.settings') }}"
+                            role="menuitem"
+                            class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
                         >
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </span>
-                    </a>
-                    <div x-show="open" class="mt-2 space-y-2 px-7" role="menu" aria-label="Authentication">
-                      <!-- active & hover classes 'text-gray-700 dark:text-light' -->
-                      <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                      <a
-                        href="{{ route('admin.braintree') }}"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        Braintree
-                      </a>
-                      <a
-                        href="{{ route('admin.stripe') }}"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        Stripe
-                      </a>
-                      <a
-                        href="{{ route('admin.paypal') }}"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        Paypal
-                      </a>
-
-                      <a
-                        href="{{ route('admin.settings') }}"
-                        role="menuitem"
-                        class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700"
-                      >
-                        Setttings
-                      </a>
+                            Setttings
+                        </a>
+                        </div>
                     </div>
-                  </div>
 
                   <!-- Program Management links -->
                   <div x-data="{ isActive: false, open: false}">
