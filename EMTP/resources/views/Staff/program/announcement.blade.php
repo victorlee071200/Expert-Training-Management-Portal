@@ -39,7 +39,7 @@
                 </tr>
                 @foreach($announcement as $indexKey => $announcements)
                     @if($announcements->program_code == $program_details->code)
-                        <tr class="grid-cols-1 rounded shadow-sm m-2">
+                        <tr class="grid-cols-1 rounded shadow-sm m-2 hover:bg-gray-50">
                             <th class="w-auto py-5 px-2 m-0">
                                 <a href="{{ route('staff.program-specific-announcement', [$assignedprograms->id, $announcements->id]) }}">
                                     <h2 class="text-left pl-10">{{$announcements->title}}</h2>
