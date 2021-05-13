@@ -7,7 +7,13 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 {{-- start your content here --}}
-                <h1>This is the EMTP Training About Us</h1>
+                <h1>This is the EMTP Training Programme Module where we strive to give you the training you want to discover
+                    and learn for yourself.
+                    The company have been established for over a year. Although recent, we have achieved greatly in helping
+                    customers to find the right
+                    training programme for them and is well-known in Malaysia. Enstrusting your trust in us greatly
+                    appreciated.
+                </h1>
                 <h2>Please click on the button below if you have further inquiries by filling in the form.</h2>
             </div>
         </div>
