@@ -68,7 +68,7 @@ class StaffAnnouncementController extends Controller
             'state' => $request->input('state'),
         ]);
 
-        return redirect(route('staff-program-announcement',['assignedprograms'=>$assignedprograms, 'program'=>$program_details, 'announcement'=>$announcement]));
+        return redirect(route('staff.program-announcement',['assignedprograms'=>$assignedprograms, 'program'=>$program_details, 'announcement'=>$announcement]));
     }
 
     /**

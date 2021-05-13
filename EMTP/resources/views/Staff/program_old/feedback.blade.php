@@ -1,41 +1,45 @@
-<x-app-layout title="Client Specific Registered Program - Feedback">
-    <div class="bg-white sm:rounded-lg flex">
-        <!-- side nav -->
-        <div class="bg-gray-300 text-gray-800 hidden md:flex h-auto">
-            <ul>
-                <li>
-                    <a href="{{ route('staff.program-detail', $assignedprograms->id) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Details</a>
-                </li>
-                <li>
-                    <a href="{{ route('staff.program-announcement', $assignedprograms->id) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Announcement</a>
-                </li>
-                <li>
-                    <a href="{{ route('staff.program-material', $assignedprograms->id) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Materials</a>
-                </li>
-                <li>
-                    <a href="{{ route('staff.program-feedback', $assignedprograms->id) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 bg-white text-indigo-600 h-16 flex justify-center items-center w-auto">Feedback</a>
-                </li>
-            </ul>
+@extends('layouts.app')
+
+@section('content')
+
+<div class="bg-white sm:rounded-lg flex">
+    <!-- side nav -->
+    <div class="bg-gray-300 text-gray-800 hidden md:flex h-auto">
+        <ul>
+            <li>
+                <a href="{{ route('staff.program-detail', $assignedprograms->id) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Details</a>
+            </li>
+            <li>
+                <a href="{{ route('staff.program-announcement', $assignedprograms->id) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Announcement</a>
+            </li>
+            <li>
+                <a href="{{ route('staff.program-material', $assignedprograms->id) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Materials</a>
+            </li>
+            <li>
+                <a href="{{ route('staff.program-feedback', $assignedprograms->id) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 bg-white text-indigo-600 h-16 flex justify-center items-center w-auto">Feedback</a>
+            </li>
+        </ul>
+    </div>
+    <div class="block w-full min-h-screen">
+        <div class="mb-5">
+            <h2 class="text-3xl font-bold text-gray-800 py-4 px-4 border-b border-gray-100 w-auto">
+                {{ __('Feedback') }}
+            </h2>
         </div>
-        <div class="block w-full min-h-screen">
-            <div class="mb-5">
-                <h2 class="text-3xl font-bold text-gray-800 py-4 px-4 border-b border-gray-100 w-auto">
-                    {{ __('Feedback') }}
-                </h2>
-            </div>
-            <!--list of feedback showing here-->
-            <div>
-                <table>
-                    <tr>
-                        <th>
+        <!--list of feedback showing here-->
+        <div>
+            <table>
+                <tr>
+                    <th>
 
-                        </th>
-                        <th>
+                    </th>
+                    <th>
 
-                        </th>
-                    </tr>
-                </table>
-            </div>
+                    </th>
+                </tr>
+            </table>
         </div>
     </div>
-</x-app-layout>
+</div>
+
+@endsection

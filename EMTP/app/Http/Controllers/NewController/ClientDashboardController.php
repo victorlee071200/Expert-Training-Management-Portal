@@ -19,7 +19,7 @@ class ClientDashboardController extends Controller
         $registeredprograms =  DB::table('client_programs')->where('client_email', Auth::user()->email)->get();
         $program_details =  DB::table('programs')->get();
 
-        return view('client.dashboard.index',['registeredprograms'=>$registeredprograms, 'program_details'=>$program_details]);
+        return view('client.new.dashboard.index',['registeredprograms'=>$registeredprograms, 'program_details'=>$program_details]);
     }
 
     /**
