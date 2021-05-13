@@ -17,4 +17,5 @@
         class="bg-blue hover:bg-blue-light text-black font-bold py-2 px-4 border-b-4 border-blue-dark hover:border-blue rounded">
         <a href="{{ route('client.help-questions') }}">Help</a>
     </button>
-</x-app-layout>
+
+@endsection
