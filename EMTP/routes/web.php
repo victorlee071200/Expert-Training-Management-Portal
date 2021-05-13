@@ -12,6 +12,7 @@ use App\Http\Controllers\NewController\AdminProgramsController;
 use App\Http\Controllers\NewController\AdminSettingsController;
 use App\Http\Controllers\NewController\ClientAboutUsController;
 use App\Http\Controllers\NewController\ClientSupportController;
+use App\Http\Controllers\NewController\HelpQuestionsController;
 use App\Http\Controllers\NewController\StaffFeedbackController;
 use App\Http\Controllers\NewController\StaffMaterialController;
 use App\Http\Controllers\NewController\StaffProgramsController;
@@ -24,12 +25,12 @@ use App\Http\Controllers\NewController\ClientProgramsController;
 use App\Http\Controllers\NewController\StaffDashboardController;
 use App\Http\Controllers\NewController\AdminDepartmentController;
 use App\Http\Controllers\NewController\ClientDashboardController;
+use App\Http\Controllers\NewController\AdminAnnouncementController;
 use App\Http\Controllers\NewController\StaffAnnouncementController;
 use App\Http\Controllers\NewController\ClientAnnouncementController;
 use App\Http\Controllers\NewController\AdminUserManagementController;
 use App\Http\Controllers\NewController\StaffAssignedProgramController;
 use App\Http\Controllers\NewController\ClientRegisteredProgramController;
-use App\Http\Controllers\NewController\HelpQuestionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +59,15 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', 'verified', 
     Route::resource('/management', AdminUserManagementController::class);
     Route::resource('/support', AdminSupportController::class);
     Route::resource('/users', AdminUserManagementController::class);
+
+    // announcements CRUD for admin
+    Route::get('/dashboard/{id}/announcement', [AdminAnnouncementController::class, 'index'])->name('program-announcement');
+    Route::get('/dashboard/{id}/announcement/create/new', [AdminAnnouncementController::class, 'create'])->name('program-announcement-create');
+    Route::get('/dashboard/{id}/announcement/{announcement}', [AdminAnnouncementController::class, 'show'])->name('program-specific-announcement');
+    Route::put('/dashboard/{id}/announcement', [AdminAnnouncementController::class, 'store'])->name('program-announcement-store');
+    Route::get('/dashboard/{id}/announcement/{announcement}/edit', [AdminAnnouncementController::class, 'edit'])->name('program-announcement-edit');
+    Route::put('/dashboard/{id}/announcement/{announcement}', [AdminAnnouncementController::class, 'update'])->name('program-announcement-update');
+    Route::delete('/dashboard/{id}/announcement/{announcement}', [AdminAnnouncementController::class, 'destroy'])->name('program-announcement-delete');
 });
 
 // client routes
@@ -95,12 +105,15 @@ Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified', 
     // view specific staff assigned program
     Route::get('/dashboard/{id}/detail', [StaffAssignedProgramController::class, 'index'])->name('program-detail');
     Route::get('/dashboard/{id}/announcement', [StaffAnnouncementController::class, 'index'])->name('program-announcement');
+
+    // announcement CRUD for staff
     Route::get('/dashboard/{id}/announcement/create/new', [StaffAnnouncementController::class, 'create'])->name('program-announcement-create');
     Route::get('/dashboard/{id}/announcement/{announcement}', [StaffAnnouncementController::class, 'show'])->name('program-specific-announcement');
     Route::put('/dashboard/{id}/announcement', [StaffAnnouncementController::class, 'store'])->name('program-announcement-store');
     Route::get('/dashboard/{id}/announcement/{announcement}/edit', [StaffAnnouncementController::class, 'edit'])->name('program-announcement-edit');
     Route::put('/dashboard/{id}/announcement/{announcement}', [StaffAnnouncementController::class, 'update'])->name('program-announcement-update');
     Route::delete('/dashboard/{id}/announcement/{announcement}', [StaffAnnouncementController::class, 'destroy'])->name('program-announcement-delete');
+
     Route::get('/dashboard/{id}/material', [StaffMaterialController::class, 'index'])->name('program-material');
     Route::get('/dashboard/{id}/material/{material}', [StaffMaterialController::class, 'show'])->name('program-specific-material');
     Route::get('/dashboard/{id}/material/create', [StaffMaterialController::class, 'create'])->name('program-material-create');

@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers\NewController;
 
-use App\Models\Program;
 use App\Models\Announcement;
 use Illuminate\Http\Request;
-use App\Models\ClientProgram;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -82,6 +80,7 @@ class StaffAnnouncementController extends Controller
         $assignedprograms =  DB::table('client_programs')->where('staff_id', $user[0]->id)->where('program_id', $id)->get();
         $program_details =  DB::table('programs')->where('id', $id)->get();
         $announcements = DB::table('announcements')->where('id', $announcement)->get();
+
         return view('staff.program.view_announcement',['assignedprograms'=>$assignedprograms[0], 'program_details'=>$program_details[0], 'announcement'=>$announcements[0]]);
     }
 
@@ -97,6 +96,7 @@ class StaffAnnouncementController extends Controller
         $assignedprograms =  DB::table('client_programs')->where('staff_id', $user[0]->id)->where('program_id', $id)->get();
         $program_details =  DB::table('programs')->where('id', $id)->get();
         $announcements = DB::table('announcements')->where('id', $announcement)->get();
+
         return view('staff.program.edit_announcement',['assignedprograms'=>$assignedprograms[0], 'program_details'=>$program_details[0], 'announcements'=>$announcements[0]]);
     }
 
@@ -142,6 +142,7 @@ class StaffAnnouncementController extends Controller
         $program_details =  DB::table('programs')->where('id', $id)->get();
         $announcements = DB::table('announcements')->where('id', $announcement)->get();
         Announcement::find($announcement)->delete();
+
         return redirect(route('staff.program-announcement',['assignedprograms'=>$assignedprograms, 'program_details'=>$program_details, 'announcement'=>$announcements, $id]));
     }
 }
