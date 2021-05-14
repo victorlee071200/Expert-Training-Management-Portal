@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+    <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg min-h-screen">
         <h2 class="font-semibold text-3xl text-gray-800 leading-tight px-32 py-5">
             {{ __('Dashboard') }}
         </h2>

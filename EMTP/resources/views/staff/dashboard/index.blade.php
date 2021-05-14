@@ -7,7 +7,7 @@
     {{ __('Dashboard') }}
     </h2>
 
-    <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+    <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg min-h-screen">
         <!--Card list container-->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-1 mx-2">
             @foreach($assignedprograms as $indexKey => $program)
