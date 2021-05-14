@@ -187,6 +187,24 @@ class CheckoutController extends Controller
     }
 
     public function showThanks() {
+        $user = Auth::user();
+        $users = DB::table("users")->where("id", $user->id)->first();
+        $program = DB::table("user_programs")->latest()->first();
+        $program_details = DB::table("programs")->where("id", $program->program_id)->first();
+        $admin = DB::table('users')->where('email', 'kokwei325@gmail.com')->first();
+
+        $data = [
+            "user_id" => $users->id,
+            'admin_email' =>  $admin->email,
+            "user_name" => $users->name,
+            "user_email" => $users->email,
+            "program_id" => $program_details->id,
+            "program_code" => $program_details->code,
+            "program_name" => $program_details->name,
+        ];
+
+        app('App\Http\Controllers\NewController\EmailController')->sendEmail($data, 'new_client_join');
+
         return view('thank-you');
     }
 }

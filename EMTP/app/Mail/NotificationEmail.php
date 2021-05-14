@@ -20,8 +20,6 @@ class NotificationEmail extends Mailable
      */
     public function __construct($data, $status)
     {
-        $this->profile_image = $data['profile_path'];
-        $this->image = $data['image_path'];
         $this->notification_mail_data = $data;
         $this->action_status = $status;
 
@@ -61,13 +59,13 @@ class NotificationEmail extends Mailable
     public function build()
     {
         if ($this->action_status == "new") {
-            return $this->from('notification.emtp.dp2@gmail.com', 'notification emtp')->subject($this->subject)->view('mail.notify_new_client_feedback',['mail_data'=>$this->notification_mail_data,'profile'=>$this->profile_image, 'image'=>$this->image]);
+            return $this->from('notification.emtp.dp2@gmail.com', 'notification emtp')->subject($this->subject)->view('mail.notify_new_client_feedback',['mail_data'=>$this->notification_mail_data]);
         }
         if ($this->action_status == "new_client_join") {
             return $this->from('notification.emtp.dp2@gmail.com', 'notification emtp')->subject($this->subject)->view('mail.notify_new_client_join',['mail_data'=>$this->notification_mail_data]);
         }
         if ($this->action_status == "updated") {
-            return $this->from('notification.emtp.dp2@gmail.com', 'notification emtp')->subject($this->subject)->view('mail.notify_updated_client_feedback',['mail_data'=>$this->notification_mail_data,'profile'=>$this->profile_image, 'image'=>$this->image]);
+            return $this->from('notification.emtp.dp2@gmail.com', 'notification emtp')->subject($this->subject)->view('mail.notify_updated_client_feedback',['mail_data'=>$this->notification_mail_data]);
         }
     }
 }

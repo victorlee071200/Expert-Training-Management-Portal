@@ -110,6 +110,7 @@ class AdminBraintreeController extends Controller
         if ($result->success)
         {
             $transaction = $result->transaction;
+
             if( !is_null($transaction) )
             {
                 $transactionId = $transaction->id;
@@ -136,18 +137,6 @@ class AdminBraintreeController extends Controller
                 $newUserProgram->program_id = $program->id;
                 $newUserProgram->save();
             }
-
-            $users = DB::table("users")->where("id", $user->id)->get();
-            $data = [
-                "user_id" => $users[0]->id,
-                "user_name" => $users[0]->name,
-                "user_email" => $users[0]->email,
-                "program_id" => $program->id,
-                "program_code" => $program->code,
-                "program_name" => $program->name,
-            ];
-
-            app('App\Http\Controllers\NewController\EmailController')->sendEmail($data, 'new_client_join');
 
             return redirect()->route('thanks');
         }

@@ -24,7 +24,7 @@ class ClientProgramTableSeeder extends Seeder
         DB::table('client_programs')->insert([
             'client_email' => 'member@gmail.com',
             'company_name' => 'Techsim',
-            'user_id' => 3,
+            'user_id' => 4,
             'program_id' => 1,
             'staff_id' => 2,
             'option' => 'physical',
@@ -41,7 +41,7 @@ class ClientProgramTableSeeder extends Seeder
         DB::table('client_programs')->insert([
             'client_email' => 'member@gmail.com',
             'company_name' => 'Techsim',
-            'user_id' => 3,
+            'user_id' => 4,
             'program_id' => 2,
             'staff_id' => 2,
             'option' => 'physical',
@@ -58,7 +58,7 @@ class ClientProgramTableSeeder extends Seeder
         DB::table('client_programs')->insert([
             'client_email' => 'member@gmail.com',
             'company_name' => 'Techsim',
-            'user_id' => 3,
+            'user_id' => 4,
             'program_id' => 3,
             'staff_id' => 2,
             'option' => 'physical',
