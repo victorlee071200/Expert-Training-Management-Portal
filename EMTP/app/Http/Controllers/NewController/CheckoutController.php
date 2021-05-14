@@ -5,6 +5,7 @@ namespace App\Http\Controllers\NewController;
 use Braintree;
 use App\Models\Program;
 use App\Models\Order\Order;
+use App\Models\ClientProgram;
 use Illuminate\Http\Request;
 use App\Helpers\CurrencyHelper;
 use App\Models\Country\Country;
@@ -174,6 +175,10 @@ class CheckoutController extends Controller
         }
         $order->save();
 
+        $clientprogram = ClientProgram::where('user_id', $user->id)->where('program_id', $program->id)->first();
+        $clientprogram->payment_status = 'approved';
+        $clientprogram->save();
+
         $userProgram = UserProgram::where('user_id', $user->id)->where('program_id', $program->id)->first();
         if(is_null($userProgram))
         {
@@ -181,6 +186,7 @@ class CheckoutController extends Controller
             $newUserProgram->user_id = $user->id;
             $newUserProgram->program_id = $program->id;
             $newUserProgram->save();
+
         }
 
         return redirect()->route('thanks');

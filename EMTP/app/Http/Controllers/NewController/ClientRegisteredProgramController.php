@@ -5,6 +5,7 @@ namespace App\Http\Controllers\NewController;
 use App\Models\Program;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\ClientProgram;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,10 +18,11 @@ class ClientRegisteredProgramController extends Controller
      */
     public function index($id)
     {
-        $registeredprograms =  DB::table('client_programs')->where('client_email', Auth::user()->email)->where('program_id', $id)->get();
-        $program_details =  DB::table('programs')->where('id', $id)->get();
 
-        return view('client.program.detail',['registeredprograms'=>$registeredprograms[0], 'program_details'=>$program_details[0]]);
+        $registeredprograms =  DB::table('client_programs')->where('client_email', Auth::user()->email)->where('program_id', $id)->first();
+        $program_details =  DB::table('programs')->where('id', $id)->first();
+
+        return view('client.program.detail',['registeredprograms'=>$registeredprograms, 'program_details'=>$program_details]);
     }
 
     /**
@@ -41,7 +43,44 @@ class ClientRegisteredProgramController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $clientprogram = new ClientProgram;
+        $clientprogram->client_email = Auth::user()->email;
+        $clientprogram->company_name = Auth::user()->company_name;
+        $clientprogram->user_id = Auth::user()->id;
+        $clientprogram->program_id = request('programid');
+        $clientprogram->staff_id = 0;
+        $clientprogram->option = request('option');
+
+        if ($clientprogram->option == "online"){
+            $clientprogram->client_venue = "online";
+        } else{
+            $clientprogram->client_venue = request('client_venue');
+        }
+
+        $clientprogram->no_of_employees = request('no_of_employees');
+        $clientprogram->start_date = request('start_date');
+        $clientprogram->end_date = request('end_date');
+        $clientprogram->payment_type = request('payment_type');
+        $clientprogram->payment_status = "pending";
+        $clientprogram->client_notes = request('client_notes');
+        $clientprogram->status= 'to-be-confirmed';
+
+        $clientprogram->save();
+
+        if ($clientprogram->payment_type == 'cash'){
+            return redirect('/client/dashboard')->withToastInfo('Successfully Registered');
+
+        }
+        
+        else{
+            $program = Program::find(request('programid'));
+            $slug = $program->slug;
+            error_log($slug);
+            return redirect('client/checkout/'.$slug);
+        }
+
+
     }
 
     /**
@@ -97,5 +136,11 @@ class ClientRegisteredProgramController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function registerForm($id)
+    {
+        $program = Program::find($id);
+        return view('client.new.program.register', compact('program'));
     }
 }

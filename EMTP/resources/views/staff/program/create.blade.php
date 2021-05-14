@@ -95,7 +95,17 @@
                   <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="thumbnail">
                     Thumbnail
                   </label>
-                  <input type="file" id="thumbnail" name="thumbnail">
+                  <input type="file" id="thumbnail" name="thumbnail" required accept="image/*">
+
+                </div>
+              </div>
+
+              <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full px-3">
+                  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="thumbnail">
+                    Program Document (In ZIP file)
+                  </label>
+                  <input type="file" id="document" name="document" accept=".zip,.rar,.7zip">
 
                 </div>
               </div>

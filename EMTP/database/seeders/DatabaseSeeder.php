@@ -272,6 +272,7 @@ class DatabaseSeeder extends Seeder
             AnnouncementsTableSeeder::class,
             ProgramSeeder::class,
             ClientProgramTableSeeder::class,
+            FeedbackSeeder::class
         ]);
 
         // DB::table('feedbacks')->insert([

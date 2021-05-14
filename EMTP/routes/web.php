@@ -80,6 +80,8 @@ Route::prefix('client')->name('client.')->middleware(['auth:sanctum', 'verified'
     Route::resource('/support', ClientSupportController::class);
     Route::resource('/feedback', ClientFeedbackController::class);
 
+    Route::get('/program/register/{program}', [ClientRegisteredProgramController::class, 'registerForm'])->name('register-program');
+    
     // view specific client registered program
     Route::get('/dashboard/{id}/detail', [ClientRegisteredProgramController::class, 'index'])->name('program-detail');
     Route::get('/dashboard/{id}/announcement', [ClientAnnouncementController::class, 'index'])->name('program-announcement');
@@ -98,6 +100,7 @@ Route::prefix('client')->name('client.')->middleware(['auth:sanctum', 'verified'
 });
 
 Route::post('/feedback/create', [ClientFeedbackController::class, 'store'])->name('create-program-feedback');
+Route::post('/program/register', [ClientRegisteredProgramController::class, 'store']);
 
 // staff route
 Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified', 'staff'])->group(function () {

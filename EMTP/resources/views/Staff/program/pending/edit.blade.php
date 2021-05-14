@@ -93,9 +93,19 @@
               <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full px-3">
                   <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="thumbnail">
-                    Thumbnail
+                    Thumbnail (Uploading a new one will replace the old one)
                   </label>
-                  <input type="file" id="thumbnail" name="thumbnail" value="{{ $program->thumbnail_path}}" >
+                  <input type="file" id="thumbnail" name="thumbnail" value="{{ $program->thumbnail_path}}" accept="image/*">
+
+                </div>
+              </div>
+
+              <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full px-3">
+                  <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="thumbnail">
+                    Training Document (Uploading a new one will replace the old one)
+                  </label>
+                  <input type="file" id="document" name="document" value="{{ $program->training_document}}" accept=".zip,.rar,.7zip">
 
                 </div>
               </div>
