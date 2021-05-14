@@ -50,22 +50,22 @@
                             <form id="feedbackForm" action="/client/feedbacks/{{$clientfeedback->id}}/edit" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('put')
-        
+
                                 <div class="mb-8">
                                     <label class="text-xl text-gray-600">Your feedback <span class="text-red-500">*</span></label><br/>
                                     <textarea id="feedback" required rows="5" cols="80" id="feedback" name="feedback" class="border-2 border-gray-500"></textarea>
                                 </div>
-           
+
                                 @if(!($clientfeedback->image_path == ""))
                                     <div class="mb-8">
                                         <p class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                                             You have uploaded an image for the feedback. Uploading again will replace the current one.
                                         </p>
-        
+
                                         <img width="300" height="300" src = "{{ asset('storage/feedback_images/'.$clientfeedback->image_path)}}" alt="yourimage">
                                     </div>
                                 @endif
-        
+
                                 <div class="mb-8">
                                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="image">
                                         Upload an image
@@ -74,7 +74,7 @@
                                 </div>
 
                                 <input type="hidden" id="clientprogramid" name="clientprogramid" value={{$clientfeedback->program_id}}>
-            
+
                                 <div class="p-1 justify-end">
                                     <button role="submit" class="p-3 bg-blue-500 text-white hover:bg-blue-400" required>Edit</button>
                                 </div>
@@ -100,12 +100,12 @@
                           var feedbackImage = document.getElementById("feedbackImage");
                           var feedbackForm = document.getElementById("feedbackForm");
                           var editButton1 = document.getElementById("editButton1");
-                            
+
                           feedbackText.style.display = "none";
                           feedbackImage.style.display = "none";
                           editButton1.style.display = "none";
 
-                            
+
                           feedbackForm.style.display = "inline";
 
                         }
@@ -118,7 +118,7 @@
                               feedbackImage.src = "{{ asset('storage/feedback_images/'.$clientfeedback->image_path)}}";
                               feedbackImage.height = 300;
                               feedbackImage.width = 300;
-                        
+
                           }
                         }
 
@@ -126,9 +126,9 @@
                     </script>
 
                 @else
-                    <form method="POST" action="/feedback/create" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('client.program-feedback', $registeredprograms->id) }}" enctype="multipart/form-data">
                         @csrf
-
+                        @method('PUT')
                         <div class="mb-8">
                             <label class="text-xl text-gray-600">Your feedback <span class="text-red-500">*</span></label><br/>
                             <textarea required rows="5" cols="80" id="feedback" name="feedback" class="border-2 border-gray-500"></textarea>
