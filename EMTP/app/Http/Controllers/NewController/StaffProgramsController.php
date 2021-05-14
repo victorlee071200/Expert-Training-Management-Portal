@@ -59,26 +59,35 @@ class StaffProgramsController extends Controller
     public function store(Request $request)
     {
         // Validate the request...
-         $program = new Program;
-         $program->name = request('name');
-         $program->code = request('code');
-         $program->type = request('type');
-         $program->length = request('length');
-         $program->price = request('price');
-         $program->option = request('option');
-         $program->description = request('description');
-         $program->slug = Str::slug($request->name);
-         $program->status = 'to-be-confirmed';
+        $program = new Program;
+        $program->name = request('name');
+        $program->code = request('code');
+        $program->type = request('type');
+        $program->length = request('length');
+        $program->price = request('price');
+        $program->option = request('option');
+        $program->description = request('description');
+        $program->slug = Str::slug($request->name);
+        $program->status = 'to-be-confirmed';
 
-         $name = $request->file('thumbnail')->getClientOriginalName();
-         $request->file('thumbnail')->storeAs(
-             'public/program_thumbnails/', $name
-         );
-         $program->thumbnail_path = $name;
+        $name = $request->file('thumbnail')->getClientOriginalName();
+        $request->file('thumbnail')->storeAs(
+            'public/program_thumbnails/', $name
+        );
+        $program->thumbnail_path = $name;
 
-         $program->save();
-         // return $path;
-         return redirect(route('staff.program.index'))->withToastSuccess($program->name.' has been Created Successfully!');
+        
+        if($request->file('document') != null){
+        $documentName = $request->file('document')->getClientOriginalName();
+        $request->file('document')->storeAs(
+            'public/program_documents/', $documentName
+        );
+        $program->training_document = $documentName;
+        }
+
+        $program->save();
+        // return $path;
+        return redirect(route('staff.program.index'))->withToastSuccess($program->name.' has been Created Successfully!');
     }
 
     /**
@@ -123,12 +132,22 @@ class StaffProgramsController extends Controller
         $program->description = request('description');
         $program->slug = Str::slug($request->name);
         $program->status = 'to-be-confirmed';
+        
+        if($request->file('thumbnail') != null){
+            $name = $request->file('thumbnail')->getClientOriginalName();
+            $request->file('thumbnail')->storeAs(
+                'public/program_thumbnails/', $name
+            );
+            $program->thumbnail_path = $name;
+        }
 
-        $name = $request->file('thumbnail')->getClientOriginalName();
-        $request->file('thumbnail')->storeAs(
-            'public/program_thumbnails/', $name
-        );
-        $program->thumbnail_path = $name;
+        if($request->file('document') != null){
+            $documentName = $request->file('document')->getClientOriginalName();
+            $request->file('document')->storeAs(
+                'public/program_documents/', $documentName
+            );
+            $program->training_document = $documentName;
+        }
 
         $program->save();
         // return $path;

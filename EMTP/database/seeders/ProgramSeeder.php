@@ -37,6 +37,7 @@ class ProgramSeeder extends Seeder
             'status' => 'approved',
             'description' => $content,
             'thumbnail_path' => 'test.png',
+            'training_document' => 'document.zip',
             'created_at' => '2021-04-22 12:53:34',
         ]);
         DB::table('programs')->insert([
@@ -50,6 +51,7 @@ class ProgramSeeder extends Seeder
             'status' => 'approved',
             'description' => 'This is a test',
             'thumbnail_path' => 'test.png',
+            'training_document' => 'document.zip',
             'created_at' => '2021-04-22 12:53:34',
         ]);
 
@@ -64,6 +66,7 @@ class ProgramSeeder extends Seeder
             'status' => 'approved',
             'description' => 'This is a test',
             'thumbnail_path' => 'test.png',
+            'training_document' => 'document.zip',
             'created_at' => '2021-04-22 12:53:34',
         ]);
 
@@ -78,6 +81,7 @@ class ProgramSeeder extends Seeder
             'status' => 'approved',
             'description' => 'This is a test',
             'thumbnail_path' => 'test.png',
+            'training_document' => 'document.zip',
             'created_at' => '2021-04-22 12:53:34',
         ]);
 
@@ -92,6 +96,7 @@ class ProgramSeeder extends Seeder
             'status' => 'approved',
             'description' => 'This is a test',
             'thumbnail_path' => 'test.png',
+            'training_document' => 'document.zip',
             'created_at' => '2021-04-22 12:53:34',
         ]);
     }

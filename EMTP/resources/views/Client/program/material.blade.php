@@ -27,19 +27,17 @@
             </h2>
         </div>
         <div class="p-3 mx-2">
-            <table class="w-full">
-                @foreach($trainingMaterial as $indexKey => $material)
-                    @if($material->program_code == $program->code)
-                        <tr class="grid-cols-1 rounded shadow-sm">
-                            <th class="w-auto py-5 px-2 hover:bg-gray-50">
-                                <a href="{{ route('client-program-material-view', [$registeredprogram, $program, $material->id]) }}">
-                                    <h2 class="text-left pl-10">{{$material->title}}</h2>
-                                </a>
-                            </th>
-                        </tr>
-                    @endif
-                @endforeach
-            </table>
+
+            @if($registeredprograms->status == 'approved' || $registeredprograms->status == 'completed')
+            <h3> Download the ZIP file by clicking the link below </h3>
+            <a href="{{ asset('storage/program_documents/'.$program_details->training_document)}}" download>
+                <p class="bg-blue-500 hover:bg-blue-700 mt-5 text-xl">Click Me </p>
+            </a>
+
+            @else
+            <h3> Please pay the program fee in order to view and download the training materials. If you have already paid, please wait for the staff to confirm the program. </h3>
+
+            @endif
         </div>
     </div>
 </div>

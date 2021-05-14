@@ -16,10 +16,9 @@ class ClientMaterialController extends Controller
      */
     public function index($id)
     {
-        $registeredprograms =  DB::table('client_programs')->where('client_email', Auth::user()->email)->where('program_id', $id)->get();
-        $program_details =  DB::table('programs')->where('id', $id)->get();
-        $material = DB::table('materials')->where('program_code', $program_details[0]->code)->get();
-        return view('client.program.material',['registeredprograms'=>$registeredprograms[0], 'program_details'=>$program_details[0], 'trainingMaterial'=>$material]);
+        $registeredprograms =  DB::table('client_programs')->where('client_email', Auth::user()->email)->where('program_id', $id)->first();
+        $program_details =  DB::table('programs')->where('id', $id)->first();
+        return view('client.program.material',['registeredprograms'=>$registeredprograms, 'program_details'=>$program_details]);
     }
 
     /**

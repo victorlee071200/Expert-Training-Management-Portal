@@ -13,6 +13,7 @@ class CreateHelpQuestionTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('help_questions');
         Schema::create('help_questions', function (Blueprint $table) {
             $table->id();
             $table->string('title');

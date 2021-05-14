@@ -55,7 +55,8 @@
                                     @else
                                     <div class="m-6">
                                         <div class="block tracking-widest uppercase text-center shadow bg-green-400 hover:bg-green-500 focus:shadow-outline focus:outline-none text-white text-xs py-3 px-10 rounded">
-                                            <a href="{{ url('client/checkout/'. $program->slug) }}" onclick="showLoadSpinner();"><span class="spinner-border spinner-border-sm" id="spinnerOnBtn" role="status" aria-hidden="true" style="display:none;"></span> Buy Now <i class="fas fa-cart-plus"></i></a>
+                                            {{-- <a href="{{ url('client/checkout/'. $program->slug) }}" onclick="showLoadSpinner();"><span class="spinner-border spinner-border-sm" id="spinnerOnBtn" role="status" aria-hidden="true" style="display:none;"></span> Buy Now <i class="fas fa-cart-plus"></i></a> --}}
+                                            <a href="{{ url('/client/program/register/'. $program->id) }}">Register Now</a>
                                         </div>
                                     </div>
 

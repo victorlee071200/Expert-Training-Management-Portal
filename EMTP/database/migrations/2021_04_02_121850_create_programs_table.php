@@ -25,6 +25,7 @@ class CreateProgramsTable extends Migration
             $table->enum('status',['to-be-confirmed','approved','rejected']);
             $table->text('description');
             $table->text('thumbnail_path');
+            $table->text('training_document')->nullable();
             $table->timestamps();
         });
     }
