@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\ClientProgram;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\FeedbackNotification;
 use Illuminate\Support\Facades\Auth;
 
 class ClientFeedbackController extends Controller
@@ -42,7 +43,7 @@ class ClientFeedbackController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $feedback = new Feedback;
         $feedback->client_id = Auth::user()->id;
@@ -59,6 +60,22 @@ class ClientFeedbackController extends Controller
         }
 
         $feedback->save();
+
+        $admin = DB::table('users')->where('email', 'kokwei325@gmail.com')->get();
+        $program_details = DB::table('programs')->where('id', $id)->get();
+
+        $data = [
+            'feedback_id' => $feedback->id,
+            'name' => $feedback->client_name,
+            'admin_email' =>  $admin[0]->email,
+            'content' => $feedback->feedback,
+            'profile_path' => $feedback->profile_thumbnail,
+            'image_path' => $feedback->image_path,
+            'program_code' => $program_details[0]->code,
+            'program_name' => $program_details[0]->name,
+        ];
+
+        app('App\Http\Controllers\NewController\EmailController')->sendEmail($data, 'new');
 
         return redirect('/client/dashboard/'. $request->clientprogramid. '/feedback');
 
@@ -105,6 +122,22 @@ class ClientFeedbackController extends Controller
         }
 
         $feedback->save();
+
+        $admin = DB::table('users')->where('email', 'kokwei325@gmail.com')->get();
+        $program_details = DB::table('programs')->where('id', $request->clientprogramid)->get();
+
+        $data = [
+            'feedback_id' => $feedback->id,
+            'name' => $feedback->client_name,
+            'admin_email' =>  $admin[0]->email,
+            'content' => $feedback->feedback,
+            'profile_path' => $feedback->profile_thumbnail,
+            'image_path' => $feedback->image_path,
+            'program_code' => $program_details[0]->code,
+            'program_name' => $program_details[0]->name,
+        ];
+
+        app('App\Http\Controllers\NewController\EmailController')->sendEmail($data, 'updated');
 
         return redirect('client/dashboard/'. $request->clientprogramid .'/feedback');
     }

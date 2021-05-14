@@ -1,33 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\NewController;
 
-use Illuminate\Http\Request;
+use App\Mail\NotificationEmail;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 
 class EmailController extends Controller
 {
-    public function sendEmail(Request $request)
+    public function sendEmail($data, $status)
     {
-        $request->validate([
-          'email' => 'required|email',
-          'subject' => 'required',
-          'name' => 'required',
-          'content' => 'required',
-        ]);
+        // Mail::send('notification.emtp.dp2@gmail.com', $data, function($message) use ($data) {
+        //   $message->to($data['email'])->subject($data['subject']);
+        // });
+        Mail::to($data['admin_email'])->send(new NotificationEmail($data, $status));
 
-        $data = [
-          'subject' => $request->subject,
-          'name' => $request->name,
-          'email' => $request->email,
-          'content' => $request->content
-        ];
-
-        Mail::send('email-template', $data, function($message) use ($data) {
-          $message->to($data['email'])
-          ->subject($data['subject']);
-        });
-
-        return back()->with(['message' => 'Email successfully sent!']);
+        return back();
     }
 }

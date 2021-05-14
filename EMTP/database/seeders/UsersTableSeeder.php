@@ -26,6 +26,19 @@ class UsersTableSeeder extends Seeder
             'created_at'  => date("Y-m-d H:i:s"),
         ]);
 
+        // Admin user
+        DB::table('users')->insert([
+            'name' => 'kokwei',
+            'role_id'  => '1',
+            'company_name' => 'Techsim',
+            'email'  => 'kokwei325@gmail.com',
+            'email_verified_at'  => date("Y-m-d H:i:s"),
+            'password'  => bcrypt('12341234'),
+            'profile_photo_path' => 'profile.jpg',
+            'created_at'  => date("Y-m-d H:i:s"),
+        ]);
+
+
         // staff
         DB::table('users')->insert([
             'name' => 'staff1',

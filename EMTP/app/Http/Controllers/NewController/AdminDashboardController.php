@@ -26,8 +26,9 @@ class AdminDashboardController extends Controller
         $salesTotalSum = Order::sum('price');
         $salesTotalSum = CurrencyHelper::getSetPriceFormat($salesTotalSum);
         $orderSum = Order::count();
+        $program_details = DB::table('programs')->get();
 
-        return view('admin.dashboard.index', compact('meta_title', 'userCount', 'programCount', 'currency', 'salesTotalSum', 'orderSum'));
+        return view('admin.dashboard.index', compact('meta_title', 'userCount', 'programCount', 'currency', 'salesTotalSum', 'orderSum', 'program_details'));
     }
 
     /**
