@@ -23,20 +23,15 @@ class NotificationEmail extends Mailable
         $this->action_status = $status;
         if($this->action_status == "new") {
             $this->subject = "New Client Feedback [".$data['program_code']." ".$data['program_name']."]";
-
-            FeedbackNotification::create([
-                'subject' => $this->subject,
-                'content' => $data['content'],
-            ]);
         }
         else {
             $this->subject = "Updated Client Feedback [".$data['program_code']." ".$data['program_name']."]";
-
-            FeedbackNotification::where('id', $data['feedback_id'])->update([
-                'subject' => $this->subject,
-                'content' => $data['content'],
-            ]);
         }
+
+        FeedbackNotification::create([
+            'subject' => $this->subject,
+            'content' => $data['content'],
+        ]);
     }
 
     /**
