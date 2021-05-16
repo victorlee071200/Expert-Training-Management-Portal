@@ -39,36 +39,101 @@
                             </a>
                         </div>
 
-                        <!-- Navigation Links -->
-                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <x-jet-nav-link href="{{ route('client.home.index') }}" :active="request()->routeIs('client.home.index')">
-                                {{ __('Home') }}
-                            </x-jet-nav-link>
-                        </div>
+                        @if (Auth::user()->name == 'admin')
 
-                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <x-jet-nav-link href="{{ route('client.program.index') }}" :active="request()->routeIs('client.program.index')">
-                                {{ __('Program') }}
-                            </x-jet-nav-link>
-                        </div>
+                            <!-- Navigation Links -->
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('client.home.index') }}" :active="request()->routeIs('client.home.index')">
+                                    {{ __('Home') }}
+                                </x-jet-nav-link>
+                            </div>
 
-                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <x-jet-nav-link href="{{ route('client.dashboard.index') }}" :active="request()->routeIs('client.dashboard.index')">
-                                {{ __('Dashboard') }}
-                            </x-jet-nav-link>
-                        </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('admin.program.index') }}" :active="request()->routeIs('client.program.index')">
+                                    {{ __('Program') }}
+                                </x-jet-nav-link>
+                            </div>
 
-                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <x-jet-nav-link href="{{ route('client.aboutus.index') }}" :active="request()->routeIs('client.aboutus.index')">
-                                {{ __('About Us') }}
-                            </x-jet-nav-link>
-                        </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('admin.dashboard.index') }}" :active="request()->routeIs('client.dashboard.index')">
+                                    {{ __('Dashboard') }}
+                                </x-jet-nav-link>
+                            </div>
 
-                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                            <x-jet-nav-link href="{{ route('client.support.index') }}" :active="request()->routeIs('client.support.index')">
-                                {{ __('Support') }}
-                            </x-jet-nav-link>
-                        </div>
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('client.aboutus.index') }}" :active="request()->routeIs('client.aboutus.index')">
+                                    {{ __('About Us') }}
+                                </x-jet-nav-link>
+                            </div>
+
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('admin.support.index') }}" :active="request()->routeIs('client.support.index')">
+                                    {{ __('Support') }}
+                                </x-jet-nav-link>
+                            </div>
+
+
+                        @elseif (Auth::user()->where('role_id', '3'))
+                            <!-- Navigation Links -->
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('client.home.index') }}" :active="request()->routeIs('client.home.index')">
+                                    {{ __('Home') }}
+                                </x-jet-nav-link>
+                            </div>
+
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('staff.program.index') }}" :active="request()->routeIs('client.program.index')">
+                                    {{ __('Program') }}
+                                </x-jet-nav-link>
+                            </div>
+
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('client.aboutus.index') }}" :active="request()->routeIs('client.aboutus.index')">
+                                    {{ __('About Us') }}
+                                </x-jet-nav-link>
+                            </div>
+
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('staff.support.index') }}" :active="request()->routeIs('client.support.index')">
+                                    {{ __('Support') }}
+                                </x-jet-nav-link>
+                            </div>
+
+                        @else
+                            <!-- Navigation Links -->
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('client.home.index') }}" :active="request()->routeIs('client.home.index')">
+                                    {{ __('Home') }}
+                                </x-jet-nav-link>
+                            </div>
+
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('client.program.index') }}" :active="request()->routeIs('client.program.index')">
+                                    {{ __('Program') }}
+                                </x-jet-nav-link>
+                            </div>
+
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('client.dashboard.index') }}" :active="request()->routeIs('client.dashboard.index')">
+                                    {{ __('Dashboard') }}
+                                </x-jet-nav-link>
+                            </div>
+
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('client.aboutus.index') }}" :active="request()->routeIs('client.aboutus.index')">
+                                    {{ __('About Us') }}
+                                </x-jet-nav-link>
+                            </div>
+
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('client.support.index') }}" :active="request()->routeIs('client.support.index')">
+                                    {{ __('Support') }}
+                                </x-jet-nav-link>
+                            </div>
+
+                        @endif
+
+
 
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                             <div class="aa-input-container inline-block relative m-4 ml-10" id="aa-input-container">
