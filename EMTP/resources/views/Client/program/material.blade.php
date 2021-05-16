@@ -31,7 +31,7 @@
             @if($registeredprograms->status == 'approved' || $registeredprograms->status == 'completed')
             <h3> Download the ZIP file by clicking the link below </h3>
             <a href="{{ asset('storage/program_documents/'.$program_details->training_document)}}" download>
-                <p class="bg-blue-500 hover:bg-blue-700 mt-5 text-xl">Click Me </p>
+                <p class="hover:bg-blue-700 mt-5 text-xl inline-block">{{$program_details->training_document}} <i class="fa fa-download" aria-hidden="true"></i></p>
             </a>
 
             @else

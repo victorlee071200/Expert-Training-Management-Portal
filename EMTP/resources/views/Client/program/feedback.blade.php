@@ -29,7 +29,7 @@
         <div class="p-6">
             <p class="text-3xl">My Feedback</p>
 
-            @if ($registeredprograms->status == "approved")
+            @if (!($registeredprograms->status == "completed"))
             <p class="text-m mt-3">
                 You can only give a feedback after you have completed a program. The feedback form is only available after the staff has marked your program as completed.
             </p>
