@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'admin',
             'role_id'  => '1',
-            'company_name' => 'Techsim',
+            'company_name' => 'EMTP Sdn Bhd',
             'email'  => 'admin@gmail.com',
             'email_verified_at'  => date("Y-m-d H:i:s"),
             'password'  => bcrypt('12341234'),

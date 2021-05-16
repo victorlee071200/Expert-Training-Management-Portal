@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\NewController\CheckoutController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\NewController\BraintreeController;
 use App\Http\Controllers\NewController\AdminPaypalController;
 use App\Http\Controllers\NewController\AdminStripeController;
 use App\Http\Controllers\NewController\AdminSupportController;
+use App\Http\Controllers\NewController\StaffSupportController;
 use App\Http\Controllers\NewController\AdminProgramsController;
 use App\Http\Controllers\NewController\AdminSettingsController;
 use App\Http\Controllers\NewController\ClientAboutUsController;
@@ -25,6 +27,7 @@ use App\Http\Controllers\NewController\ClientProgramsController;
 use App\Http\Controllers\NewController\StaffDashboardController;
 use App\Http\Controllers\NewController\AdminDepartmentController;
 use App\Http\Controllers\NewController\ClientDashboardController;
+use App\Http\Controllers\NewController\FrontendProgramController;
 use App\Http\Controllers\NewController\AdminAnnouncementController;
 use App\Http\Controllers\NewController\StaffAnnouncementController;
 use App\Http\Controllers\NewController\ClientAnnouncementController;
@@ -110,6 +113,8 @@ Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified', 
     Route::get('/program/pending/{id}', [StaffProgramsController::class, 'pending']);
     Route::get('/program/pending/edit/{id}', [StaffProgramsController::class, 'edit']);
     Route::get('/program/approved/{id}', [StaffProgramsController::class, 'approved']);
+
+    Route::resource('/support', StaffSupportController::class);
 
 
     // view specific staff assigned program

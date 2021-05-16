@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\NewController;
 
 use App\Models\User;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class AdminUserManagementController extends Controller
 {
@@ -15,9 +17,10 @@ class AdminUserManagementController extends Controller
      */
     public function index()
     {
+        $staffCount = User::where('role_id', '3')->count();
+        $departmentCount = Department::count();
         $staffs =  User::where('role_id', '3')->get();
-        $clients =  User::where('role_id', '2')->get();
-        return view('admin.management.index', compact('staffs', 'clients'));
+        return view('admin.management.index', compact('staffs', 'staffCount', 'departmentCount'));
     }
 
     /**
@@ -27,7 +30,8 @@ class AdminUserManagementController extends Controller
      */
     public function create()
     {
-        return view('admin.management.create');
+        $departments = Department::all();
+        return view('admin.management.create', compact('departments'));
     }
 
     /**
@@ -38,7 +42,19 @@ class AdminUserManagementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validate the request...
+        $user = new User;
+        $user->name = request('name');
+        $user->email = request('email');
+        $user->password= Hash::make(request('password'));
+        $user->department = request('department');
+        $user->company_name = 'EMTP';
+        $user->role_id = '3';
+        $user->email_verified_at = now();
+        $user->save();
+        // return $path;
+        return redirect(route('admin.management.index'))->withToastSuccess($user->name.' has been Created Successfully!');
+
     }
 
     /**
@@ -50,8 +66,8 @@ class AdminUserManagementController extends Controller
     public function show($id)
     {
 
-        $client = User::findOrFail($id);
-        return view('admin.management.details', compact('client'));
+        $staff = User::findOrFail($id);
+        return view('admin.management.details', compact('staff'));
     }
 
     /**
@@ -62,7 +78,9 @@ class AdminUserManagementController extends Controller
      */
     public function edit($id)
     {
-        //
+        $departments = Department::all();
+        $staff = User::find($id);
+        return view('admin.management.edit', compact('staff', 'departments'));
     }
 
     /**
@@ -74,7 +92,12 @@ class AdminUserManagementController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $staff = User::findOrFail($id);
+        $staff->name = $request->input('name');
+        $staff->department = $request->input('department');
+        $staff->update();
+
+        return redirect(route('admin.management.index'))->withToastInfo($staff->name.'&apos;s details has been Updated Successfully!');
     }
 
     /**
@@ -85,6 +108,8 @@ class AdminUserManagementController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $staff = User::findOrFail($id);
+        $staff->delete();
+        return redirect(route('admin.management.index'))->withToastError($staff->name.' has been deleted Successfully!');
     }
 }
