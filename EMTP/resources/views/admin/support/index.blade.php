@@ -38,6 +38,7 @@
             <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">Department</th>
             <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">Priority</th>
             <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">Status</th>
+            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">Assigned To</th>
             <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left uppercase">Action</th>
           </tr>
     </thead>
@@ -84,8 +85,12 @@
                     @endif
                 </td>
 
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm">{{ $ticket->assign_to }}</div>
+                </td>
+
                 <td class="px-6 py-4 text-sm whitespace-nowrap">
-                    <a href="{{ route('staff.support.show', $ticket->id) }}" class="text-indigo-600 hover:text-indigo-900">View More</a>
+                    <a href="{{ route('admin.support.show', $ticket->id) }}" class="text-indigo-600 hover:text-indigo-900">View More</a>
                 </td>
             </tr>
         @endforeach

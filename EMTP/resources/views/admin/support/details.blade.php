@@ -79,6 +79,7 @@
                     @endif
                 </div>
 
+
               </div>
           {{-- <div class="flex mb-4">
             <span class="flex items-center">
@@ -155,24 +156,9 @@
                         <div class="py-3">
                             <div class="relative">
                                 <select name="assign_to" class="rounded border appearance-none border-gray-400 py-2 text-base pl-3 pr-10">
-                                    @if($ticket->department == 'Customer Service')
-                                        @foreach ($staffs as $staff)
-                                            <option>{{ $staff->name }}</option>
-                                        @endforeach
-                                    @elseif($ticket->department == 'Billing')
-                                        @foreach ($staffs as $staff)
-                                            <option>{{ $staff->name }}</option>
-                                        @endforeach
-                                    @elseif($ticket->department == 'Technical Support')
-                                        @foreach ($staffs as $staff)
-                                            <option>{{ $technical_support->name }}</option>
-                                        @endforeach
-                                    @else
-                                        @foreach ($staffs as $staff)
-                                            <option>{{ $staff->name }}</option>
-                                        @endforeach
-                                    @endif
-
+                                    @foreach ($staffs as $staff)
+                                        <option>{{ $staff->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
