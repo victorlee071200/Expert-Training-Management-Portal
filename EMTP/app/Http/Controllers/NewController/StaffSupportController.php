@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\NewController;
 
-use App\Models\Department;
 use Illuminate\Http\Request;
 use App\Models\SupportTicket;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class ClientSupportController extends Controller
+class StaffSupportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +16,8 @@ class ClientSupportController extends Controller
      */
     public function index()
     {
-         return view('client.new.support.index');
+        $tickets = SupportTicket::where('assign_to', Auth::user()->name)->get();
+        return view('staff.support.index', compact('tickets'));
     }
 
     /**
@@ -27,8 +27,7 @@ class ClientSupportController extends Controller
      */
     public function create()
     {
-        $departments = Department::all();
-        return view('client.new.support.create', compact('departments'));
+        //
     }
 
     /**
@@ -39,24 +38,7 @@ class ClientSupportController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate the request...
-        $ticket = new SupportTicket;
-        $ticket->name = Auth::user()->name;
-        $ticket->email = Auth::user()->email;
-        $ticket->subject = request('subject');
-        $ticket->department = request('department');
-        $ticket->priority = request('priority');
-        $ticket->description = request('description');
-        $ticket->status = ('open');
-        $name = $request->file('thumbnail')->getClientOriginalName();
-        $request->file('thumbnail')->storeAs(
-            'public/ticket_thumbnails/', $name
-        );
-        $ticket->thumbnail_path = $name;
-
-        $ticket->save();
-        // return $path;
-        return redirect(route('client.support.index'))->withToastSuccess('Support Ticket has been created Successfully!');
+        //
     }
 
     /**
@@ -67,7 +49,8 @@ class ClientSupportController extends Controller
      */
     public function show($id)
     {
-        //
+        $ticket = SupportTicket::find($id);
+        return view('staff.support.details', compact('ticket'));
     }
 
     /**
@@ -90,7 +73,11 @@ class ClientSupportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $ticket = SupportTicket::findOrFail($id);
+        $ticket->status = $request->input('status');
+        $ticket->update();
+
+        return redirect(route('staff.support.index'))->withToastInfo($ticket->name.'&#39;s support ticket has been updated to '.$ticket->status.' Successfully!');
     }
 
     /**

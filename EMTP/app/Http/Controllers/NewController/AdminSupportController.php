@@ -50,9 +50,13 @@ class AdminSupportController extends Controller
     public function show($id)
     {
         $ticket = SupportTicket::find($id);
-        $staffs =  User::where('usertype', 'staff')->get();
+        $customer_service =  User::where('department', 'Customer Service')->get();
+        $technical_support =  User::where('department', 'Technical Support')->get();
+        $billing =  User::where('department', 'Billing')->get();
+        $feedback =  User::where('department', 'Feedback')->get();
+        $staffs = User::where('role_id', '3')->get();
 
-        return view('admin.support.details', compact('ticket', 'staffs'));
+        return view('admin.support.details', compact('ticket', 'customer_service', 'technical_support', 'billing', 'feedback', 'staffs'));
 
     }
 

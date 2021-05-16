@@ -4,7 +4,7 @@
 
 <div class="bg-white">
     <h2 class="font-semibold text-3xl text-gray-800 leading-tight px-5 py-3 md:px-28 md:py-5">
-    {{ __('Dashboard') }}
+        {{ __('Dashboard') }}
     </h2>
 
     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg min-h-screen">

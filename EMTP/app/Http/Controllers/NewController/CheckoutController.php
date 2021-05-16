@@ -209,7 +209,7 @@ class CheckoutController extends Controller
             "program_name" => $program_details->name,
         ];
 
-        app('App\Http\Controllers\NewController\EmailController')->sendEmail($data, 'new_client_join');
+        app('App\Http\Controllers\NewController\ClientJoinEmailNotificationController')->sendEmail($data);
 
         return view('thank-you');
     }

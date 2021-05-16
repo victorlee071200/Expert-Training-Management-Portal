@@ -27,11 +27,11 @@
 
 <div class="flex flex-col items-start justify-between pb-6 space-y-4 border-b lg:items-center lg:space-y-0 lg:flex-row">
     <h1 class="text-2xl font-semibold whitespace-nowrap">
-        Assign Support Ticket
+        Create New Staff
     </h1>
 
     <div class="space-y-8 mb-6">
-        <a href="{{ route('admin.support.index') }}" class="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-500 rounded shadow ripple hover:shadow-lg hover:bg-indigo-600 focus:outline-none">
+        <a href="{{ route('staff.support.index') }}" class="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-500 rounded shadow ripple hover:shadow-lg hover:bg-indigo-600 focus:outline-none">
         Back
         </a>
     </div>
@@ -78,7 +78,6 @@
                         <span class="bg-red-200 text-red-600 py-1 px-3 rounded-full text-sm">{{ $ticket->priority }}</span>
                     @endif
                 </div>
-
 
               </div>
           {{-- <div class="flex mb-4">
@@ -147,18 +146,17 @@
           </div> --}}
 
         <div  class="w-full max-w-lg">
-            <form class="form-horizontal" action="{{ route('admin.support.update', $ticket->id) }}" method="POST">
+            <form class="form-horizontal" action="{{ route('staff.support.update', $ticket->id) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="pb-5">
                     <div class="m-6">
-                        <h2 class="text-sm title-font text-gray-500 tracking-widest">Assign To</h2>
+                        <h2 class="text-sm title-font text-gray-500 tracking-widest">Status</h2>
                         <div class="py-3">
                             <div class="relative">
-                                <select name="assign_to" class="rounded border appearance-none border-gray-400 py-2 text-base pl-3 pr-10">
-                                    @foreach ($staffs as $staff)
-                                        <option>{{ $staff->name }}</option>
-                                    @endforeach
+                                <select name="status" class="rounded border appearance-none border-gray-400 py-2 text-base pl-3 pr-10">
+                                    <option>Open</option>
+                                    <option>Closed</option>
                                 </select>
                             </div>
                         </div>

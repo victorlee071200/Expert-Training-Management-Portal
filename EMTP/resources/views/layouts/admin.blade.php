@@ -86,7 +86,7 @@
 
                             <a href="{{ route('staff.program.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Program</a>
 
-                            <a href="#" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Support</a>
+                            <a href="{{ route('staff.support.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Support</a>
 
                         @endif
                     </div>
@@ -273,7 +273,8 @@
                       >
                         <span class="sr-only">User menu</span>
 
-                        <img class="w-10 h-10 rounded-full" src="{{ Auth::user()->profile_photo_url }}" />
+                        <img class="w-10 h-10 rounded-full" src="{{ asset('storage/profile.jpg')}}" />
+
                       </button>
 
                       <!-- User dropdown menu -->
@@ -381,7 +382,7 @@
                         class="block transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100"
                       >
                         <span class="sr-only">User menu</span>
-                        <img class="w-10 h-10 rounded-full" src="{{ Auth::user()->profile_photo_url }}" />
+                        <img class="w-10 h-10 rounded-full" src="{{ asset('storage/profile.jpg')}}" />
                       </button>
 
                       <!-- User dropdown menu -->
@@ -472,7 +473,7 @@
 
                             <a href="{{ route('staff.program.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Program</a>
 
-                            <a href="#" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Support</a>
+                            <a href="{{ route('staff.support.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Support</a>
 
                         @endif
                       </div>

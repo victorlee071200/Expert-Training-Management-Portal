@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\NewController;
 
 use Illuminate\Http\Request;
-use App\Models\ClientProgram;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -17,8 +16,7 @@ class StaffDashboardController extends Controller
      */
     public function index()
     {
-        $user = DB::table('users')->where('email', Auth::user()->email)->get();
-        $assignedprograms =  DB::table('client_programs')->where('staff_id', $user[0]->id)->get();
+        $assignedprograms =  DB::table('client_programs')->where('staff_id', Auth::user()->id)->get();
         $program_details =  DB::table('programs')->get();
 
         return view('staff.dashboard.index',['assignedprograms'=>$assignedprograms, 'program_details'=>$program_details]);

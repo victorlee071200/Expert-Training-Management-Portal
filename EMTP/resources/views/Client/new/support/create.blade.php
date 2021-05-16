@@ -30,7 +30,8 @@
                     Department
                     </label>
                     <div class="relative">
-                    <select id="department" name="department" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                    <select required id="department" name="department" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                        <option name="none">None</option>
                         @foreach ($departments as $department)
                             <option name="department">{{ $department->name }}</option>
                         @endforeach
@@ -48,7 +49,7 @@
                     Priority
                     </label>
                     <div class="relative">
-                    <select id="priority" name="priority" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                    <select required id="priority" name="priority" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                         <option value="Low">Low</option>
                         <option value="Medium">Medium</option>
                         <option value="High">High</option>
@@ -72,7 +73,7 @@
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="thumbnail">
                     Thumbnail
                     </label>
-                    <input type="file" id="thumbnail" name="thumbnail">
+                    <input type="file" id="thumbnail" name="thumbnail" required>
 
                 </div>
                 </div>

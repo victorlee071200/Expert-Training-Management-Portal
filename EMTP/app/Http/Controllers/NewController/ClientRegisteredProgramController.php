@@ -19,10 +19,10 @@ class ClientRegisteredProgramController extends Controller
     public function index($id)
     {
 
-        $registeredprograms =  DB::table('client_programs')->where('client_email', Auth::user()->email)->where('program_id', $id)->first();
-        $program_details =  DB::table('programs')->where('id', $id)->first();
+        $registeredprograms =  DB::table('client_programs')->where('client_email', Auth::user()->email)->where('program_id', $id)->get();
+        $program_details =  DB::table('programs')->where('id', $id)->get();
 
-        return view('client.program.detail',['registeredprograms'=>$registeredprograms, 'program_details'=>$program_details]);
+        return view('client.program.detail',['registeredprograms'=>$registeredprograms[0], 'program_details'=>$program_details[0]]);
     }
 
     /**
@@ -72,7 +72,7 @@ class ClientRegisteredProgramController extends Controller
             return redirect('/client/dashboard')->withToastInfo('Successfully Registered');
 
         }
-        
+
         else{
             $program = Program::find(request('programid'));
             $slug = $program->slug;

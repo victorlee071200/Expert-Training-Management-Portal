@@ -1,5 +1,4 @@
 @extends('layouts.app')
-@section('title', 'Checkout')
 
 @push("css")
 
@@ -32,55 +31,55 @@
                             <div class="lg:w-1/2 pr-4 pl-4 customer-info">
 
                                 <div class="step1">
-                                    <h4>Contact Information <span><button class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded py-1 px-3 leading-normal no-underline bg-green-500 text-white hover:bg-green-600" onclick="fillInDummyInfo()">Fill in dummy info</button></span></h4>
-                                    <hr>
+                                    <h4 mt-4>Contact Information <span><button class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap rounded py-1 px-3 leading-normal no-underline bg-green-500 text-white hover:bg-green-600" onclick="fillInDummyInfo()">Fill in dummy info</button></span></h4>
+                                    <hr class="m-4">
                                 </div>
 
-                                <div class="flex flex-wrap -mr-1 -ml-1">
+                                <div class="flex flex-wrap -mr-1 -ml-1 m-2">
                                     <div class="relative flex-grow max-w-full flex-1 px-4">
-                                        <label for="first_name">First name <span style="color: red;">*</span></label>
-                                        <input type="text" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded" id="first_name" name="first_name" aria-describedby="first_name" value="{{old('first_name')}}">
+                                        <label  for="first_name">First name <span style="color: red;">*</span></label>
+                                        <input type="text" class="block appearance-none w-full py-1 px-2 m-2 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded" id="first_name" name="first_name" aria-describedby="first_name" value="{{old('first_name')}}">
                                     </div>
                                     <div class="relative flex-grow max-w-full flex-1 px-4">
                                         <label for="last_name">Last name<span style="color: red;">*</span></label>
-                                        <input type="text" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded" id="last_name" name="last_name" aria-describedby="last_name" value="{{old('last_name')}}">
+                                        <input type="text" class="block appearance-none w-full py-1 px-2 m-2 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded" id="last_name" name="last_name" aria-describedby="last_name" value="{{old('last_name')}}">
                                     </div>
                                 </div>
                                 <div class="flex flex-wrap -mr-1 -ml-1 mt-4">
                                     <div class="relative flex-grow max-w-full flex-1 px-4">
                                         <label for="email_address">Email Address<span style="color: red;">*</span></label>
-                                        <input type="email" name="email_address" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded" id="email_address" aria-describedby="email_address" value="{{old('email_address')}}">
+                                        <input type="email" name="email_address" class="block appearance-none w-full py-1 px-2 m-2 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded" id="email_address" aria-describedby="email_address" value="{{old('email_address')}}">
                                     </div>
                                     <div class="relative flex-grow max-w-full flex-1 px-4">
                                         <label for="phone">Phone</label>
-                                        <input type="text" name="phone" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded" id="phone" aria-describedby="phone" value="{{old('phone')}}">
+                                        <input type="text" name="phone" class="block appearance-none w-full py-1 px-2 m-2 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded" id="phone" aria-describedby="phone" value="{{old('phone')}}">
                                     </div>
                                 </div>
 
                                 <div class="step2">
-                                    <h4>Billing Address</h4>
-                                    <hr>
+                                    <h4 class="mt-4">Billing Address</h4>
+                                    <hr class="m-4">
                                 </div>
 
                                 <div class="flex flex-wrap -mr-1 -ml-1">
                                     <div class="relative flex-grow max-w-full flex-1 px-4">
                                         <label for="street">House number and street<span style="color: red;">*</span></label>
-                                        <input type="text" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded" name="street" id="street" aria-describedby="street" value="{{old('street')}}">
+                                        <input type="text" class="block appearance-none w-full py-1 px-2 m-2 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded" name="street" id="street" aria-describedby="street" value="{{old('street')}}">
                                     </div>
                                     <div class="relative flex-grow max-w-full flex-1 px-4">
                                         <label for="apartment">Apartment, suite, unit etc.</label>
-                                        <input type="text" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded" name="apartment" id="apartment" aria-describedby="apartment" value="{{old('apartment')}}">
+                                        <input type="text" class="block appearance-none w-full py-1 px-2 m-2 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded" name="apartment" id="apartment" aria-describedby="apartment" value="{{old('apartment')}}">
                                     </div>
                                 </div>
                                 <div class="mb-4 mt-4">
                                     <label for="city">City/Town<span style="color: red;">*</span></label>
-                                    <input type="text" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded" name="city" id="city" aria-describedby="city" value="{{old('city')}}">
+                                    <input type="text" class="block appearance-none w-full py-1 px-2 m-2 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded" name="city" id="city" aria-describedby="city" value="{{old('city')}}">
                                 </div>
 
                                 <div class="flex flex-wrap -mr-1 -ml-1">
                                     <div class="relative flex-grow max-w-full flex-1 px-4">
                                         <label for="country">Country<span style="color: red;">*</span></label>
-                                        <select id="country" class="custom-select" name="country">
+                                        <select id="country" class="custom-select m-2 block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="country">
                                             @foreach($countries as $country)
                                                 <option value="{{ $country->code }}" autocomplete="off" {{ ( old('country') == $country->code ? "selected":"" ) }} > {{ stripslashes($country->name) }} </option>
                                             @endforeach
@@ -88,12 +87,12 @@
                                     </div>
                                     <div class="relative flex-grow max-w-full flex-1 px-4">
                                         <label for="state">State/County<span style="color: red;">*</span></label>
-                                        <select id="state" class="custom-select" name="state" autocomplete="off"></select>
+                                        <select id="state" class="custom-select m-2 block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="state" autocomplete="off"></select>
                                     </div>
                                 </div>
                                 <div class="mb-4 mt-4">
                                     <label for="zip">Zip Code<span style="color: red;">*</span></label>
-                                    <input type="text" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded" name="zip" id="zip" value="{{old('zip')}}">
+                                    <input type="text" class="m-2 block appearance-none w-1/2 py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded" name="zip" id="zip" value="{{old('zip')}}">
                                 </div>
 
                             </div> <!-- /.col-lg-6 -->
@@ -102,17 +101,17 @@
                             <div class="lg:w-1/2 pr-4 pl-4">
 
                                 <div class="step3">
-                                    <h4>Checkout & Payment</h4>
-                                    <hr>
+                                    <h4 mt-4>Checkout & Payment</h4>
+                                    <hr class="m-4">
                                 </div>
                                 <div class="order-details">
-                                    <div class="order-meta flex justify-between">
+                                    <div class="order-meta flex justify-between mb-4">
                                         <div>Product</div>
                                         <div>Total</div>
                                     </div>
-                                    <div class="product-row flex justify-between">
+                                    <div class="product-row flex justify-between mb-4">
                                         <div>
-                                            {{$program->title}}
+                                            {{$program->name}}
                                         </div>
                                         <div>
                                             {{$currency}}{{App\Helpers\CurrencyHelper::getSetPriceFormat($program->price)}}
@@ -123,7 +122,7 @@
                                         <div id="total" data-total="{{$program->price}}">{{$currency}}{{App\Helpers\CurrencyHelper::getSetPriceFormat($program->price)}}</div>
                                     </div>
                                 </div>
-                                <div class="payment-title mb-1 mt-4">
+                                <div class="payment-title mb-5 mt-4">
                                     <h4>Select a payment method</h4>
                                 </div>
 

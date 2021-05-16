@@ -72,6 +72,8 @@
                             </x-jet-nav-link>
                         </div>
 
+
+
                         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                             <div class="aa-input-container inline-block relative m-4 ml-10" id="aa-input-container">
                                 <input type="search" id="aa-search-input" class="aa-input-search rounded text-xs box-border appearance-none outline-none border-blue-500" placeholder="Search with algolia..." name="search"
