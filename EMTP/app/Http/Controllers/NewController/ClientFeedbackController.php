@@ -75,7 +75,7 @@ class ClientFeedbackController extends Controller
             'program_name' => $program_details[0]->name,
         ];
 
-        app('App\Http\Controllers\NewController\EmailController')->sendEmail($data, 'new');
+        app('App\Http\Controllers\NewController\ClientFeedbackEmailNotificationController')->sendEmail($data, 'new');
 
         return redirect('/client/dashboard/'. $request->clientprogramid. '/feedback');
 
@@ -137,7 +137,7 @@ class ClientFeedbackController extends Controller
             'program_name' => $program_details[0]->name,
         ];
 
-        app('App\Http\Controllers\NewController\EmailController')->sendEmail($data, 'updated');
+        app('App\Http\Controllers\NewController\ClientFeedbackEmailNotificationController')->sendEmail($data, 'updated');
 
         return redirect('client/dashboard/'. $request->clientprogramid .'/feedback');
     }
