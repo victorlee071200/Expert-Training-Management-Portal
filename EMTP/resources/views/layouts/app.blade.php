@@ -71,36 +71,14 @@
                                     {{ __('Support') }}
                                 </x-jet-nav-link>
                             </div>
+                        @endif
 
 
-                        @elseif (Auth::user()->where('role_id', '3'))
-                            <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <x-jet-nav-link href="{{ route('client.home.index') }}" :active="request()->routeIs('client.home.index')">
-                                    {{ __('Home') }}
-                                </x-jet-nav-link>
-                            </div>
 
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <x-jet-nav-link href="{{ route('staff.program.index') }}" :active="request()->routeIs('client.program.index')">
-                                    {{ __('Program') }}
-                                </x-jet-nav-link>
-                            </div>
 
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <x-jet-nav-link href="{{ route('client.aboutus.index') }}" :active="request()->routeIs('client.aboutus.index')">
-                                    {{ __('About Us') }}
-                                </x-jet-nav-link>
-                            </div>
+                        @if (Auth::user()->where('role_id', 2))
 
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <x-jet-nav-link href="{{ route('staff.support.index') }}" :active="request()->routeIs('client.support.index')">
-                                    {{ __('Support') }}
-                                </x-jet-nav-link>
-                            </div>
-
-                        @else
-                            <!-- Navigation Links -->
+                        <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <x-jet-nav-link href="{{ route('client.home.index') }}" :active="request()->routeIs('client.home.index')">
                                     {{ __('Home') }}
@@ -130,6 +108,35 @@
                                     {{ __('Support') }}
                                 </x-jet-nav-link>
                             </div>
+
+                        @else
+
+                            <!-- Navigation Links -->
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('client.home.index') }}" :active="request()->routeIs('client.home.index')">
+                                    {{ __('Home') }}
+                                </x-jet-nav-link>
+                            </div>
+
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('staff.program.index') }}" :active="request()->routeIs('client.program.index')">
+                                    {{ __('Program') }}
+                                </x-jet-nav-link>
+                            </div>
+
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('client.aboutus.index') }}" :active="request()->routeIs('client.aboutus.index')">
+                                    {{ __('About Us') }}
+                                </x-jet-nav-link>
+                            </div>
+
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-jet-nav-link href="{{ route('staff.support.index') }}" :active="request()->routeIs('client.support.index')">
+                                    {{ __('Support') }}
+                                </x-jet-nav-link>
+                            </div>
+
+
 
                         @endif
 
