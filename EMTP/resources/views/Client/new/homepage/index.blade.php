@@ -7,7 +7,9 @@
             <p class="font-bold text-sm uppercase text-black">Services</p>
             <p class="text-3xl md:text-4xl font-bold text-black mb-1">Training Programs</p>
             <p class="text-2xl md:text-3xl mb-10 leading-none text-black">Train for your future</p>
-            <a href="#" class="bg-purple-800 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800">Learn more</a>
+            <a class="px-8 py-2 text-lg font-medium text-white transition-colors duration-300 transform bg-indigo-600 rounded hover:bg-indigo-500" href="/client/program">
+                Learn More
+            </a>
         </div>
     </div>
 
@@ -73,7 +75,7 @@
                     </div>
 
                     <div class="mt-8 md:mt-0 md:w-1/2">
-                        <h3 class="text-2xl font-semibold text-gray-800">Lorem ipsum dolor sit <br> amet, consectetur</h3>
+                        <h3 class="text-2xl font-semibold text-gray-800">Provides High Quality <br> Training Programs From Experts</h3>
                         <p class="max-w-md mt-4 text-gray-600">
                             provide hands-on solutions through practical information sharing to
                             help solve day to day business challenges by developing human capitals that meets the company’s needs..

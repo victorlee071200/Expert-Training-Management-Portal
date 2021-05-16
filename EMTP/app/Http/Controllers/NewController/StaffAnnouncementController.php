@@ -17,8 +17,7 @@ class StaffAnnouncementController extends Controller
      */
     public function index($id)
     {
-        $user = DB::table('users')->where('email', Auth::user()->email)->get();
-        $assignedprograms =  DB::table('client_programs')->where('staff_id', $user[0]->id)->where('program_id', $id)->get();
+        $assignedprograms =  DB::table('client_programs')->where('staff_id', Auth::user()->id)->where('program_id', $id)->get();
         $program_details =  DB::table('programs')->where('id', $id)->get();
         $announcement = DB::table('announcements')->where('program_id', $program_details[0]->id)->get();
 
@@ -32,8 +31,7 @@ class StaffAnnouncementController extends Controller
      */
     public function create($id)
     {
-        $user = DB::table('users')->where('email', Auth::user()->email)->get();
-        $assignedprograms =  DB::table('client_programs')->where('staff_id', $user[0]->id)->where('program_id', $id)->get();
+        $assignedprograms =  DB::table('client_programs')->where('staff_id', Auth::user()->id)->where('program_id', $id)->get();
         $program_details =  DB::table('programs')->where('id', $id)->get();
 
         return view('staff.program.create_announcement',['assignedprograms'=>$assignedprograms[0], '$program_details'=>$program_details[0]]);
