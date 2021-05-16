@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\NewController;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\SupportTicket;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class StaffSupportController extends Controller
 {
@@ -14,7 +16,8 @@ class StaffSupportController extends Controller
      */
     public function index()
     {
-        //
+        $tickets = SupportTicket::where('assign_to', Auth::user()->name)->get();
+        return view('staff.support.index', compact('tickets'));
     }
 
     /**
@@ -46,7 +49,8 @@ class StaffSupportController extends Controller
      */
     public function show($id)
     {
-        //
+        $ticket = SupportTicket::find($id);
+        return view('staff.support.details', compact('ticket'));
     }
 
     /**
@@ -69,7 +73,11 @@ class StaffSupportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $ticket = SupportTicket::findOrFail($id);
+        $ticket->status = $request->input('status');
+        $ticket->update();
+
+        return redirect(route('staff.support.index'))->withToastInfo($ticket->name.'&#39;s support ticket has been updated to '.$ticket->status.' Successfully!');
     }
 
     /**

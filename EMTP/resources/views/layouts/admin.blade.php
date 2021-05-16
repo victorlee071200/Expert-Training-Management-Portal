@@ -86,7 +86,7 @@
 
                             <a href="{{ route('staff.program.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Program</a>
 
-                            <a href="#" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Support</a>
+                            <a href="{{ route('staff.support.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Support</a>
 
                         @endif
                     </div>
@@ -473,7 +473,7 @@
 
                             <a href="{{ route('staff.program.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Program</a>
 
-                            <a href="#" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Support</a>
+                            <a href="{{ route('staff.support.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:hover:text-light hover:text-gray-700">Support</a>
 
                         @endif
                       </div>

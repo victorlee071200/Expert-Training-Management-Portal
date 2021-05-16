@@ -8,6 +8,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Database\Seeders\ProgramSeeder;
 use Illuminate\Support\Facades\Hash;
+use Database\Seeders\UsersTableSeeder;
 use Database\Seeders\DepartmentsTableSeeder;
 
 class DatabaseSeeder extends Seeder
