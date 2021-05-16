@@ -47,8 +47,7 @@ class StaffAnnouncementController extends Controller
      */
     public function store(Request $request, $id)
     {
-        $user = DB::table('users')->where('email', Auth::user()->email)->get();
-        $assignedprograms =  DB::table('client_programs')->where('staff_id', $user[0]->id)->where('program_id', $id)->get();
+        $assignedprograms =  DB::table('client_programs')->where('staff_id', Auth::user()->id)->where('program_id', $id)->get();
         $program_details =  DB::table('programs')->where('id', $id)->get();
         $announcement = DB::table('announcements')->get();
 
@@ -76,8 +75,7 @@ class StaffAnnouncementController extends Controller
      */
     public function show($id, $announcement)
     {
-        $user = DB::table('users')->where('email', Auth::user()->email)->get();
-        $assignedprograms =  DB::table('client_programs')->where('staff_id', $user[0]->id)->where('program_id', $id)->get();
+        $assignedprograms =  DB::table('client_programs')->where('staff_id', Auth::user()->id)->where('program_id', $id)->get();
         $program_details =  DB::table('programs')->where('id', $id)->get();
         $announcements = DB::table('announcements')->where('id', $announcement)->get();
 
@@ -92,8 +90,7 @@ class StaffAnnouncementController extends Controller
      */
     public function edit($id, $announcement)
     {
-        $user = DB::table('users')->where('email', Auth::user()->email)->get();
-        $assignedprograms =  DB::table('client_programs')->where('staff_id', $user[0]->id)->where('program_id', $id)->get();
+        $assignedprograms =  DB::table('client_programs')->where('staff_id', Auth::user()->id)->where('program_id', $id)->get();
         $program_details =  DB::table('programs')->where('id', $id)->get();
         $announcements = DB::table('announcements')->where('id', $announcement)->get();
 
@@ -109,8 +106,7 @@ class StaffAnnouncementController extends Controller
      */
     public function update(Request $request, $id, $announcement)
     {
-        $user = DB::table('users')->where('email', Auth::user()->email)->get();
-        $assignedprograms =  DB::table('client_programs')->where('staff_id', $user[0]->id)->where('program_id', $id)->get();
+        $assignedprograms =  DB::table('client_programs')->where('staff_id', Auth::user()->id)->where('program_id', $id)->get();
         $program_details =  DB::table('programs')->where('id', $id)->get();
         $announcements = DB::table('announcements')->where('id', $announcement)->get();
 
@@ -137,8 +133,7 @@ class StaffAnnouncementController extends Controller
      */
     public function destroy($id, $announcement)
     {
-        $user = DB::table('users')->where('email', Auth::user()->email)->get();
-        $assignedprograms =  DB::table('client_programs')->where('staff_id', $user[0]->id)->where('program_id', $id)->get();
+        $assignedprograms =  DB::table('client_programs')->where('staff_id', Auth::user()->id)->where('program_id', $id)->get();
         $program_details =  DB::table('programs')->where('id', $id)->get();
         $announcements = DB::table('announcements')->where('id', $announcement)->get();
         Announcement::find($announcement)->delete();

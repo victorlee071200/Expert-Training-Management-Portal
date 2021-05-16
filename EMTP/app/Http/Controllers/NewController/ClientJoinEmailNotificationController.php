@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ClientJoinEmailNotification;
 
-class ClientJoinEmailNotificationContiroller extends Controller
+class ClientJoinEmailNotificationController extends Controller
 {
     public function sendEmail($data)
     {
