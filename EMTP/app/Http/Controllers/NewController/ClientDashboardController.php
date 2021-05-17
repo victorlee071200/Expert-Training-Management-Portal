@@ -17,9 +17,14 @@ class ClientDashboardController extends Controller
     public function index()
     {
         $registeredprograms =  DB::table('client_programs')->where('client_email', Auth::user()->email)->get();
-        $program_details =  DB::table('programs')->get();
 
-        return view('client.new.dashboard.index',['registeredprograms'=>$registeredprograms, 'program_details'=>$program_details]);
+        $arr1 = [];
+        foreach ($registeredprograms as $program) {
+            $data =  DB::table('programs')->where('id', $program->program_id)->get();
+            array_push($arr1, $data[0]);
+        }
+
+        return view('client.new.dashboard.index',['registeredprograms'=>$registeredprograms, 'program_details'=>$arr1]);
     }
 
     /**
