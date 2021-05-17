@@ -110,9 +110,13 @@ Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified', 
 
     Route::resource('/dashboard', StaffDashboardController::class);
     Route::resource('/program', StaffProgramsController::class);
+    Route::get('/program/{id}', [StaffProgramsController::class, 'show']);
     Route::get('/program/pending/{id}', [StaffProgramsController::class, 'pending']);
     Route::get('/program/pending/edit/{id}', [StaffProgramsController::class, 'edit']);
     Route::get('/program/approved/{id}', [StaffProgramsController::class, 'approved']);
+
+    Route::get('/program/approve/{id}', [StaffProgramsController::class, 'approve']);
+    Route::get('/program/complete/{id}', [StaffProgramsController::class, 'complete']);
 
     Route::resource('/support', StaffSupportController::class);
 

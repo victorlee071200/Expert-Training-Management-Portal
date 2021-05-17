@@ -28,7 +28,8 @@ class StaffProgramsController extends Controller
         $approved =  Program::where('status', 'approved')->get();
         $all = Program::orderBy('id', 'DESC')->paginate(5);
 
-        $incharge = ClientProgram::where('staff_id',Auth::user()->id)->get();
+        $clientpending = ClientProgram::where('status','pending')->get();
+        $incharge = ClientProgram::where('staff_id',Auth::user()->id)->where('status','!=','pending')->get();
         $idarray = array();
         
         foreach ($incharge as $program){
@@ -36,8 +37,9 @@ class StaffProgramsController extends Controller
         }
 
         $inchargedetails = Program::whereIn('id',$idarray)->get();
+        
 
-        return view('staff.program.index', compact('pending', 'currency', 'approved', 'all', 'incharge', 'inchargedetails'));
+        return view('staff.program.index', compact('pending', 'clientpending', 'currency', 'approved', 'all', 'incharge', 'inchargedetails'));
     }
 
     /**
@@ -98,7 +100,9 @@ class StaffProgramsController extends Controller
      */
     public function show($id)
     {
-        //
+        $program = Program::where('id', $id)->first();
+        $clientprogram =  ClientProgram::where('id', $id)->first();
+        return view('staff.program.in-charge.index', compact('program','clientprogram'));
     }
 
     /**
@@ -179,6 +183,28 @@ class StaffProgramsController extends Controller
         $program = Program::find($id);
         $feedbacks = Feedback::where('program_id',$id)->get();
         return view('staff.program.approved.index', compact('program','feedbacks'));
+    }
+
+    public function approve($id)
+    {
+        $program = Program::where('id', $id)->first();
+
+        $clientprogram =  ClientProgram::where('id', $id)->first();
+        $clientprogram->status = 'approved';
+        $clientprogram->save();
+
+        return redirect('staff/program');
+    }
+
+    public function complete($id)
+    {
+        $program = Program::where('id', $id)->first();
+
+        $clientprogram =  ClientProgram::where('id', $id)->first();
+        $clientprogram->status = 'completed';
+        $clientprogram->save();
+
+        return redirect('staff/program');
     }
 
 

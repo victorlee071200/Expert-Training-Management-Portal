@@ -18,6 +18,7 @@ class StaffDashboardController extends Controller
     {
         $assignedprograms =  DB::table('client_programs')->where('staff_id', Auth::user()->id)->get();
         $program_details =  DB::table('programs')->get();
+        
 
         return view('staff.dashboard.index',['assignedprograms'=>$assignedprograms, 'program_details'=>$program_details]);
     }

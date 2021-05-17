@@ -33,7 +33,7 @@
               <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full px-3">
                   <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="name">
-                    Name
+                    Name <span class="text-red-500">*
                   </label>
                   <x-jet-input id="name" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
                 </div>
@@ -42,7 +42,7 @@
               <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full px-3">
                   <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="code">
-                    Code
+                    Code <span class="text-red-500">*
                   </label>
                   <x-jet-input id="code" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" name="code" required autofocus autocomplete="name" />
                 </div>
@@ -51,7 +51,7 @@
               <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full px-3">
                   <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="type">
-                    Type
+                    Type <span class="text-red-500">*
                   </label>
                   <input id="type" name="type" type="text" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required autofocus autocomplete="code">
                 </div>
@@ -60,7 +60,7 @@
             <div class="flex flex-wrap -mx-3 mb-6">
               <div class="w-full px-3">
                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="length">
-                  Length(Days)
+                  Length(Days) <span class="text-red-500">*
                 </label>
                 <input id="length" name="length" type="number" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required autofocus autocomplete="length">
               </div>
@@ -69,7 +69,7 @@
               <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full px-3">
                   <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="price">
-                    Price
+                    Price <span class="text-red-500">*
                   </label>
                   <input id="price" name="price" type="number" step="0.01" min=0 class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required autofocus autocomplete="price">
                 </div>
@@ -78,7 +78,7 @@
               <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full px-3">
                   <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="option">
-                    Option
+                    Option <span class="text-red-500">*
                   </label>
                   <div class="relative">
                     <select id="option" name="option" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
@@ -93,7 +93,7 @@
               <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full px-3">
                   <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="thumbnail">
-                    Thumbnail
+                    Thumbnail (Less ) <span class="text-red-500">*
                   </label>
                   <input type="file" id="thumbnail" name="thumbnail" required accept="image/*">
 
@@ -103,9 +103,21 @@
               <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full px-3">
                   <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="thumbnail">
-                    Program Document (In ZIP file)
+                    Program Document (In ZIP file) <span class="text-red-500">*
                   </label>
-                  <input type="file" id="document" name="document" accept=".zip,.rar,.7zip">
+                  <input type="file" id="document" name="document" accept=".zip,.rar,.7zip" onchange="checkSize()">
+
+                  <script>
+                    function checkSize(){
+                        var uploadField = document.getElementById("image");
+                        
+                        if(uploadField.files[0].size > 500000){
+                            alert("File is too big!");
+                            uploadField.value = "";
+                        };
+                       
+                    }
+                </script>
 
                 </div>
               </div>
@@ -113,7 +125,7 @@
               <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full px-3">
                   <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="description">
-                    Description
+                    Description <span class="text-red-500">*
                   </label>
                   <textarea required id="description" name="description" type="text" class="resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48" required autofocus autocomplete="description"></textarea>
 
