@@ -16,7 +16,7 @@
   </div>
 
   <!-- Start Content Card -->
-  <div class="grid grid-cols-1 gap-5 mt-6 sm:grid-cols-2 lg:grid-cols-4">
+  {{--  <div class="grid grid-cols-1 gap-5 mt-6 sm:grid-cols-2 lg:grid-cols-4">
     <template x-for="i in 4" :key="i">
         <div class="p-4 transition-shadow border rounded-lg shadow-sm hover:shadow-lg">
         <div class="flex items-start justify-between">
@@ -32,7 +32,7 @@
         </div>
         </div>
     </template>
-  </div>
+  </div>  --}}
 
 <h3 class="mt-6 text-xl">
     Department List
