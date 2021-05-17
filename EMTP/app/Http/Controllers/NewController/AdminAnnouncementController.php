@@ -18,8 +18,9 @@ class AdminAnnouncementController extends Controller
     {
         $program_details =  DB::table('programs')->where('id', $id)->get();
         $announcement = DB::table('announcements')->where('program_id', $id)->get();
+        $feedbacks = DB::table('feedbacks')->where('program_id', $id)->get();
 
-        return view('admin.program.announcement',['program_details'=>$program_details[0], 'announcement'=>$announcement]);
+        return view('admin.program.announcement',['program_details'=>$program_details[0], 'announcement'=>$announcement, 'feedbacks'=>$feedbacks]);
     }
 
     /**
@@ -71,8 +72,9 @@ class AdminAnnouncementController extends Controller
     {
         $program_details =  DB::table('programs')->where('id', $id)->get();
         $announcements = DB::table('announcements')->where('id', $announcement)->get();
+        $feedbacks = DB::table('feedbacks')->where('program_id', $id)->get();
 
-        return view('admin.program.view_announcement',['program_details'=>$program_details[0], 'announcement'=>$announcements[0]]);
+        return view('admin.program.view_announcement',['program_details'=>$program_details[0], 'announcement'=>$announcements[0],'feedbacks'=>$feedbacks]);
     }
 
     /**
