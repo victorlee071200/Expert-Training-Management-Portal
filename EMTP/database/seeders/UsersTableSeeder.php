@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -15,10 +16,10 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         // Admin user
-        DB::table('users')->insert([
+        User::insert([
             'name' => 'admin',
             'role_id'  => '1',
-            'company_name' => 'EMTP Sdn Bhd',
+            'company_name' => 'EMTP',
             'email'  => 'admin@gmail.com',
             'email_verified_at'  => date("Y-m-d H:i:s"),
             'password'  => bcrypt('12341234'),
@@ -38,13 +39,24 @@ class UsersTableSeeder extends Seeder
             'created_at'  => date("Y-m-d H:i:s"),
         ]);
 
-
         // staff
-        DB::table('users')->insert([
-            'name' => 'staff1',
-            'role_id'  => '3',
-            'company_name' => 'Techslim',
+        User::insert([
+            'name' => 'Technical Support 0',
             'email'  => 'staff@gmail.com',
+            'company_name' => 'EMTP',
+            'department' => 'Technical Support',
+            'email_verified_at'  => date("Y-m-d H:i:s"),
+            'password'  => bcrypt('12341234'),
+            'profile_photo_path' => 'profile.jpg',
+            'role_id'  => '3',
+            'created_at'  => date("Y-m-d H:i:s"),
+        ]);
+
+        User::insert([
+            'name' => 'client',
+            'role_id'  => '2',
+            'company_name' => 'Celcom',
+            'email'  => 'member@gmail.com',
             'email_verified_at'  => date("Y-m-d H:i:s"),
             'password'  => bcrypt('12341234'),
             'profile_photo_path' => 'profile.jpg',
@@ -52,60 +64,54 @@ class UsersTableSeeder extends Seeder
         ]);
 
         // Member users
-        DB::table('users')->insert([
-            'name' => 'users1',
-            'role_id'  => '2',
-            'email'  => 'member@gmail.com',
-            'company_name' => 'Techs123im',
+        User::insert([
+            'name' => 'Technical Support 1',
+            'email'  => 'technicalsupport@gmail.com',
+            'company_name' => 'EMTP',
+            'department' => 'Technical Support',
             'email_verified_at'  => date("Y-m-d H:i:s"),
             'password'  => bcrypt('12341234'),
             'profile_photo_path' => 'profile.jpg',
+            'role_id'  => '3',
             'created_at'  => date("Y-m-d H:i:s"),
         ]);
 
-        DB::table('users')->insert([
-            'name' => 'users2',
-            'role_id'  => '2',
-            'company_name' => 'asdasda',
-            'email'  => 'newmember@gmail.com',
+        User::insert([
+            'name' => 'Customer Service 1',
+            'email'  => 'customerservice@gmail.com',
+            'company_name' => 'EMTP',
+            'department' => 'Customer Service',
             'email_verified_at'  => date("Y-m-d H:i:s"),
             'password'  => bcrypt('12341234'),
             'profile_photo_path' => 'profile.jpg',
+            'role_id'  => '3',
             'created_at'  => date("Y-m-d H:i:s"),
         ]);
 
-        DB::table('users')->insert([
-            'name' => 'users3',
-            'role_id'  => '2',
-            'company_name' => 'Tec1231hsim',
-            'email'  => 'verynewmember@gmail.com',
+        User::insert([
+            'name' => 'Billing 1',
+            'email'  => 'billing@gmail.com',
+            'company_name' => 'EMTP',
+            'department' => 'Billing',
             'email_verified_at'  => date("Y-m-d H:i:s"),
             'password'  => bcrypt('12341234'),
             'profile_photo_path' => 'profile.jpg',
+            'role_id'  => '3',
             'created_at'  => date("Y-m-d H:i:s"),
         ]);
 
-        DB::table('users')->insert([
-            'name' => 'users4',
-            'role_id'  => '2',
-            'company_name' => 'Te123121chsim',
-            'email'  => 'ultranewmember@gmail.com',
+        User::insert([
+            'name' => 'Feedback 1',
+            'email'  => 'feedback@gmail.com',
+            'company_name' => 'EMTP',
+            'department' => 'Feedback',
             'email_verified_at'  => date("Y-m-d H:i:s"),
             'password'  => bcrypt('12341234'),
             'profile_photo_path' => 'profile.jpg',
+            'role_id'  => '3',
             'created_at'  => date("Y-m-d H:i:s"),
         ]);
 
-        DB::table('users')->insert([
-            'name' => 'users5',
-            'role_id'  => '2',
-            'company_name' => 'Techs1231231im',
-            'email'  => 'supernewmember@gmail.com',
-            'email_verified_at'  => date("Y-m-d H:i:s"),
-            'password'  => bcrypt('12341234'),
-            'profile_photo_path' => 'profile.jpg',
-            'created_at'  => date("Y-m-d H:i:s"),
-        ]);
 
     }
 }
