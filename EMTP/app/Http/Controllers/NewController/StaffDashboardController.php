@@ -17,10 +17,14 @@ class StaffDashboardController extends Controller
     public function index()
     {
         $assignedprograms =  DB::table('client_programs')->where('staff_id', Auth::user()->id)->get();
-        $program_details =  DB::table('programs')->get();
-        
 
-        return view('staff.dashboard.index',['assignedprograms'=>$assignedprograms, 'program_details'=>$program_details]);
+        $arr1 = [];
+        foreach ($assignedprograms as $program) {
+            $data =  DB::table('programs')->where('id', $program->program_id)->get();
+            array_push($arr1, $data[0]);
+        }
+
+        return view('staff.dashboard.index',['assignedprograms'=>$assignedprograms, 'program_details'=>$arr1]);
     }
 
     /**
