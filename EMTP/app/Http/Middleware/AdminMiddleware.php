@@ -18,12 +18,15 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::check() && Auth::user()->role_id == 1) {
-
+        if(session('role_id') == 1)
+        {
             return $next($request);
-            return redirect(RouteServiceProvider::ADMIN);
-        } else {
+        }
+        else
+        {
+            session()->flush();
             return redirect()->route('login');
         }
+        return $next($request);
     }
 }
