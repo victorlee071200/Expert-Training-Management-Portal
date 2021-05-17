@@ -14,10 +14,10 @@
         Create
         </a>
     </div> --}}
-  </div>
+</div>
 
   <!-- Start Content Card -->
-  <div class="grid grid-cols-1 gap-5 mt-6 sm:grid-cols-2 lg:grid-cols-4">
+{{--  <div class="grid grid-cols-1 gap-5 mt-6 sm:grid-cols-2 lg:grid-cols-4">
     <template x-for="i in 4" :key="i">
         <div class="p-4 transition-shadow border rounded-lg shadow-sm hover:shadow-lg">
         <div class="flex items-start justify-between">
@@ -33,7 +33,7 @@
         </div>
         </div>
     </template>
-</div>
+</div>  --}}
 
 <h3 class="mt-6 text-xl">
     Pending Program List
@@ -67,11 +67,11 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-center">
 
-                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">{{ $program->length }}</span>
+                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 rounded-full">{{ $program->length }}</span>
 
                                 </td>
                                 <td class="px-6 py-4 text-sm whitespace-nowrap text-center">
-                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">{{ $program->price }}</span>
+                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 rounded-full">{{ $program->price }}</span>
 
                                 </td>
 
@@ -143,11 +143,11 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-center">
 
-                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">{{ $program->length  }}</span>
+                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 rounded-full">{{ $program->length  }}</span>
 
                                 </td>
                                 <td class="px-6 py-4 text-sm whitespace-nowrap text-center">
-                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">{{ $program->price }}</span>
+                                    <span class="inline-flex px-2 text-xs font-semibold leading-5 rounded-full">{{ $program->price }}</span>
 
                                 </td>
 
