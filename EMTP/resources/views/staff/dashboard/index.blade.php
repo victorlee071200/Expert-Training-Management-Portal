@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('content')
+@section('container')
 
 <div class="bg-white">
     <h2 class="font-semibold text-3xl text-gray-800 leading-tight px-5 py-3 md:px-28 md:py-5">

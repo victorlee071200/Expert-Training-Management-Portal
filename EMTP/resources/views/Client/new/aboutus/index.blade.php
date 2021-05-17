@@ -70,7 +70,7 @@
                 </div>
 
                 <a class="block px-8 py-2 mt-6 text-lg font-medium text-center text-white transition-colors duration-300 transform bg-indigo-600 rounded md:mt-0 hover:bg-indigo-500"
-                    href="{{ route('client.help-questions') }}">
+                    href="/client/support">
                     Get Help
                 </a>
             </div>
