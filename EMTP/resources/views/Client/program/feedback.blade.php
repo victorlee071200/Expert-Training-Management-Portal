@@ -68,9 +68,22 @@
 
                                 <div class="mb-8">
                                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="image">
-                                        Upload an image
+                                        Upload an image (Less than 500KB)
                                     </label>
-                                    <input type="file" id="image" name="image">
+                                    <input type="file" id="image" name="image" accept="image/*" onchange="checkSize()">
+                                    
+                                    <script>
+                                        function checkSize(){
+                                            var uploadField = document.getElementById("image");
+                                            
+                                            if(uploadField.files[0].size > 500000){
+                                                alert("File is too big!");
+                                                uploadField.value = "";
+                                            };
+                                           
+                                        }
+                                    </script>
+
                                 </div>
 
                                 <input type="hidden" id="clientprogramid" name="clientprogramid" value={{$clientfeedback->program_id}}>
@@ -95,6 +108,7 @@
                     </div>
 
                     <script>
+                        
                         function editFeedback() {
                           var feedbackText = document.getElementById("feedbackText");
                           var feedbackImage = document.getElementById("feedbackImage");
@@ -136,9 +150,21 @@
 
                         <div class="mb-8">
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="image">
-                                Upload an image
+                                Upload an image (Less than 500KB)
                             </label>
-                            <input type="file" id="image" name="image">
+                            <input type="file" id="image" name="image" accept="image/*" onchange="checkSize()">
+
+                            <script>
+                                function checkSize(){
+                                    var uploadField = document.getElementById("image");
+                                    
+                                    if(uploadField.files[0].size > 500000){
+                                        alert("File is too big!");
+                                        uploadField.value = "";
+                                    };
+                                   
+                                }
+                            </script>
                         </div>
 
                         <input type="hidden" id="programid" name="programid" value={{$program_details->id}}>

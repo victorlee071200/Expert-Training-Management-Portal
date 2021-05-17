@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
-@section('content')
+@section('container')
 
 <div class="bg-white sm:rounded-lg flex">
     <!-- side nav -->
