@@ -23,15 +23,15 @@ class ClientFeedbackEmailNotification extends Mailable
         $this->action_status = $status;
 
         if ($this->action_status == "new") {
-            $this->subject = "New Client Feedback [".$data['program_code']." ".$data['program_name']."]";
+            $this->subject = "[EMTP - ".$data['program_code']." ".$data['program_name']."] New Client Feedback";
         }
         if ($this->action_status == "updated") {
-            $this->subject = "Updated Client Feedback [".$data['program_code']." ".$data['program_name']."]";
+            $this->subject = "[EMTP - ".$data['program_code']." ".$data['program_name']."] Updated Client Feedback";
         }
 
         FeedbackNotification::create([
             'subject' => $this->subject,
-            'content' => $data['content'],
+            'content' => $data['feedback_content'],
         ]);
     }
 

@@ -196,17 +196,32 @@ class CheckoutController extends Controller
         $user = Auth::user();
         $users = DB::table("users")->where("id", $user->id)->first();
         $program = DB::table("user_programs")->latest()->first();
+        $client_program = DB::table("client_programs")->latest()->first();
         $program_details = DB::table("programs")->where("id", $program->program_id)->first();
         $admin = DB::table('users')->where('email', 'kokwei325@gmail.com')->first();
 
+        date_default_timezone_set("Asia/Kuala_Lumpur");
+
         $data = [
-            "user_id" => $users->id,
             'admin_email' =>  $admin->email,
-            "user_name" => $users->name,
-            "user_email" => $users->email,
+
             "program_id" => $program_details->id,
             "program_code" => $program_details->code,
             "program_name" => $program_details->name,
+            'datetime_join' => date('Y-m-d H:i:s'),
+            "payment_type" => $client_program->payment_type,
+            "payment_status" => $client_program->payment_status,
+            "no_of_employees" => $client_program->no_of_employees,
+            "venue" => $client_program->client_venue,
+            "option" => $client_program->option,
+            "start_date" => $client_program->start_date,
+            "end_date" => $client_program->end_date,
+            "client_notes" => $client_program->client_notes,
+
+            "user_id" => $users->id,
+            "user_name" => $users->name,
+            "user_email" => $users->email,
+            "company_name" => $client_program->company_name,
         ];
 
         app('App\Http\Controllers\NewController\ClientJoinEmailNotificationController')->sendEmail($data);

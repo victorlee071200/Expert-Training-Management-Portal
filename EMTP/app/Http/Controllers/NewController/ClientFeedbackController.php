@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Models\ClientProgram;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\FeedbackNotification;
 use Illuminate\Support\Facades\Auth;
 
 class ClientFeedbackController extends Controller
@@ -59,20 +58,40 @@ class ClientFeedbackController extends Controller
             $feedback->image_path = $name;
         }
 
+        date_default_timezone_set("Asia/Kuala_Lumpur");
+
         $feedback->save();
 
-        $admin = DB::table('users')->where('email', 'kokwei325@gmail.com')->get();
-        $program_details = DB::table('programs')->where('id', $id)->get();
+        $users = DB::table("users")->where('id', Auth::user()->id)->first();
+        $admin = DB::table('users')->where('email', 'kokwei325@gmail.com')->first();
+        $client_program = DB::table("client_programs")->where('program_id', $id)->where('user_id',Auth::user()->id)->first();
+        $program_details = DB::table('programs')->where('id', $id)->first();
 
         $data = [
+            'admin_email' =>  $admin->email,
+            "program_id" => $program_details->id,
+            "program_code" => $program_details->code,
+            "program_name" => $program_details->name,
+            'datetime_join' => $client_program->created_at,
+            "payment_type" => $client_program->payment_type,
+            "payment_status" => $client_program->payment_status,
+            "no_of_employees" => $client_program->no_of_employees,
+            "venue" => $client_program->client_venue,
+            "option" => $client_program->option,
+            "start_date" => $client_program->start_date,
+            "end_date" => $client_program->end_date,
+            "client_notes" => $client_program->client_notes,
+
             'feedback_id' => $feedback->id,
-            'name' => $feedback->client_name,
-            'admin_email' =>  $admin[0]->email,
-            'content' => $feedback->feedback,
-            'profile_path' => $feedback->profile_thumbnail,
+            'feedback_content' => $feedback->feedback,
             'image_path' => $feedback->image_path,
-            'program_code' => $program_details[0]->code,
-            'program_name' => $program_details[0]->name,
+            'created_at' => $feedback->created_at,
+            'updated_at' => $feedback->updated_at,
+
+            "user_id" => $users->id,
+            'user_name' => $feedback->client_name,
+            'user_email' => $users->email,
+            "company_name" => $client_program->company_name,
         ];
 
         app('App\Http\Controllers\NewController\ClientFeedbackEmailNotificationController')->sendEmail($data, 'new');
@@ -121,20 +140,40 @@ class ClientFeedbackController extends Controller
             $feedback->image_path = $name;
         }
 
+        date_default_timezone_set("Asia/Kuala_Lumpur");
+
         $feedback->save();
 
-        $admin = DB::table('users')->where('email', 'kokwei325@gmail.com')->get();
-        $program_details = DB::table('programs')->where('id', $request->clientprogramid)->get();
+        $users = DB::table("users")->where('id', Auth::user()->id)->first();
+        $admin = DB::table('users')->where('email', 'kokwei325@gmail.com')->first();
+        $client_program = DB::table("client_programs")->where('program_id', $feedback->program_id)->where('user_id',Auth::user()->id)->first();
+        $program_details = DB::table('programs')->where('id', $request->clientprogramid)->first();
 
         $data = [
+            'admin_email' =>  $admin->email,
+            "program_id" => $program_details->id,
+            "program_code" => $program_details->code,
+            "program_name" => $program_details->name,
+            'datetime_join' => $client_program->created_at,
+            "payment_type" => $client_program->payment_type,
+            "payment_status" => $client_program->payment_status,
+            "no_of_employees" => $client_program->no_of_employees,
+            "venue" => $client_program->client_venue,
+            "option" => $client_program->option,
+            "start_date" => $client_program->start_date,
+            "end_date" => $client_program->end_date,
+            "client_notes" => $client_program->client_notes,
+
             'feedback_id' => $feedback->id,
-            'name' => $feedback->client_name,
-            'admin_email' =>  $admin[0]->email,
-            'content' => $feedback->feedback,
-            'profile_path' => $feedback->profile_thumbnail,
+            'feedback_content' => $feedback->feedback,
             'image_path' => $feedback->image_path,
-            'program_code' => $program_details[0]->code,
-            'program_name' => $program_details[0]->name,
+            'created_at' => $feedback->created_at,
+            'updated_at' => $feedback->updated_at,
+
+            "user_id" => $users->id,
+            'user_name' => $feedback->client_name,
+            'user_email' => $users->email,
+            "company_name" => $client_program->company_name,
         ];
 
         app('App\Http\Controllers\NewController\ClientFeedbackEmailNotificationController')->sendEmail($data, 'updated');

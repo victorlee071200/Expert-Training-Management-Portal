@@ -54,7 +54,7 @@ class StaffAnnouncementController extends Controller
             'content' => 'required',
             'state' => 'required',
         ]);
-
+        date_default_timezone_set("Asia/Kuala_Lumpur");
         Announcement::create([
             'program_id' => $program_details[0]->id,
             'title' => $request->input('title'),
@@ -113,6 +113,8 @@ class StaffAnnouncementController extends Controller
             'content' => 'required',
             'state' => 'required',
         ]);
+
+        date_default_timezone_set("Asia/Kuala_Lumpur");
 
         Announcement::where('id', $announcement)->update([
             'title' => $request->input('title'),

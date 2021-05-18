@@ -21,13 +21,22 @@
         </ul>
     </div>
     <div class="block w-full min-h-screen">
-        <div class="mb-5 text-3xl font-bold text-gray-800 py-4 px-4 border-b border-gray-100 grid grid-cols-2">
+        <div class="mb-5 ml-3 text-3xl font-bold text-gray-800 py-4 px-4 border-b border-gray-100">
             <h2 class="">
                 {{$announcement->title}}
             </h2>
+            <p class="text-xs text-gray-400">Date created: {{$announcement->created_at}}</p>
+            <p class="text-xs text-gray-400">Date updated: {{$announcement->updated_at}}</p>
         </div>
-        <div class="p-3 mt-2 mx-2">
+        <div class="px-5 mt-2 mx-2">
             {{$announcement->content}}
+        </div>
+        <div class="mt-5 mx-7">
+            <a href="{{ route('client.program-announcement', $registeredprograms->id) }}">
+                <button class="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white transition bg-indigo-500 rounded shadow ripple hover:shadow-lg hover:bg-indigo-600 focus:outline-none">
+                    Back
+                </button>
+            </a>
         </div>
     </div>
 </div>

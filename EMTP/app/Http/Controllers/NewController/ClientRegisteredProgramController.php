@@ -52,6 +52,8 @@ class ClientRegisteredProgramController extends Controller
         $clientprogram->staff_id = 0;
         $clientprogram->option = request('option');
 
+        date_default_timezone_set("Asia/Kuala_Lumpur");
+
         if ($clientprogram->option == "online"){
             $clientprogram->client_venue = "online";
         } else{
@@ -69,8 +71,7 @@ class ClientRegisteredProgramController extends Controller
         $clientprogram->save();
 
         if ($clientprogram->payment_type == 'cash'){
-            return redirect('/client/dashboard')->withToastInfo('Successfully Registered');
-
+            return redirect()->route('thanks')->withToastInfo('Successfully Registered');
         }
 
         else{

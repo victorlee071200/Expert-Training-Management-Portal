@@ -20,7 +20,7 @@ class ClientJoinEmailNotification extends Mailable
     public function __construct($data)
     {
         $this->notification_mail_data = $data;
-        $this->subject = "New Client Join [".$data['program_code']." ".$data['program_name']."]";
+        $this->subject = "[ EMTP - ".$data['program_code']." ".$data['program_name']."] New Client Join";
 
         ClientJoinNotification::create([
             'subject' => $this->subject,

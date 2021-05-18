@@ -27,15 +27,13 @@
             <div class="w-auto mx-3 mb-6">
                 <div class="px-3">
                     <label class="text-gray-700 text-xl font-bold mb-2" for="title">Title</label>
-                    <input id="title" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 focus:outline-none focus:bg-white focus:border-gray-500" type="text" name="title" value="{{$announcements->title}}" required autofocus autocomplete="name"/>
+                    <input id="title" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 focus:outline-none focus:bg-white focus:border-gray-500" type="text" name="title" value="{{$announcements->title}}" required autofocus autocomplete="title"/>
                 </div>
             </div>
             <div class="w-auto mx-3 mb-6">
                 <div class="px-3">
                     <label class="text-gray-700 text-xl font-bold mb-2" for="title">Content</label>
-                    <textarea id="content" class="h-96 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 focus:outline-none focus:bg-white focus:border-gray-500" type="text" name="content" required autofocus autocomplete="name">
-                        {{$announcements->content}}
-                    </textarea>
+                    <textarea id="content" class="h-96 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 focus:outline-none focus:bg-white focus:border-gray-500" type="text" name="content" required autofocus autocomplete="content">{{str_replace('\r','',$announcements->content)}}</textarea>
                 </div>
             </div>
             <div class="w-auto mx-3 mb-6">
@@ -58,8 +56,13 @@
                     </div>
                 </div>
             </div>
-            <div class="mx-3 mb-6 px-3 text-right">
-                <button id="submit" name="submit" class="w-1/2 shadow bg-teal-400 hover:bg-teal-400 focus:shadow-outline bg-indigo-400 focus:outline-none text-gray-200 hover:bg-indigo-600 hover:text-white font-bold py-2 px-4 rounded" >Update</button>
+            <div class="mx-3 mb-6 px-3 text-right grid grid-cols-2">
+                <a href="{{ route('staff.program-announcement', $assignedprograms->id) }}" class="mr-5 w-auto text-center shadow focus:shadow-outline bg-red-400 focus:outline-none text-gray-200 hover:bg-red-600 hover:text-white font-bold py-2 px-4 rounded">
+                    Back
+                </a>
+                <button id="submit" name="submit" class="w-auto shadow focus:shadow-outline bg-indigo-400 focus:outline-none text-gray-200 hover:bg-indigo-600 hover:text-white font-bold py-2 px-4 rounded" >
+                    Update
+                </button>
             </div>
         </form>
     </div>
