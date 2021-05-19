@@ -33,8 +33,7 @@
             <div class="w-auto mx-3 mb-6">
                 <div class="px-3">
                     <label class="text-gray-700 text-xl font-bold mb-2" for="title">Content</label>
-                    <textarea id="content" class="h-96 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 focus:outline-none focus:bg-white focus:border-gray-500" type="text" name="content" required autofocus autocomplete="name">
-                    </textarea>
+                    <textarea id="content" class="h-96 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 focus:outline-none focus:bg-white focus:border-gray-500" type="text" name="content" required autofocus autocomplete="name"></textarea>
                 </div>
             </div>
             <div class="w-auto mx-3 mb-10">

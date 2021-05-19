@@ -19,8 +19,10 @@
                 <div class="items-center md:flex md:space-x-6">
                     <div class="md:w-1/2">
                         <h3 class="text-2xl font-semibold text-gray-800">Provide Better Lives <br> Giving Opportunities</h3>
-                        <p class="max-w-md mt-4 text-gray-600">EMTP is a training provider which provides in-house training
-                            for companies or employees within Sarawak.</p>
+                        <p class="max-w-md mt-4 text-gray-600">
+                            A training provider for public and client
+                            to improve themselves and others by giving training opportunities.
+                        </p>
                         <a href="/client/aboutus" class="block mt-8 text-indigo-700 underline">Learn More</a>
                     </div>
 
@@ -45,14 +47,11 @@
                         <img class="object-cover object-center w-64 rounded-md shadow h-96"
                             src="https://images.unsplash.com/photo-1618506469810-282bef2b30b3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80">
                     </div>
-                    <h2 class="text-3xl font-semibold text-gray-800 md:mt-6">Lorem ipsum dolor </h2>
+                    <h2 class="text-3xl font-semibold text-white md:mt-6">Services and Solutions </h2>
                     <p class="max-w-lg mt-4 ">
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse illum
-                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                        officia
-                        deserunt mollit anim id est laborum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia
-                        deserunt mollit anim id est laborum.
+                        We provides hands-on solutions through practical information sharing
+                        to help solve day to day business challenges by developing human capitals
+                        that meets the company’s needs.
                     </p>
                 </div>
                 <div class="md:w-1/3">
@@ -77,8 +76,8 @@
                     <div class="mt-8 md:mt-0 md:w-1/2">
                         <h3 class="text-2xl font-semibold text-gray-800">Provides High Quality <br> Training Programs From Experts</h3>
                         <p class="max-w-md mt-4 text-gray-600">
-                            provide hands-on solutions through practical information sharing to
-                            help solve day to day business challenges by developing human capitals that meets the company’s needs..
+                            Develop your skills and knowledge through training programs
+                            provided by EMTP. Get access to high quality training programs here.
                         </p>
                         <a href="/client/program" class="block mt-8 text-indigo-700 underline">Learn More</a>
                     </div>
