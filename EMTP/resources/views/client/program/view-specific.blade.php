@@ -65,7 +65,7 @@
 
                     </div>
                   </div>
-                  
+
                   {{-- Feedbacks --}}
                   <div class="lg:w-4/5 mx-auto m-10">
 
@@ -95,7 +95,7 @@
                     @endforeach
 
                     @endif
-                    
+
                   </div>
 
                 </div>

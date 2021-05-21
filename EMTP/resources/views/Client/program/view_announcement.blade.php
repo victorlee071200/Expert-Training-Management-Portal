@@ -7,16 +7,16 @@
     <div class="bg-gray-300 text-gray-800 hidden md:flex h-auto">
         <ul>
             <li>
-                <a href="{{ route('client.program-detail', $registeredprograms->id) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Details</a>
+                <a href="{{ route('client.program-detail', $registeredprograms->program_id) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Details</a>
             </li>
             <li>
-                <a href="{{ route('client.program-announcement', $registeredprograms->id) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 bg-white text-indigo-600 h-16 flex justify-center items-center w-auto">Announcement</a>
+                <a href="{{ route('client.program-announcement', $registeredprograms->program_id) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 bg-white text-indigo-600 h-16 flex justify-center items-center w-auto">Announcement</a>
             </li>
             <li>
-                <a href="{{ route('client.program-material', $registeredprograms->id) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Materials</a>
+                <a href="{{ route('client.program-material', $registeredprograms->program_id) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Materials</a>
             </li>
             <li>
-                <a href="{{ route('client.program-feedback', $registeredprograms->id) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Feedback</a>
+                <a href="{{ route('client.program-feedback', $registeredprograms->program_id) }}" class="hover:bg-white hover:text-indigo-600 px-7 md:px-16 lg:px-20 h-16 flex justify-center items-center w-auto">Feedback</a>
             </li>
         </ul>
     </div>

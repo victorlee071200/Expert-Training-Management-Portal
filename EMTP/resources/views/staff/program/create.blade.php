@@ -110,12 +110,12 @@
                   <script>
                     function checkSize(){
                         var uploadField = document.getElementById("image");
-                        
+
                         if(uploadField.files[0].size > 500000){
                             alert("File is too big!");
                             uploadField.value = "";
                         };
-                       
+
                     }
                 </script>
 
