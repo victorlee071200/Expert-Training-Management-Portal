@@ -33,7 +33,7 @@
                             <div class="w-full px-3">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
                                     for="option">
-                                    Department <span class="text-red-600">*</span>
+                                    Problem Area <span class="text-red-600">*</span>
                                 </label>
                                 <div class="relative">
                                     <select required id="department" name="department"

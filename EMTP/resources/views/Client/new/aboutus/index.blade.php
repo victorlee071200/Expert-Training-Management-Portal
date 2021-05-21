@@ -13,7 +13,7 @@
                     leadership & communication skills, language proficiency, sales, negotiation & presentation skills,
                     workplace management and personal development.
                 </p>
-                <img
+                <img class="mt-4 object-cover object-center w-full rounded-md shadow"
                     src="https://image.freepik.com/free-photo/successful-team-business-people-showing-thumbs-up_108072-754.jpg">
 
                 <div class="grid gap-8 mt-10 md:mt-20 md:grid-cols-2">
@@ -30,7 +30,7 @@
                             <p class="max-w-lg mt-4 text-black">To help people find the right training programme for them
                                 in order to be successful in their respective jobs and improving their skill in various
                                 aspects.</p>
-                            <img class="object-cover object-center w-full rounded-md shadow"
+                            <img class="mt-14 object-cover object-center w-full rounded-md shadow"
                                 src="https://3ozxuk3equ8uk744atar6415-wpengine.netdna-ssl.com/wp-content/uploads/2018/05/objectives.jpg">
                         </div>
                     </div>
@@ -45,12 +45,14 @@
 
                         <div>
                             <h4 class="text-xl font-medium text-gray-800">Goals</h4>
-                            <p class="max-w-lg mt-4 text-black">Our goal here is to give birth to people with knowledge
+                            <p class="max-w-lg mx-auto mt-4 text-black">Our goal here is to give birth to people with
+                                knowledge
                                 and skills who can
                                 greatly contribute to todays society. As the world is progressing and going through a great
                                 change in evolution, it is never a better time to learn something new and useful.
                             </p>
-                            <img src="https://i.pinimg.com/originals/ba/91/57/ba9157b791429fc475248a5895f61f68.jpg">
+                            <img class="mt-4 object-cover object-center w-full rounded-md shadow"
+                                src="https://i.pinimg.com/originals/ba/91/57/ba9157b791429fc475248a5895f61f68.jpg">
                         </div>
                     </div>
                 </div>

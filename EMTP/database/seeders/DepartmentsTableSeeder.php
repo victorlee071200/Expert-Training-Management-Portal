@@ -16,32 +16,31 @@ class DepartmentsTableSeeder extends Seeder
     public function run()
     {
         Department::insert([
-            'name' => 'Technical Support',
-            'description'  => 'Technical Support Description',
+            'name' => 'Page cannot be loaded',
+            'description'  => 'Page cannot be loaded Description',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         Department::insert([
-            'name' => 'Customer Service',
-            'description'  => 'Customer Service Description',
+            'name' => 'Cannot register program',
+            'description'  => 'Cannot register program Description',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         Department::insert([
-            'name' => 'Billing',
-            'description'  => 'Billing Description',
+            'name' => 'Feedback form not available',
+            'description'  => 'Feedback form not available Description',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
 
         Department::insert([
-            'name' => 'Feedback',
-            'description'  => 'Feedback Description',
+            'name' => 'Payment not accepted/error',
+            'description'  => 'Payment not accepted/error Description',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
         ]);
-
     }
 }
