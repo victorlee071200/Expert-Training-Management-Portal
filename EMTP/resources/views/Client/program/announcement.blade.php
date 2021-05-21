@@ -29,13 +29,15 @@
         <div class="p-3 mx-2">
             <table class="w-full">
                 @foreach($announcement as $indexKey => $announcements)
-                    <tr class="grid-cols-1 rounded shadow-sm">
-                        <th class="w-auto py-5 px-2 hover:bg-gray-50">
-                            <a href="{{ route('client.program-specific-announcement', [ $registeredprograms->id, $announcements->id]) }}">
-                                <h2 class="text-left pl-10">{{$announcements->title}}</h2>
-                            </a>
-                        </th>
-                    </tr>
+                    @if($announcements->state == "ACTIVE")
+                        <tr class="grid-cols-1 rounded shadow-sm">
+                            <th class="w-auto py-5 px-2 hover:bg-gray-50">
+                                <a href="{{ route('client.program-specific-announcement', [ $registeredprograms->id, $announcements->id]) }}">
+                                    <h2 class="text-left pl-10">{{$announcements->title}}</h2>
+                                </a>
+                            </th>
+                        </tr>
+                    @endif
                 @endforeach
             </table>
         </div>
