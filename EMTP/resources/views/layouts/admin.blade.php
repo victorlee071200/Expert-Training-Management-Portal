@@ -68,7 +68,7 @@
                     <div role="menu" x-show="open" class="mt-2 space-y-2 px-7" aria-label="Dashboards">
                       <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                       <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                        @if (Auth::user()->name == 'admin')
+                        @if (Auth::user()->role_id == '1')
 
                             <a href="{{ route('admin.dashboard.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">Dashboard</a>
 
@@ -92,7 +92,7 @@
                     </div>
                   </div>
 
-                   @if (Auth::user()->name == 'admin')
+                   @if (Auth::user()->role_id == '1')
                   <!-- Payment Management links -->
                   <div x-data="{ isActive: false, open: false}">
                     <!-- active & hover classes 'bg-indigo-100 dark:bg-indigo-600' -->
@@ -462,7 +462,7 @@
                       <div role="menu" x-show="open" class="mt-2 space-y-2 px-7" aria-label="Dashboards">
                         <!-- active & hover classes 'text-gray-700 dark:text-light' -->
                         <!-- inActive classes 'text-gray-400 dark:text-gray-400' -->
-                        @if (Auth::user()->name == 'admin')
+                        @if (Auth::user()->role_id == "1")
 
                             <a href="{{ route('admin.dashboard.index') }}" role="menuitem" class="block p-2 text-sm text-gray-400 transition-colors duration-200 rounded-md dark:text-gray-400 dark:hover:text-light hover:text-gray-700">Dashboard</a>
 

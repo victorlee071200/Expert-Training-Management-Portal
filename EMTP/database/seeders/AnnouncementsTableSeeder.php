@@ -14,14 +14,12 @@ class AnnouncementsTableSeeder extends Seeder
      */
     public function run()
     {
-        $content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-
         date_default_timezone_set("Asia/Kuala_Lumpur");
 
         DB::table('announcements')->insert([
             'program_id' => 1,
             'title' => 'Announcement 1',
-            'content' => $content,
+            'content' => 'This coming week will be a tuition week. Hence, there\'ll be no virtual consultation during the week. Our session will resume back on Week 7 (19th April) onward',
             'state' => 'ACTIVE',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
@@ -30,7 +28,7 @@ class AnnouncementsTableSeeder extends Seeder
         DB::table('announcements')->insert([
             'program_id' => 2,
             'title' => 'Announcement 1',
-            'content' => $content,
+            'content' => 'Sharing with you on Agile project estimation across sprints',
             'state' => 'ACTIVE',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
@@ -39,7 +37,7 @@ class AnnouncementsTableSeeder extends Seeder
         DB::table('announcements')->insert([
             'program_id' => 3,
             'title' => 'Announcement 1',
-            'content' => $content,
+            'content' => 'Of course, you are required to watch the pre-recorded lecture and tutorial briefing. Jot down any questions or doubts and bring it up to me in our virtual consultation session (Microsoft Team).',
             'state' => 'ACTIVE',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
@@ -48,7 +46,7 @@ class AnnouncementsTableSeeder extends Seeder
         DB::table('announcements')->insert([
             'program_id' => 1,
             'title' => 'Announcement 2',
-            'content' => $content,
+            'content' => 'Sprint 2 review will be conducted on 17/5/2021 (Monday) during the lecture session. Kindly reserve your slot here',
             'state' => 'ACTIVE',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
@@ -57,7 +55,7 @@ class AnnouncementsTableSeeder extends Seeder
         DB::table('announcements')->insert([
             'program_id' => 2,
             'title' => 'Announcement 2',
-            'content' => $content,
+            'content' => 'Here comes Week 2. Sit back and have a watch on this video',
             'state' => 'ACTIVE',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
@@ -66,7 +64,7 @@ class AnnouncementsTableSeeder extends Seeder
         DB::table('announcements')->insert([
             'program_id' => 3,
             'title' => 'Announcement 2',
-            'content' => $content,
+            'content' => 'Here you go the recording for this afternoon virtual meetup, just in case you missed it',
             'state' => 'ACTIVE',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
@@ -75,7 +73,7 @@ class AnnouncementsTableSeeder extends Seeder
         DB::table('announcements')->insert([
             'program_id' => 2,
             'title' => 'Announcement 3',
-            'content' => $content,
+            'content' => 'Hope you all have a good start of the unit and see you all on Friday morning',
             'state' => 'ACTIVE',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),

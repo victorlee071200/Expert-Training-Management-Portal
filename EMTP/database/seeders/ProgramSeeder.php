@@ -19,13 +19,6 @@ class ProgramSeeder extends Seeder
         $option = ['online','physical','both'];
         $clientoption = ['physical','online'];
 
-        $content = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                    sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
-                    id est laborum.";
-
         DB::table('programs')->insert([
             'name' => 'Program A',
             'type' => 'Communication',
@@ -35,7 +28,7 @@ class ProgramSeeder extends Seeder
             'price' => rand(10,100),
             'option' => 'online',
             'status' => 'approved',
-            'description' => $content,
+            'description' => 'students will study the four skills assessed in the IELTS exam: speaking, listening, reading and writing. In the mornings, students will focus on building their overall level of English grammar, vocabulary, pronunciation, listening, speaking, reading and writing skills.',
             'thumbnail_path' => 'test.png',
             'training_document' => 'document.zip',
             'created_at' => '2021-04-22 12:53:34',
@@ -49,7 +42,7 @@ class ProgramSeeder extends Seeder
             'price' => rand(10,100),
             'option' => Arr::random($option),
             'status' => 'approved',
-            'description' => 'This is a test',
+            'description' => 'learn new skill and knowledge accompanied by the rich biodiversity and culture in Sarawak.',
             'thumbnail_path' => 'test.png',
             'training_document' => 'document.zip',
             'created_at' => '2021-04-22 12:53:34',
@@ -64,7 +57,7 @@ class ProgramSeeder extends Seeder
             'price' => rand(10,100),
             'option' => Arr::random($option),
             'status' => 'approved',
-            'description' => 'This is a test',
+            'description' => 'learn new skill and knowledge accompanied by the rich biodiversity and culture in Sarawak.',
             'thumbnail_path' => 'test.png',
             'training_document' => 'document.zip',
             'created_at' => '2021-04-22 12:53:34',
