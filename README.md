@@ -10,7 +10,7 @@ Step 0: Make sure you have installed composer (application level package manager
 
 Step 1: Clone the Project
 
-Step 2: Go to the aasc directory
+Step 2: Go to the EMTP directory
 
 - `cd EMTP`
 
