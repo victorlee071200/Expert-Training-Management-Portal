@@ -16,8 +16,8 @@ class StripeSettingsTableSeeder extends Seeder
     {
         DB::table('stripe_settings')->insert([
             'stripe_environment' => 'test',
-            'stripe_test_publishable_key' => 'pk_test_51InY55GyWarx4gtO44SI2KPF89ZiAXuWczs005kvm8uRjUMyZ1Fv3SF2Q0CLhNmJUSrknF0XnZEvKgEJQ8u7odE900xumMMoPn',
-            'stripe_test_secret_key' => 'sk_test_51InY55GyWarx4gtOvsBdK8W1WqvbBRNrPId41FGp2O4mHAevsuW6hBIzmqg4rAVJJUDMgl5iqzHxwTdEpNyRsdED00Q8q7Kz6B',
+            'stripe_test_publishable_key' => 'pk_test_51LIPRQJK5OgI8SILF4xxBusvKm2UvOnVCRL0tF7diHrQZXRc8XdzZOSSjvLgRs8kXtCMZIVcMwQpQ3JCmR1khLmx0067VDIXWH',
+            'stripe_test_secret_key' => 'sk_test_51LIPRQJK5OgI8SILMosfBdS0XYwbFiPM8UEKao5kZyl3NdmHde338NY7Fhemv98jEVQZD9F7dqcCjaj2XVWwXSUP00jCelaMci',
         ]);
     }
 }

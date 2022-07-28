@@ -51,7 +51,7 @@ Route::get('/', function () {
 });
 
 // Admin Routes
-Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', 'verified', 'admin'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::resource('/dashboard', AdminDashboardController::class);
     Route::resource('/department', AdminDepartmentController::class);
@@ -106,7 +106,7 @@ Route::post('/feedback/create', [ClientFeedbackController::class, 'store'])->nam
 Route::post('/program/register', [ClientRegisteredProgramController::class, 'store']);
 
 // staff route
-Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified', 'staff'])->group(function () {
+Route::prefix('staff')->name('staff.')->middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::resource('/dashboard', StaffDashboardController::class);
     Route::resource('/program', StaffProgramsController::class);

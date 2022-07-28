@@ -31,13 +31,13 @@ class StaffProgramsController extends Controller
         $clientpending = ClientProgram::where('status','pending')->get();
         $incharge = ClientProgram::where('staff_id',Auth::user()->id)->where('status','!=','pending')->get();
         $idarray = array();
-        
+
         foreach ($incharge as $program){
             array_push($idarray, $program->id);
         }
 
         $inchargedetails = Program::whereIn('id',$idarray)->get();
-        
+
 
         return view('staff.program.index', compact('pending', 'clientpending', 'currency', 'approved', 'all', 'incharge', 'inchargedetails'));
     }
@@ -78,7 +78,7 @@ class StaffProgramsController extends Controller
         );
         $program->thumbnail_path = $name;
 
-        
+
         if($request->file('document') != null){
         $documentName = $request->file('document')->getClientOriginalName();
         $request->file('document')->storeAs(
@@ -136,7 +136,7 @@ class StaffProgramsController extends Controller
         $program->description = request('description');
         $program->slug = Str::slug($request->name);
         $program->status = 'to-be-confirmed';
-        
+
         if($request->file('thumbnail') != null){
             $name = $request->file('thumbnail')->getClientOriginalName();
             $request->file('thumbnail')->storeAs(
