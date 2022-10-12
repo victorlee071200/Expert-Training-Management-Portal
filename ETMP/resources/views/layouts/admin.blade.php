@@ -280,7 +280,7 @@
                       >
                         <span class="sr-only">User menu</span>
 
-                        <img class="w-10 h-10 rounded-full" src="{{ asset('storage/profile.jpg')}}" />
+                        <img class="w-10 h-10 rounded-full" src="{{ asset('assets/profile.jpg')}}" />
 
                       </button>
 
