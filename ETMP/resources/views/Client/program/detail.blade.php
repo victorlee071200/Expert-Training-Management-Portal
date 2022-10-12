@@ -29,7 +29,7 @@
         <div class="p-3 mx-2">
             <p class="text-3xl font-semibold">{{$program_details->code}} {{$program_details->name}} ({{$program_details->type}})</p>
             <p class="text-gray-600 text-base">Time Period: {{$registeredprograms->start_date}} - {{$registeredprograms->end_date}} Mode: {{$program_details->option}}</p>
-            <img alt="ecommerce" class="rounded border border-gray-200 h-auto" src="{{ asset('storage/program_thumbnails/'.$program_details->thumbnail_path)}}">
+            <img alt="ecommerce" class="rounded border border-gray-200 h-auto" src="{{ asset('assets/program_thumbnails/'.$program_details->thumbnail_path)}}">
             <p class="my-5">{{ $program_details->description }}</p>
             <p>Price: ${{ $program_details->price }}</p>
             <p class="text-3xl font-semibold mt-5">Contact</p>

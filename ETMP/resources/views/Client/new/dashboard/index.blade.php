@@ -13,7 +13,7 @@
                 <div class="hover:bg-gray-100 lg:m-4 shadow-md hover:shadow-lg rounded-lg bg-white w-auto">
                     <!-- Card Image -->
                     <a class="hover:bg-blue-700" href="/client/dashboard/{{$program->program_id}}/detail">
-                    <img src = "{{ asset('storage/program_thumbnails/'.$program_details[$indexKey]->thumbnail_path)}}" alt="fitness training" class="h-auto">
+                    <img src = "{{ asset('assets/program_thumbnails/'.$program_details[$indexKey]->thumbnail_path)}}" alt="fitness training" class="h-auto">
                     <!-- Card Content -->
                     <div class="p-4">
                         <h3 class="font-medium text-gray-600 text-lg my-2 uppercase">{{$program_details[$indexKey]->name}}</h3>

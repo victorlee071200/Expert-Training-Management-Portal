@@ -32,7 +32,7 @@
         @foreach ($programs as $program)
         <div class="md:p-8 p-2 bg-white m-10">
             <!--Banner image-->
-            <img class="rounded-lg w-full h-2/5" src = "{{ asset('storage/program_thumbnails/'.$program->thumbnail_path)}}">
+            <img class="rounded-lg w-full h-2/5" src = "{{ asset('assets/program_thumbnails/'.$program->thumbnail_path)}}">
 
             <div class="m-2">
                 <!--Tag-->

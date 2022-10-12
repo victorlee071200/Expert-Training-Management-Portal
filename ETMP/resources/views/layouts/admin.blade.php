@@ -389,7 +389,7 @@
                         class="block transition-opacity duration-200 rounded-full dark:opacity-75 dark:hover:opacity-100 focus:outline-none focus:ring dark:focus:opacity-100"
                       >
                         <span class="sr-only">User menu</span>
-                        <img class="w-10 h-10 rounded-full" src="{{ asset('storage/profile.jpg')}}" />
+                        <img class="w-10 h-10 rounded-full" src="{{ asset('assets/profile.jpg')}}" />
                       </button>
 
                       <!-- User dropdown menu -->

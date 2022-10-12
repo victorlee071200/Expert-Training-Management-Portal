@@ -139,7 +139,7 @@
                                                             <label class="text-gray-700 pl-6 mb-0" for="braintreePayment"> {{$brainTreeLabel}}</label>
                                                         </div>
                                                         <div class="tmsonic-braintree-image">
-                                                            <img src="{{ asset("storage/frontend/images/braintree-cards.png") }}" alt="" class="max-w-full h-auto">
+                                                            <img src="{{ asset('assets/frontend/images/braintree-cards.png') }}" alt="" class="max-w-full h-auto">
                                                         </div>
                                                     </div>
                                                     </button>
@@ -188,7 +188,7 @@
                                                             <label class="text-gray-700 pl-6 mb-0" for="stripePayment"> Credit card by Stripe </label>
                                                         </div>
                                                         <div class="stripe-image">
-                                                            <img src="{{ asset("storage/frontend/images/stripe-cards.png") }}" alt="" class="max-w-full h-auto">
+                                                            <img src="{{ asset('assets/frontend/images/stripe-cards.png') }}" alt="" class="max-w-full h-auto">
                                                         </div>
                                                     </div>
                                                     </button>
@@ -239,7 +239,7 @@
                                                             <label class="text-gray-700 pl-6 mb-0" for="paypalSmartPayment"> PayPal Smart Buttons </label>
                                                         </div>
                                                         <div class="paypal-image">
-                                                            <img src="{{ asset("storage/frontend/images/paypal-logo.png") }}" alt="" class="max-w-full h-auto">
+                                                            <img src="{{ asset('assets/frontend/images/paypal-logo.png') }}" alt="" class="max-w-full h-auto">
                                                         </div>
                                                     </div>
                                                     </button>
